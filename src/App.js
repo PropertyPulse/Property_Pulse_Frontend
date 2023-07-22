@@ -1,9 +1,10 @@
 import './App.css';
 import Switch from "react-router-dom/es/Switch";
 import {Route} from "react-router-dom";
-import NotFound from "./pages/NotFound";
-import Login from "./pages/unregisteredUser/Login";
-import PropertyPulseLanding from "./pages/PropertyPulseLanding";
+import NotFound from "./pages/Common/NotFound";
+import Login from "./pages/Common/Login";
+import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
+import SamplePage from "./pages/SamplePage";
 
 
 
@@ -13,6 +14,9 @@ function App() {
         <Route exact path="/">
             <PropertyPulseLanding></PropertyPulseLanding>
         </Route>
+          <Route path="/sample" >
+              <SamplePage></SamplePage>
+          </Route>
         <Route path="/login" >
             <Login></Login>
         </Route>
