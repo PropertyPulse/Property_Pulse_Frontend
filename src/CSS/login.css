@@ -1,0 +1,14 @@
+.background{
+    background-image: url("../Assets/login-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo{
+    width: 220px;
+    height: 220px;
+}
+
+input:focus ~ .input-text {
+    @apply text-[#1f6e8c] transform -translate-y-5 -translate-x-4 scale-75;
+}
