@@ -60,8 +60,8 @@ const Signup = () => {
                         </div> */}
 
                         <div className='flex justify-center items-center my-5 p-2'>
-                            <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 accent-[#1f6e8c]/50 bg-gray-100 border-gray-300 rounded focus:ring-[#1f6e8c]/50 dark:focus:ring-[#1f6e8c]/60 dark:ring-offset-[#1f6e8c]/80 focus:ring-2 dark:bg-[#1f6e8c]/70 dark:border-[#1f6e8c]/60" />
-                            <label for="link-checkbox" class="ml-2">I agree with the <a href="#" class="text-blue-600 dark:text-blue-500 underline">terms and conditions</a>.</label>
+                            <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 accent-[#1f6e8c]/50 bg-gray-100 border-gray-300 rounded focus:ring-[#1f6e8c]/50 dark:focus:ring-[#1f6e8c]/60 dark:ring-offset-[#1f6e8c]/80 focus:ring-2 dark:bg-[#1f6e8c]/70 dark:border-[#1f6e8c]/60 cursor-pointer" />
+                            <label for="link-checkbox" className="ml-2">I agree with the <a href="#" class="text-blue-600 dark:text-blue-500 underline">terms and conditions</a>.</label>
                         </div>
 
                         <div className='w-full flex justify-center mt-10 mb-8'>
