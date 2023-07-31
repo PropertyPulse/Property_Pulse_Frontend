@@ -5,6 +5,7 @@ import NotFound from "./pages/Common/NotFound";
 import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
 import SamplePage from "./pages/SamplePage";
+import Signup from './pages/PropertyOwner/Signup';
 
 
 
@@ -21,7 +22,7 @@ function App() {
             <Login></Login>
         </Route>
         <Route path="/signup">
-
+            <Signup></Signup>
         </Route>
         {/*404notfound*/}
         <Route path="*">
