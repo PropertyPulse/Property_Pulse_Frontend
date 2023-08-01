@@ -5,6 +5,7 @@ import NotFound from "./pages/Common/NotFound";
 import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
 import SamplePage from "./pages/SamplePage";
+import FinancialManager from "./pages/FinancialManager/FinancialManager";
 
 
 
@@ -23,6 +24,9 @@ function App() {
         <Route path="/signup">
 
         </Route>
+          <Route path="/fp" >
+              <FinancialManager></FinancialManager>
+          </Route>
         {/*404notfound*/}
         <Route path="*">
           <NotFound/>
