@@ -160,6 +160,14 @@ const Signup = () => {
                         <img src={Logo} alt='Logo' className='w-24 h-24 mx-auto' />
                         <h1 className='form-title text-4xl font-bold text-[#2e8a99] w-fit mx-auto my-10 text-center'>PROPERTY OWNER REGISTRATION</h1>
 
+                        {/*Error message*/}
+                        <div className="my-4 bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                             role="alert">
+                            <strong className="font-bold">Registration Failed!</strong>
+                            <span className="block sm:inline"> Something seriously bad happened.</span>
+                            <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+                        </div>
+
                         {/* Property Owner Registration Form */}
                         <form className='w-full flex flex-wrap gap-5' onSubmit={handleSubmit}>
                             {/* Mapping inputs */}
