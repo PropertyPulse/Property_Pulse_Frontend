@@ -1,38 +1,44 @@
 import './App.css';
-import Switch from "react-router-dom/es/Switch";
-import {Route} from "react-router-dom";
-import NotFound from "./pages/Common/NotFound";
-import Login from "./pages/Common/Login";
+
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
-import SamplePage from "./pages/SamplePage";
+
+import NavbarAndSidebarLayout from "./pages/FinancialManager/NavbarAndSidebarLayout";
+import Dashboard from "./pages/FinancialManager/Dashboard";
 import FinancialManager from "./pages/FinancialManager/FinancialManager";
+import Recieved from "./pages/FinancialManager/Recieved";
+import Payments from "./pages/FinancialManager/Payments";
+import PaymentHistory from "./pages/FinancialManager/PaymentHistory";
+import SamplePage from "./pages/SamplePage";
+import Login from "./pages/Common/Login";
+import NotFound from "./pages/Common/NotFound";
+
+
+
+
 
 
 
 function App() {
-  return (
-      <Switch>
-        <Route exact path="/">
-            <PropertyPulseLanding></PropertyPulseLanding>
-        </Route>
-          <Route path="/sample" >
-              <SamplePage></SamplePage>
-          </Route>
-        <Route path="/login" >
-            <Login></Login>
-        </Route>
-        <Route path="/signup">
 
-        </Route>
-          <Route path="/fp" >
-              <FinancialManager></FinancialManager>
-          </Route>
-        {/*404notfound*/}
-        <Route path="*">
-          <NotFound/>
-        </Route>
-      </Switch>
-  );
+    return(
+        <>
+            <Routes>
+                <Route path="/" element={<PropertyPulseLanding/>}/>
+                    <Route path="sample" element={<SamplePage/>}/>
+                <Route path="signup" element={<Login/>}/>
+                <Route path="*" element={<NotFound/>}/>
+                <Route path="fm" element={<NavbarAndSidebarLayout/>}>
+                    <Route path="dashboard" element={<Dashboard/>}/>
+                    <Route path="received" element={<Recieved/>}/>
+                    <Route path="payments" element={<Payments/>}/>
+                    <Route path="history" element={<PaymentHistory/>}/>
+                </Route>
+
+            </Routes>
+        </>
+    );
 }
 
-export default App;
+export default App

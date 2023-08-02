@@ -4,7 +4,7 @@ import Sidebar from "./common/Sidebar";
 import Appbar from "./common/Appbar";
 const FinancialManager = () => {
 
-    const handle = () => { alert("hl")  }
+
 
 
     return (

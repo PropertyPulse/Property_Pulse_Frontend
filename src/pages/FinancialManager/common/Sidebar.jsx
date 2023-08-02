@@ -6,9 +6,10 @@ import payment from "../icons/payment.svg";
 import history from "../icons/history.svg";
 import setting from "../icons/setting.svg";
 import logout from "../icons/logout.svg";
+import {NavLink} from "react-router-dom";
 
 const Sidebar = () => {
-    const handle = () => { alert("hl")  }
+
     return (
         <div className="justify-items-center justify-between h-screen hidden md:flex flex-col md:w-1/5 border bg-menu-area-blue ">
             {/* logo areaa*/}
@@ -19,26 +20,26 @@ const Sidebar = () => {
 
             {/*menu area*/}
 
-            <div className="-mt-40">
-                <div onClick={handle} className="flex py-2 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
+            <div className="sidebar -mt-40">
+                <NavLink to="/fm/dashboard" className="flex py-2 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
                     <img src={grid} className="w-5 h-5" alt=""/>
                     <a href="#" className="font-medium text-lg text-primary-blue-700">Dashboard</a>
-                </div>
-                <div className="flex py-2 mt-5 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
+                </NavLink>
+                <NavLink to="/fm/received" className="flex py-2 mt-5 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
                     <img src={income} className="w-5 h-5 hover:text-sky-300" alt=""/>
                     <a href="#" className="font-medium text-lg text-primary-blue-700">Received</a>
-                </div>
-                <div className="flex py-2 mt-5 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
+                </NavLink>
+                <NavLink to="/fm/payments"  className="flex py-2 mt-5 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
                     <img src={payment} className="w-5 h-5" alt=""/>
                     <a href="#" className="font-medium text-lg text-primary-blue-700">Payments</a>
-                </div>
-                <div className="flex py-2 mt-5 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
+                </NavLink>
+                <NavLink to="/fm/history" className="flex py-2 mt-5 gap-x-4 px-6 my-2 mx-5 rounded-lg items-center hover:bg-selected-area-blue">
                     <img src={history} className="w-5 h-5" alt=""/>
                     <a href="#" className="font-medium text-lg text-primary-blue-700">History</a>
-                </div>
+                </NavLink>
             </div>
             <div>
-                <div onClick={handle} className="flex py-2 gap-x-4 px-6 my-2 mx-5 rounded-lg items-யயcenter hover:bg-selected-area-blue">
+                <div className="flex py-2 gap-x-4 px-6 my-2 mx-5 rounded-lg items-யயcenter hover:bg-selected-area-blue">
                     <img src={setting} className="w-5 h-5" alt=""/>
                     <a href="#" className="font-medium text-lg text-primary-blue-700">Settings</a>
                 </div>

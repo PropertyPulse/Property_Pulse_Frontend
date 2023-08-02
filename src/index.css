@@ -96,4 +96,8 @@
         padding: 0.3rem 1.25rem;
     }
 
+    .sidebar a.active{
+        background-color:#d9e2f3;
+    }
+
 }
