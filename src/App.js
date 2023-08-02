@@ -20,9 +20,9 @@ function App() {
           <Route path="/sample" >
               <SamplePage></SamplePage>
           </Route>
-          <Route>
-            <TaskSupervisorDashboard></TaskSupervisorDashboard>
-          </Route>
+          {/*<Route>*/}
+          {/*  <TaskSupervisorDashboard></TaskSupervisorDashboard>*/}
+          {/*</Route>*/}
         <Route path="/login" >
             <Login></Login>
         </Route>

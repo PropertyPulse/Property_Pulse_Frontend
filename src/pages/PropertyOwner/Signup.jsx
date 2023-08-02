@@ -3,8 +3,70 @@ import { FaArrowCircleLeft } from 'react-icons/fa';
 import BgSignup from '../../Assets/signup_back.jpg';
 import Logo from '../../Assets/logo.png';
 import InputText from '../../Components/Common/InputText';
+import {useState} from "react";
 
 const Signup = () => {
+
+    const[isSuccess,setSuccess]= useState(false);
+
+    const[errMsg,setErrMsg]= useState('');
+
+    const [firstname,setFirstname]= useState('');
+    const[lastname,setLastname]= useState('');
+    const[email,setEmail]= useState('');
+    const[password,setPassword]= useState('');
+    const[confirmpassword,setConfirmpassword]= useState('');
+    const[address,setAddress]= useState('');
+    const[nic,setNic]= useState('');
+    const[telephone,setTelephone]= useState('');
+    const[dateOfBirth,setDateOfBirth]= useState('');
+    const[district,setDistrict]= useState('');
+
+
+
+
+
+
+
+    //
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     // if button enabled with JS hack
+    //
+    //     if (!v1 || !v2) {
+    //         setErrMsg("Invalid Entry");
+    //         return;
+    //     }
+    //     try {
+    //         const response = await axios.post(REGISTER_URL,
+    //             JSON.stringify({ user, pwd }),
+    //             {
+    //                 headers: { 'Content-Type': 'application/json' },
+    //                 withCredentials: true
+    //             }
+    //         );
+    //         console.log(response?.data);
+    //         console.log(response?.accessToken);
+    //         console.log(JSON.stringify(response));
+    //         setSuccess(true);
+    //         //clear state and controlled inputs
+    //         //need value attrib on inputs for this
+    //         setUser('');
+    //         setPwd('');
+    //         setMatchPwd('');
+    //     } catch (err) {
+    //         if (!err?.response) {
+    //             setErrMsg('No Server Response');
+    //         } else if (err.response?.status === 409) {
+    //             setErrMsg('Username Taken');
+    //         } else {
+    //             setErrMsg('Registration Failed')
+    //         }
+    //         errRef.current.focus();
+    //     }
+    // }
+
+
     return (
         <div>  
             <div className='w-full h-screen bg-[#1f6e8c] overflow-auto'>
@@ -16,7 +78,9 @@ const Signup = () => {
                     <form method='post' action='' className='p-10 bg-white border-8 w-full max-w-[800px] z-10 m-20'>
                         <img src={Logo} alt='Logo' className='w-20 h-20 mx-auto mb-10'/>
                         <h1 className='w-fit text-4xl text-center font-bold text-[#1f6e8c] mx-auto'>PROPERTY OWNER REGISTRATION</h1>
-
+                           <div className="mx-auto w-72 bg-red-200 h-20 rounded-lg">
+                               <p className="text-center py-6 text-2xl font-semi text-red-900 mx-auto">Registration Failed</p>
+                           </div>
                         <div className='w-full flex justify-between items-center gap-5 mt-10'>
                             <InputText labelName='First Name' id='fname' />
                             <InputText labelName='Last Name' id='lname' />
