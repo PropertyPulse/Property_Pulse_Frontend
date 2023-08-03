@@ -269,7 +269,7 @@ const Signup = () => {
             </div>
 
             {/* Background image */}
-            <img src={BgSignup} className='fixed w-full h-screen object-cover -z-10' />
+            <img src={BgSignup} className='fixed w-full h-screen object-cover -z-10'  />
 
             {/* Main div */}
             <div className='div-main w-full min-h-screen h-fit bg-slate-950/60 p-10 pt-24 flex justify-center items-center'>
