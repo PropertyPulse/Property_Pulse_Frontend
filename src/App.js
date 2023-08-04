@@ -18,12 +18,12 @@ function App() {
           <Route path="/sample" >
               <SamplePage></SamplePage>
           </Route>
-          <Route>
-            <TaskSupervisorDashboard></TaskSupervisorDashboard>
-          </Route>
         <Route path="/login" >
             <Login></Login>
         </Route>
+          <Route path="/task-supervisor/dashboard">
+              <TaskSupervisorDashboard></TaskSupervisorDashboard>
+          </Route>
         <Route path="/signup">
 
         </Route>
