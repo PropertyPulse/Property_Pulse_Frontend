@@ -2,42 +2,32 @@ import logo from '../../Assets/logo.png';
 import React, {useState} from "react";
 import {BsArrowLeftShort} from "react-icons/bs";
 import {FiChevronDown} from "react-icons/fi";
-import dashboardIcon from "../../Assets/Icons/dashboard-icon.png";
-import propertiesIcon from "../../Assets/Icons/properties-icon.png";
-import tasksIcon from "../../Assets/Icons/upcoming-tasks-icon.png";
-import taskApprovalsIcon from "../../Assets/Icons/task-approvals-icon.png";
-// import Sidebar from "../Common/Sidebar";
-
-const TaskSupervisorSidebar = () => {
+const Sidebar = (sidebarItems) => {
 
     const[open , setOpen] = useState(true);
     const [openSubmenus, setOpenSubmenus] = useState([]);
 
-    const SidebarItems = [
-        {title: "Dashboard",
-            icon: dashboardIcon},
-        {title: "Properties",
-            icon: propertiesIcon,
-            submenu: true,
-            submenuItems: [
-                {title: "Assigned Properties"},
-                {title: "Properties to be Managed"},
-            ]},
-        {title: "Tasks",
-            icon: tasksIcon,
-            submenu: true,
-            submenuItems: [
-                {title: "Upcoming Tasks"},
-                {title: "Ongoing Tasks"},
-                {title: "Completed Tasks"},
-            ]},
-        {title: "Task Approvals",
-            icon: taskApprovalsIcon},
-    ]
+    /* const Menus = [
+
+    //{sidebar item without sub items}
+         {title: "Dashboard",
+             icon: dashboardIcon},
+
+    //{sidebar item with two sub items}
+         {title: "",
+             icon: exampleIcon,
+             submenu: true,
+             submenuItems: [
+                 {title: ""},
+                 {title: ""},
+             ]},
+     ]*/
+
+    const Menus = sidebarItems;
 
        return (
            <div className='flex'>
-               <section className={`sidebar h-screen bg-gray-100 text-primary-blue-800 pt-2 relative duration-300
+               <section className={`sidebar h-screen bg-gray-100 text-primary-blue-800 pt-2 relative duration-300 
                    ${open ? 'w-80' : 'w-28'}`}>
                    <BsArrowLeftShort className={`absolute bg-white text-3xl text-primary-blue-800
                        rounded-full border-2 border-primary-blue-800 cursor-pointer -right-3 top-6
@@ -51,7 +41,7 @@ const TaskSupervisorSidebar = () => {
                    </div>
 
                    <ul className='pt-6'>
-                       {SidebarItems.map((menu, index) => (
+                       {Menus.map((menu, index) => (
                            <React.Fragment key={index}>
                                <li className='flex items-center text-primary-blue-800 px-7 py-3 m-2 my-3 gap-x-5 cursor-pointer
                                hover:bg-selected rounded-xl my-2'>
@@ -92,8 +82,7 @@ const TaskSupervisorSidebar = () => {
 
                </section>
            </div>
-           // <Sidebar Menus={SidebarItems} />
     )
 }
 
-export default TaskSupervisorSidebar;
+export default Sidebar;
