@@ -2,27 +2,20 @@ import React from "react";
 import logo from "../../Assets/logo.png";
 import calender from "../../Assets/calender.png";
 import analitics from "../../Assets/Analitics.png";
+import NavbarWithSidebar from "../../Components/Common/NavbarWithSidebar";
+import TaskSupervisorSidebar from "../../Components/TaskSupervisor/TaskSupervisorSidebar";
 
 const TaskSupervisorDashboard = () => {
-    return (
-        <div>
-            <div className='row-auto flex bg-background-blue'>
-                <section className='sidebar w-2/12 h-screen bg-white z-50'>
-                    <div className='row-auto flex'>
-                        <div className='p-0'>
-                            <img className='w-28 h-28' src={logo} alt='logo' />
-                        </div>
-                        <div className='text-center pt-3'>
-                            <span className='title text-4xl'>Property<br />Pulse</span>
-                        </div>
-                    </div>
-                </section>
-
+    return(
+        <div className='w-full flex bg-white'>
+            <div className='z-50'>
+                <TaskSupervisorSidebar />
+            </div>
+            <div className='w-full z-40'>
+                <NavbarWithSidebar name="Deepamal Shaminda" userRole="Task Supervisor" />
+            </div>
+        </div>
                 <section className='w-10/12'>
-                    <section className='navbar h-24 bg-primary-blue-800 z-40'>
-                        <div className=''></div>
-                    </section>
-
                     <section className='dashboard h-[calc(100vh-6rem)]'>
                         <div className='top w-12/12 h-3/5 flex'>
                             <div className='top-left-inner w-6/12'>
