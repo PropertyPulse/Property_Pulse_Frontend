@@ -5,7 +5,9 @@ import NotFound from "./pages/Common/NotFound";
 import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
 import SamplePage from "./pages/SamplePage";
+import Signup from './pages/PropertyOwner/Signup';
 import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+
 
 
 
@@ -25,7 +27,7 @@ function App() {
               <TaskSupervisorDashboard></TaskSupervisorDashboard>
           </Route>
         <Route path="/signup">
-
+            <Signup></Signup>
         </Route>
         {/*404notfound*/}
         <Route path="*">
