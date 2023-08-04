@@ -9,18 +9,19 @@ import jwtDecode from "jwt-decode";
 
 import axios from '../../api/axios';
 import AuthContext from "../../context/AuthProvider";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 const LOGIN_URL = '/api/v1/auth/authenticate';
 
 const Login = () => {
 
-    const { setAuth } = useContext(AuthContext);
+    const {auth, setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+
 
     useEffect(() => {
         userRef.current.focus();
@@ -30,12 +31,25 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
+
+    console.log(from)
 
 
 
 
 
-    async function handleLognin() {
+    async function handleLogin() {
+
+        if (!user || !pwd) {
+            setErrMsg('Missing Username or Password');
+            userRef.current.focus();
+            return;
+        }
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -48,13 +62,28 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.access_token;
+            const refreshToken = response?.data?.refresh_token;
+
 
             const roles = jwtDecode(accessToken).role
-            setAuth({user, pwd, roles, accessToken});
-                // setUser('');
-                // setPwd('');
-            setSuccess(true);
+            setAuth({user, roles, accessToken , refreshToken});
+                setUser('');
+                setPwd('');
+
             console.log(roles)
+            console.log("printing auth",auth)
+
+
+            if (from === "/") {
+                // navigate based on the role
+
+
+                if (roles === "PROPERTYOWNER") {
+                    navigate("/po");
+                }
+            } else {
+                navigate(from, { replace: true });
+            }
 
         } catch (err) {
 
@@ -64,7 +93,7 @@ const Login = () => {
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrMsg('Invalid Email or Password');
             } else {
                 setErrMsg('Login Failed');
             }
@@ -93,7 +122,7 @@ const Login = () => {
                             </svg>
                             <span className="sr-only">Info</span>
                             <div>
-                                <span className="font-medium">Invalid Email or password!</span>
+                                <span className="font-medium">{errMsg}</span>
                             </div>
                         </div>
                         <div className='row-auto flex p-2'>
@@ -158,11 +187,11 @@ const Login = () => {
 
                         <div className='p-3 text-center'>
                             <span className='font-semibold'>Don't you have an account? </span>
-                            <a className='text-primary-blue-500 font-bold' href="#">Signup</a>
+                            <NavLink className='text-primary-blue-500 font-bold' to="/signup">Signup</NavLink>
                         </div>
 
-                        <div className='flex justify-center py-7 gap-1' onClick={handleLognin} >
-                            <button className="btn-lg bg-primary-blue-800 text-white" onClick=''>Login</button>
+                        <div className='flex justify-center py-7 gap-1'  >
+                            <button className="btn-lg bg-primary-blue-800 text-white" onClick={handleLogin}>Login</button>
                         </div>
 
                     </section>
