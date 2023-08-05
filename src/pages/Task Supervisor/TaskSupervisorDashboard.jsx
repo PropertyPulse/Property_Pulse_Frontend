@@ -1,7 +1,4 @@
 import React from "react";
-import logo from "../../Assets/logo.png";
-import calender from "../../Assets/calender.png";
-import analitics from "../../Assets/Analitics.png";
 import Calender from "./Calender";
 import Chart from "./Chart";
 import NavbarWithSidebar from "../../Components/Common/NavbarWithSidebar";
@@ -52,6 +49,6 @@ const TaskSupervisorDashboard = () => {
             </div>
         </div>
     );
-};
+}
 
 export default TaskSupervisorDashboard;
