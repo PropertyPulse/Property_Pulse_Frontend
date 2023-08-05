@@ -3,8 +3,8 @@ import logo from "../../Assets/logo.png";
 import calender from "../../Assets/calender.png";
 import analitics from "../../Assets/Analitics.png";
 import Calender from "./Calender";
+import Chart from "./Chart";
 import NavbarWithSidebar from "../../Components/Common/NavbarWithSidebar";
-import TaskSupervisorSidebar from "../../Components/TaskSupervisor/TaskSupervisorSidebar";
 
 const TaskSupervisorDashboard = () => {
     return(
@@ -44,7 +44,7 @@ const TaskSupervisorDashboard = () => {
                         </div>
                         <div className='bottom w-12/12 h-1/5'>
                             <div className="bottom-inner h-full px-5 py-5">
-
+                                <Chart />
                             </div>
                         </div>
                     </section>
