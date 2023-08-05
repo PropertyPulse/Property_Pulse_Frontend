@@ -20,7 +20,7 @@ function App() {
           <Route path="/sample" >
               <SamplePage></SamplePage>
           </Route>
-          <Route path="/task-supervisor-dashboard">
+          <Route path="/task-supervisor/dashboard">
               <TaskSupervisorDashboard></TaskSupervisorDashboard>
           </Route>
           <Route path="/Calender">
