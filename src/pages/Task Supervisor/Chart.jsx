@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import { Category, ChartComponent, ColumnSeries, Inject, LineSeries, SeriesCollectionDirective, SeriesDirective, Tooltip } from '@syncfusion/ej2-react-charts';
+import { AccumulationChartComponent, AccumulationSeriesCollectionDirective, AccumulationSeriesDirective, PieSeries } from '@syncfusion/ej2-react-charts';
 
 function chartComponent() {
     const data = [
@@ -20,5 +21,4 @@ function chartComponent() {
         </SeriesCollectionDirective>
     </ChartComponent>;
 }
-;
 export default chartComponent;
