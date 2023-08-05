@@ -6,9 +6,10 @@ import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
 import SamplePage from "./pages/SamplePage";
 import Signup from './pages/PropertyOwner/Signup';
-import TaskSupervisorDashboard from "./pages/TaskSupervisor/TaskSupervisorDashboard";
-import Calender from "./pages/TaskSupervisor/Calender"
-
+import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import Calender from "./pages/Task Supervisor/Calender"
+import Chart from "./pages/Task Supervisor/Chart"
+import AssignedProperties from "./pages/Task Supervisor/AssignedProperties";
 
 
 
@@ -27,6 +28,12 @@ function App() {
           </Route>
           <Route path="/Calender">
               <Calender></Calender>
+          </Route>
+          <Route path="/Chart">
+              <Chart></Chart>
+          </Route>
+          <Route path="/AssignedProperties">
+              <AssignedProperties></AssignedProperties>
           </Route>
         <Route path="/login" >
             <Login></Login>

@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../Assets/logo.png";
 import calender from "../../Assets/calender.png";
 import analitics from "../../Assets/Analitics.png";
+import Calender from "./Calender";
 
 const TaskSupervisorDashboard = () => {
     return (
@@ -43,14 +44,13 @@ const TaskSupervisorDashboard = () => {
                             </div>
                             <div className='top-right-inner w-6/12 h-full'>
                                 <div className="top-right h-full px-5 py-5">
-                                    <img src={calender} alt="" />
+                                    <Calender />
 
                                 </div>
                             </div>
                         </div>
-                        <div className='bottom w-12/12 h-2/3'>
+                        <div className='bottom w-12/12 h-1/5'>
                             <div className="bottom-inner h-full px-5 py-5">
-                                <img src={analitics} alt="analitics" />
 
                             </div>
                         </div>
