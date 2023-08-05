@@ -5,18 +5,19 @@ import analitics from "../../Assets/Analitics.png";
 import Calender from "./Calender";
 import Chart from "./Chart";
 import NavbarWithSidebar from "../../Components/Common/NavbarWithSidebar";
+import TaskSupervisorSidebar from "../../Components/TaskSupervisor/TaskSupervisorSidebar";
 
 const TaskSupervisorDashboard = () => {
-    return(
-        <div className='w-full flex bg-white'>
+    return (
+        <div className='w-full flex bg-background-blue'>
             <div className='z-50'>
                 <TaskSupervisorSidebar />
             </div>
-            <div className='w-full z-40'>
-                <NavbarWithSidebar name="Deepamal Shaminda" userRole="Task Supervisor" />
-            </div>
-        </div>
-                <section className='w-10/12'>
+            <div>
+                <div className='w-full z-40'>
+                    <NavbarWithSidebar name="Deepamal Shaminda" userRole="Task Supervisor" />
+                </div>
+                <section>
                     <section className='dashboard h-[calc(100vh-6rem)]'>
                         <div className='top w-12/12 h-3/5 flex'>
                             <div className='top-left-inner w-6/12'>
@@ -38,7 +39,6 @@ const TaskSupervisorDashboard = () => {
                             <div className='top-right-inner w-6/12 h-full'>
                                 <div className="top-right h-full px-5 py-5">
                                     <Calender />
-
                                 </div>
                             </div>
                         </div>
