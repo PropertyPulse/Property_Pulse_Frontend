@@ -7,6 +7,7 @@ import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
 import SamplePage from "./pages/SamplePage";
 import Signup from './pages/PropertyOwner/Signup';
 import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import SystemAdminDashboard from "./pages/System Admin/SystemAdminDashboard";
 import Calender from "./pages/Task Supervisor/Calender";
 import Chart from "./pages/Task Supervisor/Chart";
 
@@ -31,11 +32,11 @@ function App() {
         <Route path="/login" >
             <Login></Login>
         </Route>
-          <Route path="/task-supervisor/dashboard">
-              <TaskSupervisorDashboard></TaskSupervisorDashboard>
-          </Route>
         <Route path="/signup">
             <Signup></Signup>
+        </Route>
+        <Route path="/system-admin/dashboard">
+            <SystemAdminDashboard></SystemAdminDashboard>
         </Route>
         {/*404notfound*/}
         <Route path="*">
