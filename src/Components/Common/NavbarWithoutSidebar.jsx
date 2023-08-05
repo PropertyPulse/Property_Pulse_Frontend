@@ -10,7 +10,7 @@ const NavbarWithoutSidebar = (user) => {
                 <div className='pl-6 flex space-x-6'>
                     <img className='rounded-full w-20 h-20 p-1' src={logo} alt='logo'/>
                     <div className='text-center pt-1'>
-                        <h1 className='title text-white text-3xl p-0'>Property<br/> Pulse</h1>
+                        <h1 className='title text-white font-semibold text-3xl p-0'>Property<br/> Pulse</h1>
                     </div>
                 </div>
                 <div className='w-full flex justify-end'>

@@ -10,10 +10,7 @@ import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashb
 import Calender from "./pages/Task Supervisor/Calender"
 import Chart from "./pages/Task Supervisor/Chart"
 import Duplicate from "./pages/Task Supervisor/Duplicate";
-
-
-
-
+import SystemAdminDashboard from "./pages/System Admin/SystemAdminDashboard";
 
 function App() {
   return (
@@ -24,7 +21,7 @@ function App() {
           <Route path="/sample" >
               <SamplePage></SamplePage>
           </Route>
-          <Route path="/task-supervisor-dashboard">
+          <Route path="/task-supervisor/dashboard">
               <TaskSupervisorDashboard></TaskSupervisorDashboard>
           </Route>
           <Route path="/duplicate">
@@ -39,11 +36,11 @@ function App() {
         <Route path="/login" >
             <Login></Login>
         </Route>
-          <Route path="/task-supervisor/dashboard">
-              <TaskSupervisorDashboard></TaskSupervisorDashboard>
-          </Route>
         <Route path="/signup">
             <Signup></Signup>
+        </Route>
+        <Route path="/system-admin/dashboard">
+            <SystemAdminDashboard></SystemAdminDashboard>
         </Route>
         {/*404notfound*/}
         <Route path="*">
