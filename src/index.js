@@ -4,6 +4,11 @@ import './index.css'
 import App from './App'
 import { AuthProvider } from './context/AuthProvider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { registerLicense } from "@syncfusion/ej2-base";
+
+// Registering Syncfusion license key
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NGaF1cWGhBYVRpR2NbfE5xdF9GZlZTRmY/P1ZhSXxQdkJgWH1ccHJXRGBeV0E=');
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

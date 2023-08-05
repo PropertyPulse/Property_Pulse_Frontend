@@ -1,23 +1,18 @@
-import userAvatar from '../../Assets/user-avatar.png'
-import messageIcon from '../../Assets/Icons/message-icon.png'
-import notificationIcon from '../../Assets/Icons/notification-icon.png'
+import userAvatar from '../../Assets/user-avatar.png';
+import {FaMessage} from "react-icons/fa6";
+import {IoIosNotifications} from "react-icons/io";
 
 const NavbarWithSidebar = (user) => {
     return(
-        <div className='flex justify-end'>
-            <section className='navbar w-10/12 h-20 bg-primary-blue-800 z-40 flex'>
-                <div className='pt-6 pl-8 w-1/12'>
-                    <i className="fa fa-bars fa-2x text-white" aria-hidden="true"></i>
-                </div>
-                <div className='w-11/12 flex justify-end'>
-                    <div className='w-1/12 pt-6 justify-center'>
-                        <img className='w-8 h-8' src={messageIcon} alt='logo'/>
-                    </div>
-                    <div className='w-1/12 pt-6 justify-center'>
-                        <img className='w-8 h-8' src={notificationIcon} alt='logo'/>
+        <div className='w-full justify-end'>
+            <section className='navbar w-full h-28 md:h-28 lg:h-20 bg-primary-blue-800 flex shadow-md'>
+                <div className='w-full flex justify-end'>
+                    <div className='w-1/12 md:w-2/12 flex pt-2 items-center text-right px-12 space-x-4 lg:space-x-16'>
+                        <FaMessage className='text-white text-xs md:text-2xl' />
+                        <IoIosNotifications className='text-white  text-xs md:text-4xl'/>
                     </div>
                     <div className='w-2/12 py-3 text-white text-right'>
-                        <div className='font-medium text-xl'>{user.name}</div>
+                        <div className='font-normal md:font-medium text-xl'>{user.name}</div>
                         <div className='text-md'>{user.userRole}</div>
                     </div>
                     <div className='pt-4 px-12 float-right'>

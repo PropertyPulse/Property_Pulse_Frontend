@@ -6,15 +6,16 @@ import passwordIcon from '../../Assets/Icons/password-icon.png'
 import userIcon from '../../Assets/Icons/user-icon.png'
 
 import jwtDecode from "jwt-decode";
-
+import Cookies from "js-cookie";
 import axios from '../../api/axios';
-import AuthContext from "../../context/AuthProvider";
+
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 const LOGIN_URL = '/api/v1/auth/authenticate';
 
 const Login = () => {
 
-    const {auth, setAuth } = useContext(AuthContext);
+    const {auth, setAuth ,persist,setPersist } = useAuth();
     const userRef = useRef();
     const errRef = useRef();
 
@@ -64,9 +65,9 @@ const Login = () => {
             const accessToken = response?.data?.access_token;
             const refreshToken = response?.data?.refresh_token;
 
-
+            Cookies.set('name', refreshToken, { expires: 7 })
             const roles = jwtDecode(accessToken).role
-            setAuth({user, roles, accessToken , refreshToken});
+            setAuth({user, roles, accessToken});
                 setUser('');
                 setPwd('');
 
@@ -80,6 +81,9 @@ const Login = () => {
 
                 if (roles === "PROPERTYOWNER") {
                     navigate("/po");
+                }
+                else if (roles === "TASKSUPERVISOR"){
+                    navigate("/ts/db");
                 }
             } else {
                 navigate(from, { replace: true });
@@ -102,6 +106,17 @@ const Login = () => {
 
 
     }
+
+    const togglePersist = () => {
+        setPersist(prev => !prev);
+    }
+
+    useEffect(() => {
+
+        localStorage.setItem("persist",persist)
+
+    }, [persist]);
+
 
     return (
         <div className='background'>
@@ -184,7 +199,15 @@ const Login = () => {
                                 </label>
                             </div>
                         </div>
-
+                        <div className='mx-3 px-5  '>
+                            <input
+                                type="Checkbox"
+                                id="persist"
+                                onChange={togglePersist}
+                                checked={persist}
+                            />
+                            <label htmlFor="persist" className='font-semi'>Remember me </label>
+                        </div>
                         <div className='p-3 text-center'>
                             <span className='font-semibold'>Don't you have an account? </span>
                             <NavLink className='text-primary-blue-500 font-bold' to="/signup">Signup</NavLink>

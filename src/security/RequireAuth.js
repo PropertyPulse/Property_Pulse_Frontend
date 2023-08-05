@@ -7,7 +7,7 @@ const RequireAuth = ({ allowedRoles }) => {
 
 
     return (
-        auth?.roles === "PROPERTYOWNER"
+        auth?.roles === "TASKSUPERVISOR"
             ? <Outlet />
             : auth?.user
                 ? <Navigate to="/unauthorized" state={{ from: location }} replace />

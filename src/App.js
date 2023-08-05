@@ -4,13 +4,17 @@ import { Routes, Route } from 'react-router-dom';
 import NotFound from "./pages/Common/NotFound";
 import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
-import SamplePage from "./pages/SamplePage";
+
 import Signup from './pages/PropertyOwner/Signup';
-import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import TaskSupervisorLayout from "./pages/TaskSupervisor/TaskSupervisorLayout";
 import Layout from "./Components/Common/Layout";
 import FinancialManager from "./pages/FinancialManager/FinancialManager";
 import RequireAuth from "./security/RequireAuth";
 import PropertyOwner from "./pages/PropertyOwner/PropertyOwner";
+import PersistLogin from "./config/PersistLogin";
+import Dashboard from "./pages/TaskSupervisor/Dashboard";
+import Properties from "./pages/TaskSupervisor/Properties";
+
 
 
 
@@ -25,17 +29,20 @@ function App() {
             <Route path="/" element={<PropertyPulseLanding />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="ts" element={<TaskSupervisorLayout />}>
+                {/*<Route path="db" element={<Dashboard />} />*/}
+                {/*<Route path="properties" element={<Properties />} />*/}
+            </Route>
 
             {/*    Protected Routes*/}
 
-            <Route element={<RequireAuth allowedRoles={['FM']} />}>
-                <Route path="fm" element={<FinancialManager />} />
-            </Route>
-            <Route element={<RequireAuth allowedRoles={['TS']} />}>
-                <Route path="ts" element={<TaskSupervisorDashboard />} />
-            </Route>
-            <Route element={<RequireAuth allowedRoles={['PROPERTYOWNER']} />}>
-                <Route path="po" element={<PropertyOwner/>} />
+            <Route element={<PersistLogin/>}>
+                <Route element={<RequireAuth allowedRoles={['TASKSUPERVISOR']} />}>
+
+                </Route>
+                <Route element={<RequireAuth allowedRoles={['PROPERTYOWNER']} />}>
+                    <Route path="po" element={<PropertyOwner/>} />
+                </Route>
             </Route>
 
 
