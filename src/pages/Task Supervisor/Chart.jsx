@@ -9,6 +9,7 @@ function chartComponent() {
         { month: 'May', sales: 400 }, { month: 'Jun', sales: 32 },
         { month: 'Jul', sales: 35 }, { month: 'Aug', sales: 55 },
         { month: 'Sep', sales: 380 }, { month: 'Oct', sales: 30 },
+        { month: 'Sep', sales: 380 }, { month: 'Oct', sales: 30 },
         { month: 'Nov', sales: 25 }, { month: 'Dec', sales: 32 }
     ];
     const primaryxAxis = { valueType: 'Category' };
