@@ -9,7 +9,8 @@ import Signup from './pages/PropertyOwner/Signup';
 import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
 import Calender from "./pages/Task Supervisor/Calender"
 import Chart from "./pages/Task Supervisor/Chart"
-import AssignedProperties from "./pages/Task Supervisor/AssignedProperties";
+import Duplicate from "./pages/Task Supervisor/Duplicate";
+
 
 
 
@@ -26,14 +27,14 @@ function App() {
           <Route path="/task-supervisor-dashboard">
               <TaskSupervisorDashboard></TaskSupervisorDashboard>
           </Route>
+          <Route path="/duplicate">
+              <Duplicate></Duplicate>
+          </Route>
           <Route path="/Calender">
               <Calender></Calender>
           </Route>
           <Route path="/Chart">
               <Chart></Chart>
-          </Route>
-          <Route path="/AssignedProperties">
-              <AssignedProperties></AssignedProperties>
           </Route>
         <Route path="/login" >
             <Login></Login>
