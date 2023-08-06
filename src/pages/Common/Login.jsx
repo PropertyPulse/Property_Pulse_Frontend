@@ -1,20 +1,145 @@
-import React from 'react'
+import { useRef, useState, useEffect, useContext } from 'react';
+
 import logo from '../../Assets/logo.png'
 import eyeIcon from '../../Assets/Icons/eye-icon.png'
 import passwordIcon from '../../Assets/Icons/password-icon.png'
 import userIcon from '../../Assets/Icons/user-icon.png'
 
+import jwtDecode from "jwt-decode";
+import Cookies from "js-cookie";
+import axios from '../../api/axios';
+
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+const LOGIN_URL = '/api/v1/auth/authenticate';
+
 const Login = () => {
+
+    const {auth, setAuth ,persist,setPersist } = useAuth();
+    const userRef = useRef();
+    const errRef = useRef();
+
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+
+
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [user, pwd])
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
+
+    console.log(from)
+
+
+
+
+
+    async function handleLogin() {
+
+        if (!user || !pwd) {
+            setErrMsg('Missing Username or Password');
+            userRef.current.focus();
+            return;
+        }
+
+        try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({email:user, password:pwd}),
+                {
+                    headers: {'Content-Type': 'application/json'},
+                    withCredentials: true
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            //console.log(JSON.stringify(response));
+            const accessToken = response?.data?.access_token;
+            const refreshToken = response?.data?.refresh_token;
+
+            Cookies.set('name', refreshToken, { expires: 7 })
+            const roles = jwtDecode(accessToken).role
+            setAuth({user, roles, accessToken});
+                setUser('');
+                setPwd('');
+
+            console.log(roles)
+            console.log("printing auth",auth)
+
+
+            if (from === "/") {
+                // navigate based on the role
+
+
+                if (roles === "PROPERTYOWNER") {
+                    navigate("/po");
+                }
+                else if (roles === "TASKSUPERVISOR"){
+                    navigate("/ts/db");
+                }
+            } else {
+                navigate(from, { replace: true });
+            }
+
+        } catch (err) {
+
+            console.log(err);
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Invalid Email or Password');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            errRef.current.focus();
+        }
+
+
+    }
+
+    const togglePersist = () => {
+        setPersist(prev => !prev);
+    }
+
+    useEffect(() => {
+
+        localStorage.setItem("persist",persist)
+
+    }, [persist]);
+
+
     return (
         <div className='background'>
             <section className='flex w-screen bg-black bg-opacity-60 justify-center'>
                 <section className='w-1/2 h-screen flex align-center pr-20'>
-                    <section className='card login-card h-max w-3/5 bg-white bg-opacity-80 py-16 z-10'>
+                    <section className='card login-card h-screen w-3/5 bg-white bg-opacity-80 py-16 z-10'>
                         <div className='flex justify-center'>
                             <img className='logo' src={logo} alt='logo'/>
                         </div>
                         <p className='title text-center pt-2 pb-7'>Login</p>
-
+                        <div ref={errRef}
+                            className={errMsg ? "flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" : 'hidden'}
+                            role="alert">
+                            <svg className="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            </svg>
+                            <span className="sr-only">Info</span>
+                            <div>
+                                <span className="font-medium">{errMsg}</span>
+                            </div>
+                        </div>
                         <div className='row-auto flex p-2'>
                             <div
                                 className="w-1/12 pr-1">
@@ -22,12 +147,16 @@ const Login = () => {
                             </div>
                             <div className="relative h-10 w-11/12 min-w-[200px]">
                                 <input
+                                    ref={userRef}
+                                    onChange={(e) => setUser(e.target.value)}
                                     className="peer h-full w-full rounded-[7px] border border-primary-blue-500 border-t-transparent bg-transparent px-3 py-2.5
                                     text-primary-blue-800 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-primary-blue-500 placeholder-shown:border-t-primary-blue-500
                                     focus:border-1 focus:border-primary-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                    placeholder=" "
+                                    placeholder=""
+                                    value={user}
                                 />
                                 <label
+
                                     className="before:content[' '] after:content[' '] pointer-events-none absolute -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-primary-blue-500 transition-all
                                     before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-primary-blue-500 before:transition-all
                                     after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-primary-blue-500 after:transition-all
@@ -49,11 +178,13 @@ const Login = () => {
                                     <img className='h-5 w-5' src={eyeIcon} alt='icon'/>
                                 </div>
                                 <input
+                                    onChange={(e) => setPwd(e.target.value)}
                                     className="peer h-full w-full rounded-[7px] border border-primary-blue-500 border-t-transparent bg-transparent
                                     px-3 py-2.5 !pr-9 text-primary-blue-800 outline outline-0 transition-all
                                     placeholder-shown:border placeholder-shown:border-primary-blue-500 placeholder-shown:border-t-primary-blue-500
                                     focus:border-1 focus:border-primary-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                                    placeholder=" " type='password'
+                                    placeholder="" type='password'
+                                    value={pwd}
                                 />
                                 <label
                                     className="before:content[' '] after:content[' '] pointer-events-none absolute -top-1.5 flex h-full w-full
@@ -68,14 +199,22 @@ const Login = () => {
                                 </label>
                             </div>
                         </div>
-
+                        <div className='mx-3 px-5  '>
+                            <input
+                                type="Checkbox"
+                                id="persist"
+                                onChange={togglePersist}
+                                checked={persist}
+                            />
+                            <label htmlFor="persist" className='font-semi'>Remember me </label>
+                        </div>
                         <div className='p-3 text-center'>
                             <span className='font-semibold'>Don't you have an account? </span>
-                            <a className='text-primary-blue-500 font-bold' href="#">Signup</a>
+                            <NavLink className='text-primary-blue-500 font-bold' to="/signup">Signup</NavLink>
                         </div>
 
-                        <div className='flex justify-center py-7 gap-1'>
-                            <button className="btn-lg bg-primary-blue-800 text-white" onClick=''>Login</button>
+                        <div className='flex justify-center py-7 gap-1'  >
+                            <button className="btn-lg bg-primary-blue-800 text-white" onClick={handleLogin}>Login</button>
                         </div>
 
                     </section>
