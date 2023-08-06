@@ -150,26 +150,6 @@ const Signup = () => {
             return;
         }
 
-
-        //
-    // @NotBlank(message = "Firstname is required")
-    //     private String firstname;
-    // @NotBlank(message = "Lastname is required")
-    //     private String lastname;
-    // @NotBlank(message = "Email is required")
-    //     private String email;
-    // @NotBlank(message = "Password is required")
-    //     private String password;
-    //
-    // @Enumerated(EnumType.STRING)
-    //     public Role role;
-
-
-
-
-        // private PropertyOwner propertyOwner;
-
-
         try {
             const response = await axios.post("http://localhost:8080/api/v1/auth/register",
                 JSON.stringify(
@@ -195,24 +175,7 @@ const Signup = () => {
 
                 }
             );
-            console.log(JSON.stringify(
-                {
-                    firstname: values.firstName,
-                    lastname: values.lastName,
-                    email: values.email,
-                    password: values.password,
-                    role: "PROPERTYOWNER",
-                    propertyOwner: {
-                        firstname: values.firstName,
-                        lastname: values.lastName,
-                        address: values.address,
-                        nic: values.nic,
-                        telephone: values.phone,
-                        district: values.district,
-                        gender:values.gender
-
-                    }
-                }))
+           
 
             console.log(response?.data);
             console.log(response?.access_token);
@@ -237,7 +200,7 @@ const Signup = () => {
             resetValues();
         } catch (err) {
 
-            console.log(err.response.data.errorMessage)
+            console.log(JSON.stringify(err))
 
             if (!err?.response) {
                 setErrMessage('No Server Response');
