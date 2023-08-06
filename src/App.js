@@ -13,6 +13,9 @@ import RequireAuth from "./security/RequireAuth";
 import PropertyOwner from "./pages/PropertyOwner/PropertyOwner";
 import PersistLogin from "./config/PersistLogin";
 import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import Dashboard from './pages/Task Supervisor/Dashboard';
+import Properties from './pages/Task Supervisor/Properties';
+import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
 // import Properties from "./pages/TaskSupervisor/Properties";
 
 
@@ -29,7 +32,11 @@ function App() {
             <Route path="/" element={<PropertyPulseLanding />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="ts" element={<TaskSupervisorDashboard />} />
+            <Route path="admin" element={<SystemAdminDashboard />} />
+            <Route path="ts" element={<TaskSupervisorDashboard />}>
+                <Route path="db" element={<Dashboard />} />
+                <Route path="pp" element={<Properties />} />
+            </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
                 {/*<Route path="properties" element={<Properties />} />*/}

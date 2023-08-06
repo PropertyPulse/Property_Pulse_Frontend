@@ -37,7 +37,7 @@ const TaskSupervisorSidebar = () => {
 
        return (
            <div className='flex'>
-               <section className={`sidebar h-screen bg-gray-100 text-primary-blue-800 pt-2 relative duration-300
+               <section className={`sidebar h-screen bg-white shadow-md text-primary-blue-800 pt-2 relative duration-300
                    ${open ? 'w-80' : 'w-28'}`}>
                    <BsArrowLeftShort className={`absolute bg-white text-3xl text-primary-blue-800
                        rounded-full border-2 border-primary-blue-800 cursor-pointer -right-3 top-6
