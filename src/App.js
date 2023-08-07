@@ -19,6 +19,8 @@ import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
 import FinancialManager from "./pages/FinancialManager/FinancialManager";
 import FmDashboard from "./pages/FinancialManager/FmDashboard";
 import FmRecieved from "./pages/FinancialManager/FmRecieved";
+import ContactUs from './pages/Common/ContactUs';
+
 // import Properties from "./pages/TaskSupervisor/Properties";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
         <Route path="/" element={<Layout/>}>
             {/*Public router */}
             <Route path="/" element={<PropertyPulseLanding />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="admin" element={<SystemAdminDashboard />} />
