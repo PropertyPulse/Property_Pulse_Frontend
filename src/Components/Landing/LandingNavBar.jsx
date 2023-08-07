@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Navbar } from 'flowbite-react';
 import logo from '../../Assets/logo-with-bg.jpg';
 
-export default function NavbarWithCTAButton() {
+export default function LandingNavBar() {
   const sections = ['home', 'services', 'why-us', 'how-it-works', 'contact-us'];
   const [activeSection, setActiveSection] = useState(null);
   const observerRef = useRef([]);
