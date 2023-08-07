@@ -1,5 +1,5 @@
 import useRefreshToken from "../../hooks/useRefreshToken";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useLocation, useNavigate} from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
@@ -25,6 +25,8 @@ const PropertyOwner = () => {
                 const response = await axiosPrivate.get('/api/v1/po', {
 
                 });
+
+                setResponse(response.data)
                 console.log(response.data);
 
             } catch (err) {
@@ -38,6 +40,12 @@ const PropertyOwner = () => {
 
             }
         }
+
+        useEffect(()=>{
+
+            getMessage();
+
+        });
 
 
 
@@ -65,7 +73,7 @@ const PropertyOwner = () => {
 
         <div>message : {responseMsg}</div>
 
-            <button onClick={getMessage} >Generate response message</button>
+            <button onClick={getMessage} >Generated {responseMsg}</button>
                 <br/>
 
 
