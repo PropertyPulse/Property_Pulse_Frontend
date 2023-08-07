@@ -28,7 +28,7 @@ const Body = () => {
   }, []);
 
   return (
-    <section id="home" className="h-screen p-20 bg-primary-blue-800">
+    <section id="home" className="h-screen md:p-20 bg-primary-blue-800 sm:p-10">
       {/* Flex Container */}
       <div className="container flex flex-col-reverse px-6 mx-auto space-y-0 md:space-y-0 md:flex-row">
         {/* Left Item */}
@@ -39,7 +39,7 @@ const Body = () => {
           <h7 className="max-w-md text-2xl font-bold text-center text-slate-100 md:text-2xl md:text-left ">
             Your Property, Our Priority
           </h7>
-          <p className="max-w-md text-center text-slate-100 text-darkGrayishBlue md:text-left">
+          <p className="max-w-md text-center text-slate-100 text-darkGrayishBlue md:text-left md:h-36">
             {typedText}
           </p>
 
