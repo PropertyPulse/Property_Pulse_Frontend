@@ -49,7 +49,7 @@ export default function NavbarWithCTAButton() {
       <Navbar fluid rounded>
         <Navbar.Brand href="#">
           <img alt="logo" className="h-6 mr-3 sm:h-9" src={logo} />
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark">
+          <span className="self-center hidden text-xl font-semibold whitespace-nowrap dark md-block">
             Property Pulse
           </span>
         </Navbar.Brand>
