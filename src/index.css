@@ -13,7 +13,7 @@
 @layer components {
 
     .card{
-        box-shadow: rgba(14, 30, 37, 0.12) 0 2px 4px 0, rgba(14, 30, 37, 0.32) 0 2px 16px 0;
+        box-shadow: rgba(14, 30, 37, 0.12) 0 2px 4px 0, rgba(14, 30, 37, 0.32) 0 2px 8px 0;
         border-radius: 12px;
         padding: 1rem 3rem;
         margin: auto;
@@ -22,18 +22,18 @@
     .title{
         /*@apply text-4xl text-bold;*/
         color: theme("colors.primary-blue-800");
-        font-weight: 675;
-        font-size: 2.35rem;
-        line-height: 2.5rem;
-        padding: 1.25rem;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+        padding: 0.3rem;
     }
 
     .sub-title{
         color: theme("colors.primary-blue-500");
-        font-weight: 625;
-        font-size: 1.75rem;
-        line-height: 1.85rem;
-        padding: 1.25rem;
+        font-weight: 550;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        padding: 0.18rem;
     }
 
     .input-field{
@@ -94,6 +94,10 @@
         font-weight: 500;
         line-height: 1.5rem;
         padding: 0.3rem 1.25rem;
+    }
+
+    .admin-overview-card{
+        @apply bg-white shadow-md rounded-tl-md rounded-tr-md w-1/5 px-5 py-2 text-right border-b-4
     }
 
 }

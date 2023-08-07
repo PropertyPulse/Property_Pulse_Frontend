@@ -17,13 +17,17 @@ function AdminPieChart() {
 
     ];
 
-    const legendSettings = { visible: true, textWrap: 'Wrap', width: '200', maximumLabelWidth: 180 };
+    const size = {width: '90%', height: '100%'};
+
+    const legendSettings = { position: 'Bottom', visible: true, textWrap: 'Wrap', width: '200', maximumLabelWidth: 180,
+                            columnCount: 2};
 
     return (
-        <AccumulationChartComponent id="charts" enableSmartLabels='true' legendSettings={legendSettings}>
+        <AccumulationChartComponent id="charts" enableSmartLabels='true' legendSettings={legendSettings}
+                                   isResponsive='true' size={size}>
             <Inject services={[AccumulationLegend]}/>
             <AccumulationSeriesCollectionDirective>
-                <AccumulationSeriesDirective dataSource={data} xName='x' yName='y' radius='80%'/>
+                <AccumulationSeriesDirective dataSource={data} xName='x' yName='y' radius='90%'/>
             </AccumulationSeriesCollectionDirective>
         </AccumulationChartComponent>
     );

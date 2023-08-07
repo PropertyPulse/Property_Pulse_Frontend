@@ -1,7 +1,7 @@
 import React from "react";
 import Calender from "./Calender";
 import Chart from "./Chart";
-import NavbarWithSidebar from "../../Components/Common/NavbarWithSidebar";
+import Navbar from "../../Components/Common/Navbar";
 import TaskSupervisorSidebar from "../../Components/TaskSupervisor/TaskSupervisorSidebar";
 
 const TaskSupervisorDashboard = () => {
@@ -10,9 +10,9 @@ const TaskSupervisorDashboard = () => {
             <div className='z-50'>
                 <TaskSupervisorSidebar />
             </div>
-            <div>
+            <div className='w-full'>
                 <div className='w-full z-40'>
-                    <NavbarWithSidebar name="Deepamal Shaminda" userRole="Task Supervisor" />
+                    <Navbar name="Deepamal Shaminda" userRole="Task Supervisor" />
                 </div>
                 <section>
                     <section className='dashboard h-[calc(100vh-6rem)]'>
