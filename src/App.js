@@ -21,12 +21,6 @@ import FmDashboard from "./pages/FinancialManager/FmDashboard";
 import FmRecieved from "./pages/FinancialManager/FmRecieved";
 // import Properties from "./pages/TaskSupervisor/Properties";
 
-
-
-
-
-
-
 function App() {
   return (
       <Routes>
@@ -40,9 +34,9 @@ function App() {
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
             </Route>
-            <Route path="ts" element={<TaskSupervisorDashboard />}>
-                <Route path="db" element={<Dashboard />} />
-                <Route path="pp" element={<Properties />} />
+            <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="properties" element={<Properties />} />
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
