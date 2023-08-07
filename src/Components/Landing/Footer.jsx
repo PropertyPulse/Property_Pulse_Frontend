@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
-
-
 import facebookLogo from '../../Assets/SocialMidea/icon-facebook.svg';
-import youtubeLogo from '../../Assets/SocialMidea/icon-youtube.svg';
 import twitterLogo from '../../Assets/SocialMidea/icon-twitter.svg';
-import pinterestLogo from '../../Assets/SocialMidea/icon-pinterest.svg';
-import instagramLogo from '../../Assets/SocialMidea/icon-instagram.svg';
+
 
 const Footer = () => {
   const scrollToSection = sectionId => {
@@ -30,22 +26,12 @@ const Footer = () => {
             <Link to='#'>
               <img src={facebookLogo} className='h-8' alt='' />
             </Link>
-            {/* Link 2 */}
-            <Link to='#'>
-              <img src={youtubeLogo} className='h-8' alt='' />
-            </Link>
+            
             {/* Link 3 */}
             <Link to='#'>
               <img src={twitterLogo} className='h-8' alt='' />
             </Link>
             {/* Link 4 */}
-            <Link to='#'>
-              <img src={pinterestLogo} className='h-8' alt='' />
-            </Link>
-            {/* Link 5 */}
-            <Link to='#'>
-              <img src={instagramLogo} className='h-8' alt='' />
-            </Link>
           </div>
         </div>
         {/* List Container */}
