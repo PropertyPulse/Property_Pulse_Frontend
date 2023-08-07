@@ -13,6 +13,11 @@ import RequireAuth from "./security/RequireAuth";
 import PropertyOwner from "./pages/PropertyOwner/PropertyOwner";
 import PersistLogin from "./config/PersistLogin";
 import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import ManPowerDashboard from "./pages/ManPowerManager/ManPowerDashboard";
+import MpDashboard from "./pages/ManPowerManager/MpDashboard";
+import ManageEmployee from "./pages/ManPowerManager/ManageEmployee";
+import Request from "./pages/ManPowerManager/Request";
+import TaskHistory from "./pages/ManPowerManager/TaskHistory";
 import Dashboard from './pages/Task Supervisor/Dashboard';
 import Properties from './pages/Task Supervisor/Properties';
 import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
@@ -45,6 +50,12 @@ function App() {
                 {/*<Route path="db" element={<Dashboard />} />*/}
                 {/*<Route path="properties" element={<Properties />} />*/}
             {/* </Route> */}
+            <Route path="manpower-company" element={<ManPowerDashboard />}>
+                <Route path="dashboard" element={<MpDashboard />} />
+                <Route path="manage-employee" element={<ManageEmployee />} />
+                <Route path="request" element={<Request />} />
+                <Route path="task-history" element={<TaskHistory />} />
+            </Route>
 
             {/*    Protected Routes*/}
 
