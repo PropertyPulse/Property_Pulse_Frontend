@@ -16,13 +16,8 @@ import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashb
 import Dashboard from './pages/Task Supervisor/Dashboard';
 import Properties from './pages/Task Supervisor/Properties';
 import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
+import React from "react";
 // import Properties from "./pages/TaskSupervisor/Properties";
-
-
-
-
-
-
 
 function App() {
   return (
@@ -33,9 +28,9 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="admin" element={<SystemAdminDashboard />} />
-            <Route path="ts" element={<TaskSupervisorDashboard />}>
-                <Route path="db" element={<Dashboard />} />
-                <Route path="pp" element={<Properties />} />
+            <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="properties" element={<Properties />} />
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
