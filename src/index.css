@@ -97,7 +97,7 @@
     }
 
     .admin-overview-card{
-        @apply bg-white shadow-md rounded-tl-md rounded-tr-md w-1/5 px-4 py-2 text-right border-b-4
+        @apply bg-white shadow-md rounded-tl-md rounded-tr-md w-1/5 px-5 py-2 text-right border-b-4
     }
 
 }

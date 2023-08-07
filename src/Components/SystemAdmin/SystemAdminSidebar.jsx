@@ -2,18 +2,14 @@ import logo from '../../Assets/logo.png';
 import React, {useState} from "react";
 import {FiChevronDown} from "react-icons/fi";
 import dashboardIcon from "../../Assets/Icons/dashboard-icon.png";
-import propertiesIcon from "../../Assets/Icons/properties-icon.png";
-import manageProperties from "../../Assets/Icons/manage-properties.png";
-import assignProperties from "../../Assets/Icons/assign-properties-icon.png";
-import upcomingTasksIcon from "../../Assets/Icons/upcoming-tasks-icon.png";
-import ongoingTasksIcon from "../../Assets/Icons/ongoing-tasks-icon.png";
-import completedTasksIcon from "../../Assets/Icons/completed-tasks-icon.png";
-import tasksIcon from "../../Assets/Icons/tasks-icon.png";
-import taskApprovalsIcon from "../../Assets/Icons/task-approvals-icon.png";
+import addUsersIcon from "../../Assets/Icons/add-users-icon.png";
+import internalUsersIcon from "../../Assets/Icons/internal-users-icon.png";
+import externalUserIcon from "../../Assets/Icons/external-users-icon.png";
+import userProfilesIcon from "../../Assets/Icons/user-profiles-icon.png"
 import {FaBars} from "react-icons/fa";
 // import Sidebar from "../Common/Sidebar";
 
-const TaskSupervisorSidebar = () => {
+const SystemAdminSidebar = () => {
 
     const[open , setOpen] = useState(true);
     const [openSubmenus, setOpenSubmenus] = useState([]);
@@ -21,32 +17,22 @@ const TaskSupervisorSidebar = () => {
     const SidebarItems = [
         {title: "Dashboard",
             icon: dashboardIcon},
-        {title: "Properties",
-            icon: propertiesIcon,
+        {title: "Add Users",
+            icon: addUsersIcon,
             submenu: true,
             submenuItems: [
-                {title: "Assigned Properties",
-                    icon: assignProperties},
-                {title: "Properties to be Managed",
-                    icon: manageProperties},
+                {title: "Internal Users",
+                    icon: internalUsersIcon},
+                {title: "External Users",
+                    icon: externalUserIcon},
             ]},
-        {title: "Tasks",
-            icon: tasksIcon,
-            submenu: true,
-            submenuItems: [
-                {title: "Upcoming Tasks",
-                    icon: upcomingTasksIcon},
-                {title: "Ongoing Tasks",
-                    icon: ongoingTasksIcon},
-                {title: "Completed Tasks",
-                    icon: completedTasksIcon},
-            ]},
-        {title: "Task Approvals",
-            icon: taskApprovalsIcon},
+        {title: "User Profiles",
+            icon: userProfilesIcon},
     ]
+
     return (
-        <div className='flex'>
-            <section className={`sidebar h-screen bg-white text-primary-blue-800 pt-2 relative duration-300 shadow-md
+        <div className='flex h-screen'>
+            <section className={`sidebar bg-white text-primary-blue-800 pt-2 relative duration-300 shadow-md
                    ${open ? 'w-[15rem]' : 'w-24'}`}>
                 <FaBars className={`absolute text-2xl text-primary-blue-800 cursor-pointer -right-10 top-6
                        ${!open && 'rotate-180'}`}
@@ -66,6 +52,7 @@ const TaskSupervisorSidebar = () => {
                                    <span className='text-xl block float-left'>
                                        <img className='w-6 h-6' src={menu.icon} alt='logo'/>
                                    </span>
+
                                 <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
                                        {menu.title}
                                    </span>
@@ -108,4 +95,4 @@ const TaskSupervisorSidebar = () => {
     )
 }
 
-export default TaskSupervisorSidebar;
+export default SystemAdminSidebar;
