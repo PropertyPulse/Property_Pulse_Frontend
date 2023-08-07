@@ -16,6 +16,9 @@ import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashb
 import Dashboard from './pages/Task Supervisor/Dashboard';
 import Properties from './pages/Task Supervisor/Properties';
 import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
+import FinancialManager from "./pages/FinancialManager/FinancialManager";
+import FmDashboard from "./pages/FinancialManager/FmDashboard";
+import FmRecieved from "./pages/FinancialManager/FmRecieved";
 // import Properties from "./pages/TaskSupervisor/Properties";
 
 
@@ -33,6 +36,10 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="admin" element={<SystemAdminDashboard />} />
+            <Route path="fm" element={<FinancialManager />} >
+                <Route path="dashboard" element={<FmDashboard/>} />
+                <Route path="received" element={<FmRecieved/>} />
+            </Route>
             <Route path="ts" element={<TaskSupervisorDashboard />}>
                 <Route path="db" element={<Dashboard />} />
                 <Route path="pp" element={<Properties />} />
