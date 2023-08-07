@@ -16,6 +16,7 @@ import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashb
 import Dashboard from './pages/Task Supervisor/Dashboard';
 import Properties from './pages/Task Supervisor/Properties';
 import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
+import ContactUs from './pages/Common/ContactUs';
 // import Properties from "./pages/TaskSupervisor/Properties";
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<Layout/>}>
             {/*Public router */}
             <Route path="/" element={<PropertyPulseLanding />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="admin" element={<SystemAdminDashboard />} />

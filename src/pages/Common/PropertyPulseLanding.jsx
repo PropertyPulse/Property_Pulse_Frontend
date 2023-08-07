@@ -1,5 +1,4 @@
 import React from 'react'
-import './landingHome.css';
 import LandingNavBar from '../../Components/Landing/LandingNavBar'
 import Body from '../../Components/Landing/Body'
 import Features from '../../Components/Landing/Features'
