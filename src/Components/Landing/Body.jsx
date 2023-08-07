@@ -3,7 +3,7 @@ import ImageSlider from "./ImageSlider";
 
 const Body = () => {
   return (
-    <section id="hero"  className="h-screen p-20 bg-primary-blue-800">
+    <section id="home"  className="h-screen p-20 bg-primary-blue-800">
       {/* Flex Container */}
       <div className="container flex flex-col-reverse px-6 mx-auto space-y-0 md:space-y-0 md:flex-row">
         {/* Left Item */}

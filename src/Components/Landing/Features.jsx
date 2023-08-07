@@ -7,9 +7,9 @@ import item4 from "../../Assets/imageSlider/item5.jpg";
 import item5 from "../../Assets/imageSlider/item6.jpg";
 const Features = () => {
   return (
-    <section id="features">
+    <section>
       {/* Flex Container */}
-      <div className="container grid flex-col px-4 mx-auto mt-10 space-y-12 place-content-center md:space-y-0 md:flex-row">
+      <div className="container grid flex-col px-4 mx-auto mt-10 space-y-12 place-content-center md:space-y-0 md:flex-row " id="services">
         {/* What's Different */}
         <div className="flex flex-col space-y-12 md:w-3/3 place-content-center">
           <div>
@@ -86,7 +86,7 @@ const Features = () => {
         </div>
       </div>
       {/* Flex Container */}
-      <div className="bg-background-blue">
+      <div className="bg-background-blue" id="why-us">
         <div>
           <h2 className="p-4 text-4xl font-bold text-center md:text-center">
             Why Us

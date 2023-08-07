@@ -56,7 +56,7 @@ const Footer = () => {
             <Link to='#' className='hover:text-secondary-gray-light'>
               How it works
             </Link>
-            <Link to='#' className='hover:text-secondary-gray-light'>
+            <Link to='/contact-us' className='hover:text-secondary-gray-light'>
               Contact Us
             </Link>
           </div>

@@ -18,6 +18,8 @@ const LandingContactUs = () => {
                 management? Our team is here to assist you every step of the
                 way. Feel free to reach out to us via the contact information
                 below, or use the convenient contact form to send us a message.
+                <br />
+                <br />
                 We look forward to hearing from you!
               </p>
             </div>

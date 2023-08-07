@@ -3,7 +3,7 @@ import { Button, Timeline } from "flowbite-react";
 
 export const HowItWorks = () => {
   return (
-    <div className="p-6 mt-4 bg-primary-blue-800">
+    <div className="p-6 mt-4 bg-primary-blue-800" id="how-it-works">
       <div className="p-20 pt-10 text-4xl font-bold text-center md:text-center text-lannding-text-white">
         How it Works
       </div>
