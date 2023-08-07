@@ -15,7 +15,7 @@ const SystemAdminDashboard = () => {
 
                 <div className="row flex items-center justify-center px-14 pt-24">
                     <div className='card cursor-pointer hover:bg-selected bg-white'>
-                        <Link to="./add-internal-users">
+                        <Link to="./add-top-managers">
                             <h1 className='title font-semibold text-3xl'>Add Internal Users</h1>
                         </Link>
                     </div>

@@ -19,12 +19,19 @@
         margin: auto;
     }
 
+    .form-wrapper{
+        box-shadow: rgba(14, 30, 37, 0.12) 0 2px 4px 0, rgba(14, 30, 37, 0.32) 0 2px 16px 0;
+        border-radius: 32px;
+        padding: 4rem 6rem;
+        margin: auto;
+    }
+
     .title{
         /*@apply text-4xl text-bold;*/
         color: theme("colors.primary-blue-800");
-        font-weight: 675;
-        font-size: 2.35rem;
-        line-height: 2.5rem;
+        font-weight: 650;
+        font-size: 2rem;
+        line-height: 2.25rem;
         padding: 1.25rem;
     }
 
@@ -37,7 +44,7 @@
     }
 
     .input-field{
-        background-color: theme("colors.background-blue");
+        background-color: theme("colors.selected");
         border-radius: 8px;
         outline: none;
         padding: 0.5rem 1rem;
