@@ -8,6 +8,13 @@ import pinterestLogo from '../../Assets/SocialMidea/icon-pinterest.svg';
 import instagramLogo from '../../Assets/SocialMidea/icon-instagram.svg';
 
 const Footer = () => {
+  const scrollToSection = sectionId => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <div className='bg-primary-blue-800'>
       {/* Flex Container */}
@@ -44,16 +51,16 @@ const Footer = () => {
         {/* List Container */}
         <div className='flex justify-around space-x-32'>
           <div className='flex flex-col space-y-3 text-white'>
-            <Link to='#' className='hover:text-secondary-gray-light'>
+            <Link to='#' className='hover:text-secondary-gray-light' onClick={() => scrollToSection('home')}>
               Home
             </Link>
-            <Link to='#' className='hover:text-secondary-gray-light'>
+            <Link to='#' className='hover:text-secondary-gray-light' onClick={() => scrollToSection('services')}>
               Services
             </Link>
-            <Link to='#' className='hover:text-secondary-gray-light'>
+            <Link to='#' className='hover:text-secondary-gray-light' onClick={() => scrollToSection('why-us')}>
               Why us
             </Link>
-            <Link to='#' className='hover:text-secondary-gray-light'>
+            <Link to='#' className='hover:text-secondary-gray-light' onClick={() => scrollToSection('how-it-works')}>
               How it works
             </Link>
             <Link to='/contact-us' className='hover:text-secondary-gray-light'>
