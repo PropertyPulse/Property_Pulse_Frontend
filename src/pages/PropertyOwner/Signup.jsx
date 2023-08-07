@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import {useRef, useState} from "react";
 import {FaCircleArrowLeft} from 'react-icons/fa6';
 import BgSignup from '../../Assets/signup_back.jpg';
 import Logo from '../../Assets/logo.png';
 import InputText from '../../Components/Common/InputText';
 import ProfilePictureUploader from '../../Components/Common/ProfilePictureUploader';
 import RegisterSuccess from '../../Components/PropertyOwner/RegisterSuccess';
+import axios from '../../api/axios';
 
+const REGISTER_URL = '/api/v1/auth/register';
 const Signup = () => {
-    const [isRegistered, setIsRegistered] = useState(false);
+    const errRef = useRef();
+
+    const [success, setSuccess] = useState(false);
+
+    const [errMessage, setErrMessage] = useState("");
 
     const [values, setValues] = useState({
         firstName: "",
@@ -22,6 +28,8 @@ const Signup = () => {
         confirmPassword: "",
         profilePic: "",
     });
+
+
 
     const inputs = [
         // Properties for First Name input field
@@ -128,9 +136,84 @@ const Signup = () => {
         },
     ]
 
+
+
+
+
     // Function for handling submit of the form
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+
+        if (values.password !== values.confirmPassword) {
+            setErrMessage("Passwords do not match");
+            return;
+        }
+
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/auth/register",
+                JSON.stringify(
+                    {
+                        firstname: values.firstName,
+                        lastname: values.lastName,
+                        email: values.email,
+                        password: values.password,
+                        role: "PROPERTYOWNER",
+                        propertyOwner: {
+                            firstname: values.firstName,
+                            lastname: values.lastName,
+                            address: values.address,
+                            nic: values.nic,
+                            telephone: values.phone,
+                            district: values.district,
+                            }
+                        }
+                        ),
+                {
+                    headers: {'Content-Type': 'application/json'},
+                    withCredentials: true
+
+                }
+            );
+           
+
+            console.log(response?.data);
+            console.log(response?.access_token);
+            console.log(JSON.stringify(response))
+            setSuccess(true);
+            //clear state and controlled inputs
+            const resetValues = () => {
+                setValues({
+                    firstName: "",
+                    lastName: "",
+                    address: "",
+                    district: "",
+                    email: "",
+                    phone: "",
+                    nic: "",
+                    gender: "",
+                    password: "",
+                    confirmPassword: "",
+                    profilePic: "",
+                });
+            };
+            resetValues();
+        } catch (err) {
+
+            console.log(JSON.stringify(err))
+
+            if (!err?.response) {
+                setErrMessage('No Server Response');
+            } else if (err.response?.status === 500) {
+                setErrMessage(err.response.data.errorMessage);
+            } else {
+                setErrMessage('Something went wrong');
+            }
+            errRef.current.focus();
+
+        }
+
+
     };
 
     // Function for handling value changes of input fields
@@ -149,11 +232,11 @@ const Signup = () => {
             </div>
 
             {/* Background image */}
-            <img src={BgSignup} className='fixed w-full h-screen object-cover -z-10' />
+            <img src={BgSignup} className='fixed w-full h-screen object-cover -z-10'  />
 
             {/* Main div */}
             <div className='div-main w-full min-h-screen h-fit bg-slate-950/60 p-10 pt-24 flex justify-center items-center'>
-                {isRegistered ? 
+                {success ?
                     <RegisterSuccess /> 
                 : (
                     <div className='form-container w-full max-w-[800px] h-fit bg-white p-10 rounded-lg border-8'>
@@ -161,10 +244,10 @@ const Signup = () => {
                         <h1 className='form-title text-4xl font-bold text-[#2e8a99] w-fit mx-auto my-10 text-center'>PROPERTY OWNER REGISTRATION</h1>
 
                         {/*Error message*/}
-                        <div className="my-4 bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                        <div ref={errRef} className={errMessage === "" ? "hidden": "my-4 bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative"}
                              role="alert">
                             <strong className="font-bold">Registration Failed!</strong>
-                            <span className="block sm:inline"> Something seriously bad happened.</span>
+                            <span className="block sm:inline"> {errMessage} </span>
                             <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
                         </div>
 
