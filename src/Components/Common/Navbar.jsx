@@ -12,8 +12,8 @@ const Navbar = (user) => {
                         <IoIosNotifications className='text-primary-blue-800 text-xs md:text-3xl'/>
                     </div>
                     <div className='w-2/12 py-3 text-primary-blue-800 text-right justify-end'>
-                        <div className='font-normal md:font-medium text-md'>{user.name}</div>
-                        <div className='text-sm'>{user.userRole}</div>
+                        <div className='font-normal md:font-medium text-md sm:block hidden'>{user.name}</div>
+                        <div className='text-sm sm:block hidden'>{user.userRole}</div>
                     </div>
                     <div className='pt-3 px-6 float-right'>
                         <img className='w-12 h-12' src={userAvatar} alt='logo'/>
