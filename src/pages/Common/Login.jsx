@@ -60,14 +60,20 @@ const Login = () => {
                     withCredentials: true
                 }
             );
+
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.access_token;
             const refreshToken = response?.data?.refresh_token;
 
-            Cookies.set('name', refreshToken, { expires: 7 })
+            const firstname = response?.data?.firstname;
+            const lastname = response?.data?.lastname;
+
+            const username = firstname + " " + lastname;
+            console.log(username)
+            // Cookies.set('name', refreshToken, { expires: 7 })
             const roles = jwtDecode(accessToken).role
-            setAuth({user, roles, accessToken});
+            setAuth({user,username, roles, accessToken});
                 setUser('');
                 setPwd('');
 
@@ -85,6 +91,10 @@ const Login = () => {
                 else if (roles === "TASKSUPERVISOR"){
                     navigate("/ts/db");
                 }
+                else if (roles === "FINANCIALMANAGER"){
+                    navigate("/financial-manager/dashboard");
+                }
+
             } else {
                 navigate(from, { replace: true });
             }
