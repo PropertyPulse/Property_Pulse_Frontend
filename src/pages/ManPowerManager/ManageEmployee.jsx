@@ -1,8 +1,12 @@
 import React from "react";
 import { Card } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+
 import EmployeeTable from "../../Components/ManPowerManager/EmployeeTable";
 
 const ManageEmployee = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col md:flex-row">
       <Card className="flex-grow md:w-1/2 xl:w-full m-4">
@@ -54,7 +58,10 @@ const ManageEmployee = () => {
             </form>
           </div>
           <div className="md:w-1/5 p-4">
-            <button className="text-white m-2 bg-secondary-gray hover:bg-secondary-gray-light focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+            <button
+              className="text-white m-2 bg-secondary-gray hover:bg-secondary-gray-light focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+              onClick={() => navigate("/manpower-company/add-employee")}
+            >
               Add New
             </button>
           </div>
