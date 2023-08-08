@@ -26,6 +26,7 @@ import FmDashboard from "./pages/FinancialManager/FmDashboard";
 import FmRecieved from "./pages/FinancialManager/FmRecieved";
 import ContactUs from './pages/Common/ContactUs';
 import AddEmployee from './pages/ManPowerManager/AddEmployee';
+import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -57,6 +58,7 @@ function App() {
                 <Route path="request" element={<Request />} />
                 <Route path="task-history" element={<TaskHistory />} />
                 <Route path="add-employee" element={<AddEmployee />} />
+                <Route path="new-task-request" element={<NewTaskRequest />} />
             </Route>
 
             {/*    Protected Routes*/}
