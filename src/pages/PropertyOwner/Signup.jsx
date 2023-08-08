@@ -166,6 +166,7 @@ const Signup = () => {
                             nic: values.nic,
                             telephone: values.phone,
                             district: values.district,
+                            gender:values.gender
                             }
                         }
                         ),
