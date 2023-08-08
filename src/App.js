@@ -25,6 +25,7 @@ import FinancialManager from "./pages/FinancialManager/FinancialManager";
 import FmDashboard from "./pages/FinancialManager/FmDashboard";
 import FmRecieved from "./pages/FinancialManager/FmRecieved";
 import ContactUs from './pages/Common/ContactUs';
+import AddEmployee from './pages/ManPowerManager/AddEmployee';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path="manage-employee" element={<ManageEmployee />} />
                 <Route path="request" element={<Request />} />
                 <Route path="task-history" element={<TaskHistory />} />
+                <Route path="add-employee" element={<AddEmployee />} />
             </Route>
 
             {/*    Protected Routes*/}
