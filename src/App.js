@@ -27,6 +27,7 @@ import FmRecieved from "./pages/FinancialManager/FmRecieved";
 import ContactUs from './pages/Common/ContactUs';
 import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
+import AddTopManagers from "./pages/System Admin/AddTopManagers";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -39,7 +40,8 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="admin" element={<SystemAdminDashboard />} />
+            <Route path="system-admin" element={<SystemAdminDashboard />} />
+            <Route path="system-admin/add-users/top-manager" element={<AddTopManagers />} />
             <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />

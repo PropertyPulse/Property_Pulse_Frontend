@@ -36,64 +36,64 @@
         padding: 0.18rem;
     }
 
-    .input-field{
-        background-color: theme("colors.background-blue");
-        border-radius: 8px;
-        outline: none;
-        padding: 0.5rem 1rem;
-    }
+    /*.input-field{*/
+    /*    background-color: theme("colors.background-blue");*/
+    /*    border-radius: 8px;*/
+    /*    outline: none;*/
+    /*    padding: 0.5rem 1rem;*/
+    /*}*/
 
     .btn-lg{
         border-radius: 12px;
-        font-size: 1.15rem;
-        line-height: 1.75rem;
+        font-size: 1rem;
+        line-height: 1.25rem;
         font-weight: 425;
-        padding: 0.5rem 2rem;
+        padding: 0.65rem 1.25rem;
     }
 
     .btn-md{
         border-radius: 12px;
-        font-size: 1.05rem;
+        font-size: 0.875rem;
         font-weight: 415;
-        line-height: 1.5rem;
-        padding: 0.5rem 1.85rem;
+        line-height: 1rem;
+        padding: 0.65rem 1.15rem;
     }
 
     .btn-sm{
         border-radius: 12px;
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        padding: 0.5rem 1.5rem;
+        font-size: 0.75rem;
+        line-height: 0.9rem;
+        padding: 0.55rem 1rem;
     }
 
     .btn-outlined-red-md{
         border: 2px solid theme("colors.error-red");
         color: theme("colors.error-red");
         border-radius: 12px;
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.5rem;
-        padding: 0.3rem 1.2rem;
+        font-size: 0.875rem;
+        font-weight: 450;
+        line-height: 1rem;
+        padding: 0.5rem 1rem;
     }
 
     .btn-outlined-red-sm{
         border: 2px solid theme("colors.error-red");
         color: theme("colors.error-red");
+        font-weight: 575;
         border-radius: 12px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        line-height: 1.25rem;
-        padding: 0.3rem 1rem;
+        font-size: 0.75rem;
+        line-height: 0.875rem;
+        padding: 0.4rem 0.875rem;
     }
 
     .btn-outlined-gray-md{
         border: 2px solid theme("colors.secondary-gray");
         color: theme("colors.secondary-gray");
         border-radius: 12px;
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.5rem;
-        padding: 0.3rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 450;
+        line-height: 1rem;
+        padding: 0.5rem 1rem;
     }
 
     .admin-overview-card{
