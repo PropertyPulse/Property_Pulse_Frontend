@@ -52,7 +52,7 @@ const data1 = [
       Sales: 2000,
     },
     {
-      name: "Thur",
+      name: "Thu",
       Sales: 2780,
     },
     {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +6,10 @@ import EmployeeTable from "../../Components/ManPowerManager/EmployeeTable";
 
 const ManageEmployee = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <div className="flex flex-col md:flex-row">
@@ -46,14 +50,9 @@ const ManageEmployee = () => {
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search EmployeeId, Name, Nic..."
-                  required
+                  value={searchTerm}
+                  onChange={handleSearch}
                 />
-                <button
-                  type="submit"
-                  className="text-white absolute right-2.5 bottom-2.5 bg-blue-900 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Search
-                </button>
               </div>
             </form>
           </div>
@@ -67,7 +66,7 @@ const ManageEmployee = () => {
           </div>
         </div>
         <div>
-          <EmployeeTable />
+          <EmployeeTable searchTerm={searchTerm}/>
         </div>
       </Card>
     </div>
@@ -75,3 +74,4 @@ const ManageEmployee = () => {
 };
 
 export default ManageEmployee;
+

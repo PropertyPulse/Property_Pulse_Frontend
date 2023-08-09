@@ -32,6 +32,8 @@ import ProfileSetupAfterRegister from './pages/PropertyOwner/ProfileSetupAfterRe
 import DashboardPO from './pages/PropertyOwner/DashboardPO';
 import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
+import AddTopManagers from "./pages/System Admin/AddTopManagers";
+import ViewProperty from "./pages/Task Supervisor/ViewProperty";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -44,7 +46,8 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="admin" element={<SystemAdminDashboard />} />
+            <Route path="system-admin" element={<SystemAdminDashboard />} />
+            <Route path="system-admin/add-users/top-manager" element={<AddTopManagers />} />
             <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
@@ -52,6 +55,8 @@ function App() {
             <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="properties" element={<Properties />} />
+                <Route path="properties/view-property" element={<ViewProperty />} />
+
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
@@ -74,10 +79,16 @@ function App() {
             {/*    Protected Routes*/}
 
             <Route element={<PersistLogin/>}>
-                <Route element={<RequireAuth allowedRoles={['TASKSUPERVISOR']} />}>
+                <Route element={<RequireAuth allowedRoles='TASKSUPERVISOR' />}>
 
                 </Route>
-                <Route element={<RequireAuth allowedRoles={['PROPERTYOWNER']} />}>
+                <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
+                    <Route path="financial-manager" element={<FinancialManager />} >
+                        <Route path="dashboard" element={<FmDashboard/>} />
+                        <Route path="received" element={<FmRecieved/>} />
+                    </Route>
+                </Route>
+                <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
                     <Route path="po" element={<PropertyOwner/>} />
                 </Route>
             </Route>

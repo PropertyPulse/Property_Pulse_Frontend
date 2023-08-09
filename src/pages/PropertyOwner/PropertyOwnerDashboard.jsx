@@ -117,7 +117,6 @@ const PropertyOwnerDashboard = () => {
             </div>            
         </section>
             </div>
-        </div>
     )
 }
 
