@@ -13,20 +13,17 @@
 // export default Properties
 
 import React from 'react';
-import SearchComponent from "../Common/SearchComponent";
+import AssignedProperties from "./AssignedProperties";
 
 
 const Properties = () => {
     return (
         <section>
             <div className= 'pt-10' >
-                <SearchComponent />
+                <AssignedProperties />
             </div>
         </section>
     )
 }
 
 export default Properties
-
-
-

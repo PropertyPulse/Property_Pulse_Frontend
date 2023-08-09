@@ -20,6 +20,7 @@ import Request from "./pages/ManPowerManager/Request";
 import TaskHistory from "./pages/ManPowerManager/TaskHistory";
 import Dashboard from './pages/Task Supervisor/Dashboard';
 import Properties from './pages/Task Supervisor/Properties';
+import PropertiesToBeManaged from './pages/Task Supervisor/PropertiesToBeManaged';
 import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
 import FinancialManager from "./pages/FinancialManager/FinancialManager";
 import FmDashboard from "./pages/FinancialManager/FmDashboard";
@@ -54,9 +55,9 @@ function App() {
             </Route>
             <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="properties" element={<Properties />} />
+                <Route path="assigned-properties" element={<Properties />} />
+                <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
                 <Route path="properties/view-property" element={<ViewProperty />} />
-
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
