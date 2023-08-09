@@ -73,7 +73,7 @@ const ManPowerSidebar = () => {
         <ul className="pt-6">
           {SidebarItems.map((menu, index) => (
             <React.Fragment key={index}>
-              <li className="flex items-center px-4 py-2 m-2 my-2 my-3 cursor-pointer text-primary-blue-800 gap-x-3 hover:bg-selected rounded-xl">
+              <li className="flex items-center px-4 py-2 m-2 my-3 cursor-pointer text-primary-blue-800 gap-x-3 hover:bg-selected rounded-xl">
                 <Link to={menu.url} className="block float-left text-xl">
                   <img
                     className="w-6 h-6"
@@ -146,3 +146,4 @@ const ManPowerSidebar = () => {
 };
 
 export default ManPowerSidebar;
+
