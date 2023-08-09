@@ -18,7 +18,7 @@ const InputText = (props) => {
                     id={name}
                     name={name}
                     placeholder=''
-                    className='peer h-10 items-center w-full min-w-[200px] border-2 border-gray-200 text-gray-800 focus:outline-none focus:border-[#2e8a99]/70
+                    className='peer h-10 items-center w-full min-w-[200px] border-2 border-gray-200 text-gray-800 focus:outline-none focus:ring-0 focus:border-[#2e8a99]/70
                     rounded-md px-3 hover:border-[#2e8a99]/70 placeholder-transparent text-sm'
                     onChange={onChange}
                     onBlur={handleFocus}

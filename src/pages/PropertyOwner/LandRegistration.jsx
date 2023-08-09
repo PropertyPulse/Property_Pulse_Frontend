@@ -1,12 +1,11 @@
-import React from 'react';
-import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
+import React from 'react'
 
 const LandRegistration = () => {
-    return (
-        <div className='w-full h-full bg-background-blue'>
-            <NavbarWithoutSidebar />
-        </div>
-    )
+  return (
+    <div>
+      Land Registration
+    </div>
+  )
 }
 
 export default LandRegistration
