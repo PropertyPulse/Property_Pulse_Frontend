@@ -1,19 +1,11 @@
 import React from 'react';
-import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
-import { useNavigate } from 'react-router-dom';
+import MonthlyReportsPO from './MonthlyReportsPO';
+import { Link, useNavigate } from 'react-router-dom';
 
-
-const PropertyOwnerDashboard = () => {
+const DashboardPO = () => {
     const navigate = useNavigate();
     return (
-        <div className='w-full h-[100vh] flex bg-background-blue'>
-            <div className='w-full'>
-                <div className='w-full z-40'>
-                    <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-                </div>  
-                {/* <DashboardPO />            */}
-
-                <section className='dashboard-po h-[calc(100vh-4.5rem)] w-full flex overflow-auto z-10'>
+        <section className='dashboard-po h-[calc(100vh-4.5rem)] w-full flex overflow-auto z-10'>
             <div className='w-full min-h-full h-fit p-10'>
                 <div className="registered-properties w-full min-w-[300px] h-[280px] bg-white py-5 px-7 mb-10 rounded-md shadow-lg shadow-[#EDF2FB] border border-[#EDF2FB]">
                     <div className='w-full flex justify-between'>
@@ -116,8 +108,7 @@ const PropertyOwnerDashboard = () => {
                 </div>
             </div>            
         </section>
-            </div>
     )
 }
 
-export default PropertyOwnerDashboard
+export default DashboardPO

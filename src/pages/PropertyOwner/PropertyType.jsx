@@ -24,7 +24,7 @@ const PropertyType = ({ visible, onClose }) => {
         if(type === "House") {
 
         } else if(type === "Land") {
-            
+
         }
     }
 
