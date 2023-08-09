@@ -11,6 +11,7 @@ import completedTasksIcon from "../../Assets/Icons/completed-tasks-icon.png";
 import tasksIcon from "../../Assets/Icons/tasks-icon.png";
 import taskApprovalsIcon from "../../Assets/Icons/task-approvals-icon.png";
 import {FaBars} from "react-icons/fa";
+import {Link} from "react-router-dom";
 // import Sidebar from "../Common/Sidebar";
 
 const TaskSupervisorSidebar = () => {
@@ -20,14 +21,17 @@ const TaskSupervisorSidebar = () => {
 
     const SidebarItems = [
         {title: "Dashboard",
-            icon: dashboardIcon},
+            icon: dashboardIcon,
+            url: '/task-supervisor/dashboard'},
         {title: "Properties",
             icon: propertiesIcon,
             submenu: true,
             submenuItems: [
                 {title: "Assigned Properties",
+                    url: '/task-supervisor/assigned-properties',
                     icon: assignProperties},
                 {title: "Properties to be Managed",
+                    url: '/task-supervisor/properties-to-be-managed',
                     icon: manageProperties},
             ]},
         {title: "Tasks",
@@ -35,13 +39,17 @@ const TaskSupervisorSidebar = () => {
             submenu: true,
             submenuItems: [
                 {title: "Upcoming Tasks",
+                    url: '/task-supervisor/upcoming-tasks',
                     icon: upcomingTasksIcon},
                 {title: "Ongoing Tasks",
+                    url: '/task-supervisor/ongoing-tasks',
                     icon: ongoingTasksIcon},
                 {title: "Completed Tasks",
+                    url: '/task-supervisor/completed-tasks',
                     icon: completedTasksIcon},
             ]},
         {title: "Task Approvals",
+        url: '/task-supervisor/task-approvals',
             icon: taskApprovalsIcon},
     ]
     return (
@@ -61,40 +69,43 @@ const TaskSupervisorSidebar = () => {
                 <ul className='pt-6'>
                     {SidebarItems.map((menu, index) => (
                         <React.Fragment key={index}>
-                            <li className='flex items-center text-primary-blue-800 px-4 py-2 my-3 m-2 gap-x-3 cursor-pointer
+                            <Link to={menu.url}>
+                                <li className='flex items-center text-primary-blue-800 px-4 py-2 my-3 m-2 gap-x-3 cursor-pointer
                                hover:bg-selected rounded-xl my-2'>
                                    <span className='text-xl block float-left'>
                                        <img className='w-6 h-6' src={menu.icon} alt='logo'/>
                                    </span>
-                                <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
+                                    <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
                                        {menu.title}
                                    </span>
 
-                                {menu.submenu && open && (
-                                    <FiChevronDown className={`pt-2 text-2xl ${openSubmenus.includes(index) && "rotate-180"}`}
-                                                   onClick={() => {
-                                                       setOpenSubmenus(prevState => {
-                                                           if (prevState.includes(index)) {
-                                                               return prevState.filter(item => item !== index);
-                                                           } else {
-                                                               return [...prevState, index];
-                                                           }
-                                                       });
-                                                   }}/>
-                                )}
-                            </li>
+                                    {menu.submenu && open && (
+                                        <FiChevronDown className={`pt-2 text-2xl ${openSubmenus.includes(index) && "rotate-180"}`} onClick={() => {
+                                            setOpenSubmenus(prevState => {
+                                                if (prevState.includes(index)) {
+                                                    return prevState.filter(item => item !== index);
+                                                } else {
+                                                    return [...prevState, index];
+                                                }
+                                            });
+                                        }}/>
+                                    )}
+                                </li>
+                            </Link>
                             {menu.submenu && openSubmenus.includes(index)  && open && (
                                 <ul>
                                     {menu.submenuItems.map((submenuItem, index) => (
-                                        <li key={index} className={`text-primary-blue-500 flex items-center font-medium text-sm
+                                        <Link to={submenuItem.url}>
+                                            <li key={index} className={`text-primary-blue-500 flex items-center font-medium text-sm
                                            cursor-pointer py-2 m-2 my-0.5 space-x-3 hover:bg-selected rounded-lg pl-12 ${!open && "hidden"}`}>
                                                <span className='text-xl block float-left'>
                                                    <img className='w-6 h-6' src={submenuItem.icon} alt='logo'/>
                                                </span>
-                                            <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
+                                                <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
                                                    {submenuItem.title}
                                                </span>
-                                        </li>
+                                            </li>
+                                        </Link>
                                     ))}
                                 </ul>
                             )}

@@ -35,6 +35,7 @@ import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
+import SystemAdmin from "./pages/System Admin/SystemAdmin";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -47,8 +48,12 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="system-admin" element={<SystemAdminDashboard />} />
-            <Route path="system-admin/add-users/top-manager" element={<AddTopManagers />} />
+
+            <Route path="system-admin" element={<SystemAdmin />} >
+                <Route path="dashboard" element={<SystemAdminDashboard />} />
+                <Route path="add-users/top-manager" element={<AddTopManagers />} />
+            </Route>
+
             <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
