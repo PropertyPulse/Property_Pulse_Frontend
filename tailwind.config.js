@@ -15,7 +15,9 @@ module.exports = {
         "success-green": "#2D9F46",
         "error-red": "#B91C1C",
         "content-bg":"#FAFBFD",
-        "lannding-text-white": "#CCCCCC"
+        "lannding-text-white": "#CCCCCC",
+        "blue-button-start" : "#ABC4FF",
+        "blue-button-end" : "#014F86"
       }
     },
   },
