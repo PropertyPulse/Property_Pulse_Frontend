@@ -11,7 +11,7 @@ import {NavLink} from "react-router-dom";
 const Sidebar = () => {
 
     return (
-        <div className="justify-items-center justify-between h-screen flex flex-col w-1/6 border bg-menu-area-blue shadow-md ">
+        <div className="justify-items-center justify-between h-screen flex flex-col w-1/6 border bg-menu-area-blue shadow-md z-40">
             {/* logo areaa*/}
             <div>
                 <img src={logo} className="w-24 h-24 mx-auto" alt=""/>

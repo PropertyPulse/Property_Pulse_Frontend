@@ -1,8 +1,12 @@
 import React from 'react'
 import notification from "../icons/notification.svg";
 import me from "../icons/IMG_2536.JPG";
+import useAuth from "../../../hooks/useAuth";
 
 const Appbar = () => {
+    const {auth} = useAuth()
+    console.log("appbar",auth)
+
     return (
         <div className="appbar flex bg-white justify-between py-4 px-8 text-primary-blue-800 shadow-md z-50">
             <h1 className="self-center font-bold text-3xl">Dashboard</h1>
@@ -17,7 +21,7 @@ const Appbar = () => {
                 </div>
                 <div className="flex usernameandimage gap-x-3">
                     <div>
-                        <h1 className="font-bold text-lg">Shashika Janith</h1>
+                        <h1 className="font-bold text-lg">{auth.username}</h1>
                         <h4 className="font-medium text-sm">Financial Manager</h4>
                     </div>
                     <div>

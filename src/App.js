@@ -66,10 +66,16 @@ function App() {
             {/*    Protected Routes*/}
 
             <Route element={<PersistLogin/>}>
-                <Route element={<RequireAuth allowedRoles={['TASKSUPERVISOR']} />}>
+                <Route element={<RequireAuth allowedRoles='TASKSUPERVISOR' />}>
 
                 </Route>
-                <Route element={<RequireAuth allowedRoles={['PROPERTYOWNER']} />}>
+                <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
+                    <Route path="financial-manager" element={<FinancialManager />} >
+                        <Route path="dashboard" element={<FmDashboard/>} />
+                        <Route path="received" element={<FmRecieved/>} />
+                    </Route>
+                </Route>
+                <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
                     <Route path="po" element={<PropertyOwner/>} />
                 </Route>
             </Route>

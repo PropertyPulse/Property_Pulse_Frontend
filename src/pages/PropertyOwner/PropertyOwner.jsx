@@ -2,7 +2,7 @@ import useRefreshToken from "../../hooks/useRefreshToken";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useLocation, useNavigate} from "react-router-dom";
-import useLogout from "../../hooks/useLogout";
+// import useLogout from "../../hooks/useLogout";
 
 
 const PropertyOwner = () => {
@@ -14,7 +14,7 @@ const PropertyOwner = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const logout = useLogout();
+    // const logout = useLogout();
 
     const axiosPrivate = useAxiosPrivate();
 
@@ -56,15 +56,15 @@ const PropertyOwner = () => {
 
     // console.log("auth",auth)
 
-    function refreshtoken() {
-        refresh();
+    async function refreshtoken() {
+        await refresh();
     }
 
-   const signout = async () => {
-
-       await logout();
-
-   }
+   // const signout = async () => {
+   //
+   //     await logout();
+   //
+   // }
 
     return (
         <div>Dashboard
@@ -83,7 +83,7 @@ const PropertyOwner = () => {
                 <br/>
             <br/>
             <br/>
-            <button onClick={signout}>logout</button>
+            {/*<button onClick={signout}>logout</button>*/}
         </div>
     )
 }
