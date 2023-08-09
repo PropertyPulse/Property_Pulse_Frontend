@@ -37,9 +37,50 @@ const ManPowerSidebar = () => {
     },
   ];
 
-  useEffect(() => {
-    // ... your existing resize logic ...
-  }, []);
+ 
+// useEffect(() => {
+//   // Function to handle resizing and toggle the sidebar based on screen size
+//   const handleResize = () => {
+//       if (window.innerWidth <= 768) {
+//           setOpen(false);
+//       } else {
+//           setOpen(true);
+//       }
+//   };
+
+//   // Initial check on component mount
+//   handleResize();
+
+//   // Attach the event listener
+//   window.addEventListener("resize", handleResize);
+
+//   // Clean up the event listener on component unmount
+//   return () => {
+//       window.removeEventListener("resize", handleResize);
+//   };
+// }, []);
+useEffect(() => {
+  // Function to handle resizing and toggle the sidebar based on screen size
+  const handleResize = () => {
+      if (window.innerWidth <= 1285) {
+          setOpen(false);
+      } else {
+          setOpen(true);
+      }
+  };
+
+  // Initial check on component mount
+  handleResize();
+
+  // Attach the event listener
+  window.addEventListener("resize", handleResize);
+
+  // Clean up the event listener on component unmount
+  return () => {
+      window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
 
   return (
     <div className="flex h-full">
