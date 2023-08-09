@@ -72,10 +72,13 @@ function App() {
                 <Route path="new-task-request" element={<NewTaskRequest />} />
             </Route>
 
+
+            {/* PROPERTY OWNER ROUTES */}
             <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
             <Route path="property-owner" element={<PropertyOwnerDashboard />} />
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
+            
 
             {/*    Protected Routes*/}
 
