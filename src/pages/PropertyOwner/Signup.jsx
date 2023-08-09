@@ -6,6 +6,7 @@ import InputText from '../../Components/Common/InputText';
 import ProfilePictureUploader from '../../Components/Common/ProfilePictureUploader';
 import RegisterSuccess from '../../Components/PropertyOwner/RegisterSuccess';
 import axios from '../../api/axios';
+import PropertyPulseLanding from "../Common/PropertyPulseLanding";
 
 const REGISTER_URL = '/api/v1/auth/register';
 const Signup = () => {
@@ -166,6 +167,7 @@ const Signup = () => {
                             nic: values.nic,
                             telephone: values.phone,
                             district: values.district,
+                            gender:values.gender
                             }
                         }
                         ),
@@ -227,8 +229,11 @@ const Signup = () => {
         <div className='w-full h-screen'>
 
             {/* Navbar */}
-            <div className='fixed w-full h-fit p-3 bg-[#2e8a99] z-10'>
-                <FaCircleArrowLeft className='w-8 h-8 fill-white cursor-pointer hover:fill-slate-200 transition duration-200' />
+            <div href={<PropertyPulseLanding />} className='fixed w-full h-fit p-3 bg-[#2e8a99] z-10'>
+                <a href="/">
+                    <FaCircleArrowLeft className='w-8 h-8 fill-white cursor-pointer hover:fill-slate-200 transition duration-200' />
+                </a>
+                
             </div>
 
             {/* Background image */}
@@ -299,7 +304,7 @@ const Signup = () => {
                             </div>
 
                             <div className='flex justify-center text-md mx-auto'>
-                                Already have an account? <span className='ml-2 text-blue-700 underline'>Signin</span> 
+                                Already have an account? <a href="/login" className='ml-2 text-blue-700 underline'>Signin</a> 
                             </div>
                         </form>
                     </div>

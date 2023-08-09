@@ -1,59 +1,61 @@
 import axios from '../api/axios';
 import useAuth from './useAuth';
-import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 
 const useRefreshToken = () => {
-    const {auth, setAuth } = useAuth();
-    console.log("auutttt",JSON.stringify(auth));
-    const refreshToken =  Cookies.get('name');
-    console.log('refresh : ', refreshToken)
 
+    const { setAuth } = useAuth();
 
-    const refresh = async () => {
-
-
-        try{
-            const response = await axios.post('http://localhost:8080/api/v1/auth/refresh-token', null,{
-            headers: {
-                'Authorization': `Bearer ${refreshToken}`,
-
-            },
+    return async () => {
+        console.log("Refresh Token Used");
+        const response = await axios.get('/api/v1/auth/refresh-token', {
             withCredentials: true
-
         });
-            console.log("refreshrespons",JSON.stringify(response));
-            let role = jwtDecode(response.data.access_token).role;
-            let user = jwtDecode(response.data.access_token).sub;
-            setAuth(prev => {
-                console.log(JSON.stringify(jwtDecode(response.data.access_token)));
+        const accessToken = response?.data?.access_token;
+        const firstname = response?.data?.firstname;
+        const lastname = response?.data?.lastname;
+        const username = firstname + " " + lastname;
+        const user = jwtDecode(accessToken).sub;
+        const roles = jwtDecode(accessToken).role
+        setAuth({user,username, roles, accessToken});
 
-
-                console.log("roles",role);
-                console.log("new token",response.data.access_token);
-                console.log("old",JSON.stringify(prev));
-                setAuth( { ...prev,
-                    user:user,
-                    roles: role,
-                    accessToken: response.data.access_token })
-
-                return auth
-            });
-            setAuth({
-                user:user,
-                roles: role,
-                accessToken: response.data.access_token })
-            console.log("newauth",JSON.stringify(auth));
-            return response.data.access_token;}
-        catch(e){
-            console.log('refres : ',refreshToken)
-            console.log("err:",JSON.stringify(e))
-
-        }
-
-
-    }
-    return refresh;
+    };
 };
 
 export default useRefreshToken;
+// import axios from '../api/axios';
+// import useAuth from './useAuth';
+// import Cookies from "js-cookie";
+// import jwtDecode from "jwt-decode";
+//
+// const useRefreshToken = () => {
+//     const {auth, setAuth } = useAuth();
+//
+//     const refreshToken =  Cookies.get('refreshToken');
+//
+//
+//
+//     const refresh = async () => {
+//             const response = await axios.post('http://localhost:8080/api/v1/auth/refresh-token', null,{
+//             headers: {
+//                 'Authorization': `Bearer ${refreshToken}`,
+//
+//             },
+//             withCredentials: true
+//
+//         });
+//             console.log("refreshrespons",JSON.stringify(response));
+//             let role = jwtDecode(response.data.access_token).role;
+//             let user = jwtDecode(response.data.access_token).sub;
+//             setAuth({
+//                 user:user,
+//                 roles: role,
+//                 accessToken: response.data.access_token })
+//
+//             return response.data.access_token;
+//     }
+//
+//     return refresh;
+// };
+//
+// export default useRefreshToken;
