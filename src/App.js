@@ -27,6 +27,11 @@ import FmRecieved from "./pages/FinancialManager/FmRecieved";
 import ContactUs from './pages/Common/ContactUs';
 import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
+import PropertyOwnerDashboard from './pages/PropertyOwner/PropertyOwnerDashboard';
+import ProfileSetupAfterRegister from './pages/PropertyOwner/ProfileSetupAfterRegister';
+import DashboardPO from './pages/PropertyOwner/DashboardPO';
+import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
+import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -60,6 +65,11 @@ function App() {
                 <Route path="add-employee" element={<AddEmployee />} />
                 <Route path="new-task-request" element={<NewTaskRequest />} />
             </Route>
+
+            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
+            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
+            <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
 
             {/*    Protected Routes*/}
 

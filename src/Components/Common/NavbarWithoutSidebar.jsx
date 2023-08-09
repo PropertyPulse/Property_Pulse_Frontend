@@ -5,7 +5,7 @@ import logo from "../../Assets/logo.png";
 
 const NavbarWithoutSidebar = (user) => {
     return(
-        <div className='w-full justify-end'>
+        <div className='w-full justify-end sticky'>
             <section className='row navbar w-full h-24 md:h-24 lg:h-[4.5rem] bg-white flex shadow-md'>
                 <div className='pl-6 py-1 flex space-x-3'>
                     <img className='rounded-full w-16 h-16' src={logo} alt='logo'/>
