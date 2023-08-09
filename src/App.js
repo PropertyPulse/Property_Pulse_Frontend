@@ -28,8 +28,12 @@ import ContactUs from './pages/Common/ContactUs';
 import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
+import FmPayments from "./pages/FinancialManager/FmPayments";
+import FmTransactionHistory from "./pages/FinancialManager/FmTransactionHistory";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
+
+
 
 function App() {
   return (
@@ -45,10 +49,13 @@ function App() {
             <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
+                <Route path="payments" element={<FmPayments />} />
+                <Route path="history" element={<FmTransactionHistory/>} />
             </Route>
             <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="properties" element={<Properties />} />
+
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
