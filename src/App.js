@@ -28,6 +28,9 @@ import ContactUs from './pages/Common/ContactUs';
 import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
+import FmPayments from "./pages/FinancialManager/FmPayments";
+import FmTransactionHistory from "./pages/FinancialManager/FmTransactionHistory";
+// import FmRecieved_Alltable from "./pages/FinancialManager/FmRecieved_Alltable";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -44,7 +47,9 @@ function App() {
             <Route path="system-admin/add-users/top-manager" element={<AddTopManagers />} />
             <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
-                <Route path="received" element={<FmRecieved/>} />
+                <Route path="received" element={<FmRecieved/>}/>
+                <Route path="payments" element={<FmPayments/>}/>
+                <Route path="history" element={<FmTransactionHistory/>}/>
             </Route>
             <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
                 <Route path="dashboard" element={<Dashboard />} />
