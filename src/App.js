@@ -35,6 +35,7 @@ import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
+import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -76,6 +77,11 @@ function App() {
             <Route path="property-owner" element={<PropertyOwnerDashboard />} />
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
+<<<<<<< Updated upstream
+=======
+            <Route path="property-owner/properties" element={<PropertiesPO />} />
+
+>>>>>>> Stashed changes
 
             {/*    Protected Routes*/}
 
