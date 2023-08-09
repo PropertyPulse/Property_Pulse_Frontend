@@ -28,6 +28,7 @@ import ContactUs from './pages/Common/ContactUs';
 import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
+import ViewProperty from "./pages/Task Supervisor/ViewProperty";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -49,6 +50,8 @@ function App() {
             <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="properties" element={<Properties />} />
+                <Route path="properties/view-property" element={<ViewProperty />} />
+
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
                 {/*<Route path="db" element={<Dashboard />} />*/}
