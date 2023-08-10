@@ -3,7 +3,7 @@ import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import InputText from '../../Components/Common/InputText';
 import ProfilePictureUploader from '../../Components/Common/ProfilePictureUploader';
 
-const LandRegistration = () => {
+const HouseRegistration = () => {
     const [values, setValues] = useState({
         address: "",
         district: "",
@@ -44,40 +44,68 @@ const LandRegistration = () => {
             label: 'Location',
             required: true,
         },
-        // Properties for Land Size input field
+        // Properties for No. of Stories input field
         {
             id: 4,
-            name: 'landSize',
+            name: 'stories',
             type: 'text',
-            errorMessage: 'Land size should be a number and should be in ',
-            label: 'Land Size()',
-            required: true,
+            errorMessage: 'No. of stories should be a number',
+            label: 'Stories',
         },
-        // Properties for crops input field
+        // Properties for No.of Bedrooms input field
         {
             id: 5,
-            name: 'haveCrops',
-            label: 'Are there any crops in the land?',
+            name: 'bedrooms',
+            type: 'text',
+            errorMessage: 'No. of bedrooms should be a number',
+            label: 'No. of Bedrooms',
         },
-        // properties for crops lising input field
+        // properties for cNo. of Living Rooms input field
         {
             id: 6,
-            name: 'crops',
-            inputType: 'textarea',
-            errorMessage: '',
-            placeholderText: 'State the crops...',
-            label: 'If "Yes", what are they?',
+            name: 'livingRooms',
+            type: 'text',
+            errorMessage: 'No. of living rooms should be a number',
+            label: 'No. of Living Rooms',
         },
-        // Properties for special facts input field
+        // Properties for No. of Bathrooms input field
+        {
+            id: 7,
+            name: 'bathrooms',
+            inputType: 'text',
+            errorMessage: 'No. of bathrooms should be a number',
+            label: "No. of Bathrooms",
+        },
+        // Properties for No. of Bathrooms input field
         {
             id: 8,
-            name: 'specialFacts',
+            name: 'diningRooms',
+            inputType: 'text',
+            errorMessage: 'No. of bathrooms should be a number',
+            label: "No. of Bathrooms",
+        },
+        // Properties for No. of Bathrooms input field
+        {
+            id: 9,
+            name: 'bathrooms',
+            inputType: 'text',
+            errorMessage: 'No. of bathrooms should be a number',
+            label: "No. of Bathrooms",
+        },
+        // Properties for special rooms radio button input field
+        {
+            id: 9,
+            name: 'haveSpecialRooms',
+            label: "Are there any special rooms?",
+        },
+        // Properties for special rooms description input field
+        {
+            id: 9,
+            name: 'bathrooms',
             inputType: 'textarea',
             errorMessage: '',
-            placeholderText: 'Add special facts about the land...',
-            label: "Special Facts"
+            label: "If 'Yes', what are they?",
         },
-        
     ];
 
     // Function for handling submit of the form
@@ -100,7 +128,7 @@ const LandRegistration = () => {
                 <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
             </div> 
             <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5'>
-                <h1 className='text-2xl font-semibold'>Land Registration</h1>
+                <h1 className='text-2xl font-semibold'>House Registration</h1>
 
                 <div className='w-full h-full'>
                     <form action="" className='w-full h-fit mt-1 shadow-md shadow-[#D7E3FC] border border-[#D7E3FC] bg-white rounded-md flex flex-auto justify-between gap-10'>
@@ -113,18 +141,18 @@ const LandRegistration = () => {
                                         // Component for input types 'text', 'password' and 'email'
                                         <InputText key={input.id} {...input} value={values[input.name]} onChange={onChange} />                                             
                                         
-                                    ) : (input.name === 'haveCrops') ? (
+                                    ) : (input.name === 'haveSpecialRooms') ? (
                                         <div className='w-full min-w-[200px]'>
                                             <label className='text-sm'>{input.label}</label>
                                             <div className='flex justify-around items-center gap-3 text-[#6f6f6f]'>
                                                 {/* For yes */}
                                                 <span className='flex items-center text-sm'>
-                                                    <input type='radio' className='mr-1' name='haveCrops' id='yes' value='Yes' defaultChecked onChange={onChange} />
+                                                    <input type='radio' className='mr-1' name='haveSpecialRooms' id='yes' value='Yes' defaultChecked onChange={onChange} />
                                                     Yes
                                                 </span>
                                                 {/* For no */}
                                                 <span className='flex items-center text-sm'>
-                                                    <input type='radio' className='mr-1' name='haveCrops' id='no' value='No' onChange={onChange} />
+                                                    <input type='radio' className='mr-1' name='haveSpecialRooms' id='no' value='No' onChange={onChange} />
                                                     No
                                                 </span>
                                             </div>
@@ -173,4 +201,4 @@ const LandRegistration = () => {
     )
 }
 
-export default LandRegistration
+export default HouseRegistration

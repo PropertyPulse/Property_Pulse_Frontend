@@ -37,6 +37,13 @@ import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
 import SystemAdmin from "./pages/System Admin/SystemAdmin";
 import TasksPO from './pages/PropertyOwner/TasksPO';
+import UpcomingTasks from "./pages/Task Supervisor/UpcomingTasks";
+import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
+import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
+import LandRegistration from './pages/PropertyOwner/LandRegistration';
+import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
+import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
+import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -63,6 +70,9 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="assigned-properties" element={<Properties />} />
                 <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
+                <Route path="upcoming-tasks" element={<UpcomingTasks />} />
+                <Route path="ongoing-tasks" element={<OngoingTasks />} />
+                <Route path="completed-tasks" element={<CompletedTasks />} />
                 <Route path="properties/view-property" element={<ViewProperty />} />
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
@@ -84,8 +94,11 @@ function App() {
             <Route path="property-owner" element={<PropertyOwnerDashboard />} />
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-            <Route path="property-owner/upcoming-tasks" element={<TasksPO/>} />
             <Route path="property-owner/tasks/:id" element={<TasksPO />} />
+            <Route path="property-owner/properties" element={<PropertiesPO />} />
+            <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
+            <Route path="property-owner/land-registration" element={<LandRegistration />} />
+            <Route path="property-owner/house-registration" element={<HouseRegistration />} />
 
             {/*    Protected Routes*/}
 
