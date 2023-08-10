@@ -7,19 +7,43 @@ const CompletedTasks = () => {
 
     const headings = ['Property ID', 'Task ID', 'Task', 'Started Date', '', ''];
 
-    const rows = [
-        {propertyID: 'P76',
-            taskID: 'T9892',
-            task: 'Paint the house',
-            startedDate: '10-08-2023'},
-        // {propertyID: 'P123',
-        //     taskID: 'T6492',
-        //     task: 'Repair a water pipe',
-        //     startedDate: '16-08-2023'},
-        {propertyID: 'P89',
-            taskID: 'T8957',
-            task: 'Clean the Garden',
-            startedDate: '15-08-2023'},
+    const dates = [
+        {date: 'Today, 17th August 2023',
+            rows: [
+                {propertyID: 'P123',
+                    taskID: 'T6492',
+                    task: 'Repair a water pipe',
+                    startedDate: '16-08-2023'},
+            ]
+        },
+        {date: 'Yesterday, 16th August 2023',
+            rows: [
+                {propertyID: 'P76',
+                 taskID: 'T9892',
+                 task: 'Paint the house',
+                 startedDate: '10-08-2023'},
+                {propertyID: 'P123',
+                 taskID: 'T6492',
+                 task: 'Repair a water pipe',
+                 startedDate: '16-08-2023'},
+                {propertyID: 'P89',
+                 taskID: 'T8957',
+                 task: 'Clean the Garden',
+                 startedDate: '15-08-2023'},
+            ]
+        },
+        {date: '15th August 2023',
+            rows: [
+                {propertyID: 'P76',
+                    taskID: 'T9892',
+                    task: 'Paint the house',
+                    startedDate: '10-08-2023'},
+                {propertyID: 'P89',
+                    taskID: 'T8957',
+                    task: 'Clean the Garden',
+                    startedDate: '15-08-2023'},
+            ]
+        },
     ];
 
     return (
@@ -105,78 +129,43 @@ const CompletedTasks = () => {
             </div>
 
             {/*Table 01*/}
-            <div className='pb-6'>
-                <div className='pt-2 pb-4 font-medium'>Yesterday, 16th August 2023</div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
+            {dates.map((table, index) => (
+                <div className='pb-6'>
+                    <div className='pt-2 pb-4 font-medium'>{table.date}</div>
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
                             <tr>
-                            {headings.map((heading, index) => (
-                                <th scope="col" className="px-6 py-3">
-                                    {heading}
-                                </th>
-                            ))}
+                                {headings.map((heading, index) => (
+                                    <th scope="col" className="px-6 py-3">
+                                        {heading}
+                                    </th>
+                                ))}
                             </tr>
-                        </thead>
-                        <tbody>
-                        {rows.map((row, index) => (
-                            <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                <td scope="col" className="px-6 py-3">{row.task}</td>
-                                <td scope="col" className="px-6 py-3">{row.startedDate}</td>
-                                <td className="px-6 py-3">
-                                    <button className="text-white bg-orange-500 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                        View Complaints
-                                    </button>
-                                </td><td className="px-6 py-3">
+                            </thead>
+                            <tbody>
+                            {table.rows.map((row, index) => (
+                                <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                                    <td scope="col" className="px-6 py-3">{row.propertyID}</td>
+                                    <td scope="col" className="px-6 py-3">{row.taskID}</td>
+                                    <td scope="col" className="px-6 py-3">{row.task}</td>
+                                    <td scope="col" className="px-6 py-3">{row.startedDate}</td>
+                                    <td className="px-6 py-3">
+                                        <button className="text-white bg-orange-500 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                            View Complaints
+                                        </button>
+                                    </td><td className="px-6 py-3">
                                     <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                         View Details
                                     </button>
                                 </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {/*Table 01*/}
-            <div className='pb-6'>
-                <div className='pt-2 pb-4 font-medium'>15th August 2023</div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
-                            <tr>
-                            {headings.map((heading, index) => (
-                                <th scope="col" className="px-6 py-3">
-                                    {heading}
-                                </th>
+                                </tr>
                             ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {rows.map((row, index) => (
-                            <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                <td scope="col" className="px-6 py-3">{row.task}</td>
-                                <td scope="col" className="px-6 py-3">{row.startedDate}</td>
-                                <td className="px-6 py-3">
-                                    <button className="text-white bg-orange-500 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                        View Complaints
-                                    </button>
-                                </td><td className="px-6 py-3">
-                                    <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                        View Details
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            ))}
         </div>
     );
 }

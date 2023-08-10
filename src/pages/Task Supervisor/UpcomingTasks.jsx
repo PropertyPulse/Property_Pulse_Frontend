@@ -6,38 +6,47 @@ import {RiWechatFill} from "react-icons/ri";
 
 const UpcomingTasks= () => {
 
-    const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', ''];
+    const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', '', ''];
 
-    const rows = [
-        {propertyID: 'P123',
-            location: 'Colombo 06',
-            taskID: 'T9892',
-            task: 'Paint the house',
-            status: 'Accepted',},
+    const dates = [
+        {date: 'Today, 17th August 2023',
+            rows: [
+                {propertyID: 'P123',
+                    location: 'Colombo 06',
+                    taskID: 'T989',
+                    task: 'Paint the house',
+                    status: 'Accepted',},
+            ]
+        },
+        {date: 'Tomorrow, 18th August 2023',
+            rows: [
+                {propertyID: 'P67',
+                    location: 'Hikkaduwa',
+                    taskID: 'T912',
+                    task: 'Trim grass',
+                    status: 'Accepted with Feedback',},
 
-        {propertyID: 'P123',
-            location: 'Colombo 06',
-            taskID: 'T9892',
-            task: 'Paint the house',
-            status: 'Accepted with Feedback',},
-
-        {propertyID: 'P123',
-            location: 'Colombo 06',
-            taskID: 'T9892',
-            task: 'Paint the house',
-            status: 'Declined',},
-
-        {propertyID: 'P123',
-            location: 'Colombo 06',
-            taskID: 'T9892',
-            task: 'Paint the house',
-            status: 'Make a Request',},
-
-        {propertyID: 'P123',
-            location: 'Colombo 06',
-            taskID: 'T9892',
-            task: 'Paint the house',
-            status: 'Pending',}
+                {propertyID: 'P89',
+                    location: 'Panadura',
+                    taskID: 'T812',
+                    task: 'Repair a water pipe',
+                    status: 'Declined',},
+            ]
+        },
+        {date: '19th August 2023',
+            rows: [
+                {propertyID: 'P92',
+                    location: 'Rathnapura',
+                    taskID: 'T785',
+                    task: 'Clean the Garden',
+                    status: 'Pending',},
+                {propertyID: 'P103',
+                    location: 'Anuradhapura',
+                    taskID: 'T456',
+                    task: 'Paint the house',
+                    status: 'Make a Request',},
+            ]
+        },
     ];
 
     return (
@@ -122,131 +131,76 @@ const UpcomingTasks= () => {
                 </div>
             </div>
 
-            {/*Table 01*/}
-            <div className='pb-6'>
-                <div className='pt-2 pb-4 font-medium'>Today, 17th August 2023</div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
-                        <tr>
-                        {headings.map((heading, index) => (
-                            <th scope="col" className="px-6 py-3">
-                                {heading}
-                            </th>
-                        ))}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {rows.map((row, index) => (
-                            <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                <td scope="col" className="px-6 py-3">{row.location}</td>
-                                <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                <td scope="col" className="px-6 py-3">{row.task}</td>
-                                <td className="px-6 py-3">
-                                    {(row.status === 'Accepted') ? (
-                                        <label className="text-white bg-green-500 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Pending') ? (
-                                        <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Accepted with Feedback') ? (
-                                        <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Declined') ? (
-                                        <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Make a Request') ? (
-                                        <button className="text-white bg-blue-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            {row.status}
-                                        </button>
-                                    ) : (<label></label>)}
-                                </td>
-                                {(row.status === 'Accepted') ? (
-                                    <td className="px-6 py-3">
-                                        <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            View Details
-                                        </button>
-                                    </td>
-                                ) : (<td><button></button></td>)}
-                                {(row.status === 'Accepted') ? (
-                                    <td className="px-6 py-3">
-                                        <RiWechatFill className='text-secondary-gray text-2xl cursor-pointer' />
-                                    </td>
-                                ) : (<td><button></button></td>)}
+            {dates.map((table, index) => (
+                <div className='pb-6'>
+                    <div className='pt-2 pb-4 font-medium'>{table.date}</div>
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
+                            <tr>
+                                {headings.map((heading, index) => (
+                                    <th scope="col" className="px-6 py-3">
+                                        {heading}
+                                    </th>
+                                ))}
                             </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            {/*Table 02*/}
-            <div className='pb-6'>
-                <div className='pt-2 pb-4 font-medium'>Tomorrow, 17th August 2023</div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                        <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
-                        <tr>
-                            {headings.map((heading, index) => (
-                                <th scope="col" className="px-6 py-3">
-                                    {heading}
-                                </th>
+                            </thead>
+                            <tbody>
+                            {table.rows.map((row, index) => (
+                                <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                                    <td scope="col" className="px-6 py-3">{row.propertyID}</td>
+                                    <td scope="col" className="px-6 py-3">{row.location}</td>
+                                    <td scope="col" className="px-6 py-3">{row.taskID}</td>
+                                    <td scope="col" className="px-6 py-3">{row.task}</td>
+                                    <td className="px-6 py-3">
+                                        {(row.status === 'Accepted') ? (
+                                            <label className="text-white bg-green-500 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
+                                                {row.status}
+                                            </label>
+                                        ) : (row.status === 'Pending') ? (
+                                            <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
+                                                {row.status}
+                                            </label>
+                                        ) : (row.status === 'Accepted with Feedback') ? (
+                                            <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
+                                                {row.status}
+                                            </label>
+                                        ) : (row.status === 'Declined') ? (
+                                            <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
+                                                {row.status}
+                                            </label>
+                                        ) : (row.status === 'Make a Request') ? (
+                                            <button className="text-white bg-blue-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                                {row.status}
+                                            </button>
+                                        ) : (<label></label>)}
+                                    </td>
+                                    {(row.status === 'Accepted') ? (
+                                        <td className="px-6 py-3">
+                                            <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                                View Details
+                                            </button>
+                                        </td>
+                                    ) : (<td><button></button></td>)}
+                                    {(row.status === 'Accepted') ? (
+                                        <td className="px-6 py-3">
+                                            <RiWechatFill className='text-secondary-gray text-2xl cursor-pointer' />
+                                        </td>
+                                    ) : (<td><button></button></td>)}
+                                    {(row.status === 'Accepted') ? (
+                                        <td className="px-6 py-3">
+                                            <button className="text-white bg-green-600 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                                Start
+                                            </button>
+                                        </td>
+                                    ) : (<td><button></button></td>)}
+                                </tr>
                             ))}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {rows.map((row, index) => (
-                            <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                <td scope="col" className="px-6 py-3">{row.location}</td>
-                                <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                <td scope="col" className="px-6 py-3">{row.task}</td>
-                                <td className="px-6 py-3">
-                                    {(row.status === 'Accepted') ? (
-                                        <label className="text-white bg-green-500 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Pending') ? (
-                                        <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Accepted with Feedback') ? (
-                                        <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Declined') ? (
-                                        <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Make a Request') ? (
-                                        <button className="text-white bg-blue-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            {row.status}
-                                        </button>
-                                    ) : (<label></label>)}
-                                </td>
-                                {(row.status === 'Accepted') ? (
-                                    <td className="px-6 py-3">
-                                        <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            View Details
-                                        </button>
-                                    </td>
-                                ) : (<td><button></button></td>)}
-                                {(row.status === 'Accepted') ? (
-                                    <td className="px-6 py-3">
-                                        <RiWechatFill className='text-secondary-gray text-2xl cursor-pointer' />
-                                    </td>
-                                ) : (<td><button></button></td>)}
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            ))}
 
         </div>
     );

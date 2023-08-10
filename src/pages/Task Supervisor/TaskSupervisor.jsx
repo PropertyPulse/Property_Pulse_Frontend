@@ -5,7 +5,7 @@ import Navbar from "../../Components/Common/Navbar";
 import TaskSupervisorSidebar from "../../Components/TaskSupervisor/TaskSupervisorSidebar";
 import { Outlet } from "react-router-dom";
 
-const TaskSupervisorDashboard = () => {
+const TaskSupervisor = () => {
     return (
         <div className='w-full flex bg-background-blue'>
             <div className='sticky top-0 left-0 h-full z-50'>
@@ -16,11 +16,10 @@ const TaskSupervisorDashboard = () => {
                     <Navbar name="Deepamal Shaminda" userRole="Task Supervisor" />
                 </div>
                  <Outlet/>
-                    
             </div>
         </div>
      
     );
 }
 
-export default TaskSupervisorDashboard;
+export default TaskSupervisor;
