@@ -7,6 +7,7 @@ import internalUsersIcon from "../../Assets/Icons/internal-users-icon.png";
 import externalUserIcon from "../../Assets/Icons/external-users-icon.png";
 import userProfilesIcon from "../../Assets/Icons/user-profiles-icon.png"
 import {FaBars} from "react-icons/fa";
+import {Link} from "react-router-dom";
 // import Sidebar from "../Common/Sidebar";
 
 const SystemAdminSidebar = () => {
@@ -16,18 +17,22 @@ const SystemAdminSidebar = () => {
 
     const SidebarItems = [
         {title: "Dashboard",
-            icon: dashboardIcon},
+            icon: dashboardIcon,
+            url: '/system-admin/dashboard'},
         {title: "Add Users",
             icon: addUsersIcon,
             submenu: true,
             submenuItems: [
                 {title: "Internal Users",
-                    icon: internalUsersIcon},
+                    icon: internalUsersIcon,
+                    url: '/system-admin/add-users/top-manager'},
                 {title: "External Users",
-                    icon: externalUserIcon},
+                    icon: externalUserIcon,
+                    url: '/system-admin/add-users/manpower-company'},
             ]},
         {title: "User Profiles",
-            icon: userProfilesIcon},
+            icon: userProfilesIcon,
+            url: '/system-admin/user-profiles'},
     ]
 
     return (
@@ -47,41 +52,45 @@ const SystemAdminSidebar = () => {
                 <ul className='pt-6'>
                     {SidebarItems.map((menu, index) => (
                         <React.Fragment key={index}>
-                            <li className='flex items-center text-primary-blue-800 px-4 py-2 my-3 m-2 gap-x-3 cursor-pointer
+                            <Link to={menu.url}>
+                                <li className='flex items-center text-primary-blue-800 px-4 py-2 my-3 m-2 gap-x-3 cursor-pointer
                                hover:bg-selected rounded-xl my-2'>
                                    <span className='text-xl block float-left'>
                                        <img className='w-6 h-6' src={menu.icon} alt='logo'/>
                                    </span>
 
-                                <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
+                                    <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
                                        {menu.title}
                                    </span>
 
-                                {menu.submenu && open && (
-                                    <FiChevronDown className={`pt-2 text-2xl ${openSubmenus.includes(index) && "rotate-180"}`}
-                                                   onClick={() => {
-                                                       setOpenSubmenus(prevState => {
-                                                           if (prevState.includes(index)) {
-                                                               return prevState.filter(item => item !== index);
-                                                           } else {
-                                                               return [...prevState, index];
-                                                           }
-                                                       });
-                                                   }}/>
-                                )}
-                            </li>
+                                    {menu.submenu && open && (
+                                        <FiChevronDown className={`pt-2 text-2xl ${openSubmenus.includes(index) && "rotate-180"}`}
+                                                       onClick={() => {
+                                                           setOpenSubmenus(prevState => {
+                                                               if (prevState.includes(index)) {
+                                                                   return prevState.filter(item => item !== index);
+                                                               } else {
+                                                                   return [...prevState, index];
+                                                               }
+                                                           });
+                                                       }}/>
+                                    )}
+                                </li>
+                            </Link>
                             {menu.submenu && openSubmenus.includes(index)  && open && (
                                 <ul>
                                     {menu.submenuItems.map((submenuItem, index) => (
-                                        <li key={index} className={`text-primary-blue-500 flex items-center font-medium text-sm
+                                        <Link to={submenuItem.url}>
+                                            <li key={index} className={`text-primary-blue-500 flex items-center font-medium text-sm
                                            cursor-pointer py-2 m-2 my-0.5 space-x-3 hover:bg-selected rounded-lg pl-12 ${!open && "hidden"}`}>
                                                <span className='text-xl block float-left'>
                                                    <img className='w-6 h-6' src={submenuItem.icon} alt='logo'/>
                                                </span>
-                                            <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
+                                                <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
                                                    {submenuItem.title}
                                                </span>
-                                        </li>
+                                            </li>
+                                        </Link>
                                     ))}
                                 </ul>
                             )}

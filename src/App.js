@@ -39,6 +39,7 @@ import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
 import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
+import SystemAdmin from "./pages/System Admin/SystemAdmin"
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -51,8 +52,12 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="system-admin" element={<SystemAdminDashboard />} />
-            <Route path="system-admin/add-users/top-manager" element={<AddTopManagers />} />
+
+            <Route path="system-admin" element={<SystemAdmin />} >
+                <Route path="dashboard" element={<SystemAdminDashboard />} />
+                <Route path="add-users/top-manager" element={<AddTopManagers />} />
+            </Route>
+
             <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
@@ -76,6 +81,8 @@ function App() {
                 <Route path="new-task-request" element={<NewTaskRequest />} />
             </Route>
 
+
+            {/* PROPERTY OWNER ROUTES */}
             <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
             <Route path="property-owner" element={<PropertyOwnerDashboard />} />
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
@@ -84,7 +91,6 @@ function App() {
             <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
             <Route path="property-owner/land-registration" element={<LandRegistration />} />
             <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-
 
             {/*    Protected Routes*/}
 

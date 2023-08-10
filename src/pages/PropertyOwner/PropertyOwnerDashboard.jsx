@@ -76,7 +76,7 @@ const PropertyOwnerDashboard = () => {
                     </div>
 
                     <div className='w-2/4 min-w-[300px] min-h-full h-fit bg-[#EDF2FB] p-10'>
-                        <div className="monthly-reports w-full h-[280px] bg-white p-5 mb-10 rounded-md shadow-xl border border-[#EDF2FB]">
+                        <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mb-10 rounded-md shadow-xl border border-[#EDF2FB]">
                             <div className='w-full flex justify-between'>
                                 <h1 className='text-lg font-semibold mx-auto'>New Monthly Reports</h1>
                             </div> 
@@ -85,7 +85,7 @@ const PropertyOwnerDashboard = () => {
                                 <div className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/70 mt-1 rounded-md'>
                                     <div>P001</div>
                                     <div>2023 July Monthly Report</div> 
-                                    <button className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</button>                       
+                                    <a href='property-owner/monthly-reports/view-monthly-report' className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</a>                       
                                 </div>
                                 <div className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/30 mt-1 rounded-md'>
                                     <div>P002</div>
