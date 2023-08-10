@@ -44,6 +44,7 @@ import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
 import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
+import CompletedTasksPO from './pages/PropertyOwner/CompletedTasksPO';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -99,6 +100,7 @@ function App() {
             <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
             <Route path="property-owner/land-registration" element={<LandRegistration />} />
             <Route path="property-owner/house-registration" element={<HouseRegistration />} />
+            {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
 
             {/*    Protected Routes*/}
 
