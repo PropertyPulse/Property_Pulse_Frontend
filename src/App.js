@@ -1,25 +1,21 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-
 import NotFound from "./pages/Common/NotFound";
 import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
-
 import Signup from './pages/PropertyOwner/Signup';
-// import TaskSupervisorLayout from "./pages/TaskSupervisor/TaskSupervisorLayout";
 import Layout from "./Components/Common/Layout";
 // import FinancialManager from "./pages/FinancialManager/FinancialManager";
 import RequireAuth from "./security/RequireAuth";
 import PropertyOwner from "./pages/PropertyOwner/PropertyOwner";
 import PersistLogin from "./config/PersistLogin";
-import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import TaskSupervisor from "./pages/Task Supervisor/TaskSupervisor";
 import ManPowerDashboard from "./pages/ManPowerManager/ManPowerDashboard";
 import MpDashboard from "./pages/ManPowerManager/MpDashboard";
 import ManageEmployee from "./pages/ManPowerManager/ManageEmployee";
 import Request from "./pages/ManPowerManager/Request";
 import TaskHistory from "./pages/ManPowerManager/TaskHistory";
 import Dashboard from './pages/Task Supervisor/Dashboard';
-import Properties from './pages/Task Supervisor/Properties';
 import PropertiesToBeManaged from './pages/Task Supervisor/PropertiesToBeManaged';
 import SystemAdminDashboard from './pages/System Admin/SystemAdminDashboard'
 import FinancialManager from "./pages/FinancialManager/FinancialManager";
@@ -45,8 +41,10 @@ import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
 import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 import CompletedTasksPO from './pages/PropertyOwner/CompletedTasksPO';
-
 // import Properties from "./pages/TaskSupervisor/Properties";
+import TaskApprovals from "./pages/Task Supervisor/TaskApprovals";
+import AssignedProperties from "./pages/Task Supervisor/AssignedProperties";
+import ManageProperties from "./pages/Task Supervisor/PropertiesToBeManaged";
 
 function App() {
   return (
@@ -67,19 +65,18 @@ function App() {
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
             </Route>
-            <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
+
+            <Route path="task-supervisor" element={<TaskSupervisor />}>
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="assigned-properties" element={<Properties />} />
+                <Route path="assigned-properties" element={<AssignedProperties />} />
                 <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
                 <Route path="upcoming-tasks" element={<UpcomingTasks />} />
                 <Route path="ongoing-tasks" element={<OngoingTasks />} />
                 <Route path="completed-tasks" element={<CompletedTasks />} />
+                <Route path="task-approvals" element={<TaskApprovals />} />
                 <Route path="properties/view-property" element={<ViewProperty />} />
             </Route>
-            {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
-                {/*<Route path="db" element={<Dashboard />} />*/}
-                {/*<Route path="properties" element={<Properties />} />*/}
-            {/* </Route> */}
+
             <Route path="manpower-company" element={<ManPowerDashboard />}>
                 <Route path="dashboard" element={<MpDashboard />} />
                 <Route path="manage-employee" element={<ManageEmployee />} />
