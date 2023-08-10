@@ -41,6 +41,8 @@ import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import SystemAdmin from "./pages/System Admin/SystemAdmin"
+import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
+import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -68,6 +70,8 @@ function App() {
                 <Route path="assigned-properties" element={<Properties />} />
                 <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
                 <Route path="upcoming-tasks" element={<UpcomingTasks />} />
+                <Route path="ongoing-tasks" element={<OngoingTasks />} />
+                <Route path="completed-tasks" element={<CompletedTasks />} />
                 <Route path="properties/view-property" element={<ViewProperty />} />
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
