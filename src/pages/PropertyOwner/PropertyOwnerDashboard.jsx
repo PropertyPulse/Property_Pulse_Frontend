@@ -1,10 +1,11 @@
 import React from 'react';
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 const PropertyOwnerDashboard = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
+
     return (
         <div className='w-full h-[100vh] flex bg-background-blue'>
             <div className='w-full'>
@@ -49,28 +50,60 @@ const PropertyOwnerDashboard = () => {
                         <div className="upcomin-tasks w-full h-[280px] bg-white py-5 px-7 rounded-md shadow-lg shadow-[#EDF2FB] border border-[#EDF2FB]">
                             <div className='w-full flex justify-between'>
                                 <h1 className='text-lg font-semibold'>Upcoming Tasks</h1>
-                                <button className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View All Tasks</button>
+                                {/* <a href='property-owner/upcoming-tasks' className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View All Tasks</a> */}
                             </div> 
 
-                            <div className='w-full h-44 overflow-auto mt-3 text-sm'>
-                                <div className='tableRow w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]'>
-                                    <div>P001</div>
-                                    <div>T001</div>
-                                    <div className='w-64 text-center'>Cleaning the house</div>
-                                    <div>2023/08/12</div>
-                                </div> 
-                                <div className='tableRow w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#D7E3FC]'>
-                                    <div>P001</div>
-                                    <div>T003</div>
-                                    <div className='w-64 text-center'>Weeding the flower beds</div>
-                                    <div>2023/08/12</div>
-                                </div> 
-                                <div className='tableRow w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]'>
-                                    <div>P002</div>
-                                    <div>T005</div>
-                                    <div className='w-64 text-center'>Weeding the land</div>
-                                    <div>2023/08/18</div>
-                                </div>                        
+                            <div className='w-full h-44 flex gap-10 overflow-auto '>
+                                <div>
+                                    <div className='flex justify-between items-center mb-2 pt-3'>
+                                        <h2 className='font-medium'>P001</h2>
+                                        <Link
+                                            to={{
+                                                pathname: "tasks/P001",
+                                            }}
+                                            state={{id: 'P001',}}
+                                        >
+                                            <button className='text-xs px-4 py-2 text-white bg-primary-blue-800 hover:bg-primary-blue-800/80 rounded-md hover:-translate-y-1 transition duration-200'>View All Tasks</button>
+                                        </Link>
+                                        
+                                    </div>
+
+                                    <div className='overflow-auto'>
+                                        <div className='tableRow text-sm w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]'>
+                                            <div>T001</div>
+                                            <div className='w-64 text-center'>Cleaning the house</div>
+                                            <div>2023/08/12</div>
+                                        </div> 
+                                        <div className='tableRow text-sm w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#D7E3FC]'>
+                                            <div>T003</div>
+                                            <div className='w-64 text-center'>Weeding the flower beds</div>
+                                            <div>2023/08/12</div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className='flex justify-between items-center mb-2 pt-3'>
+                                        <h2 className='font-medium'>P002</h2>
+                                        
+                                        <Link
+                                            to={{
+                                                pathname: "tasks/P002",
+                                            }}
+                                            state={{id: 'P002',}}
+                                        >
+                                            <button className='text-xs px-4 py-2 text-white bg-primary-blue-800 hover:bg-primary-blue-800/80 rounded-md hover:-translate-y-1 transition duration-200'>View All Tasks</button>
+                                        </Link>
+                                    </div>
+
+                                    <div className='overflow-auto'>
+                                        <div className='tableRow text-sm w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]'>
+                                            <div>T005</div>
+                                            <div className='w-64 text-center'>Weeding the land</div>
+                                            <div>2023/08/18</div>
+                                        </div> 
+                                    </div>
+                                      
+                                </div>                     
                             </div>
                         </div>
                     </div>

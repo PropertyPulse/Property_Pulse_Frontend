@@ -36,6 +36,7 @@ import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
 import SystemAdmin from "./pages/System Admin/SystemAdmin";
+import TasksPO from './pages/PropertyOwner/TasksPO';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -83,7 +84,8 @@ function App() {
             <Route path="property-owner" element={<PropertyOwnerDashboard />} />
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-            
+            <Route path="property-owner/upcoming-tasks" element={<TasksPO/>} />
+            <Route path="property-owner/tasks/:id" element={<TasksPO />} />
 
             {/*    Protected Routes*/}
 
