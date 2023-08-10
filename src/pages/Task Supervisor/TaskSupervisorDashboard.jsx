@@ -8,11 +8,11 @@ import { Outlet } from "react-router-dom";
 const TaskSupervisorDashboard = () => {
     return (
         <div className='w-full flex bg-background-blue'>
-            <div className='z-50'>
+            <div className='sticky top-0 left-0 h-full z-50'>
                 <TaskSupervisorSidebar />
             </div>
             <div className='w-full'>
-                <div className='w-full z-40'>
+                <div className='w-full z-40 sticky top-0 left-0 w-full'>
                     <Navbar name="Deepamal Shaminda" userRole="Task Supervisor" />
                 </div>
                  <Outlet/>
