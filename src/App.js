@@ -35,6 +35,7 @@ import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
+import UpcomingTasks from "./pages/Task Supervisor/UpcomingTasks";
 import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
 import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
@@ -66,6 +67,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="assigned-properties" element={<Properties />} />
                 <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
+                <Route path="upcoming-tasks" element={<UpcomingTasks />} />
                 <Route path="properties/view-property" element={<ViewProperty />} />
             </Route>
             {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
