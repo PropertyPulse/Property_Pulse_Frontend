@@ -35,8 +35,12 @@ import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
-import SystemAdmin from "./pages/System Admin/SystemAdmin";
 import UpcomingTasks from "./pages/Task Supervisor/UpcomingTasks";
+import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
+import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
+import LandRegistration from './pages/PropertyOwner/LandRegistration';
+import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
+import SystemAdmin from "./pages/System Admin/SystemAdmin"
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -85,7 +89,10 @@ function App() {
             <Route path="property-owner" element={<PropertyOwnerDashboard />} />
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-            
+            <Route path="property-owner/properties" element={<PropertiesPO />} />
+            <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
+            <Route path="property-owner/land-registration" element={<LandRegistration />} />
+            <Route path="property-owner/house-registration" element={<HouseRegistration />} />
 
             {/*    Protected Routes*/}
 
