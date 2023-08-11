@@ -12,7 +12,7 @@ import Layout from "./Components/Common/Layout";
 import RequireAuth from "./security/RequireAuth";
 import PropertyOwner from "./pages/PropertyOwner/PropertyOwner";
 import PersistLogin from "./config/PersistLogin";
-import TaskSupervisorDashboard from "./pages/Task Supervisor/TaskSupervisorDashboard";
+import TaskSupervisor from "./pages/Task Supervisor/TaskSupervisor";
 import ManPowerDashboard from "./pages/ManPowerManager/ManPowerDashboard";
 import MpDashboard from "./pages/ManPowerManager/MpDashboard";
 import ManageEmployee from "./pages/ManPowerManager/ManageEmployee";
@@ -53,7 +53,7 @@ function App() {
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="received" element={<FmRecieved/>} />
             </Route>
-            <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
+            <Route path="task-supervisor" element={<TaskSupervisor />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="sample-modal" element={<Modal />} />
                 <Route path="assigned-properties" element={<Properties />} />

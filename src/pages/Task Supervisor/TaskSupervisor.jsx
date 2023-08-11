@@ -3,7 +3,7 @@ import Navbar from "../../Components/Common/Navbar";
 import TaskSupervisorSidebar from "../../Components/TaskSupervisor/TaskSupervisorSidebar";
 import { Outlet } from "react-router-dom";
 
-const TaskSupervisorDashboard = () => {
+const TaskSupervisor = () => {
     return (
         <div className='w-full flex bg-background-blue'>
             <div className='z-30'>
@@ -21,4 +21,4 @@ const TaskSupervisorDashboard = () => {
     );
 }
 
-export default TaskSupervisorDashboard;
+export default TaskSupervisor;
