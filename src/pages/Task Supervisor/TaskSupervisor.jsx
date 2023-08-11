@@ -13,8 +13,7 @@ const TaskSupervisor = () => {
                 <div className='w-full z-20'>
                     <Navbar name="Deepamal Shaminda" userRole="Task Supervisor" />
                 </div>
-                 <Outlet/>
-                    
+                 <Outlet/>    
             </div>
         </div>
      
