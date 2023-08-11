@@ -3,12 +3,12 @@ import { Card } from "flowbite-react";
 import { Label, TextInput } from "flowbite-react";
 
 const ViewEmployee = (props) => {
-
-    const [name, setName] = useState("John Doe");
-    const [address, setAddress] = useState("123 Main St");
-    const [nic, setNic] = useState("123456789V");
-    const [district, setDistrict] = useState("Colombo");
-    const [contactNo, setContactNo] = useState("1234567890");
+    console.log(props);
+    const [name, setName] = useState(props.employeeData.name);
+    const [address, setAddress] = useState(props.employeeData.address);
+    const [nic, setNic] = useState(props.employeeData.nic);
+    const [district, setDistrict] = useState(props.employeeData.district);
+    const [contactNo, setContactNo] = useState(props.employeeData.contactno);
 
     return (
         <>

@@ -2,25 +2,31 @@ import React from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
+import {RiWechatFill} from "react-icons/ri";
+import {FcAddImage} from "react-icons/fc";
 import {Link} from "react-router-dom";
 
-const AssignedProperties= () => {
+const ViewUserProfiles = () => {
 
-    const headings = ['Owner', 'Property ID', 'Type', 'Location', 'View Property'];
+    const headings = ['User ID', 'User Name', 'User Role', 'Contact Number', 'Email', ''];
 
     const rows = [
-        {owner: 'Anjalee Neelika',
-            id: 'Colombo 06',
-            type: 'House',},
-        {owner: 'Thilanka Jayathilaka',
-            id: 'Gampaha',
-            type: 'Land',},
+        {userId: 'U81',
+            userName: 'Kavisha Abeynayake',
+            userRole: 'Top Manager',
+            contactNumber: '077-2674829',
+            email: 'kavisha@gmail.com',},
+        {userId: 'U56',
+            userName: 'Deepamal Shaminda',
+            userRole: 'Task Supervisor',
+            contactNumber: '076-6544829',
+            email: 'deepamalsh@gmail.com',},
     ];
 
     return (
         <div className='w-full px-24 py-10'>
             <div className='w-full pb-6'>
-                <span className='sub-title'>Assigned Properties</span>
+                <span className='sub-title'>User Profiles</span>
             </div>
             <div className='top flex h-16 space-x-4'>
                 <div className='top-part-1 w-3/4'>
@@ -69,8 +75,8 @@ const AssignedProperties= () => {
                                 type="button">
                             <img src={sortIcon} alt="metamask" className="h-4 w-4 mr-2" />
                             Sort<svg className="ml-2 w-4 h-4" fill="none"
-                                     stroke="currentColor" viewBox="0 0 24 24"
-                                     xmlns="http://www.w3.org/2000/svg">
+                                                 stroke="currentColor" viewBox="0 0 24 24"
+                                                 xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linejoin="round"  d="M19 9l-7 7-7-7"></path>
                         </svg>
                             <div id="dropdown"
@@ -98,43 +104,33 @@ const AssignedProperties= () => {
                     </div>
                 </div>
             </div>
-            <div className='pt-3 pb-6'>
+            <div className='py-4'>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
-                        <tr>
+                            <tr>
                             {headings.map((heading, index) => (
                                 <th scope="col" className="px-6 py-3">
                                     {heading}
                                 </th>
                             ))}
-                        </tr>
+                            </tr>
                         </thead>
                         <tbody>
-                            {rows.map((property, index) => (
-                                <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <th scope="row"
-                                        className="px-6 py-3 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        {property.owner}
-                                    </th>
-                                    <td className="px-6 py-3">
-                                        {property.id}
-                                    </td>
-                                    <td className="px-6 py-3">
-                                        {property.type}
-                                    </td>
-                                    <td className="px-6 py-3">
-                                        <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            View on Map
-                                        </button>
-                                    </td>
-                                    <td className="px-6 py-3 justify-center">
-                                        <Link to='/task-supervisor/properties/view-property' className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            View Details
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                        {rows.map((row, index) => (
+                            <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                                <td scope="col" className="px-6 py-3">{row.userId}</td>
+                                <td scope="col" className="px-6 py-3">{row.userName}</td>
+                                <td scope="col" className="px-6 py-3">{row.userRole}</td>
+                                <td scope="col" className="px-6 py-3">{row.contactNumber}</td>
+                                <td scope="col" className="px-6 py-3">{row.email}</td>
+                                <td className="px-6 py-3">
+                                    <Link to='/system-admin/user-profiles/view-profile' className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                        View Details
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>
@@ -143,4 +139,4 @@ const AssignedProperties= () => {
     );
 }
 
-export default AssignedProperties;
+export default ViewUserProfiles;

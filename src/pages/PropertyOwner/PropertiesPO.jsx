@@ -111,9 +111,6 @@ const PropertiesPO = () => {
                                             >
                                                 <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">View</button>
                                             </Link>
-                                            {/* <a href='properties/view-more' className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
-                                                View
-                                            </a> */}
                                         </td>
                                     </tr>
                                 ))} 

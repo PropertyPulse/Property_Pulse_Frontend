@@ -2,7 +2,7 @@ import InputText from "../../Components/Common/InputText";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-const AddTopManagers = () => {
+const AddValuationExpert = () => {
 
     const [values, setValues] = useState("");
 
@@ -16,7 +16,7 @@ const AddTopManagers = () => {
             pattern: "^[A-Za-z]+$",
             required: true,
             styles: 'w-2/5 border-0',
-            defaultValue: 'Top Manager',
+            defaultValue: 'Valuation Expert',
         },
         {
             id: 2,
@@ -26,7 +26,7 @@ const AddTopManagers = () => {
             label: 'User Name',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-auto flex-auto border-0'
+            styles: 'w-3/5 flex-auto border-0'
         },
         {
             id: 3,
@@ -39,23 +39,23 @@ const AddTopManagers = () => {
         },
         {
             id: 4,
+            name: 'nearestTown',
+            type: 'text',
+            // errorMessage: "This is a required field",
+            label: 'Nearest Town',
+            pattern: "^[A-Za-z]+$",
+            required: true,
+            styles: 'w-2/5 flex-auto border-0'
+        },
+        {
+            id: 5,
             name: 'district',
             type: 'text',
             // errorMessage: "This is a required field",
             label: 'District',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-auto flex-auto border-0'
-        },
-        {
-            id: 5,
-            name: 'contactNumber',
-            type: 'text',
-            // errorMessage: "This is a required field",
-            label: 'Contact Number',
-            pattern: "^[0-9]{10,11}",
-            required: true,
-            styles: 'w-2/5 flex-auto border-0'
+            styles: 'w-2/5 border-0'
         },
         {
             id: 6,
@@ -69,31 +69,41 @@ const AddTopManagers = () => {
         },
         {
             id: 7,
+            name: 'contactNumber',
+            type: 'text',
+            // errorMessage: "This is a required field",
+            label: 'Contact Number',
+            pattern: "^[0-9]{10,11}",
+            required: true,
+            styles: 'w-1/3 border-0'
+        },
+        {
+            id: 8,
             name: 'nic',
             type: 'text',
             // errorMessage: "Invalid NIC",
             label: 'NIC',
             pattern: '^[0-9]{9}([0-9]{3}|v|V)',
             required: true,
-            styles: 'w-auto flex-auto border-0'
+            styles: 'w-1/3 border-0'
         },
         {
-            id: 8,
+            id: 9,
             name: 'dob',
             type: 'date',
             // errorMessage: "This is a required field and should contain at least 6 characters",
             label: 'Date of Birth',
             required: true,
-            styles: 'w-1/2 border-0'
+            styles: 'w-1/3 border-0'
         },
         {
-            id: 9,
+            id: 10,
             name: 'gender',
             label: 'Gender',
             styles: 'w-1/2 border-0'
         },
         {
-            id: 10,
+            id: 11,
             name: 'password',
             type: 'password',
             // errorMessage: "This is a required field and should contain at least 6 characters",
@@ -114,10 +124,10 @@ const AddTopManagers = () => {
             <div className='w-full px-24 py-9'>
 
                 <div className='w-full space-x-0.5 pb-6 text-white flex'>
-                    <Link to='/system-admin/add-users/top-manager' className='w-1/4 px-8 py-2 bg-primary-blue-500 flex justify-center text-md font-medium rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl'>
+                    <Link to='/system-admin/add-users/top-manager' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl'>
                         Top Manager
                     </Link>
-                    <Link to='/system-admin/add-users/valuation-expert' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-none'>
+                    <Link to='/system-admin/add-users/valuation-expert' className='w-1/4 px-8 py-2 bg-primary-blue-500 flex justify-center text-md font-medium rounded-none'>
                         Valuation Expert
                     </Link>
                     <Link to='/system-admin/add-users/task-supervisor' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-none'>
@@ -168,4 +178,4 @@ const AddTopManagers = () => {
     )
 }
 
-export default AddTopManagers;
+export default AddValuationExpert;
