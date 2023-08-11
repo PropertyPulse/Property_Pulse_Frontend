@@ -40,6 +40,7 @@ import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import SystemAdmin from "./pages/System Admin/SystemAdmin"
+import PropertyDocuments from './pages/PropertyOwner/PropertyDocuments';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -88,9 +89,10 @@ function App() {
             <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
             <Route path="property-owner/properties" element={<PropertiesPO />} />
-            <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
+            <Route path="property-owner/properties/property-details/:id" element={<PropertyViewMore />} />
             <Route path="property-owner/land-registration" element={<LandRegistration />} />
             <Route path="property-owner/house-registration" element={<HouseRegistration />} />
+            <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
 
             {/*    Protected Routes*/}
 
