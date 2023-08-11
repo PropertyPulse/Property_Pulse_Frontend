@@ -8,6 +8,7 @@ const PropertyViewMore = () => {
                 <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
             </div> 
             <div className='w-full h-[calc(100vh-4.5rem)] p-10'>
+                
             </div>
         </div>
     )

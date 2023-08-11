@@ -94,7 +94,7 @@ function App() {
             <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
             <Route path="property-owner/tasks/:id" element={<TasksPO />} />
             <Route path="property-owner/properties" element={<PropertiesPO />} />
-            <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
+            <Route path="property-owner/properties/view-more/:id" element={<PropertyViewMore />} />
             <Route path="property-owner/land-registration" element={<LandRegistration />} />
             <Route path="property-owner/house-registration" element={<HouseRegistration />} />
             {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}

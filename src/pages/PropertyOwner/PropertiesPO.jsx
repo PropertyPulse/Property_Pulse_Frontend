@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import {AiOutlineSearch} from 'react-icons/ai';
 import PropertyType from './PropertyType';
+import { Link } from 'react-router-dom';
 
 const PropertiesPO = () => {
     const [showModal, setShowModal] = useState(false);
@@ -9,6 +10,7 @@ const PropertiesPO = () => {
 
     const properties = [
         {
+            id: 1,
             propertyID: 'P001',
             propertyType: 'House',
             registeredDate: '2023/02/05',
@@ -16,6 +18,7 @@ const PropertiesPO = () => {
             taskSupervisor: 'TS001',
         },
         {
+            id: 2,
             propertyID: 'P002',
             propertyType: 'Land',
             registeredDate: '2023/02/05',
@@ -84,7 +87,7 @@ const PropertiesPO = () => {
 
                             <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200"> 
                                 {properties.map(property => (                              
-                                    <tr key={property.propertyID}>
+                                    <tr key={property.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {property.propertyID}
                                         </td>
@@ -101,9 +104,16 @@ const PropertiesPO = () => {
                                             {property.taskSupervisor}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                                            <a href='properties/view-more' className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
+                                            <Link
+                                                to = {{
+                                                    pathname: `view-more/${property.propertyID}`
+                                                }}
+                                            >
+                                                <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">View</button>
+                                            </Link>
+                                            {/* <a href='properties/view-more' className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
                                                 View
-                                            </a>
+                                            </a> */}
                                         </td>
                                     </tr>
                                 ))} 
