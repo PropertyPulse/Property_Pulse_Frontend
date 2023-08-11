@@ -30,11 +30,11 @@ import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 import PropertyOwnerDashboard from './pages/PropertyOwner/PropertyOwnerDashboard';
 import ProfileSetupAfterRegister from './pages/PropertyOwner/ProfileSetupAfterRegister';
-import DashboardPO from './pages/PropertyOwner/DashboardPO';
 import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
-import ViewProperty from "./pages/Task Supervisor/ViewProperty";
+import ViewProperty from "./pages/Task Supervisor/ViewProperty"
+import Modal from "./pages/Task Supervisor/SampleModal"
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
@@ -55,6 +55,7 @@ function App() {
             </Route>
             <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
                 <Route path="dashboard" element={<Dashboard />} />
+                <Route path="sample-modal" element={<Modal />} />
                 <Route path="assigned-properties" element={<Properties />} />
                 <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
                 <Route path="properties/view-property" element={<ViewProperty />} />
