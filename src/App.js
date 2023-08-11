@@ -37,6 +37,10 @@ import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
 import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
+import SystemAdmin from "./pages/System Admin/SystemAdmin"
+import PropertyDocuments from './pages/PropertyOwner/PropertyDocuments';
+
+// import Properties from "./pages/TaskSupervisor/Properties";
 import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
 import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 import CompletedTasksPO from './pages/PropertyOwner/CompletedTasksPO';
@@ -86,6 +90,16 @@ function App() {
                     <Route path="properties/view-property" element={<ViewProperty />} />
                 </Route>
 
+            {/* PROPERTY OWNER ROUTES */}
+            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
+            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
+            <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
+            <Route path="property-owner/properties" element={<PropertiesPO />} />
+            <Route path="property-owner/properties/property-details/:id" element={<PropertyViewMore />} />
+            <Route path="property-owner/land-registration" element={<LandRegistration />} />
+            <Route path="property-owner/house-registration" element={<HouseRegistration />} />
+            <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
 
 
 
