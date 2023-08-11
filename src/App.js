@@ -30,85 +30,80 @@ import AddEmployee from './pages/ManPowerManager/AddEmployee';
 import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 import PropertyOwnerDashboard from './pages/PropertyOwner/PropertyOwnerDashboard';
 import ProfileSetupAfterRegister from './pages/PropertyOwner/ProfileSetupAfterRegister';
-import DashboardPO from './pages/PropertyOwner/DashboardPO';
+
 import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
 import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
-import SystemAdmin from "./pages/System Admin/SystemAdmin";
+
 
 // import Properties from "./pages/TaskSupervisor/Properties";
 
 function App() {
-  return (
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-            {/*Public router */}
-            <Route path="/" element={<PropertyPulseLanding />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
+    return (
+        <Routes>
+            <Route path="/" element={<Layout/>}>
+                {/*Public router */}
+                <Route path="/" element={<PropertyPulseLanding />} />
+                <Route path="/contact-us" element={<ContactUs />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="system-admin" element={<SystemAdminDashboard />} />
+                <Route path="system-admin/add-users/top-manager" element={<AddTopManagers />} />
 
-            <Route path="system-admin" element={<SystemAdmin />} >
-                <Route path="dashboard" element={<SystemAdminDashboard />} />
-                <Route path="add-users/top-manager" element={<AddTopManagers />} />
-            </Route>
-
-            <Route path="fm" element={<FinancialManager />} >
-                <Route path="dashboard" element={<FmDashboard/>} />
-                <Route path="received" element={<FmRecieved/>} />
-            </Route>
-            <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="assigned-properties" element={<Properties />} />
-                <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
-                <Route path="properties/view-property" element={<ViewProperty />} />
-            </Route>
-            {/* <Route path="ts" element={<TaskSupervisorLayout />}> */}
-                {/*<Route path="db" element={<Dashboard />} />*/}
-                {/*<Route path="properties" element={<Properties />} />*/}
-            {/* </Route> */}
-            <Route path="manpower-company" element={<ManPowerDashboard />}>
-                <Route path="dashboard" element={<MpDashboard />} />
-                <Route path="manage-employee" element={<ManageEmployee />} />
-                <Route path="request" element={<Request />} />
-                <Route path="task-history" element={<TaskHistory />} />
-                <Route path="add-employee" element={<AddEmployee />} />
-                <Route path="new-task-request" element={<NewTaskRequest />} />
-            </Route>
-
-
-            {/* PROPERTY OWNER ROUTES */}
-            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
-            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
-            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
-            <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-            
-
-            {/*    Protected Routes*/}
-
-            <Route element={<PersistLogin/>}>
-                <Route element={<RequireAuth allowedRoles='TASKSUPERVISOR' />}>
-
+                <Route path="fm" element={<FinancialManager />} >
+                    <Route path="dashboard" element={<FmDashboard/>} />
+                    <Route path="received" element={<FmRecieved/>} />
+                    {/*<Route path="monthly-payment" element={<MonthlyPayment />} />*/}
+                    {/*<Route path="task-receivable-payment" element={<TaskReceivable />} />*/}
                 </Route>
-                <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
-                    <Route path="financial-manager" element={<FinancialManager />} >
-                        <Route path="dashboard" element={<FmDashboard/>} />
-                        <Route path="received" element={<FmRecieved/>} />
+
+
+                <Route path="task-supervisor" element={<TaskSupervisorDashboard />}>
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="assigned-properties" element={<Properties />} />
+                    <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
+                    <Route path="properties/view-property" element={<ViewProperty />} />
+                </Route>
+
+
+
+                <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+                <Route path="property-owner" element={<PropertyOwnerDashboard />} />
+                <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
+                <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
+
+                {/*    Protected Routes*/}
+
+                <Route element={<PersistLogin/>}>
+                    <Route element={<RequireAuth allowedRoles='MPC' />}>
+                        <Route path="manpower-company" element={<ManPowerDashboard />}>
+                            <Route path="dashboard" element={<MpDashboard />} />
+                            <Route path="manage-employee" element={<ManageEmployee />} />
+                            <Route path="request" element={<Request />} />
+                            <Route path="task-history" element={<TaskHistory />} />
+                            <Route path="add-employee" element={<AddEmployee />} />
+                            <Route path="new-task-request" element={<NewTaskRequest />} />
+                        </Route>
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
+                        <Route path="financial-manager" element={<FinancialManager />} >
+                            <Route path="dashboard" element={<FmDashboard/>} />
+                            <Route path="received" element={<FmRecieved/>} />
+                        </Route>
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
+                        <Route path="po" element={<PropertyOwner/>} />
                     </Route>
                 </Route>
-                <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
-                    <Route path="po" element={<PropertyOwner/>} />
-                </Route>
+
+
+
+                <Route path="*" element={<NotFound/>}/>
             </Route>
 
-
-
-            <Route path="*" element={<NotFound/>}/>
-        </Route>
-
-      </Routes>
-  );
+        </Routes>
+    );
 }
 
-export default App;
+export default App
