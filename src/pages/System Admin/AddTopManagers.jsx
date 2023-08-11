@@ -4,9 +4,7 @@ import {Link} from "react-router-dom";
 
 const AddTopManagers = () => {
 
-    const [values, setValues] = useState({
-        userName: "",
-    });
+    const [values, setValues] = useState("");
 
     const inputs = [
         {
@@ -60,7 +58,7 @@ const AddTopManagers = () => {
             styles: 'w-2/5 flex-auto border-0'
         },
         {
-            id: 5,
+            id: 6,
             name: 'email',
             type: 'email',
             // errorMessage: "This is a required field",
