@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../CSS/InputText.css';
 
 const InputText = (props) => {
-    const {label, onChange, name, type, errorMessage, styles, ...inputProps} = props;
+    const {label, onChange, name, type, errorMessage, styles, defaultValue, ...inputProps} = props;
     const [focused, setFocused] = useState(false);
 
     const handleFocus = (e) => {
@@ -25,6 +25,8 @@ const InputText = (props) => {
                     onFocus={() =>
                         name === 'confirmPassword' && setFocused(true)
                     }
+                    defaultValue={defaultValue}
+                    disabled={!!defaultValue}
                     focused={focused.toString()}
                     {...inputProps}
                     required

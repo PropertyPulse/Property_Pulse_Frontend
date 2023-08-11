@@ -2,7 +2,7 @@ import InputText from "../../Components/Common/InputText";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-const AddTopManagers = () => {
+const AddFinanceManagers = () => {
 
     const [values, setValues] = useState({
         userName: "",
@@ -18,7 +18,7 @@ const AddTopManagers = () => {
             pattern: "^[A-Za-z]+$",
             required: true,
             styles: 'w-2/5 border-0',
-            defaultValue: 'Top Manager',
+            defaultValue: 'Finance Managers',
         },
         {
             id: 2,
@@ -116,7 +116,7 @@ const AddTopManagers = () => {
             <div className='w-full px-24 py-9'>
 
                 <div className='w-full space-x-0.5 pb-6 text-white flex'>
-                    <Link to='/system-admin/add-users/top-manager' className='w-1/4 px-8 py-2 bg-primary-blue-500 flex justify-center text-md font-medium rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl'>
+                    <Link to='/system-admin/add-users/top-manager' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl'>
                         Top Manager
                     </Link>
                     <Link to='/system-admin/add-users/valuation-expert' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-none'>
@@ -125,7 +125,7 @@ const AddTopManagers = () => {
                     <Link to='/system-admin/add-users/task-supervisor' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-none'>
                         Task Supervisor
                     </Link>
-                    <Link to='/system-admin/add-users/finance-manager' className='w-1/4 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-tl-none rounded-tr-xl rounded-br-xl rounded-bl-none'>
+                    <Link to='/system-admin/add-users/finance-manager' className='w-1/4 px-8 py-2 bg-primary-blue-500 flex justify-center text-md font-medium rounded-tl-none rounded-tr-xl rounded-br-xl rounded-bl-none'>
                         Finance Manager
                     </Link>
                 </div>
@@ -170,4 +170,4 @@ const AddTopManagers = () => {
     )
 }
 
-export default AddTopManagers;
+export default AddFinanceManagers;

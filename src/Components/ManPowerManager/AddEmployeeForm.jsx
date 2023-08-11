@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from "flowbite-react";
 import { Button, Label, TextInput } from "flowbite-react";
-
+// import addEmployee from "../../pages/ManPowerManager/AddEmployee";
+import {axiosPrivate} from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 const AddEmployeeForm = () => {
+
+  const {auth} = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+
+  console.log(auth.user)
 
 
   const [inputValue, setInputValue] = useState('');
@@ -138,6 +146,29 @@ const AddEmployeeForm = () => {
     }
   };
 
+  const handleaddEmployee = async (e) => {
+    e.preventDefault();
+
+    try{
+       const response = await axiosPrivate.post("/api/v1/mpc/addemployee", {
+         name: name,
+         address: address,
+         nic: nic,
+         district: district,
+         contactno: contactNo,
+         skills: dataList,
+         email: auth.user
+
+       },{
+
+       });
+
+      console.log(response.data)
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
   return (
     <div>
       <Card className="max-w-lg m-4 mx-auto">
@@ -255,7 +286,7 @@ const AddEmployeeForm = () => {
             </div>
           </div>
 
-          <Button type="submit" disabled={!!(nameError || addressError || nicError || districtError || contactNoError || error)}>Submit</Button>
+          <Button onClick={handleaddEmployee} type="submit" disabled={!!(nameError || addressError || nicError || districtError || contactNoError || error)}>Submit</Button>
         </form>
       </Card>
     </div>

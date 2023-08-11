@@ -94,6 +94,9 @@ const Login = () => {
                 else if (roles === "FINANCIALMANAGER"){
                     navigate("/financial-manager/dashboard");
                 }
+                else if (roles === "MPC"){
+                    navigate("/manpower-company/dashboard");
+                }
 
             } else {
                 navigate(from, { replace: true });
