@@ -8,6 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 const PropertyType = ({ visible, onClose }) => {
 
     const [type, setType] = useState("House");
+    const [path,setPath] = useState("house-registration");
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -17,15 +18,12 @@ const PropertyType = ({ visible, onClose }) => {
 
     const handleOnChange = (e) => {
         setType(e.target.value);
-        console.log(type)
-    }
-
-    const handleNavigate = () => {
-        if(type === "House") {
-
-        } else if(type === "Land") {
-
+        if(e.target.value === "House") {
+            setPath('house-registration')
+        } else if(e.target.value === "Land"){
+            setPath('land-registration')
         }
+        console.log(type);
     }
 
     if(!visible) return null;
@@ -75,7 +73,7 @@ const PropertyType = ({ visible, onClose }) => {
 
                     </ul>
 
-                    <a href={handleNavigate} className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right'>
+                    <a href={path} className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right cursor-pointer'>
                         <div className='text-md'>Continue</div>
                         <BsArrowRightCircle className='w-8 h-8 bg-white rounded-full' />
                     </a>
