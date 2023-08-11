@@ -5,7 +5,7 @@ import Login from "./pages/Common/Login";
 import PropertyPulseLanding from "./pages/Common/PropertyPulseLanding";
 import Signup from './pages/PropertyOwner/Signup';
 import Layout from "./Components/Common/Layout";
-// import FinancialManager from "./pages/FinancialManager/FinancialManager";
+// import FinancialManager from "./pages/FinancialManager/FinancialManagers";
 import RequireAuth from "./security/RequireAuth";
 import PropertyOwner from "./pages/PropertyOwner/PropertyOwner";
 import PersistLogin from "./config/PersistLogin";
@@ -41,8 +41,12 @@ import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
 import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 import TaskApprovals from "./pages/Task Supervisor/TaskApprovals";
-import AssignedProperties from "./pages/Task Supervisor/AssignedProperties";
-import ManageProperties from "./pages/Task Supervisor/PropertiesToBeManaged";
+import AssignedProperties from "./pages/Task Supervisor/AssignedProperties"
+import AddFinanceManagers from "./pages/System Admin/AddFinanceManagers";
+import AddValuationExperts from "./pages/System Admin/AddValuationExperts";
+import AddTaskSupervisors from "./pages/System Admin/AddTaskSupervisors";
+import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
+import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 
 function App() {
   return (
@@ -57,6 +61,11 @@ function App() {
             <Route path="system-admin" element={<SystemAdmin />} >
                 <Route path="dashboard" element={<SystemAdminDashboard />} />
                 <Route path="add-users/top-manager" element={<AddTopManagers />} />
+                <Route path="add-users/finance-manager" element={<AddFinanceManagers />} />
+                <Route path="add-users/valuation-expert" element={<AddValuationExperts />} />
+                <Route path="add-users/task-supervisor" element={<AddTaskSupervisors />} />
+                <Route path="add-users/manpower-company" element={<AddManpowerCompanies />} />
+                <Route path="add-users/insurance-agent" element={<AddInsuranceAgent />} />
             </Route>
 
             <Route path="fm" element={<FinancialManager />} >
