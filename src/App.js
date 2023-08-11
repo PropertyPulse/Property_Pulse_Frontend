@@ -94,17 +94,17 @@ function App() {
                 </Route>
 
 
-                {/* PROPERTY OWNER ROUTES */}
-                <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
-                <Route path="property-owner" element={<PropertyOwnerDashboard />} />
-                <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
-                <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-                <Route path="property-owner/tasks/:id" element={<TasksPO />} />
-                <Route path="property-owner/properties" element={<PropertiesPO />} />
-                <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
-                <Route path="property-owner/land-registration" element={<LandRegistration />} />
-                <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-                {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
+            {/* PROPERTY OWNER ROUTES */}
+            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
+            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
+            <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
+            <Route path="property-owner/tasks/:id" element={<TasksPO />} />
+            <Route path="property-owner/properties" element={<PropertiesPO />} />
+            <Route path="property-owner/properties/view-more/:id" element={<PropertyViewMore />} />
+            <Route path="property-owner/land-registration" element={<LandRegistration />} />
+            <Route path="property-owner/house-registration" element={<HouseRegistration />} />
+            {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
 
                 {/*    Protected Routes*/}
 

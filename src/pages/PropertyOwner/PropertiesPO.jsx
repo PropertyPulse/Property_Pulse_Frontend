@@ -10,6 +10,7 @@ const PropertiesPO = () => {
 
     const properties = [
         {
+            id: 1,
             propertyID: 'P001',
             propertyType: 'House',
             registeredDate: '2023/02/05',
@@ -17,6 +18,7 @@ const PropertiesPO = () => {
             taskSupervisor: 'TS001',
         },
         {
+            id: 2,
             propertyID: 'P002',
             propertyType: 'Land',
             registeredDate: '2023/02/05',
@@ -102,16 +104,12 @@ const PropertiesPO = () => {
                                             {property.taskSupervisor}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                                            {/* <a href='properties/view-more' className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
-                                                View
-                                            </a> */}
-
                                             <Link
-                                                to={{
-                                                    pathname: `property-details/${property.propertyID}`,
+                                                to = {{
+                                                    pathname: `view-more/${property.propertyID}`
                                                 }}
                                             >
-                                                <button className='text-xs px-4 py-2 text-white bg-primary-blue-800 hover:bg-primary-blue-800/80 rounded-md hover:-translate-y-1 transition duration-200'>View</button>
+                                                <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">View</button>
                                             </Link>
                                         </td>
                                     </tr>
