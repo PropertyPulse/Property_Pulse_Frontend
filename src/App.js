@@ -86,7 +86,14 @@ function App() {
                     <Route path="properties/view-property" element={<ViewProperty />} />
                 </Route>
 
-
+                <Route path="manpower-company" element={<ManPowerDashboard />}>
+                    <Route path="dashboard" element={<MpDashboard />} />
+                    <Route path="manage-employee" element={<ManageEmployee />} />
+                    <Route path="request" element={<Request />} />
+                    <Route path="task-history" element={<TaskHistory />} />
+                    <Route path="add-employee" element={<AddEmployee />} />
+                    <Route path="new-task-request" element={<NewTaskRequest />} />
+                </Route>
 
 
                 {/* PROPERTY OWNER ROUTES */}
@@ -104,15 +111,8 @@ function App() {
                 {/*    Protected Routes*/}
 
                 <Route element={<PersistLogin/>}>
-                    <Route element={<RequireAuth allowedRoles='MPC' />}>
-                        <Route path="manpower-company" element={<ManPowerDashboard />}>
-                            <Route path="dashboard" element={<MpDashboard />} />
-                            <Route path="manage-employee" element={<ManageEmployee />} />
-                            <Route path="request" element={<Request />} />
-                            <Route path="task-history" element={<TaskHistory />} />
-                            <Route path="add-employee" element={<AddEmployee />} />
-                            <Route path="new-task-request" element={<NewTaskRequest />} />
-                        </Route>
+                    <Route element={<RequireAuth allowedRoles='TASKSUPERVISOR' />}>
+
                     </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="financial-manager" element={<FinancialManager />} >
