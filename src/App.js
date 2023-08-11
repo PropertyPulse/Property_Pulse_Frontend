@@ -37,7 +37,6 @@ import PropertiesPO from './pages/PropertyOwner/PropertiesPO';
 import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
-import SystemAdmin from "./pages/System Admin/SystemAdmin"
 import PropertyDocuments from './pages/PropertyOwner/PropertyDocuments';
 
 // import Properties from "./pages/TaskSupervisor/Properties";
@@ -51,6 +50,8 @@ import AddValuationExperts from "./pages/System Admin/AddValuationExperts";
 import AddTaskSupervisors from "./pages/System Admin/AddTaskSupervisors";
 import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
+import UserProfiles from "./pages/System Admin/UserProfiles";
+import ViewProfile from "./pages/System Admin/ViewProfile";
 
 function App() {
     return (
@@ -70,6 +71,8 @@ function App() {
                     <Route path="add-users/task-supervisor" element={<AddTaskSupervisors />} />
                     <Route path="add-users/manpower-company" element={<AddManpowerCompanies />} />
                     <Route path="add-users/insurance-agent" element={<AddInsuranceAgent />} />
+                    <Route path="user-profiles" element={<UserProfiles />} />
+                    <Route path="user-profiles/view-profile" element={<ViewProfile />} />
                 </Route>
 
                 <Route path="fm" element={<FinancialManager />} >
@@ -89,18 +92,6 @@ function App() {
                     <Route path="task-approvals" element={<TaskApprovals />} />
                     <Route path="properties/view-property" element={<ViewProperty />} />
                 </Route>
-
-            {/* PROPERTY OWNER ROUTES */}
-            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
-            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
-            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
-            <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-            <Route path="property-owner/properties" element={<PropertiesPO />} />
-            <Route path="property-owner/properties/property-details/:id" element={<PropertyViewMore />} />
-            <Route path="property-owner/land-registration" element={<LandRegistration />} />
-            <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-            <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
-
 
 
                 {/* PROPERTY OWNER ROUTES */}
