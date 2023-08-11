@@ -2,6 +2,7 @@ import React from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
+import {Link} from "react-router-dom";
 
 const AssignedProperties= () => {
 
@@ -128,9 +129,9 @@ const AssignedProperties= () => {
                                         </button>
                                     </td>
                                     <td className="px-6 py-3 justify-center">
-                                        <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                        <Link to='/task-supervisor/properties/view-property' className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                             View Details
-                                        </button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}
