@@ -21,7 +21,10 @@ const ViewProperty = () => {
             text: 'Chat with Owner',
             link: './chat'
         },
-        {text: 'Suggest a New Task'},
+        {
+            text: 'Suggest a New Task',
+            // action : "onClick={() => setShowModal(true)}"
+        },
         {text: 'View Scheduled Tasks'},
         {text: 'View Requested Tasks'},
         {
