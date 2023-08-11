@@ -52,6 +52,9 @@ import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
+import TopManager from "./pages/TopManager/TopManager"; 
+import Complaints from "./pages/TopManager/Complaints";
+
 
 function App() {
     return (
@@ -79,6 +82,22 @@ function App() {
                     <Route path="dashboard" element={<FmDashboard/>} />
                     <Route path="received" element={<FmRecieved/>} />
                 </Route>
+
+
+                {/* Top Manager Routes */}
+                <Route path="tm" element={<TopManager />}>
+                   <Route path="view-complaints/:id" element={<Complaints />} />
+
+                </Route>
+
+   {/* Valuation Expert  Routes */}
+   {/* <Route path="ve" element={<ValuationExpert />} >
+                    <Route path="dashboard" element={<FmDashboard/>} />
+                    <Route path="received" element={<FmRecieved/>} />
+                </Route> */}
+
+
+
 
                 <Route path="task-supervisor" element={<TaskSupervisor />}>
                     <Route path="dashboard" element={<Dashboard />} />
