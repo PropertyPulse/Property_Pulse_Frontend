@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { registerLicense } from "@syncfusion/ej2-base";
 
 // Registering Syncfusion license key
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NGaF1cWGhBYVRpR2NbfE5xdF9GZlZTRmY/P1ZhSXxQdkJgWH1ccHJXRGBeV0E=');
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NGaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZjUX5ccHVXRmJbWUZ1Wg==');
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
