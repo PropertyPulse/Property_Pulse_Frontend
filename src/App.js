@@ -124,6 +124,7 @@ function App() {
                     <Route path="task-approvals" element={<TaskApprovals />} />
                     <Route path="assigned-properties/view-property" element={<ViewProperty />} />
                     <Route path="assigned-properties/view-property/chat" element={<Chat />} />
+
                 </Route>
 
 

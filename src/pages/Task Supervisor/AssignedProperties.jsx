@@ -129,7 +129,7 @@ const AssignedProperties= () => {
                                         </button>
                                     </td>
                                     <td className="px-6 py-3 justify-center">
-                                        <Link to='/task-supervisor/properties/view-property' className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                        <Link to='/task-supervisor/assigned-properties/view-property' className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                             View Details
                                         </Link>
                                     </td>
