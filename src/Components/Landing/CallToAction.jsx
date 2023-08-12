@@ -12,7 +12,7 @@ const CallToAction = () => {
         {/* Button */}
         <div>
           <Link
-            to='#'
+            to='/signup'
             className='p-3 px-6 pt-2 text-white rounded-full shadow-2xl bg-secondary-gray hover:bg-secondary-gray-light'
           >
             Get Started

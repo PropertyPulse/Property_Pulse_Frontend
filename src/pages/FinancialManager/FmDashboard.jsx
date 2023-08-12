@@ -8,9 +8,9 @@ import React from 'react'
 import moneyin from "./icons/money_2382625.png"
 import moneyout from "./icons/finance_10353597.png"
 import netprofit from "./icons/recovery_7358557.png"
-import CashFlowChart from "./common/CashFlowChart";
+// import CashFlowChart from "./common/CashFlowChart";
 
-import ApexCharts from 'apexcharts'
+// import ApexCharts from 'apexcharts'
 
 
 const FmDashboard = () => {

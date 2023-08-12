@@ -128,6 +128,7 @@ const ViewProperty = () => {
                                 {showModalScheduledTasks ? (
                                     <>
                                         <div
+
                                             className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                                             onClick={() => setShowModalScheduledTasks(false)}>
                                             <div className="relative w-auto my-6 mx-auto">

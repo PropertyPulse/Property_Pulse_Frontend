@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Pagination, Modal } from "flowbite-react";
 import ViewEmployee from "./ViewEmployee";
 import EditEmployee from "./EditEmployee";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate"
+import useAuth from "../../hooks/useAuth";
+
+
+
 
 const EmployeeTable = ({ searchTerm }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -9,113 +14,151 @@ const EmployeeTable = ({ searchTerm }) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
 
-  const onPageChange = (page) => setCurrentPage(page);
+  const [tableData, setTableData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Example table data
-  const tableData = [
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "kaveesha",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "kaveesha",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    {
-      employeeId: "10101010",
-      name: "Deepamal Shaminda",
-      address: "Galla",
-      contactNo: "0715992210",
-      skills: "Carpenter",
-    },
-    // Add more data objects as needed
-  ];
+  const onPageChange = (page) => setCurrentPage(page);
+   const {auth} = useAuth()
+  const axiosPrivate = useAxiosPrivate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+
+
+      try {
+        const response = await axiosPrivate.post("/api/v1/mpc/getallemployees", {
+          email: auth.user
+        });
+
+        setTableData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+
+      }
+
+
+    };
+
+    fetchData();
+  }, []);
+  // console.log(table)
+
+  // // Example table data
+  // const tableData = [
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "kaveesha",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "kaveesha",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   {
+  //     employeeId: "10101010",
+  //     name: "Deepamal Shaminda",
+  //     address: "Galla",
+  //     contactNo: "0715992210",
+  //     skills: "Carpenter",
+  //   },
+  //   // Add more data objects as needed
+  // ];
  
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
+  // const filteredData = tableData.filter((rowData) =>
+  //   Object.values(rowData).some((value) =>
+  //     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  // );
+//
+//   const filteredData = tableData.filter((rowData) =>
+//   Object.values(rowData).some((value) =>
+//     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+//   )
+// )
   const filteredData = tableData.filter((rowData) =>
-    Object.values(rowData).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
+      Object.values(rowData).some((value) =>
+          value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      )
   );
-
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -144,6 +187,7 @@ const EmployeeTable = ({ searchTerm }) => {
             <Table.HeadCell>Employee Id</Table.HeadCell>
             <Table.HeadCell>Name</Table.HeadCell>
             <Table.HeadCell>Address</Table.HeadCell>
+            <Table.HeadCell>District</Table.HeadCell>
             <Table.HeadCell>Contact No</Table.HeadCell>
             <Table.HeadCell>Skills</Table.HeadCell>
             <Table.HeadCell>
@@ -164,11 +208,12 @@ const EmployeeTable = ({ searchTerm }) => {
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {rowData.employeeId}
+                  {rowData.id}
                 </Table.Cell>
                 <Table.Cell>{rowData.name}</Table.Cell>
                 <Table.Cell>{rowData.address}</Table.Cell>
-                <Table.Cell>{rowData.contactNo}</Table.Cell>
+                  <Table.Cell>{rowData.district}</Table.Cell>
+                  <Table.Cell>{rowData.contactno}</Table.Cell>
                 <Table.Cell>{rowData.skills}</Table.Cell>
                 <Table.Cell>
                   <div className="flex space-x-4">
@@ -220,7 +265,7 @@ const EmployeeTable = ({ searchTerm }) => {
           <Modal.Body>
             {selectedRowData && (
               <div>
-                <EditEmployee />
+                <EditEmployee employeeData={selectedRowData} />
                 {/* ... (rest of your modal form) */}
               </div>
             )}
