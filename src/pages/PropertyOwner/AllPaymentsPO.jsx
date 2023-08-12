@@ -81,8 +81,66 @@ const AllPaymentsPO = () => {
                         </div>
                     </div>
 
-                    <div className='w-full h-[300px] flex flex-auto gap-5 p-7'>
+                    <div className='w-full h-[250px] mt-5'>
                         <h2 className='text-xl font-medium'>Payment History</h2>
+                        <div className='w-full h-full p-5 rounded-md shadow-lg shadow-[#E2EAFC] bg-white mt-2 overflow-auto'>
+                            <table className='min-w-full divide-y divide-gray-200'>
+                                <thead className="bg-[#EDF2FB] sticky">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Payment ID
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Property ID
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Payment for
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Payment Date
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Amount
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody className="w-full bg-white h-full divide-y divide-gray-200 overflow-auto">                              
+                                    <tr>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            PA001
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            P001
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Cleaning House
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            2023/06/28
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Rs. 20000.00
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
