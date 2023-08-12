@@ -38,8 +38,6 @@ import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import PropertyDocuments from './pages/PropertyOwner/PropertyDocuments';
-
-// import Properties from "./pages/TaskSupervisor/Properties";
 import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
 import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 import CompletedTasksPO from './pages/PropertyOwner/CompletedTasksPO';
@@ -52,9 +50,19 @@ import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
+import Chat from "./pages/Task Supervisor/Chat";
 import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
-
+import TopManager from "./pages/TopManager/TopManager"; 
+import Complaints from "./pages/TopManager/Complaints";
+import TopManagerDashboard  from './pages/TopManager/TopManagerDashboard';
+import ValuationExpert from  "./pages/ValuationExpert/ValuationExpert"
+import ViewReportSubmissions from "./pages/ValuationExpert/SubmittedValuationReports";
+import  ValuationDashboard from "./pages/ValuationExpert/ValuationDashboard";
+import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmissions';
+import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
+import TasksOfProperties from './pages/TopManager/TasksOfProperties';
+import showTaskMangers from './pages/TopManager/showTaskManagers';
 function App() {
     return (
         <Routes>
@@ -82,6 +90,28 @@ function App() {
                     <Route path="received" element={<FmRecieved/>} />
                 </Route>
 
+
+                {/* Top Manager Routes */}
+                <Route path="tm" element={<TopManager />}>
+                   <Route path="view-complaints/:id" element={<Complaints />} />
+                   <Route path="dashboard" element={<TopManagerDashboard />} />
+                   <Route path="view-registered-properties" element={<TaskAssignmentsProperties/>} />
+                   <Route path="view-tasks" element={<TasksOfProperties/>} />
+                   <Route path="view-tasks-supervisors" element={<showTaskMangers />} />
+                </Route>
+
+   {/* Valuation Expert  Routes */}
+   <Route path="ve" element={<ValuationExpert />} >
+   <Route path="dashboard" element={<ValuationDashboard />} />
+   <Route path="view-report-submissions" element={<ViewReportSubmissions />} />
+   
+   <Route path="pending-report-submissions" element={<PendingReportSubmissions />} />
+
+                </Route>
+
+
+
+
                 <Route path="task-supervisor" element={<TaskSupervisor />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="assigned-properties" element={<AssignedProperties />} />
@@ -93,6 +123,8 @@ function App() {
                     <Route path="completed-tasks" element={<CompletedTasks />} />
                     <Route path="task-approvals" element={<TaskApprovals />} />
                     <Route path="assigned-properties/view-property" element={<ViewProperty />} />
+                    <Route path="assigned-properties/view-property/chat" element={<Chat />} />
+
                 </Route>
 
 

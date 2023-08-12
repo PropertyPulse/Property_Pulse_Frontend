@@ -20,7 +20,7 @@ const ViewProperty = () => {
     const actions = [
         {
             text: 'Chat with Owner',
-            link: './chat'
+            link: '/task-supervisor/assigned-properties/view-property/chat'
         },
         {
             text: 'Suggest a New Task',
