@@ -23,9 +23,11 @@ const ViewProperty = () => {
         },
         {
             text: 'Suggest a New Task',
-            // action : "onClick={() => setShowModal(true)}"
         },
-        {text: 'View Scheduled Tasks'},
+        {
+            text: 'View Scheduled Tasks',
+            modalAction : "scheduled-task"
+        },
         {text: 'View Requested Tasks'},
         {
             text: 'View Legal Documents',
@@ -37,7 +39,22 @@ const ViewProperty = () => {
         },
     ]
 
-    const [showModal, setShowModal] = React.useState(false);
+    const [showModalScheduledTasks, setShowModalScheduledTasks] = React.useState(false);
+
+
+
+    function isScheduledTask (modalAction) {
+        if (modalAction == "scheduled-task"){
+            return true;
+        } else return false;
+    }
+
+    // function modalScheduledTasks(action) {
+    //     if (isScheduledTask(action)) {
+    //         setShowModalScheduledTasks(true);
+    //     }
+    // }
+
 
     return (
         <div className='w-full px-24 py-9'>
@@ -91,7 +108,14 @@ const ViewProperty = () => {
                                     <button
                                         className=""
                                         type="button"
-                                        onClick={() => setShowModal(true)}
+                                        onClick={() => {
+                                            console.log(action.text)
+                                            if (isScheduledTask(action.modalAction)) {
+                                                console.log("weer")
+                                                setShowModalScheduledTasks(true);
+
+                                            } else  console.log(action.modalAction)
+                                        }}
                                     >
                                         <Link to={action.link}
                                               className='border-2 border-black rounded-2xl text-center py-1 px-5 font-md text-sm w-fit hover:bg-secondary-gray-light hover:text-white'>
@@ -101,11 +125,12 @@ const ViewProperty = () => {
                                 </div>
 
 
-                                {showModal ? (
+                                {showModalScheduledTasks ? (
                                     <>
                                         <div
-                                            className="z-50 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none"
-                                            onClick={() => setShowModal(false)}>
+
+                                            className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                                            onClick={() => setShowModalScheduledTasks(false)}>
                                             <div className="relative w-auto my-6 mx-auto">
                                                 {/*content*/}
                                                 <div
@@ -126,21 +151,21 @@ const ViewProperty = () => {
                                                         </button>
                                                     </div>
                                                     {/*body*/}
-                                                        <ScheduledTasksList />
+                                                    <ScheduledTasksList />
                                                     {/*footer*/}
                                                     {/*<div*/}
                                                     {/*    className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">*/}
                                                     {/*    <button*/}
                                                     {/*        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"*/}
                                                     {/*        type="button"*/}
-                                                    {/*        onClick={() => setShowModal(false)}*/}
+                                                    {/*        onClick={() => setShowModalScheduledTasks(false)}*/}
                                                     {/*    >*/}
                                                     {/*        Close*/}
                                                     {/*    </button>*/}
                                                     {/*    <button*/}
                                                     {/*        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"*/}
                                                     {/*        type="button"*/}
-                                                    {/*        onClick={() => setShowModal(false)}*/}
+                                                    {/*        onClick={() => setShowModalScheduledTasks(false)}*/}
                                                     {/*    >*/}
                                                     {/*        Save Changes*/}
                                                     {/*    </button>*/}
