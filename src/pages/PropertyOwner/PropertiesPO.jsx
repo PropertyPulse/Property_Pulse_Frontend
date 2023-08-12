@@ -10,6 +10,7 @@ const PropertiesPO = () => {
 
     const properties = [
         {
+            id: 1,
             propertyID: 'P001',
             propertyType: 'House',
             registeredDate: '2023/02/05',
@@ -17,6 +18,7 @@ const PropertiesPO = () => {
             taskSupervisor: 'TS001',
         },
         {
+            id: 2,
             propertyID: 'P002',
             propertyType: 'Land',
             registeredDate: '2023/02/05',
@@ -34,7 +36,14 @@ const PropertiesPO = () => {
             <div className='w-full h-[calc(100vh-4.5rem)] p-10'>
                 <div className='w-full flex justify-between items-center'>
                     <h1 className='text-2xl font-semibold'>Properties</h1>
-                    <button className='px-7 py-4 bg-primary-blue-800 text-white text-sm rounded-md shadow-md shadow-[#A9D6E5] hover:-translate-y-1 hover:bg-primary-blue-800/90 transition duration-300' onClick={() => setShowModal(true)}>+ Add New Property</button>
+                    <button 
+                        type='button' 
+                        className='px-7 py-4 bg-primary-blue-800 text-white text-sm rounded-md shadow-md shadow-[#A9D6E5] 
+                        hover:-translate-y-1 hover:bg-primary-blue-800/90 transition duration-300' 
+                        onClick={() => setShowModal(true)}
+                    >
+                        + Add New Property
+                    </button>
                 </div>
 
                 <div className='w-fit h-fit bg-[#d2dcf3] m-5 mx-auto flex justify-center items-center rounded-full focus:bg-[#CCDBFD]/80 hover:bg-[#CCDBFD]/80'>
@@ -102,16 +111,12 @@ const PropertiesPO = () => {
                                             {property.taskSupervisor}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                                            {/* <a href='properties/view-more' className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
-                                                View
-                                            </a> */}
-
                                             <Link
-                                                to={{
-                                                    pathname: `property-details/${property.propertyID}`,
+                                                to = {{
+                                                    pathname: `property-details/${property.propertyID}`
                                                 }}
                                             >
-                                                <button className='text-xs px-4 py-2 text-white bg-primary-blue-800 hover:bg-primary-blue-800/80 rounded-md hover:-translate-y-1 transition duration-200'>View</button>
+                                                <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">View</button>
                                             </Link>
                                         </td>
                                     </tr>

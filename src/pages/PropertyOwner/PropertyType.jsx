@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHouse, FaCircleArrowRight } from 'react-icons/fa6';
 import {BsArrowRightCircle} from 'react-icons/bs'
 import { BiSolidLandscape } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai'
 
-const PropertyType = ({ visible, onClose }) => {
+const PropertyType = ({ visible, onClose, addPath }) => {
 
     const [type, setType] = useState("House");
-    const [path,setPath] = useState("house-registration");
+    const [path,setPath] = useState('/property-owner/house-registration');
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -18,13 +18,17 @@ const PropertyType = ({ visible, onClose }) => {
 
     const handleOnChange = (e) => {
         setType(e.target.value);
+        
         if(e.target.value === "House") {
-            setPath('house-registration')
+            setPath('/property-owner/house-registration')
         } else if(e.target.value === "Land"){
-            setPath('land-registration')
-        }
-        console.log(type);
+            setPath('/property-owner/land-registration')
+        } 
+
+        console.log(e.target.value);
     }
+
+    
 
     if(!visible) return null;
 
@@ -41,7 +45,7 @@ const PropertyType = ({ visible, onClose }) => {
                     <ul className='flex justify-between items-center w-full gap-6 mb-10'>
                         
                         <li className='w-full'>
-                            <input type='radio' id='type-house' name='prop-type' value='House' className='hidden peer' onChange={handleOnChange} checked />
+                            <input type='radio' id='type-house' name='prop-type' value='House' className='hidden peer' onChange={handleOnChange} defaultChecked />
                             <label 
                                 htmlFor='type-house' 
                                 className='flex justify-between items-center p-5 bg-[#0e2954] rounded-lg text-gray-400 border-2 cursor-pointer
@@ -73,10 +77,17 @@ const PropertyType = ({ visible, onClose }) => {
 
                     </ul>
 
-                    <a href={path} className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right cursor-pointer'>
-                        <div className='text-md'>Continue</div>
-                        <BsArrowRightCircle className='w-8 h-8 bg-white rounded-full' />
-                    </a>
+                    <Link
+                        to={{
+                            pathname: path
+                        }}
+                    >
+                        <button className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right cursor-pointer'>
+                            <div className='text-md'>Continue</div>
+                            <BsArrowRightCircle className='w-8 h-8 bg-white rounded-full' />
+                        </button>
+                    </Link>
+                    
 
                 </form> 
             </div>

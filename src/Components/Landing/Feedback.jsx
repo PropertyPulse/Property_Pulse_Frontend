@@ -54,7 +54,7 @@ const Feedback = () => {
         {/* Button */}
         <div className="my-16">
           <Link
-            to="#"
+            to="/signup"
             className="p-3 px-6 pt-2 text-white rounded-full bg-secondary-gray hover:bg-secondary-gray-lightt"
           >
             Get Started
