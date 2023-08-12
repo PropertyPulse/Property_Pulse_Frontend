@@ -169,7 +169,17 @@ const PropertyOwnerDashboard = () => {
                                 <div className='w-full text-center text-sm italic text-[#61A5C2]'>No Due Payments</div>
                             </div>
                             <div className='w-full flex justify-center mt-3'>
-                                <button className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View Payments</button>  
+                                <Link
+                                    to={{
+                                        pathname: 'payments',
+                                    }}
+                                >
+                                    <button type='button' className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 
+                                    hover:-translate-y-1 transition duration-300'>
+                                        View Payments
+                                    </button> 
+                                </Link>
+                                 
                             </div> 
                         </div>
                     </div>            

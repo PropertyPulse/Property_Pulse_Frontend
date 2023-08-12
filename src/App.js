@@ -52,6 +52,7 @@ import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
+import PaymentsPO from './pages/PropertyOwner/PaymentsPO';
 
 function App() {
     return (
@@ -105,6 +106,7 @@ function App() {
             <Route path="property-owner/land-registration" element={<LandRegistration />} />
             <Route path="property-owner/house-registration" element={<HouseRegistration />} />
             <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
+            <Route path="property-owner/payments" element={<PaymentsPO />} />
             {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
 
                 {/*    Protected Routes*/}
