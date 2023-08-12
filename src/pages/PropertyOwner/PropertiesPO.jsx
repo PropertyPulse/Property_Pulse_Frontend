@@ -106,7 +106,7 @@ const PropertiesPO = () => {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                                             <Link
                                                 to = {{
-                                                    pathname: `view-more/${property.propertyID}`
+                                                    pathname: `property-details/${property.propertyID}`
                                                 }}
                                             >
                                                 <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">View</button>

@@ -118,7 +118,13 @@ const PropertyOwnerDashboard = () => {
                                 <div className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/70 mt-1 rounded-md'>
                                     <div>P001</div>
                                     <div>2023 July Monthly Report</div> 
-                                    <a href='property-owner/monthly-reports/view-monthly-report' className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</a>                       
+                                    <Link
+                                        to={{
+                                            pathname: 'monthly-reports/view-monthly-report'
+                                        }}
+                                    >
+                                        <button className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</button>    
+                                    </Link>                       
                                 </div>
                                 <div className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/30 mt-1 rounded-md'>
                                     <div>P002</div>
