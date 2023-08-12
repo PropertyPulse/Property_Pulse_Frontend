@@ -55,6 +55,16 @@ import ViewProfile from "./pages/System Admin/ViewProfile";
 import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
 
+import TopManager from "./pages/TopManager/TopManager"; 
+import Complaints from "./pages/TopManager/Complaints";
+import TopManagerDashboard  from './pages/TopManager/TopManagerDashboard';
+import ValuationExpert from  "./pages/ValuationExpert/ValuationExpert"
+import ViewReportSubmissions from "./pages/ValuationExpert/SubmittedValuationReports";
+import  ValuationDashboard from "./pages/ValuationExpert/ValuationDashboard";
+import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmissions';
+import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
+import TasksOfProperties from './pages/TopManager/TasksOfProperties';
+import showTaskMangers from './pages/TopManager/showTaskManagers';
 function App() {
     return (
         <Routes>
@@ -81,6 +91,28 @@ function App() {
                     <Route path="dashboard" element={<FmDashboard/>} />
                     <Route path="received" element={<FmRecieved/>} />
                 </Route>
+
+
+                {/* Top Manager Routes */}
+                <Route path="tm" element={<TopManager />}>
+                   <Route path="view-complaints/:id" element={<Complaints />} />
+                   <Route path="dashboard" element={<TopManagerDashboard />} />
+                   <Route path="view-registered-properties" element={<TaskAssignmentsProperties/>} />
+                   <Route path="view-tasks" element={<TasksOfProperties/>} />
+                   <Route path="view-tasks-supervisors" element={<showTaskMangers />} />
+                </Route>
+
+   {/* Valuation Expert  Routes */}
+   <Route path="ve" element={<ValuationExpert />} >
+   <Route path="dashboard" element={<ValuationDashboard />} />
+   <Route path="view-report-submissions" element={<ViewReportSubmissions />} />
+   
+   <Route path="pending-report-submissions" element={<PendingReportSubmissions />} />
+
+                </Route>
+
+
+
 
                 <Route path="task-supervisor" element={<TaskSupervisor />}>
                     <Route path="dashboard" element={<Dashboard />} />
