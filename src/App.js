@@ -52,6 +52,7 @@ import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
+import Chat from "./pages/Task Supervisor/Chat";
 
 function App() {
     return (
@@ -90,7 +91,8 @@ function App() {
                     <Route path="ongoing-tasks" element={<OngoingTasks />} />
                     <Route path="completed-tasks" element={<CompletedTasks />} />
                     <Route path="task-approvals" element={<TaskApprovals />} />
-                    <Route path="properties/view-property" element={<ViewProperty />} />
+                    <Route path="assigned-properties/view-property" element={<ViewProperty />} />
+                    <Route path="assigned-properties/view-property/chat" element={<Chat />} />
                 </Route>
 
 
