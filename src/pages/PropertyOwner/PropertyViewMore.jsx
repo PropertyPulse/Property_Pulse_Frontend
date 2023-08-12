@@ -2,9 +2,9 @@ import React from 'react'
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar'
 import { useParams } from 'react-router';
 import { useState } from 'react';
-import { IoLogoWechat } from 'react-icons/io5';
 import PropertyImg1 from '../../Assets/property-image.jpg';
 import { Link } from 'react-router-dom';
+import OpenChat from '../../Components/PropertyOwner/OpenChat';
 
 const PropertyViewMore = () => {
     const { id } = useParams();
@@ -28,17 +28,7 @@ const PropertyViewMore = () => {
 
     return (
         <div className='w-full h-[100vh] bg-background-blue'>
-            <button 
-                onclick="buttonHandler()" 
-                title="Contact Sale"
-                className="fixed z-90 bottom-10 right-8 bg-[#012A4A] w-fit h-fit  rounded drop-shadow-lg 
-                flex justify-center items-center text-white hover:bg-[#012A4A]/80 hover:drop-shadow-2xl 
-                hover:animate-bounce transition duration-300"
-            >
-                {/* &#9993; */}
-                <IoLogoWechat className='m-3 w-8 h-8 fill-[#A9D6E5]'/>
-                <div className='text-md text-md text-[#A9D6E5] pr-5'>Open Chat</div>
-            </button>
+            <OpenChat />
             <div className='w-full z-40'>
                 <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
             </div> 
@@ -46,7 +36,7 @@ const PropertyViewMore = () => {
                 <div className='w-2/3 h-full p-10'>
                     <h1 className='text-2xl font-semibold'>Property Details: {id}</h1>
                     <div className='w-full h-fit bg-[#D7E3FC] border border-[#E2EAFC] shadow-lg shadow-[#E2EAFC] px-8 py-5 mt-5 rounded-lg flex justify-between items-center'>
-                        <div className=''>
+                        <div className='max-w-[300px]'>
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Type: </label>
                                 <div className='text-[#014F86]'>House</div>
@@ -61,15 +51,15 @@ const PropertyViewMore = () => {
                             </div>
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Address: </label>
-                                <div className='text-[#014F86]'></div>
+                                <div className='text-[#014F86]'>No. 50, Kegalle Road, Imbulgasdeniya</div>
                             </div>
                         </div>
                         
-                        <div className='mt-5'>
+                        <div className=''>
                             <h3 className='font-semibold text-[#012A4A] text-lg underline text-center'>Assigned Task Supervisor: </h3>
-                            <div className='mt-2 px-10'>
+                            <div className='mt-2 px-10 text-center'>
                                 <div className='flex gap-2'>
-                                    <label className='font-semibold text-[#012A4A]'>Name: </label>
+                                    {/* <label className='font-semibold text-[#012A4A]'>Name: </label> */}
                                     <div className='text-[#014F86]'>Mr. G.M.J. Galigamuwa</div>
                                 </div>
                                 <div className='flex gap-2'>
@@ -136,9 +126,9 @@ const PropertyViewMore = () => {
                             </button>
                         </div>
                     </div>
-                    <div className='w-full h-56 bg-white rounded-md'>
+                    <div className='w-full h-64 bg-white rounded-md'>
                         <h2 className='text-xl font-md text-center p-2'>Due Payments</h2>
-                        <div className='w-full h-[50%] flex justify-center items-center px-2 overflow-auto'>
+                        <div className='w-full h-[55%] flex justify-center items-center px-2 overflow-auto'>
                             <div className='italic text-[#2A6F97]'>No Due Payments</div>
                         </div>
                         <div className='w-full flex justify-center'>
