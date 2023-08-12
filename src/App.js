@@ -38,8 +38,6 @@ import PropertyViewMore from './pages/PropertyOwner/PropertyViewMore';
 import LandRegistration from './pages/PropertyOwner/LandRegistration';
 import HouseRegistration from './pages/PropertyOwner/HouseRegistration';
 import PropertyDocuments from './pages/PropertyOwner/PropertyDocuments';
-
-// import Properties from "./pages/TaskSupervisor/Properties";
 import OngoingTasks from "./pages/Task Supervisor/OngoingTasks";
 import CompletedTasks from "./pages/Task Supervisor/CompletedTasks";
 import CompletedTasksPO from './pages/PropertyOwner/CompletedTasksPO';
@@ -52,9 +50,9 @@ import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
+import Chat from "./pages/Task Supervisor/Chat";
 import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
-
 import TopManager from "./pages/TopManager/TopManager"; 
 import Complaints from "./pages/TopManager/Complaints";
 import TopManagerDashboard  from './pages/TopManager/TopManagerDashboard';
@@ -124,7 +122,8 @@ function App() {
                     <Route path="ongoing-tasks" element={<OngoingTasks />} />
                     <Route path="completed-tasks" element={<CompletedTasks />} />
                     <Route path="task-approvals" element={<TaskApprovals />} />
-                    <Route path="properties/view-property" element={<ViewProperty />} />
+                    <Route path="assigned-properties/view-property" element={<ViewProperty />} />
+                    <Route path="assigned-properties/view-property/chat" element={<Chat />} />
                 </Route>
 
 
