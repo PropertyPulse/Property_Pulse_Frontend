@@ -44,7 +44,7 @@ const ViewProperty = () => {
 
 
     function isScheduledTask (modalAction) {
-        if (modalAction == "scheduled-task"){
+        if (modalAction === "scheduled-task"){
             return true;
         } else return false;
     }

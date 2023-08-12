@@ -73,9 +73,9 @@ function App() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="/unauthorized" element={<Unauthorized/>}/>
 
-{/* finacence manager */}
+            {/* finacence manager */}
 
-<Route path="fm" element={<FinancialManager />} >
+            <Route path="fm" element={<FinancialManager />} >
                 <Route path="dashboard" element={<FmDashboard/>} />
                 <Route path="receivable-payment" element={<ReceivablePayment />} />
                 <Route path="payble-payment" element={<PayblePayment />} />
