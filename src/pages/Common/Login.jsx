@@ -86,10 +86,10 @@ const Login = () => {
 
 
                 if (roles === "PROPERTYOWNER") {
-                    navigate("/po");
+                    navigate("/property-owner");
                 }
                 else if (roles === "TASKSUPERVISOR"){
-                    navigate("/ts/db");
+                    navigate("/task-supervisor/dashboard");
                 }
                 else if (roles === "FINANCIALMANAGER"){
                     navigate("/financial-manager/dashboard");
@@ -97,6 +97,10 @@ const Login = () => {
                 else if (roles === "MPC"){
                     navigate("/manpower-company/dashboard");
                 }
+                else if (roles === "ADMIN"){
+                    navigate("/system-admin/dashboard");
+                }
+
 
             } else {
                 navigate(from, { replace: true });

@@ -34,7 +34,6 @@ const EmployeeTable = ({ searchTerm }) => {
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
-
       }
 
 
@@ -44,102 +43,104 @@ const EmployeeTable = ({ searchTerm }) => {
   }, []);
   // console.log(table)
 
-  // // Example table data
-  // const tableData = [
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "kaveesha",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "kaveesha",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   {
-  //     employeeId: "10101010",
-  //     name: "Deepamal Shaminda",
-  //     address: "Galla",
-  //     contactNo: "0715992210",
-  //     skills: "Carpenter",
-  //   },
-  //   // Add more data objects as needed
-  // ];
- 
+  // Example table data
+ // let  table_Data = [
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "kaveesha",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "kaveesha",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    {
+ //      employeeId: "10101010",
+ //      name: "Deepamal Shaminda",
+ //      address: "Galla",
+ //      contactNo: "0715992210",
+ //      skills: "Carpenter",
+ //    },
+ //    // Add more data objects as needed
+ //  ];
+
+
+
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
@@ -214,8 +215,21 @@ const EmployeeTable = ({ searchTerm }) => {
                 <Table.Cell>{rowData.address}</Table.Cell>
                   <Table.Cell>{rowData.district}</Table.Cell>
                   <Table.Cell>{rowData.contactno}</Table.Cell>
-                <Table.Cell>{rowData.skills}</Table.Cell>
-                <Table.Cell>
+                  {rowData.skills && typeof rowData.skills === 'string' ? (
+                      <Table.Cell>
+                        {rowData.skills.split(',').map((skill, index) => (
+                            <span key={index} className="mr-1">
+        {skill}
+                              {index < rowData.skills.split(',').length - 1 ? ',' : ''}
+      </span>
+                        ))}
+                      </Table.Cell>
+                  ) : (
+                      <Table.Cell>{rowData.skills}</Table.Cell>
+                  )}
+
+
+                  <Table.Cell>
                   <div className="flex space-x-4">
                     <button
                       onClick={() => openViewModal(rowData)}
