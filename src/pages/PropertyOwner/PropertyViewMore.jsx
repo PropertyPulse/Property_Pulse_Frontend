@@ -132,7 +132,16 @@ const PropertyViewMore = () => {
                             <div className='italic text-[#2A6F97]'>No Due Payments</div>
                         </div>
                         <div className='w-full flex justify-center'>
-                            <button className='bg-primary-blue-800 text-white text-sm py-3 px-5 rounded-md mt-3 shadow-md shadow-[#D7E3FC] hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>View Payments</button>
+                            <Link
+                                to={{
+                                    pathname: 'payments'
+                                }}
+                            >
+                                <button className='bg-primary-blue-800 text-white text-sm py-3 px-5 rounded-md mt-3 shadow-md 
+                                shadow-[#D7E3FC] hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>
+                                    View Payments
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
