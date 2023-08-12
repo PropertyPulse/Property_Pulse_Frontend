@@ -58,6 +58,9 @@ import IsDashboard from './pages/InsuranceManager/IsDashboard';
 import QuatationRequest from './pages/InsuranceManager/QuatationRequest';
 import OngoingQuation from './pages/InsuranceManager/OngoingQuation';
 import InsuranceRequest from './pages/InsuranceManager/InsuranceRequest';
+import PayblePayment from './pages/FinancialManager/PayblePayment';
+import ReceivablePayment from './pages/FinancialManager/ReceivablePayment';
+import TransactionHistory from './pages/FinancialManager/TransactionHistory';
 
 function App() {
     return (
@@ -70,11 +73,14 @@ function App() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="/unauthorized" element={<Unauthorized/>}/>
 
+{/* finacence manager */}
 
-                <Route path="fm" element={<FinancialManager />} >
-                    <Route path="dashboard" element={<FmDashboard/>} />
-                    <Route path="received" element={<FmRecieved/>} />
-                </Route>
+<Route path="fm" element={<FinancialManager />} >
+                <Route path="dashboard" element={<FmDashboard/>} />
+                <Route path="receivable-payment" element={<ReceivablePayment />} />
+                <Route path="payble-payment" element={<PayblePayment />} />
+                <Route path="transaction-history" element={<TransactionHistory />} />
+            </Route>
 
                 {/* insurance Agent */}
             <Route path="ins" element={<IsDashboard />} >

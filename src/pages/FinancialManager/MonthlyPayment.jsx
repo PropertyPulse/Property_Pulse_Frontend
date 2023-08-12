@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import MonthlyPaymentTable from '../../Components/FinancialManager/MonthlyPaymentTable';
 
-const FmRecieved = () => {
+const MonthlyPayment = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const handleSearch = (event) => {
       setSearchTerm(event.target.value);
@@ -62,4 +62,5 @@ const FmRecieved = () => {
         </div>
     )
     }
-export default FmRecieved
+
+export default MonthlyPayment
