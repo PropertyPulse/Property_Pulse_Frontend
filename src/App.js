@@ -75,19 +75,9 @@ function App() {
 
             {/* finacence manager */}
 
-            <Route path="fm" element={<FinancialManager />} >
-                <Route path="dashboard" element={<FmDashboard/>} />
-                <Route path="receivable-payment" element={<ReceivablePayment />} />
-                <Route path="payble-payment" element={<PayblePayment />} />
-                <Route path="transaction-history" element={<TransactionHistory />} />
-            </Route>
 
                 {/* insurance Agent */}
-            <Route path="ins" element={<IsDashboard />} >
-                <Route path="quatation-request" element={<QuatationRequest/>} />
-                <Route path="ongoin-quatation" element={<OngoingQuation />} />
-                <Route path="insurance-request" element={<InsuranceRequest />} />
-            </Route>
+
 
                 {/*    Protected Routes*/}
 
@@ -148,6 +138,23 @@ function App() {
                         <Route path="property-owner/house-registration" element={<HouseRegistration />} />
                         <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
                         <Route path="property-owner/payments" element={<PaymentsPO />} />
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
+                        <Route path="fm" element={<FinancialManager />} >
+                            <Route path="dashboard" element={<FmDashboard/>} />
+                            <Route path="receivable-payment" element={<ReceivablePayment />} />
+                            <Route path="payble-payment" element={<PayblePayment />} />
+                            <Route path="transaction-history" element={<TransactionHistory />} />
+                        </Route>
+
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles='INSURANCEMANAGER' />}>
+                        <Route path="ins" element={<IsDashboard />} >
+                            <Route path="quatation-request" element={<QuatationRequest/>} />
+                            <Route path="ongoin-quatation" element={<OngoingQuation />} />
+                            <Route path="insurance-request" element={<InsuranceRequest />} />
+                        </Route>
+
                     </Route>
                 </Route>
 

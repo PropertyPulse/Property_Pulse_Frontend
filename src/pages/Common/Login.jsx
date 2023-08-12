@@ -100,6 +100,12 @@ const Login = () => {
                 else if (roles === "ADMIN"){
                     navigate("/system-admin/dashboard");
                 }
+                else if (roles === "INSURANCEMANAGER"){
+                    navigate("/ins/quatation-request");
+                }
+                else if (roles === "FINANCIALMANAGER"){
+                    navigate("/fm/dashboard");
+                }
 
 
             } else {
