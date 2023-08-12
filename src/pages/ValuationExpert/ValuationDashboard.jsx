@@ -1,8 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 import  Calender  from "../Task Supervisor/Calender.jsx"
-
-
 import TopManagerLineChart from "../../Components/TopManager/TopManagerLineChart";
 const   ValuationDashboard = () => {
   return (
@@ -17,7 +15,7 @@ const   ValuationDashboard = () => {
 
                     <p className="text-white text-2xl  ">
                         <span>6</span></p>
-                   <Link to="/ve/pending-reports" className= "flex space-x-0"><div className = "flex items-center space-x-3 justify-center" >See here 
+                   <Link to="/ve/pending-report-submissions" className= "flex space-x-0"><div className = "flex items-center space-x-3 justify-center" >See here 
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
   </svg>
