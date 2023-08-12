@@ -36,7 +36,14 @@ const PropertiesPO = () => {
             <div className='w-full h-[calc(100vh-4.5rem)] p-10'>
                 <div className='w-full flex justify-between items-center'>
                     <h1 className='text-2xl font-semibold'>Properties</h1>
-                    <button className='px-7 py-4 bg-primary-blue-800 text-white text-sm rounded-md shadow-md shadow-[#A9D6E5] hover:-translate-y-1 hover:bg-primary-blue-800/90 transition duration-300' onClick={() => setShowModal(true)}>+ Add New Property</button>
+                    <button 
+                        type='button' 
+                        className='px-7 py-4 bg-primary-blue-800 text-white text-sm rounded-md shadow-md shadow-[#A9D6E5] 
+                        hover:-translate-y-1 hover:bg-primary-blue-800/90 transition duration-300' 
+                        onClick={() => setShowModal(true)}
+                    >
+                        + Add New Property
+                    </button>
                 </div>
 
                 <div className='w-fit h-fit bg-[#d2dcf3] m-5 mx-auto flex justify-center items-center rounded-full focus:bg-[#CCDBFD]/80 hover:bg-[#CCDBFD]/80'>

@@ -10,7 +10,7 @@ const PropertyDocuments = () => {
             <div className='w-full z-40'>
                 <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
             </div> 
-            <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center bg-slate-200 px-10 py-8 gap-10'>
+            <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center px-10 py-8 gap-10'>
                 <div className='w-full h-full'>
                     <div className='flex-auto'>
                         <h1 className='text-xl font-semibold'>Insurance Documents</h1>

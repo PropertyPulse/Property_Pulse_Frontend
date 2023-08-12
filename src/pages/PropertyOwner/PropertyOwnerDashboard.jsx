@@ -1,13 +1,18 @@
 import React from 'react';
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import PropertyType from './PropertyType';
+import { useState } from 'react';
 
 
 const PropertyOwnerDashboard = () => {
-    const navigate = useNavigate();    
+    const navigate = useNavigate(); 
+    const [showModal, setShowModal] = useState(false);
+    const handleOnClose = () => setShowModal(false);   
 
     return (
-        <div className='w-full h-[100vh] flex bg-background-blue'>
+        <div className='w-full h-[100vh] bg-background-blue flex'>
+            <PropertyType visible={showModal} onClose={handleOnClose} />
             <div className='w-full'>
                 <div className='w-full z-40'>
                     <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
@@ -20,8 +25,22 @@ const PropertyOwnerDashboard = () => {
                             <div className='w-full flex justify-between'>
                                 <h1 className='text-lg font-semibold'>Registered Properties</h1>
                                 <div className='button-container flex gap-2'>
-                                    <a href='property-owner/properties' className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View All Properties</a>
-                                    <button className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>+ Add New Property</button>
+                                    <Link
+                                        to={{
+                                            pathname: 'properties'
+                                        }}
+                                    >
+                                        <button className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>
+                                            View All Properties
+                                        </button>
+                                    </Link>
+                                    
+                                    <button 
+                                        className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'
+                                        onClick={() => setShowModal(true)}
+                                    >
+                                        + Add New Property
+                                    </button>
                                 </div>                        
                             </div> 
 
