@@ -92,7 +92,7 @@ function App() {
                     <Route path="ongoing-tasks" element={<OngoingTasks />} />
                     <Route path="completed-tasks" element={<CompletedTasks />} />
                     <Route path="task-approvals" element={<TaskApprovals />} />
-                    <Route path="properties/view-property" element={<ViewProperty />} />
+                    <Route path="assigned-properties/view-property" element={<ViewProperty />} />
                 </Route>
 
 
