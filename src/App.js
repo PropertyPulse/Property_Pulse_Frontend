@@ -54,6 +54,10 @@ import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
 import PaymentsPO from './pages/PropertyOwner/PaymentsPO';
 import Unauthorized from "./pages/Common/Unauthorized";
+import IsDashboard from './pages/InsuranceManager/IsDashboard';
+import QuatationRequest from './pages/InsuranceManager/QuatationRequest';
+import OngoingQuation from './pages/InsuranceManager/OngoingQuation';
+import InsuranceRequest from './pages/InsuranceManager/InsuranceRequest';
 
 function App() {
     return (
@@ -72,7 +76,12 @@ function App() {
                     <Route path="received" element={<FmRecieved/>} />
                 </Route>
 
-
+                {/* insurance Agent */}
+            <Route path="ins" element={<IsDashboard />} >
+                <Route path="quatation-request" element={<QuatationRequest/>} />
+                <Route path="ongoin-quatation" element={<OngoingQuation />} />
+                <Route path="insurance-request" element={<InsuranceRequest />} />
+            </Route>
 
                 {/*    Protected Routes*/}
 
