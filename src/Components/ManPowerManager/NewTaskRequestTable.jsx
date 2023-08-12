@@ -86,6 +86,8 @@ const NewTaskRequestTable = ({searchTerm }) => {
 
   return (
     <>
+
+
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
           <Table.Head>
@@ -140,6 +142,7 @@ const NewTaskRequestTable = ({searchTerm }) => {
                   <Modal
                     show={props.openModal === "placement"}
                     position={props.modalPlacement}
+                    size="md"
                     onClose={() => props.setOpenModal(undefined)}
                   >
                     <Modal.Header>Feedback </Modal.Header>

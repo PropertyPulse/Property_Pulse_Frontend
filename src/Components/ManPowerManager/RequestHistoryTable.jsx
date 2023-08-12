@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Pagination, Badge } from "flowbite-react";
 
 const RequestHistoryTable = ({ searchTerm }) => {
-    const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
   const tableData = [
@@ -14,7 +14,7 @@ const RequestHistoryTable = ({ searchTerm }) => {
       scheduleDate: "2023/09/10",
       assignedPerson: "Shashika",
       requestedTime: "2 days",
-      status: "Accepted"
+      status: "Accepted",
     },
     {
       propertyId: "10101011",
@@ -24,7 +24,27 @@ const RequestHistoryTable = ({ searchTerm }) => {
       scheduleDate: "2023/09/10",
       assignedPerson: "Shashika",
       requestedTime: "2 days",
-      status: "Pending"
+      status: "Pending",
+    },
+    {
+      propertyId: "10101011",
+      location: "Gampaha",
+      task: "Painting",
+      amount: 25000.0,
+      scheduleDate: "2023/09/10",
+      assignedPerson: "Shashika",
+      requestedTime: "2 days",
+      status: "Rejected",
+    },
+    {
+      propertyId: "10101011",
+      location: "Gampaha",
+      task: "Painting",
+      amount: 25000.0,
+      scheduleDate: "2023/09/10",
+      assignedPerson: "Shashika",
+      requestedTime: "2 days",
+      status: "Pending",
     },
     // ... add more data objects here ...
   ];
@@ -51,9 +71,7 @@ const RequestHistoryTable = ({ searchTerm }) => {
     <div>
       <div className="flex-grow md:w-4/5 p-4">
         {/* search form ... */}
-        <form>
-          {/* ... search form contents ... */}
-        </form>
+        <form>{/* ... search form contents ... */}</form>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
@@ -70,47 +88,53 @@ const RequestHistoryTable = ({ searchTerm }) => {
           <Table.Body className="divide-y">
             {paginatedData.length === 0 ? (
               <tr className="h-32">
-              <td colSpan="8" className="text-center py-4">
-                No data found.
-              </td>
-            </tr>
-            
-            
+                <td colSpan="8" className="text-center py-4">
+                  No data found.
+                </td>
+              </tr>
             ) : (
               paginatedData.map((item, index) => (
                 <Table.Row
                   key={index}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {item.propertyId}
-                </Table.Cell>
-                <Table.Cell>
-                  <a
-                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    href="/tables"
-                  >
-                    {item.location}
-                  </a>
-                </Table.Cell>
-                <Table.Cell>{item.task}</Table.Cell>
-                <Table.Cell>{item.amount.toFixed(2)}</Table.Cell>
-                <Table.Cell>{item.scheduleDate}</Table.Cell>
-                <Table.Cell>{item.assignedPerson}</Table.Cell>
-                <Table.Cell>{item.requestedTime}</Table.Cell>
-                <Table.Cell>
-                  <span className="w-2">
-                    <Badge color={item.status === "Accepted" ? "success" : "warning"} size="sm">
-                      <p>{item.status}</p>
-                    </Badge>
-                  </span>
-                </Table.Cell>
-              </Table.Row>
-            )))}
+                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    {item.propertyId}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <a
+                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                      href="/tables"
+                    >
+                      {item.location}
+                    </a>
+                  </Table.Cell>
+                  <Table.Cell>{item.task}</Table.Cell>
+                  <Table.Cell>{item.amount.toFixed(2)}</Table.Cell>
+                  <Table.Cell>{item.scheduleDate}</Table.Cell>
+                  <Table.Cell>{item.assignedPerson}</Table.Cell>
+                  <Table.Cell>{item.requestedTime}</Table.Cell>
+                  <Table.Cell>
+                    <div className="flex items-center justify-center">
+                      <Badge
+                        color={
+                          item.status === "Accepted" ? "success" : item.status === "Pending"
+                          ? "warning"
+                          : "failure"
+                        }
+                        size="sm"
+                      >
+                        <p className="text-center">{item.status}</p>
+                      </Badge>
+                    </div>
+                  </Table.Cell>
+                </Table.Row>
+              ))
+            )}
           </Table.Body>
         </Table>
         <div className="flex items-center justify-center text-center">
-        <Pagination
+          <Pagination
             currentPage={currentPage}
             layout="table"
             onPageChange={onPageChange}
