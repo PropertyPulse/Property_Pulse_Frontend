@@ -2,6 +2,7 @@ import propertyImage from '../../Assets/property-image.jpg'
 import React from "react";
 import {Link} from "react-router-dom";
 import ScheduledTasksList from "../../Components/TaskSupervisor/ScheduledTasksList";
+import SuggestTaskForm from "./SuggestTask"
 
 const ViewProperty = () => {
 
@@ -23,6 +24,7 @@ const ViewProperty = () => {
         },
         {
             text: 'Suggest a New Task',
+            modalAction : "suggest-task"
         },
         {
             text: 'View Scheduled Tasks',
@@ -40,11 +42,18 @@ const ViewProperty = () => {
     ]
 
     const [showModalScheduledTasks, setShowModalScheduledTasks] = React.useState(false);
+    const [showModalSuggestTask, setShowModalSuggestTask] = React.useState(false);
 
 
 
     function isScheduledTask (modalAction) {
         if (modalAction == "scheduled-task"){
+            return true;
+        } else return false;
+    }
+
+    function isSuggestTask (modalAction) {
+        if (modalAction == "suggest-task"){
             return true;
         } else return false;
     }
@@ -114,7 +123,9 @@ const ViewProperty = () => {
                                                 console.log("weer")
                                                 setShowModalScheduledTasks(true);
 
-                                            } else  console.log(action.modalAction)
+                                            } else if (isSuggestTask(action.modalAction)){
+                                                setShowModalSuggestTask(true);
+                                            }
                                         }}
                                     >
                                         <Link to={action.link}
@@ -170,6 +181,40 @@ const ViewProperty = () => {
                                                     {/*        Save Changes*/}
                                                     {/*    </button>*/}
                                                     {/*</div>*/}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                                    </>
+                                ) : null}
+
+                                {showModalSuggestTask ? (
+                                    <>
+                                        <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                                            <div className="relative w-auto my-6 mx-auto w-1/3">
+                                                {/*content*/}
+                                                <div
+                                                    className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                                    {/*header*/}
+                                                    <div
+                                                        className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
+                                                        {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
+                                                        {/*    Suggest Task*/}
+                                                        {/*</h3>*/}
+                                                        <span className='pl-40 font-semibold text-xl text-primary-blue-500 px-0'>Suggest Task</span>
+                                                        <button type="button"
+                                                                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                                data-modal-toggle="defaultModal"
+                                                                onClick={() => setShowModalSuggestTask(false)}
+                                                        >
+                                                            <svg className="w-5 h-5" fill="currentColor"
+                                                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    {/*body*/}
+                                                    <SuggestTaskForm />
                                                 </div>
                                             </div>
                                         </div>
