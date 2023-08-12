@@ -17,7 +17,8 @@ module.exports = {
         "content-bg":"#FAFBFD",
         "lannding-text-white": "#CCCCCC",
         "blue-button-start" : "#ABC4FF",
-        "blue-button-end" : "#014F86"
+        "blue-button-end" : "#014F86",
+        "error-red-hover": "#571313",
       }
     },
   },
