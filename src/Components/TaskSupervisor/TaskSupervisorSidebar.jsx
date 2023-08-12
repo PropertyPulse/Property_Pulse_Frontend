@@ -1,6 +1,4 @@
 import logo from '../../Assets/logo.png';
-import React, {useState} from "react";
-import {FiChevronDown} from "react-icons/fi";
 import dashboardIcon from "../../Assets/Icons/dashboard-icon.png";
 import propertiesIcon from "../../Assets/Icons/properties-icon.png";
 import manageProperties from "../../Assets/Icons/manage-properties.png";
@@ -10,14 +8,15 @@ import ongoingTasksIcon from "../../Assets/Icons/ongoing-tasks-icon.png";
 import completedTasksIcon from "../../Assets/Icons/completed-tasks-icon.png";
 import tasksIcon from "../../Assets/Icons/tasks-icon.png";
 import taskApprovalsIcon from "../../Assets/Icons/task-approvals-icon.png";
-import {FaBars} from "react-icons/fa";
-import {Link} from "react-router-dom";
-// import Sidebar from "../Common/Sidebar";
+import React, { useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
+import { FaBars } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 
 const TaskSupervisorSidebar = () => {
-
-    const[open , setOpen] = useState(true);
+    const [open, setOpen] = useState(true);
     const [openSubmenus, setOpenSubmenus] = useState([]);
+    const location = useLocation();
 
     const SidebarItems = [
         {title: "Dashboard",
@@ -49,61 +48,74 @@ const TaskSupervisorSidebar = () => {
                     icon: completedTasksIcon},
             ]},
         {title: "Task Approvals",
-        url: '/task-supervisor/task-approvals',
+            url: '/task-supervisor/task-approvals',
             icon: taskApprovalsIcon},
     ]
+
     return (
-        <div className='flex'>
-            <section className={`sidebar h-screen bg-white text-primary-blue-800 pt-2 relative duration-300 shadow-md
-                   ${open ? 'w-[15rem]' : 'w-24'}`}>
-                <FaBars className={`absolute text-2xl text-primary-blue-800 cursor-pointer -right-10 top-6
-                       ${!open && 'rotate-180'}`}
-                        onClick={() => setOpen(!open)}/>
-                <div className={`row-auto flex space-x-6 ${!open ? 'pl-4' : 'pl-6'}`}>
-                    <img className={`${!open ? 'w-16 h-16' : 'w-16 h-16'} duration-300`} src={logo} alt='logo'/>
-                    <div className='text-center pt-1'>
-                        <h1 className={`title p-0 ${!open && 'scale-0'} duration-300`}>Property<br/> Pulse</h1>
+        <div className="flex">
+            <section className={`sidebar h-screen bg-white text-primary-blue-800 pt-2 relative duration-300 shadow-md ${
+                    open ? "w-[15rem]" : "w-24"}`}>
+                <FaBars className={`absolute text-2xl text-primary-blue-800 cursor-pointer -right-10 top-6 ${
+                        !open && "rotate-180"}`}
+                        onClick={() => setOpen(!open)} />
+                <div className={`row-auto flex space-x-6 ${!open ? "pl-4" : "pl-6"}`}>
+                    <img className={`${!open ? "w-16 h-16" : "w-16 h-16"} duration-300`} src={logo} alt="logo" />
+                    <div className="text-center pt-1">
+                        <h1 className={`title p-0 ${ !open ? "scale-0" : "" } duration-300`}> Property<br /> Pulse </h1>
                     </div>
                 </div>
 
-                <ul className='pt-6'>
+                <ul className="pt-6">
                     {SidebarItems.map((menu, index) => (
                         <React.Fragment key={index}>
                             <Link to={menu.url}>
-                                <li className='flex items-center text-primary-blue-800 px-4 py-2 my-3 m-2 gap-x-3 cursor-pointer
-                               hover:bg-selected rounded-xl my-2'>
-                                   <span className='text-xl block float-left'>
-                                       <img className='w-6 h-6' src={menu.icon} alt='logo'/>
-                                   </span>
-                                    <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
-                                       {menu.title}
-                                   </span>
+                                <li className={`flex items-center text-primary-blue-800 px-4 py-2 my-3 m-2 gap-x-3 cursor-pointer
+                                   hover:bg-selected rounded-xl my-2 
+                                   ${ location.pathname.includes(menu.url) ? "bg-selected" : "" }
+                                `} >
 
+                                    <span className="text-xl block float-left">
+                                        <img className="w-6 h-6" src={menu.icon} alt={menu.title} />
+                                    </span>
+
+                                    <span className={`pt-1 font-semibold text-md flex-1 ${ !open ? "hidden" : ""}`} >
+                                        {menu.title}
+                                    </span>
                                     {menu.submenu && open && (
-                                        <FiChevronDown className={`pt-2 text-2xl ${openSubmenus.includes(index) && "rotate-180"}`} onClick={() => {
-                                            setOpenSubmenus(prevState => {
-                                                if (prevState.includes(index)) {
-                                                    return prevState.filter(item => item !== index);
-                                                } else {
-                                                    return [...prevState, index];
-                                                }
-                                            });
-                                        }}/>
+                                        <FiChevronDown
+                                            className={`pt-2 text-2xl ${
+                                                openSubmenus.includes(index) ? "rotate-180" : ""
+                                            }`}
+                                            onClick={() => {
+                                                setOpenSubmenus((prevState) => {
+                                                    if (prevState.includes(index)) {
+                                                        return prevState.filter((item) => item !== index);
+                                                    } else {
+                                                        return [...prevState, index];
+                                                    }
+                                                });
+                                            }}
+                                        />
                                     )}
                                 </li>
                             </Link>
-                            {menu.submenu && openSubmenus.includes(index)  && open && (
+                            {menu.submenu && openSubmenus.includes(index) && open && (
                                 <ul>
-                                    {menu.submenuItems.map((submenuItem, index) => (
+                                    {menu.submenuItems.map((submenuItem, subIndex) => (
                                         <Link to={submenuItem.url}>
-                                            <li key={index} className={`text-primary-blue-500 flex items-center font-medium text-sm
-                                           cursor-pointer py-2 m-2 my-0.5 space-x-3 hover:bg-selected rounded-lg pl-12 ${!open && "hidden"}`}>
-                                               <span className='text-xl block float-left'>
-                                                   <img className='w-6 h-6' src={submenuItem.icon} alt='logo'/>
-                                               </span>
-                                                <span className={`pt-1 font-semibold text-md flex-1 ${!open && "hidden"}`}>
-                                                   {submenuItem.title}
-                                               </span>
+                                            <li key={subIndex} className={`text-primary-blue-500 flex items-center font-medium text-sm
+                                                cursor-pointer py-2 m-2 my-0.5 space-x-3 hover:bg-selected rounded-lg pl-12 ${
+                                                    location.pathname.includes(submenuItem.url) ? "bg-selected" : ""} ${
+                                                        !open ? "hidden" : ""
+                                                    }`}
+                                            >
+                                                <span className="text-xl block float-left">
+                                                    <img className="w-6 h-6" src={submenuItem.icon} alt={submenuItem.title}/>
+                                                </span>
+                                                <span className={`pt-1 font-semibold text-md flex-1`}>
+                                                  {submenuItem.title}
+                                                </span>
                                             </li>
                                         </Link>
                                     ))}
@@ -112,11 +124,9 @@ const TaskSupervisorSidebar = () => {
                         </React.Fragment>
                     ))}
                 </ul>
-
             </section>
         </div>
-        // <Sidebar Menus={SidebarItems} />
-    )
-}
+    );
+};
 
 export default TaskSupervisorSidebar;
