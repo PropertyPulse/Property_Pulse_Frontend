@@ -42,7 +42,7 @@ const Signup = () => {
             errorMessage: "First name should not contain special characters and numbers",
             label: 'First Name',
             pattern: "^[A-Za-z]+$",
-            required: true,
+            require: true,
         },
         // Properties for Last Name input field
         {
@@ -60,7 +60,7 @@ const Signup = () => {
             type: 'text',
             errorMessage: "",
             label: 'Address',
-            required: true,
+            require: true,
         },
         // Properties for District input field
         {
@@ -70,7 +70,7 @@ const Signup = () => {
             errorMessage: "District should not contain any number or any special character",
             label: 'District',
             pattern: "^[A-Za-z]+$",
-            required: true
+            require: true
         },
         // Properties for Email input field
         {
@@ -80,7 +80,7 @@ const Signup = () => {
             errorMessage: "Email is not valid",
             label: 'Email',
             pattern: '^[a-zA-Z0-9_\.]+@(?:[a-zA-Z0-9_])+[\.][[\.]A-Za-z]+$',
-            required: true
+            require: true
         },
         // Properties for Phone Number input field
         {
@@ -90,7 +90,7 @@ const Signup = () => {
             errorMessage: "Invalid phone number",
             label: 'Phone Number',
             pattern: '^[0-9]{10,11}',
-            required: true
+            require: true
         },
         // Properties for NIC input field
         {
@@ -100,7 +100,7 @@ const Signup = () => {
             errorMessage: "Invalid NIC",
             label: 'NIC',
             pattern: '^[0-9]{9}([0-9]{3}|v|V)',
-            required: true
+            require: true
         },
         // Properties for Gender input field
         {
@@ -116,7 +116,7 @@ const Signup = () => {
             errorMessage: "Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character from the list (!@#$%^&*)",
             label: 'Password',
             pattern: '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$',
-            required: true
+            require: true
         },
         // Properties for Confirm Password input field
         {
@@ -126,7 +126,7 @@ const Signup = () => {
             errorMessage: "Passwords do not match",
             label: 'Confirm Password',
             pattern: values.password,
-            required: true
+            require: true
         },
         // Properties for Profile Picture input field
         {
@@ -285,7 +285,11 @@ const Signup = () => {
                                         </div>
                                     ) : (input.name === 'profilePic') ? (
                                         // Component for single-image upload
-                                        <ProfilePictureUploader key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+                                        <div>
+                                            <label htmlFor={input.name} className="text-[#6C757D]">{input.label}</label>
+                                            <ProfilePictureUploader key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+                                        </div>
+                                        
                                     ) : (
                                         <div></div>
                                     )}
@@ -295,7 +299,7 @@ const Signup = () => {
                             
                             <div className='w-full flex justify-center items-center mt-3 p-2'>
                                 {/* Checkbox for agreeing for the terms and conditions */}
-                                <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 accent-[#1f6e8c]/50 bg-gray-100 border-gray-300 rounded focus:ring-[#1f6e8c]/50 dark:focus:ring-[#1f6e8c]/60 dark:ring-offset-[#1f6e8c]/80 focus:ring-2 dark:bg-[#1f6e8c]/70 dark:border-[#1f6e8c]/60" required />
+                                <input id="link-checkbox" type="checkbox" value="" className="w-4 h-4 accent-[#1f6e8c]/50 bg-gray-100 border-gray-300 rounded focus:ring-[#1f6e8c]/50 dark:focus:ring-[#1f6e8c]/60 dark:ring-offset-[#1f6e8c]/80 focus:ring-2 dark:bg-[#1f6e8c]/70 dark:border-[#1f6e8c]/60" require />
                                 <label htmlFor="link-checkbox" className="ml-2">I agree with the <a href="#" className="text-blue-600 dark:text-blue-500 underline">terms and conditions</a>.</label>
                             </div>
 

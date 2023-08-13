@@ -15,6 +15,7 @@ const PropertiesPO = () => {
             propertyType: 'House',
             registeredDate: '2023/02/05',
             duration: '1 year',
+            registeredStatus: 'Registered',
             taskSupervisor: 'TS001',
         },
         {
@@ -23,6 +24,7 @@ const PropertiesPO = () => {
             propertyType: 'Land',
             registeredDate: '2023/02/05',
             duration: '1 year',
+            registeredStatus: 'Pending',
             taskSupervisor: 'TS003',
         },
     ];
@@ -84,6 +86,12 @@ const PropertiesPO = () => {
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
+                                        Registered Status
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                    >
                                         Assigned Task Supervisor
                                     </th>
                                     <th scope="col" className="relative px-6 py-3">
@@ -106,6 +114,13 @@ const PropertiesPO = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {property.duration}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {(property.registeredStatus === "Registered") ? (
+                                                <span className='bg-[#b7efc5] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#25a244]'>Registered</span>
+                                            ) : (
+                                                <span className='bg-[#f7e1d3] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#f26b21]'>Pending</span>
+                                            )}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {property.taskSupervisor}

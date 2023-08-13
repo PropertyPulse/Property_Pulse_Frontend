@@ -44,8 +44,31 @@ const PropertyOwnerDashboard = () => {
                                 </div>                        
                             </div> 
 
-                            <div className='w-full h-44 overflow-auto mt-3 text-sm'>
-                                <div className='tableRow w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]'>
+                            <div className='w-full h-44 overflow-auto text-sm'>
+                                <table className='w-full border-separate border-spacing-y-2'>
+                                    <thead className='text-xs uppercase text-[#ADB5BD]' >
+                                        <tr>
+                                            <th scope="col" className="relative px-6 py-2 font-medium">Property ID</th>
+                                            <th scope="col" className="relative px-6 py-2 font-medium">Type</th>
+                                            <th scope="col" className="relative px-6 py-2 font-medium">Address</th>
+                                            <th scope="col" className="relative px-6 py-2 font-medium">Registered Status</th>
+                                            <th scope="col" className="relative px-6 py-2 font-medium">Task Supervisor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                        <tr className='text-center text-sm odd:bg-[#EDF2FB] even:bg-[#D7E3FC]'>
+                                            <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-600">P001</td>
+                                            <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-600">House</td>
+                                            <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-600">No. 50, Kegalle Road, Polgahawela</td>
+                                            <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-600">
+                                                <span className='bg-[#b7efc5] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#25a244]'>Registered</span>
+                                                {/* <span className='bg-[#f7e1d3] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#f26b21]'>Pending</span> */}
+                                            </td>
+                                            <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-600">TS002</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {/* <div className='tableRow w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]'>
                                     <div>P001</div>
                                     <div>House</div>
                                     <div className='w-64 text-center'>No. 50, Kegalle Road, Polgahawela</div>
@@ -62,7 +85,7 @@ const PropertyOwnerDashboard = () => {
                                     <div>House</div>
                                     <div className='w-64 text-center'>No. 50, Kegalle Road, Polgahawela</div>
                                     <div>TS001</div>
-                                </div>                        
+                                </div>                         */}
                             </div>                  
                         </div>
 
