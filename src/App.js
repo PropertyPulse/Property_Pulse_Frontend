@@ -61,6 +61,12 @@ import InsuranceRequest from './pages/InsuranceManager/InsuranceRequest';
 import PayblePayment from './pages/FinancialManager/PayblePayment';
 import ReceivablePayment from './pages/FinancialManager/ReceivablePayment';
 import TransactionHistory from './pages/FinancialManager/TransactionHistory';
+import TopManager from './pages/TopManager/TopManager';
+import TmDashboard from './pages/TopManager/TmDashboard';
+import NewProperty from './pages/TopManager/NewProperty';
+import ReceivedValuation from './pages/TopManager/ReceivedValuation';
+import Complaints from './pages/TopManager/Complaints';
+import ManageTs from './pages/TopManager/ManageTs';
 
 function App() {
     return (
@@ -72,6 +78,15 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
                 <Route path="/unauthorized" element={<Unauthorized/>}/>
+
+{/* top manager newly added */}
+<Route path="tm" element={<TopManager />} >
+                <Route path="dashboard" element={<TmDashboard />} />
+                <Route path="new-property" element={<NewProperty />} />
+                <Route path="valuation-reports" element={<ReceivedValuation />} />
+                <Route path="manage-task-supervisor" element={<ManageTs />} />
+                <Route path="complain" element={<Complaints />} />
+            </Route>
 
             {/* finacence manager */}
 
