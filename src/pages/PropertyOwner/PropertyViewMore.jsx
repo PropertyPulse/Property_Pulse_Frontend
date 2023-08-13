@@ -35,6 +35,7 @@ const PropertyViewMore = () => {
             <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center'>
                 <div className='w-2/3 h-full p-10'>
                     <h1 className='text-2xl font-semibold'>Property Details: {id}</h1>
+
                     <div className='w-full h-fit bg-[#D7E3FC] border border-[#E2EAFC] shadow-lg shadow-[#E2EAFC] px-8 py-5 mt-5 rounded-lg flex justify-between items-center'>
                         <div className='max-w-[300px]'>
                             <div className='flex gap-2'>

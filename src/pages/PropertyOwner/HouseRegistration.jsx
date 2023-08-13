@@ -105,6 +105,123 @@ const HouseRegistration = () => {
         },
     ];
 
+    const appliances = [
+        {
+            id: 1,
+            name: 'fridge',
+            label: 'Fridge',
+            amount: '',
+        },
+        {
+            id: 2,
+            name: 'microwave',
+            label: 'Microwave',
+            amount: '',
+        },
+        {
+            id: 3,
+            name: 'washing-machine',
+            label: 'Washing Machine',
+            amount: '',
+        },
+        {
+            id: 4,
+            name: 'dishwasher',
+            label: 'Dishwasher',
+            amount: '',
+        },
+        {
+            id: 5,
+            name: 'blender',
+            label: 'Blender',
+            amount: '',
+        },
+        {
+            id: 6,
+            name: 'sofa',
+            label: 'Sofa',
+            amount: '',
+        },
+        {
+            id: 7,
+            name: 'tv',
+            label: 'TV',
+            amount: '',
+        },
+        {
+            id: 8,
+            name: 'tv-stand',
+            label: 'TV Stand',
+            amount: '',
+        },
+        {
+            id: 9,
+            name: 'armchair',
+            label: 'Armchair',
+            amount: '',
+        },
+        {
+            id: 10,
+            name: 'lamp',
+            label: 'Lamp',
+            amount: '',
+        },
+        {
+            id: 11,
+            name: 'coffee-table',
+            label: 'Coffee Table',
+            amount: '',
+        },
+        {
+            id: 12,
+            name: 'dining-table',
+            label: 'Dining Table',
+            amount: '',
+        },
+        {
+            id: 13,
+            name: 'cabinet',
+            label: 'Cabinet',
+            amount: '',
+        },
+        {
+            id: 14,
+            name: 'bed',
+            label: 'Bed',
+            amount: '',
+        },
+        {
+            id: 15,
+            name: 'bedside-table',
+            label: 'Bedside Table',
+            amount: '',
+        },
+        {
+            id: 16,
+            name: 'dressing-table',
+            label: 'Dressing Table',
+            amount: '',
+        },
+        {
+            id: 17,
+            name: 'desk',
+            label: 'Desk',
+            amount: '',
+        },
+        {
+            id: 18,
+            name: 'desk-chair',
+            label: 'Desk Chair',
+            amount: '',
+        },
+        {
+            id: 11,
+            name: 'coffee-table',
+            label: 'Coffee Table',
+            amount: '',
+        },
+    ];
+
     // Function for handling submit of the form
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -186,10 +303,18 @@ const HouseRegistration = () => {
                                         <ProfilePictureUploader />
                                     </div>
                                 </div> 
-                                
-                                <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
-                                    <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>
-                                    <button className='w-64 bg-[#01497C] px-10 py-4 text-white rounded-md hover:bg-[#01497C]/80 hover:-translate-y-1 transition duration-300'>Request Insurance</button>
+                            </div>
+                        </div>
+                        <div className='h-full w-full min-w-[300px] p-10 pt-0'>
+                            <div className='w-full h-fit px-10 py-6 bg-[#A9D6E5] mt-3 rounded-md'>
+                                <h2 className='text-lg text-center underline'>Appliances and Furniture Checklist</h2>
+                                <div className='w-full h-fit flex flex-wrap gap-x-5 gap-y-2 mt-5'>
+                                    {appliances.map((appliance) => (
+                                        <span key={appliance.id} className='w-fit flex gap-2 items-center px-4 py-1 rounded-full text-white text-sm bg-[#2C7DA0]'>
+                                            <input type='checkbox' className='w-3 h-3 bg-[#A9D6E5] border-none cursor-pointer fill-slate-100' />
+                                            <label>{appliance.label}</label>                           
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
