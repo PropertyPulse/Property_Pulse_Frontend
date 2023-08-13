@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import InputText from '../../Components/Common/InputText';
 import ProfilePictureUploader from '../../Components/Common/ProfilePictureUploader';
+import RequestSuccessful from '../../Components/PropertyOwner/RequestSuccessful';
+import { NavLink } from 'react-router-dom';
 
 const HouseRegistration = () => {
     const [values, setValues] = useState({
@@ -234,6 +236,7 @@ const HouseRegistration = () => {
 
     console.log(values);
 
+    const [requestSuccess, setRequestSuccess] = useState();
 
 
     return (
@@ -241,6 +244,7 @@ const HouseRegistration = () => {
             <div className='w-full z-40'>
                 <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
             </div> 
+            
             <div className='w-full h-[calc(100vh-5rem)] px-20 py-5 overflow-auto'>
                 <h1 className='w-fit text-2xl font-semibold mx-auto'>House Registration</h1>
 
@@ -319,12 +323,18 @@ const HouseRegistration = () => {
                             </div>
                         </div>
                         <div className='w-full flex justify-center items-center gap-10'>
-                            <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>
+                            <NavLink className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 
+                            transition duration-300'
+                            to='/property-owner/schedule-tasks'
+                            >
+                                Request to Register
+                            </NavLink>
                             <button className='w-64 bg-[#01497C] px-10 py-4 text-white rounded-md hover:bg-[#01497C]/80 hover:-translate-y-1 transition duration-300'>Request Insurance</button>
                         </div>
                     </form>
                 </div>
             </div>
+            
         </div>
     )
 }
