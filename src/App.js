@@ -50,6 +50,9 @@ import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
 import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
+import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
+import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
+import TasksListPO from './pages/PropertyOwner/TasksListPO';
 import Chat from "./pages/Task Supervisor/Chat";
 import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
@@ -63,6 +66,7 @@ import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmi
 import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
 import TasksOfProperties from './pages/TopManager/TasksOfProperties';
 import showTaskMangers from './pages/TopManager/showTaskManagers';
+
 function App() {
     return (
         <Routes>
@@ -139,6 +143,24 @@ function App() {
             <Route path="property-owner/land-registration" element={<LandRegistration />} />
             <Route path="property-owner/house-registration" element={<HouseRegistration />} />
             <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
+
+
+
+
+                {/* PROPERTY OWNER ROUTES */}
+                <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+                <Route path="property-owner" element={<PropertyOwnerDashboard />} />
+                <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
+                <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
+                <Route path="property-owner/tasks/:id" element={<TasksPO />} />
+                <Route path="property-owner/properties" element={<PropertiesPO />} />
+                <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
+                <Route path="property-owner/land-registration" element={<LandRegistration />} />
+                <Route path="property-owner/house-registration" element={<HouseRegistration />} />
+                {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
+            <Route path="property-owner/payments" element={<AllPaymentsPO />} />
+            <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
+            <Route path="property-owner/land-registration/schedule-tasks" element={<TasksListPO />} />
             <Route path="property-owner/payments" element={<AllPaymentsPO />} />
             <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
             {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}

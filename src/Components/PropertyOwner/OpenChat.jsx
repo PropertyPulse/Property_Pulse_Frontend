@@ -6,7 +6,7 @@ const OpenChat = () => {
     <div className='w-full fixed z-[1111] py-10 px-14 bottom-0 float-right'>
         <button 
             onclick="buttonHandler()" 
-            title="Contact Sale"
+            title="Contact Task Supervisor"
             className="bg-[#2588d4] float-right w-fit h-fit  rounded drop-shadow-2xl
             flex justify-center items-center text-white hover:bg-[#2588d4]/80 hover:drop-shadow-2xl 
             hover:animate-bounce transition duration-300"

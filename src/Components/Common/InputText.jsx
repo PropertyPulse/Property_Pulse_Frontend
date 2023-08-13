@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../CSS/InputText.css';
 
 const InputText = (props) => {
-    const {label, onChange, name, type, errorMessage, styles, defaultValue, ...inputProps} = props;
+    const {label, onChange, name, type, errorMessage, styles, defaultValue, require, ...inputProps} = props;
     const [focused, setFocused] = useState(false);
 
     const handleFocus = (e) => {
@@ -29,7 +29,7 @@ const InputText = (props) => {
                     disabled={!!defaultValue}
                     focused={focused.toString()}
                     {...inputProps}
-                    required
+                    required={require}
                 />
                 <label htmlFor={name} className='absolute left-0 -top-2 px-1 bg-white ml-4 text-gray-400 text-xs peer-placeholder-shown:text-sm
                 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2.5 peer-focus:-top-2 peer-focus:text-[#2e8a99] peer-focus:text-xs transform duration-300'>
