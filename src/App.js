@@ -54,8 +54,6 @@ import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
 import TasksListPO from './pages/PropertyOwner/TasksListPO';
 import Chat from "./pages/Task Supervisor/Chat";
-import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
-import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
 import TopManager from "./pages/TopManager/TopManager"; 
 import Complaints from "./pages/TopManager/Complaints";
 import TopManagerDashboard  from './pages/TopManager/TopManagerDashboard';
