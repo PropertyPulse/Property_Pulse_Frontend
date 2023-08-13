@@ -156,12 +156,12 @@ function App() {
                 <Route path="property-owner/land-registration" element={<LandRegistration />} />
                 <Route path="property-owner/house-registration" element={<HouseRegistration />} />
                 {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
-            <Route path="property-owner/payments" element={<AllPaymentsPO />} />
-            <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
-            <Route path="property-owner/land-registration/schedule-tasks" element={<TasksListPO />} />
-            <Route path="property-owner/payments" element={<AllPaymentsPO />} />
-            <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
-            {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
+                <Route path="property-owner/payments" element={<AllPaymentsPO />} />
+                <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
+                <Route path="property-owner/land-registration/schedule-tasks" element={<TasksListPO />} />
+                <Route path="property-owner/payments" element={<AllPaymentsPO />} />
+                <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
+                <Route path="property-owner/schedule-tasks" element={<TasksListPO />} />
 
                 {/*    Protected Routes*/}
 
