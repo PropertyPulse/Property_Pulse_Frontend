@@ -1,9 +1,11 @@
 import React from 'react'
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar'
+import OpenChat from '../../Components/PropertyOwner/OpenChat'
 
 const ViewMonthlyReport = () => {
     return (
         <div className='w-full h-[100vh] flex bg-background-blue'>
+            <OpenChat />
             <div className='w-full'>
                 <div className='w-full z-40'>
                     <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
@@ -26,9 +28,9 @@ const ViewMonthlyReport = () => {
                         <div className='my-10'>
                             <button className='w-full bg-primary-blue-800 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-200'>Save Remark</button>
                         </div>
-                        <div className='my-10'>
+                        {/* <div className='my-10'>
                             <button className='w-full bg-[#151B54] py-4 text-white rounded-md hover:bg-[#151B54]/90 hover:-translate-y-1 transition duration-200'>Contact Task Supervisor</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

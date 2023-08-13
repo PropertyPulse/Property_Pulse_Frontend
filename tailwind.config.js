@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}",
   'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
@@ -17,7 +17,12 @@ module.exports = {
         "content-bg":"#FAFBFD",
         "lannding-text-white": "#CCCCCC",
         "blue-button-start" : "#ABC4FF",
-        "blue-button-end" : "#014F86"
+        "blue-button-end" : "#014F86",
+        "calm-blue":"#E8EFFF",
+        "sweet-red":"#DF6D6D",
+        "calm-purple":"#FCFBFF",
+        "choco-gray":"#8A8C91",
+        
       }
     },
   },

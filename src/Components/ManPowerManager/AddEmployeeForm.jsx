@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from "flowbite-react";
 import { Button, Label, TextInput } from "flowbite-react";
-// import addEmployee from "../../pages/ManPowerManager/AddEmployee";
-import {axiosPrivate} from "../../api/axios";
+
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import {useNavigate} from "react-router-dom";
 const AddEmployeeForm = () => {
 
+  const navigate = useNavigate();
   const {auth} = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
@@ -162,8 +163,15 @@ const AddEmployeeForm = () => {
        },{
 
        });
-
       console.log(response.data)
+       if(response){
+
+
+           navigate(-1); // Navigate back to the previous page
+
+       }
+
+
     }
     catch(err){
       console.log(err);

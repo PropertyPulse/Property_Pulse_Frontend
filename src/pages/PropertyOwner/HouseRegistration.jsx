@@ -184,8 +184,13 @@ const HouseRegistration = () => {
                                         <p className='text-xs italic'>(If you have already got an insurance for the property, 
                                             please upload relevant documents)</p>
                                         <ProfilePictureUploader />
-                                    </div>                                                          
-                                </div>                           
+                                    </div>
+                                </div> 
+                                
+                                <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
+                                    <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>
+                                    <button className='w-64 bg-[#01497C] px-10 py-4 text-white rounded-md hover:bg-[#01497C]/80 hover:-translate-y-1 transition duration-300'>Request Insurance</button>
+                                </div>
                             </div>
                         </div>
                         <div className='w-full flex justify-center items-center gap-10'>

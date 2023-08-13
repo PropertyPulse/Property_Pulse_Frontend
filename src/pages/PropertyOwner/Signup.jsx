@@ -7,6 +7,7 @@ import ProfilePictureUploader from '../../Components/Common/ProfilePictureUpload
 import RegisterSuccess from '../../Components/PropertyOwner/RegisterSuccess';
 import axios from '../../api/axios';
 import PropertyPulseLanding from "../Common/PropertyPulseLanding";
+import {Link} from "react-router-dom";
 
 const REGISTER_URL = '/api/v1/auth/register';
 const Signup = () => {
@@ -229,10 +230,10 @@ const Signup = () => {
         <div className='w-full h-screen'>
 
             {/* Navbar */}
-            <div href={<PropertyPulseLanding />} className='fixed w-full h-fit p-3 bg-[#2e8a99] z-10'>
-                <a href="/">
+            <div className='fixed w-full h-fit p-3 bg-[#2e8a99] z-10'>
+                <Link to="/">
                     <FaCircleArrowLeft className='w-8 h-8 fill-white cursor-pointer hover:fill-slate-200 transition duration-200' />
-                </a>
+                </Link>
                 
             </div>
 
