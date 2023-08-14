@@ -21,13 +21,13 @@ const PriceList = () => {
                         Clean the garden
                     </th>
                     <td className="px-6 py-4">
-                        <input placeholder="Enter estimated number of days" className="border-2 border-gray-100"/>
+                        <input placeholder="Enter estimated number of days" className="px-1 py-1 rounded-lg border-2 border-gray-400"/>
                     </td>
                     <td className="px-6 py-4">
-                        <input placeholder="Enter number of workers" className="border-2 border-gray-100"/>
+                        <input placeholder="Enter number of workers" className="px-1 py-1 rounded-lg border-2 border-gray-400"/>
                     </td>
                     <td className="px-6 py-4">
-                        <input placeholder="Enter the price" className="border-2 border-gray-100"/>
+                        <input placeholder="Enter the price" className="px-1 py-1 rounded-lg border-2 border-gray-400 text-sm"/>
                     </td>
                 </tr>
                 </tbody>
