@@ -78,7 +78,9 @@ const ScheduledTasksList = () => {
             </table>
 
             <div className="flex justify-end mt-4">
-                <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
+                        onClick={() => console.log("Clicked")}
+                >
                     Add new task
                 </button>
             </div>
