@@ -25,16 +25,16 @@ const ManpowerRequest = () => {
             label: 'Location',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-1/12 border-0 h-auto bg-gray-400'
+            styles: 'w-1/12 border-0 pl-2'
         },
         {
             id: 3,
             name: 'description',
-            type: 'description',
+            type: 'text',
             // errorMessage: "This is a required field",
             label: 'Description',
             required: true,
-            styles: 'w-10/12 border-0 pr-3 justify-left'
+            styles: 'w-11/12 border-0 justify-left'
         },
         {
             id: 4,
@@ -64,20 +64,18 @@ const ManpowerRequest = () => {
 
     return(
         <div className='pt-3'>
-            <form className='w-full card bg-white py-8 px-16'>
-                <div className='pb-8 text-center'>
-                    <span className='font-semibold text-2xl text-primary-blue-500 px-0'>Add new users</span>
-                </div>
+            <form className='w-full bg-white py-8 px-16'>
                 <div className='flex flex-wrap gap-y-1'>
                     {inputs.map((input) => (
                         <div key={input.id} {...input}  className={input.styles}>
                             {(input.type === 'text') ? (
                                 <InputText key={input.id} {...input} value={values[input.name]} onChange={onChange} />
-                            ) : (input.type === 'location') ? (<button onClick="#"> Mark on Map</button>) : (input.name === 'description') ? (
+                            ) : (input.type === 'location') ? (<button type="button"
+                                                                       className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Mark on Map</button>) : (input.name === 'description') ? (
                                 <textarea id="message" rows="4"
                                           className="bg-transparent border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-fuchsia-50 focus:border-fuchsia-300 block w-full p-2.5 dark:text-white"
                                           placeholder="Leave a comment..."></textarea>
-                            ) : (
+                            ) :  (
 
                                 <div date-rangepicker className="flex items-center">
                                     <div className="relative">
