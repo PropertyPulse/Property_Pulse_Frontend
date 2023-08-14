@@ -27,7 +27,7 @@ import NewTaskRequest from './pages/ManPowerManager/NewTaskRequest';
 import PropertyOwnerDashboard from './pages/PropertyOwner/PropertyOwnerDashboard';
 import ProfileSetupAfterRegister from './pages/PropertyOwner/ProfileSetupAfterRegister';
 import MonthlyReportsPO from './pages/PropertyOwner/MonthlyReportsPO';
-import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
+// import ViewMonthlyReport from './pages/PropertyOwner/ViewMonthlyReport';
 import AddTopManagers from "./pages/System Admin/AddTopManagers";
 import ViewProperty from "./pages/Task Supervisor/ViewProperty";
 import SystemAdmin from "./pages/System Admin/SystemAdmin";
@@ -87,6 +87,11 @@ function App() {
                     <Route path="user-profiles/view-profile" element={<ViewProfile />} />
                 </Route>
 
+
+            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
+            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
+            {/* <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} /> */}
                 <Route path="fm" element={<FinancialManager />} >
                     <Route path="dashboard" element={<FmDashboard/>} />
                     <Route path="received" element={<FmRecieved/>} />
