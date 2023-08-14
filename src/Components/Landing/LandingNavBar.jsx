@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Navbar } from 'flowbite-react';
 import logo from '../../Assets/logo-with-bg.jpg';
+import {Link} from "react-router-dom";
 
 export default function LandingNavBar() {
   const sections = ['home', 'services', 'why-us', 'how-it-works', 'contact-us'];
@@ -44,6 +45,9 @@ export default function LandingNavBar() {
     }
   };
 
+
+
+
   return (
     <>
       <Navbar fluid rounded>
@@ -54,12 +58,16 @@ export default function LandingNavBar() {
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
-          <Button className="mr-4 bg-secondary-gray hover:bg-secondary-gray-light">
-            Login
-          </Button>
-          <Button className="bg-secondary-gray hover:bg-secondary-gray-light">
-            Get started
-          </Button>
+          <Link to="/login">
+            <Button className="mr-4 bg-secondary-gray hover:bg-secondary-gray-light">
+              Login
+            </Button>
+          </Link>
+          <Link to="/signup">
+            <Button className="bg-secondary-gray hover:bg-secondary-gray-light">
+              Get started
+            </Button>
+          </Link>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>

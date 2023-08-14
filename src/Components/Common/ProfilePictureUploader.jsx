@@ -38,7 +38,7 @@ const ProfilePictureUploader = (props) => {
                 
                 <section>                
                     <div className='w-full uploaded-row flex justify-between items-center gap-2 p-2 mt-1 bg-[#2e8a99]/20 rounded-md'>
-                        <span className='flex justify-center items-center gap-5'>
+                        <span className='w-full flex justify-center items-center gap-5 text-xs'>
                             <AiFillFileImage className='fill-[#2e8a99]' />
                             {fileName}                        
                         </span>

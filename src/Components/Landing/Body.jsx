@@ -45,7 +45,7 @@ const Body = () => {
 
           <div className="flex justify-center md:justify-start">
             <Link
-              to="#"
+              to="/signup"
               className="p-3 px-6 pt-2 text-white rounded-full bg-secondary-gray hover:bg-secondary-gray-light"
             >
               Get Started

@@ -2,20 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Card } from "flowbite-react";
 import { Button, Label, TextInput } from "flowbite-react";
 
-const EditEmployee = () => {
-    const [inputValue, setInputValue] = useState('');
+import axiosPrivate from "../../api/axios";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
+
+const EditEmployee = (props) => {
+  console.log(props)
+  const [employeeid, setEmployeeid] = useState(props.employeeData.id);
+  const [inputValue, setInputValue] = useState('');
   const [dataList, setDataList] = useState([]);
   const [error, setError] = useState('This field is required.');
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [nic, setNic] = useState("");
-  const [district, setDistrict] = useState("");
-  const [contactNo, setContactNo] = useState("");
+  const [name, setName] = useState(props.employeeData.name);
+  const [address, setAddress] = useState(props.employeeData.address);
+  const [nic, setNic] = useState(props.employeeData.nic);
+  const [district, setDistrict] = useState(props.employeeData.nic);
+  const [contactNo, setContactNo] = useState(props.employeeData.contactno);
   const [nameError, setNameError] = useState("Name is required");
   const [addressError, setAddressError] = useState("Address is required");
   const [nicError, setNicError] = useState("NIC is required");
   const [districtError, setDistrictError] = useState("District is required");
   const [contactNoError, setContactNoError] = useState("Contact number is required");
+
+  // console.log(employeeid)
+
+  const axiosPrivate = useAxiosPrivate()
+  const {auth} = useAuth();
+  console.log(auth)
 
   useEffect(() => {
 
@@ -136,6 +148,34 @@ const EditEmployee = () => {
     }
   };
 
+  const handleUpdateform = async () => {
+    console.log()
+
+    const data = {
+      id: employeeid,
+      name: name,
+      address: address,
+      nic: nic,
+      district: district,
+      contactno: contactNo
+    };
+
+    try {
+      const response = await axiosPrivate.put(`/api/v1/mpc/updateemployee/${employeeid}`, data);
+      console.log("Employee updated:", response.data);
+      // You might want to update your UI or take other actions based on the response
+    } catch (error) {
+      console.error("Error updating employee:", error);
+      // Handle errors here
+    }
+    // console.log(data);
+    // props.updateEmployee(data);
+
+    // Make the Axios PUT request
+  //  log
+    console.log("jfkld")
+  }
+
   return (
     <>
     <div>
@@ -254,7 +294,7 @@ const EditEmployee = () => {
             </div>
           </div>
 
-          <Button type="submit" disabled={!!(nameError || addressError || nicError || districtError || contactNoError || error)}>Update</Button>
+          <Button onClick={handleUpdateform} type="submit" disabled={!!(nameError || addressError || nicError || districtError || contactNoError || error)}>Update</Button>
         </form>
       </Card>
     </div>
