@@ -8,7 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 const PropertyType = ({ visible, onClose, addPath }) => {
 
     const [type, setType] = useState("House");
-    const [path,setPath] = useState('/property-owner/house-registration');
+    const [path,setPath] = useState('/po/house-registration');
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -20,9 +20,9 @@ const PropertyType = ({ visible, onClose, addPath }) => {
         setType(e.target.value);
         
         if(e.target.value === "House") {
-            setPath('/property-owner/house-registration')
+            setPath('/po/house-registration')
         } else if(e.target.value === "Land"){
-            setPath('/property-owner/land-registration')
+            setPath('/po/land-registration')
         } 
 
         console.log(e.target.value);

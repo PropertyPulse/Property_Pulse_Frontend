@@ -97,10 +97,7 @@ const LandRegistration = () => {
 
 
     return (
-        <div className='w-full h-[100vh] bg-background-blue'>
-            <div className='w-full z-40'>
-                <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-            </div> 
+        <div className='w-full h-[100vh'> 
             <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5'>
                 <h1 className='text-2xl font-semibold'>Land Registration</h1>
 

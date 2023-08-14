@@ -4,7 +4,7 @@ import OpenChat from '../../Components/PropertyOwner/OpenChat'
 
 const ViewMonthlyReport = () => {
     return (
-        <div className='w-full h-[100vh] flex bg-background-blue'>
+        <div className='w-full h-[100vh] flex'>
             <OpenChat />
             <div className='w-full'>
                 <div className='w-full z-40'>
