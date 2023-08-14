@@ -229,7 +229,7 @@ const PropertiesToBeManaged = () => {
                                                             {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
                                                             {/*    Suggest Task*/}
                                                             {/*</h3>*/}
-                                                            <span className='pl-40 font-semibold text-xl text-primary-blue-500 px-0'>Location</span>
+                                                            <span className='font-semibold text-xl text-primary-blue-500 px-0'>Price List</span>
                                                             <button type="button"
                                                                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                                                     data-modal-toggle="defaultModal"
