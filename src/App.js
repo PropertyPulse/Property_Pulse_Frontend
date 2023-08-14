@@ -130,17 +130,7 @@ function App() {
                 </Route>
 
 
-            {/* PROPERTY OWNER ROUTES */}
-            <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
-            <Route path="property-owner" element={<PropertyOwnerDashboard />} />
-            <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
-            <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-            <Route path="property-owner/tasks/:id" element={<TasksPO />} />
-            <Route path="property-owner/properties" element={<PropertiesPO />} />
-            <Route path="property-owner/properties/property-details/:id" element={<PropertyViewMore />} />
-            <Route path="property-owner/land-registration" element={<LandRegistration />} />
-            <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-            <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
+            
 
 
 
