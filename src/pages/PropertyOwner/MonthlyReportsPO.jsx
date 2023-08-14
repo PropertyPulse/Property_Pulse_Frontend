@@ -130,9 +130,18 @@ const MonthlyReportsPO = () => {
                                             All scheduled tasks have been completed, tap has fixed
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                                            <button className="bg-[#013A63] py-1.5 px-3 text-white rounded-lg hover:bg-[#013A63]/80 hover:shadow">
+                                            <Link 
+                                                to={{
+                                                    pathname: 'view-monthly-report'
+                                                }}
+                                            >
+                                                <button className="bg-[#013A63] py-1.5 px-3 text-white rounded-lg hover:bg-[#013A63]/80 hover:shadow">
+                                                    View
+                                                </button>
+                                            </Link>
+                                            {/* <button className="bg-[#013A63] py-1.5 px-3 text-white rounded-lg hover:bg-[#013A63]/80 hover:shadow">
                                                 View
-                                            </button>
+                                            </button> */}
                                         </td>
                                     </tr>
                                 </tbody>
