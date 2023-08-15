@@ -3,7 +3,7 @@ import Navbar from "../../Components/Common/Navbar";
 import { Outlet } from "react-router-dom";
 import PropertyOwnerSidebar from "../../Components/PropertyOwner/PropertyOwnerSidebar";
 
-const PropertyOwenerdb = () => {
+const PropertyOwnerdb = () => {
   return (
     <div className="flex w-full bg-[#EDF2FB]">
       <div className="z-50">
@@ -19,4 +19,4 @@ const PropertyOwenerdb = () => {
   );
 };
 
-export default PropertyOwenerdb;
+export default PropertyOwnerdb;
