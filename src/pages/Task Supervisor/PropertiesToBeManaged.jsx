@@ -3,25 +3,20 @@ import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
 import UploadAgreement from "./UploadAgreement";
-import PriceList from "./PriceList";
+import PriceList from "./PriceList"
+import {Link} from "react-router-dom";
 
 const PropertiesToBeManaged = () => {
 
-    const headings = ['Owner', 'Property ID', 'Type', 'Location', 'Visit Status', 'Price List', 'Legal Contract'];
+    const NotVisitedHeadings = ['Owner', 'Property ID', 'Type', 'Location', 'Visit'];
 
     const rows = [
         {owner: 'Anjalee Neelika',
-            id: 'P101',
-            type: 'House',
-            visitStatus: 'Not Visited',
-            priceList: 'Not sent',
-            legalDocuments: 'Not Uploaded'},
+            id: 'Colombo 06',
+            type: 'House',},
         {owner: 'Thilanka Jayathilake',
-            id: 'P99',
-            type: 'Land',
-            visitStatus: 'Visited',
-            priceList: 'Sent',
-            legalDocuments: 'Uploaded'},
+            id: 'Gampaha',
+            type: 'Land'},
     ];
 
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
@@ -117,12 +112,21 @@ const PropertiesToBeManaged = () => {
                 </div>
             </div>
 
+            <div className='w-full space-x-0.5 pb-6 text-white flex'>
+                <Link to='/task-supervisor/properties-to-be-managed/not-visited-properties' className='w-1/2 px-8 py-2 bg-primary-blue-500 flex justify-center text-md font-medium rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl'>
+                    Not Visited
+                </Link>
+                <Link to='/task-supervisor/properties-to-be-managed/visited-properties' className='w-1/2 px-8 py-2 bg-secondary-gray-light flex justify-center text-md font-medium rounded-tl-none rounded-tr-xl rounded-br-xl rounded-bl-none'>
+                    Visited
+                </Link>
+            </div>
+
             <div className='pt-3 pb-6'>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
                         <tr>
-                            {headings.map((heading, index) => (
+                            {NotVisitedHeadings.map((heading, index) => (
                                 <th scope="col" className="px-6 py-3">
                                     {heading}
                                 </th>
@@ -191,105 +195,13 @@ const PropertiesToBeManaged = () => {
                                             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                                         </>
                                     ) : null}
-                                    <td className="px-6 py-3">
-                                        {(row.visitStatus === 'Visited') ? (
-                                            <label className="text-white bg-green-600 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                                Visited
-                                            </label>
-                                        ) : (row.visitStatus === 'Not Visited') ? (
-                                            <button className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3
-                                                py-1 text-center inline-flex items-center shadow-md shadow-gray-300" onClick={() => {setAsVisited(row.visitStatus);} }>
-                                                Not Visited
-                                            </button>
-                                        ) : (<label></label>)}
-                                    </td>
-                                    <td className="px-6 py-3">
-                                        {(row.priceList === 'Sent') ? (
-                                            <label className="text-white bg-green-600 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center hover:scale-[1.02]">
-                                                Sent
-                                            </label>
-                                        ) : (row.priceList === 'Not sent') ? (
-                                            <button className="text-white bg-yellow-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
-                                                    onClick={() => {setShowModalPriceList(true);} }
-                                            >
-                                                Send
-                                            </button>
-                                        ) : (<button></button>)}
-                                    </td>
-                                    {showModalPriceList ? (
-                                        <>
-                                            <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                                                <div className="relative w-auto my-6 mx-auto w-1/3">
-                                                    {/*content*/}
-                                                    <div
-                                                        className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                                        {/*header*/}
-                                                        <div
-                                                            className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                            {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
-                                                            {/*    Suggest Task*/}
-                                                            {/*</h3>*/}
-                                                            <span className='font-semibold text-xl text-primary-blue-500 px-0'>Price List</span>
-                                                            <button type="button"
-                                                                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                                    data-modal-toggle="defaultModal"
-                                                                    onClick={() => setShowModalPriceList(false)}
-                                                            >
-                                                                <svg className="w-5 h-5" fill="currentColor"
-                                                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                        {/*body*/}
-                                                        <PriceList />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                                        </>
-                                    ) : null}
 
                                     <td className="px-6 py-3">
-                                        {(row.legalDocuments === 'Uploaded') ? (
-                                            <label className="text-white bg-green-600 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                                Uploaded
-                                            </label>
-                                        ) : (row.legalDocuments  === 'Not Uploaded') ? (
-                                            <button className="text-white bg-yellow-700 font-medium rounded-lg text-xs px-3
-                                                py-1 text-center inline-flex items-center shadow-md shadow-gray-300
-                                                hover:scale-[1.02] transition-transform" onClick={() => {setShowModalUploadAgreement(true);} }>
-                                                Upload
-                                            </button>
-                                        ) : (<button></button>)}
+                                        <button type="button" className="text-white bg-green-600 font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                        >
+                                            Mark Attendance
+                                        </button>
                                     </td>
-                                    {showModalUploadAgreement ? (
-                                        <>
-                                            <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                                                <div className="relative w-auto my-6 mx-auto w-1/3">
-                                                    <div
-                                                        className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                                        <div className="flex space-x-32 items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                            <span className='font-semibold text-xl text-primary-blue-500 px-0'>Upload Agreement</span>
-                                                            <button type="button"
-                                                                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                                    data-modal-toggle="defaultModal"
-                                                                    onClick={() => setShowModalUploadAgreement(false)}
-                                                            >
-                                                                <svg className="w-5 h-5" fill="currentColor"
-                                                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                        {/*body*/}
-                                                        <UploadAgreement />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                                        </>
-                                    ) : null}
                                 </tr>
                             ))}
                         </tbody>

@@ -64,6 +64,7 @@ import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmi
 import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
 import TasksOfProperties from './pages/TopManager/TasksOfProperties';
 import showTaskMangers from './pages/TopManager/showTaskManagers';
+import VisitedProperties from "./pages/Task Supervisor/VisitedProperties";
 import PropertyOwnerdb from './pages/PropertyOwner/PropertyOwnerdb';
 import PoDashboard from './pages/PropertyOwner/PoDashboard';
 import Poproperties from './pages/PropertyOwner/Poproperties';
@@ -123,9 +124,10 @@ function App() {
                 <Route path="task-supervisor" element={<TaskSupervisor />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="assigned-properties" element={<AssignedProperties />} />
+                    <Route path="properties-to-be-managed/visited-properties" element={<VisitedProperties />} />
                     {/*<Route path="sample-modal" element={<Modal />} />*/}
                     <Route path="assigned-properties" element={<AssignedProperties />} />
-                    <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
+                    <Route path="properties-to-be-managed/not-visited-properties" element={<PropertiesToBeManaged />} />
                     <Route path="upcoming-tasks" element={<UpcomingTasks />} />
                     <Route path="ongoing-tasks" element={<OngoingTasks />} />
                     <Route path="completed-tasks" element={<CompletedTasks />} />

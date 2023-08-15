@@ -30,7 +30,7 @@ const TaskSupervisorSidebar = () => {
                     url: '/task-supervisor/assigned-properties',
                     icon: assignProperties},
                 {title: "Properties to be Managed",
-                    url: '/task-supervisor/properties-to-be-managed',
+                    url: '/task-supervisor/properties-to-be-managed/not-visited-properties',
                     icon: manageProperties},
             ]},
         {title: "Tasks",
