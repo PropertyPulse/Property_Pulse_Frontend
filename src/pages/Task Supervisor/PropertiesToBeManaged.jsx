@@ -2,9 +2,8 @@ import React from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
-import UploadAgreement from "./UploadAgreement";
-import PriceList from "./PriceList"
 import {Link} from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PropertiesToBeManaged = () => {
 
@@ -20,8 +19,6 @@ const PropertiesToBeManaged = () => {
     ];
 
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
-    const [showModalUploadAgreement, setShowModalUploadAgreement] = React.useState(false);
-    const [showModalPriceList, setShowModalPriceList] = React.useState(false);
 
     const setAsVisited = (status) => {
         status = 'Visited';
@@ -29,6 +26,26 @@ const PropertiesToBeManaged = () => {
         return status;
 
     }
+
+    const handleButtonClick = () => {
+        Swal.fire({
+            title: 'Did you visit the property?',
+            text: "Property will be added to the visited list!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Done!',
+                    'Property added to the visited list!',
+                    'success'
+                );
+            }
+        });
+    };
 
     return (
         <div className='w-full px-24 py-10'>
@@ -50,7 +67,7 @@ const PropertiesToBeManaged = () => {
                                 type="button">
                             <img src={filterIcon} alt="metamask" className="h-4 w-4 mr-2" />
                             Filter <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <path d="M19 9l-7 7-7-7"></path>
                         </svg>
                             <div id="dropdown"
                                  className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
@@ -182,7 +199,6 @@ const PropertiesToBeManaged = () => {
                                                             <iframe
                                                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9034101404995!2d79.85875276094056!3d6.902153718617741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1690225374454!5m2!1sen!2slk"
                                                                 className='w-96 h-64'
-                                                                frameBorder='0'
                                                                 allowFullScreen=''
                                                                 loading='lazy'
                                                                 referrerPolicy='no-referrer-when-downgrade'
@@ -197,9 +213,11 @@ const PropertiesToBeManaged = () => {
                                     ) : null}
 
                                     <td className="px-6 py-3">
-                                        <button type="button" className="text-white bg-green-600 font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                        <button type="button" className="text-white bg-green-600 font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
+                                            onClick={handleButtonClick}
                                         >
-                                            Mark Attendance
+                                        >
+                                            Mark Visit
                                         </button>
                                     </td>
                                 </tr>
