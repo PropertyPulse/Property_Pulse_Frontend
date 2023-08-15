@@ -141,8 +141,8 @@ function App() {
 
 
 
-                {/* PROPERTY OWNER ROUTES */}
-                <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+                {/* PROPERTY OWNER ROUTES OLD */}
+                {/* <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
                 <Route path="property-owner" element={<PropertyOwnerDashboard />} />
                 <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
                 <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
@@ -151,16 +151,16 @@ function App() {
                 <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
                 <Route path="property-owner/land-registration" element={<LandRegistration />} />
                 <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-                {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
+                <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} />
                 <Route path="property-owner/payments" element={<AllPaymentsPO />} />
                 <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
                 <Route path="property-owner/land-registration/schedule-tasks" element={<TasksListPO />} />
                 <Route path="property-owner/payments" element={<AllPaymentsPO />} />
                 <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
-                <Route path="property-owner/schedule-tasks" element={<TasksListPO />} />
+                <Route path="property-owner/schedule-tasks" element={<TasksListPO />} /> */}
 
-{/* property Owner thila */}
-<Route path="po" element={<PropertyOwenerdb />}>
+                {/* property Owner thila */}
+                <Route path="po" element={<PropertyOwenerdb />}>
                     <Route path="dashboard" element={<PoDashboard />} />
                     <Route path="properties" element={<Poproperties />} />
                     <Route path="task" element={<Potask />} />
