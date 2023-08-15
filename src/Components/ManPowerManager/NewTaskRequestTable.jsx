@@ -1,68 +1,122 @@
 import { Table, Button, Modal, Select } from "flowbite-react";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Label, Textarea } from "flowbite-react";
 import { Pagination } from "flowbite-react";
 import { TextInput } from "flowbite-react";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate"
+
 
 const NewTaskRequestTable = ({searchTerm }) => {
   const [openModal, setOpenModal] = useState();
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentPage, setCurrentPage] = useState(1);
-  const onPageChange = (page) => setCurrentPage(page);
-  
+  const [tableData, setTableData] = useState([]);
+  const [availableEmployees, setAvailableEmployees] = useState([]);
 
-  const tableData = [
-    {
-      propertyId: "10101010",
-      location: "Gampaha",
-      task: "Clean the house",
-      price:"10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10101010",
-      location: "Kaduwela",
-      task: "Repair water pipe",
-      price:"10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-    },
-    {
-      propertyId: "10101010",
-      location: "Waliweriya",
-      task: "Clean the house",
-      price:"10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10101010",
-      location: "Colombo",
-      task: "Clean the house",
-      price:"10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10101010",
-      location: "Gampaha",
-      task: "Clean the house",
-      price:"10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-    },
-    {
-      propertyId: "10101010",
-      location: "Colombo",
-      task: "Clean the land",
-      price:"10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    // Add more data objects for other rows...
-  ];
+
+  const [feedback, setFeedback] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [requiredDate, setRequiredDate] = useState("");
+  const [requiredTime, setRequiredTime] = useState("");
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState("");
+
+
+
+  const onPageChange = (page) => setCurrentPage(page);
+
+  const axiosPrivate = useAxiosPrivate()
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleAccept = async (id) => {
+    try {
+      // Make the API call to update
+      const response = await axiosPrivate.post('/api/v1/mpc/assignemployee', JSON.stringify({
+        feedback : feedback,
+        startDate : startDate,
+        requiredDate : requiredDate,
+        empid:selectedEmployeeId,
+        requestid:id
+
+      }));
+
+      // Handle success (e.g., show a success me ssage, update UI)
+      console.log("Update successful:", response.data);
+    } catch (error) {
+      // Handle error (e.g., show an error message)
+      console.error("Error updating data:", error);
+    }
+    console.log(id)
+
+    // Close the modal
+    props.setOpenModal(undefined);
+  };
+
+  const handleDecline = async () => {
+    // try {
+    //   // Make the API call to decline
+    //   const response = await axiosPrivate.put(`/api/decline-endpoint/${selectedEmployeeId}`, {
+    //     feedback,
+    //   });
+    //
+    //   // Handle success (e.g., show a success message, update UI)
+    //   console.log("Decline successful:", response.data);
+    // } catch (error) {
+    //   // Handle error (e.g., show an error message)
+    //   console.error("Error declining:", error);
+    // }
+    //
+    // // Close the modal
+    props.setOpenModal(undefined);
+  };
+  const fetchData = async () => {
+    try {
+      const response = await axiosPrivate.get("/api/v1/task-requests/getAllnewtaskrequests", {
+      }, {});
+      console.log(response.data)
+
+      setTableData(response.data)
+
+
+      console.log(tableData)
+
+
+
+    } catch (e) {
+
+    }
+
+
+  }
+
+
+
+  useEffect(  () => {
+    // console.log('hh')
+    fetchAvailableEmployees()
+    fetchData()
+
+
+  }, []);
+
+  const fetchAvailableEmployees = async () => {
+    try {
+      const response = await axiosPrivate.get("/api/v1/mpc/getallavailableemployees"); // Change the URL as needed
+      setAvailableEmployees(response.data);
+    } catch (error) {
+      console.error("Error fetching available employees:", error);
+    }
+  };
+
+
   //pagination and filtering
 
   const itemsPerPage = 5; // Number of items per page
@@ -86,9 +140,7 @@ const NewTaskRequestTable = ({searchTerm }) => {
 
   return (
     <>
-
-
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
           <Table.Head>
             <Table.HeadCell>Property Id</Table.HeadCell>
@@ -126,18 +178,19 @@ const NewTaskRequestTable = ({searchTerm }) => {
                   </a>
                 </Table.Cell>
                 <Table.Cell>{rowData.task}</Table.Cell>
-                <Table.Cell>{rowData.price + ".00"}</Table.Cell>
-                <Table.Cell>{rowData.scheduleDate}</Table.Cell>
-                
-                <Table.Cell>
-                    {rowData.details}
+                <Table.Cell>{rowData.estimatedPrice}</Table.Cell>
+
+                  <Table.Cell>{formatDate(rowData.scheduleDate)}</Table.Cell>
+
+                  <Table.Cell>
+                    {rowData.moreInfo}
                 </Table.Cell>
                 <Table.Cell>
                   <Button
                     className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
                     onClick={() => props.setOpenModal("placement")}
                   >
-                    Action
+                    Accept
                   </Button>
                   <Modal
                     show={props.openModal === "placement"}
@@ -156,64 +209,64 @@ const NewTaskRequestTable = ({searchTerm }) => {
                           <Label htmlFor="comment" value="Your Feedback" />
                         </div>
                         <Textarea
-                          id="comment"
-                          placeholder="your feedback"
-                          rows={1}
+                            id="comment"
+                            placeholder="Your feedback"
+                            rows={1}
+                            value={feedback}
+                            onChange={event => setFeedback(event.target.value)}
                         />
                       </div>
-
                       <div>
                         <div>
                           <div className="mb-2 block">
                             <Label htmlFor="start_date" value="Start Date" />
                           </div>
                           <TextInput
-                            id="start_date"
-                            placeholder="When you can start"
-                            required
-                            type="date"
+                              id="start_date"
+                              placeholder="When you can start"
+                              required
+                              type="date"
+                              value={startDate}
+                              onChange={event => setStartDate(event.target.value)}
                           />
                         </div>
                         <div>
                           <div className="mb-2 block">
-                            <Label
-                              htmlFor="reauired_date"
-                              value="Required Time"
-                            />
+                            <Label htmlFor="required_date" value="Required Date" />
                           </div>
                           <TextInput
-                            id="date"
-                            placeholder="How many days"
-                            required
-                            type="text"
+                              id="required_date"
+                              placeholder="How many days"
+                              required
+                              type="text"
+                              value={requiredDate}
+                              onChange={event => setRequiredDate(event.target.value)}
                           />
                         </div>
-
-                        <div className="max-w-md" id="select">
-                          <div className="mb-2 block">
-                            <Label
-                              htmlFor="countries"
-                              value="Assign Employees"
-                            />
-                          </div>
-                          <Select id="countries" required>
-                            <option>Shashika</option>
-                            <option>kavisha</option>
-                            <option>Deepamal</option>
-                          </Select>
-                        </div>
                       </div>
+
+                      <div className="max-w-md" id="select">
+                        <div className="mb-2 block">
+                          <Label htmlFor="countries" value="Assign Employees" />
+                        </div>
+                        <Select id="countries" required onChange={event => setSelectedEmployeeId(event.target.value)}>
+                          <option value="">Select an employee</option>
+                          {availableEmployees.map(employee => (
+                              <option key={employee.id} value={employee.id}>{employee.name}</option>
+                          ))}
+                        </Select>
+                        </div>
                     </Modal.Body>
                     <Modal.Footer>
                       <Button
-                        onClick={() => props.setOpenModal(undefined)}
-                        className="bg-secondary-gray hover:bg-secondary-gray-light"
+                          onClick={() => handleAccept(rowData.id)}
+                          className="bg-secondary-gray hover:bg-secondary-gray-light"
                       >
                         Accept
                       </Button>
                       <Button
-                        color="gray"
-                        onClick={() => props.setOpenModal(undefined)}
+                          color="gray"
+                          onClick={() => handleDecline(rowData.id)}
                       >
                         Decline
                       </Button>
