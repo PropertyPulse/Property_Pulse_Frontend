@@ -10,10 +10,10 @@ const AssignedProperties= () => {
 
     const rows = [
         {owner: 'Anjalee Neelika',
-            id: 'Colombo 06',
+            id: 'P97',
             type: 'House',},
         {owner: 'Thilanka Jayathilaka',
-            id: 'Gampaha',
+            id: 'P81',
             type: 'Land',},
     ];
 

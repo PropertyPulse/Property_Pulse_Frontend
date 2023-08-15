@@ -25,11 +25,8 @@ const PropertyPayments = () => {
     ];
 
     return (
-        <div className='w-full h-[100vh] bg-background-blue'>
+        <div className='w-full h-[100vh]'>
             <OpenChat />
-            <div className='w-full z-40'>
-                <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-            </div> 
             <div className='w-full min-h-[calc(100vh-4.5rem)] px-10 py-5 gap-10 overflow-auto'>
                 <h1 className='text-2xl font-semibold'>Payments: {id}</h1>
                 <div className='w-full min-h-[92%] h-fit mt-2'>

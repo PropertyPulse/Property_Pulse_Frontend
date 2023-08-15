@@ -32,16 +32,13 @@ const MonthlyReportsPO = () => {
 
 
     return (
-        <div className='w-full h-[100vh] flex bg-background-blue'>
-            <div className='w-full'>
-                <div className='w-full z-40'>
-                    <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-                </div>  
-                <div className='w-full h-[calc(100vh-4.5rem)] p-10'>
+        <div className='w-full h-[100vh] flex'>
+            <div className='w-full'>  
+                <div className='w-full h-[calc(100vh-4.5rem)] p-10 '>
                     <div className='title'>
                         <h1 className='text-2xl'>Monthly Reports</h1>
                     </div>
-                    <div className='w-full p-10'>
+                    <div className='w-full p-10 bg-white rounded-md shadow-lg shadow-[#EDF2FB] border border-[#EDF2FB] mt-4'>
                         <div className='shadow overflow-hidden border-b border-gray-200 rounded-lg'>
                             <table className='min-w-full divide-y divide-gray-200'>
                                 <thead className="bg-[#EDF2FB]">
