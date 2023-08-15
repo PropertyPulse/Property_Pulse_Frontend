@@ -248,7 +248,7 @@ const UpcomingTasks= () => {
 
                             {showModalManpowerReschedule ? (
                                 <>
-                                    <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                                    <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none w-96 m-auto">
                                         <div className="relative w-auto my-6 mx-auto w-1/3">
                                             {/*content*/}
                                             <div
@@ -259,7 +259,7 @@ const UpcomingTasks= () => {
                                                     {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
                                                     {/*    Suggest Task*/}
                                                     {/*</h3>*/}
-                                                    <span className='font-semibold text-xl text-primary-blue-500 px-0'>Price List</span>
+                                                    <span className='font-semibold text-xl text-primary-blue-500 px-0'>Task Details</span>
                                                     <button type="button"
                                                             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                                             data-modal-toggle="defaultModal"
@@ -282,7 +282,7 @@ const UpcomingTasks= () => {
 
                             {showModalManpowerRequest ? (
                                 <>
-                                    <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                                    <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none max-h-5xl h-10/12">
                                         <div className="relative w-auto my-6 mx-auto w-1/3">
                                             {/*content*/}
                                             <div
@@ -293,7 +293,7 @@ const UpcomingTasks= () => {
                                                     {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
                                                     {/*    Suggest Task*/}
                                                     {/*</h3>*/}
-                                                    <span className='font-semibold text-xl text-primary-blue-500 px-0'>Price List</span>
+                                                    <span className='font-semibold text-xl text-primary-blue-500 px-0'>Task Details</span>
                                                     <button type="button"
                                                             className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                                             data-modal-toggle="defaultModal"
