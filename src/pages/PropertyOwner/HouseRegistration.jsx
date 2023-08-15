@@ -4,12 +4,14 @@ import InputText from "../../Components/Common/InputText";
 import ProfilePictureUploader from "../../Components/Common/ProfilePictureUploader";
 import RequestSuccessful from "../../Components/PropertyOwner/RequestSuccessful";
 import { NavLink } from "react-router-dom";
+import Dropdown from "../../Components/PropertyOwner/Dropdown";
 
 const HouseRegistration = () => {
   const [values, setValues] = useState({
     address: "",
     district: "",
     location: "",
+    duration: "",
     stories: "",
     bedrooms: "",
     livingRooms: "",
@@ -45,9 +47,18 @@ const HouseRegistration = () => {
       label: "Location",
       require: false,
     },
+    // Properties for duration input field
+    {
+        id: 4,
+        name: "duration",
+        type: "dropdown",
+        errorMessage: "",
+        label: "Duration to be Managed",
+        require: false,
+    },
     // Properties for No. of Stories input field
     {
-      id: 4,
+      id: 5,
       name: "stories",
       type: "text",
       errorMessage: "No. of stories should be a number",
@@ -56,7 +67,7 @@ const HouseRegistration = () => {
     },
     // Properties for No.of Bedrooms input field
     {
-      id: 5,
+      id: 6,
       name: "bedrooms",
       type: "text",
       errorMessage: "No. of bedrooms should be a number",
@@ -65,7 +76,7 @@ const HouseRegistration = () => {
     },
     // properties for cNo. of Living Rooms input field
     {
-      id: 6,
+      id: 7,
       name: "livingRooms",
       type: "text",
       errorMessage: "No. of living rooms should be a number",
@@ -74,7 +85,7 @@ const HouseRegistration = () => {
     },
     // Properties for No. of Bathrooms input field
     {
-      id: 7,
+      id: 8,
       name: "bathrooms",
       type: "text",
       errorMessage: "No. of bathrooms should be a number",
@@ -83,7 +94,7 @@ const HouseRegistration = () => {
     },
     // Properties for No. of Dining Rooms input field
     {
-      id: 4,
+      id: 9,
       name: "diningRooms",
       type: "text",
       errorMessage: "",
@@ -224,6 +235,27 @@ const HouseRegistration = () => {
     },
   ];
 
+  const durations = [
+    {
+        id: 1,
+        name: '6-months',
+        label: '6 months',
+        checked: false,
+    },
+    {
+        id: 2,
+        name: 'one-year',
+        label: 'One Year',
+        checked: false,
+    },
+    {
+        id: 3,
+        name: 'two-years',
+        label: 'Two Years',
+        checked: false,
+    }
+  ];
+
   // Function for handling submit of the form
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -301,13 +333,15 @@ const HouseRegistration = () => {
                       <div>
                         <label className="text-sm">{input.label}</label>
                         <textarea
-                          className="w-full bg-white text-sm border-2 border-gray-200 rounded-lg p-3 mt-1 placeholder:text-[#adadad] hover:border-[#2e8a99]/70 focus:border-[#2e8a99]/70 focus:ring-0 outline-none"
+                          className="w-full bg-white text-sm text-ellipsis border-2 border-gray-200 rounded-lg p-3 mt-1 placeholder:text-[#adadad] hover:border-[#2e8a99]/70 focus:border-[#2e8a99]/70 focus:ring-0 outline-none"
                           placeholder={input.placeholderText}
                         />
                         <span className="error-msg text-xs text-red-500 leading-tight line-clamp-3 hidden">
                           {/* {errorMessage}                                     */}
                         </span>
                       </div>
+                    ) : input.type === "dropdown" ? (
+                        <Dropdown options={durations} label="Select Duration" />
                     ) : (
                       <div></div>
                     )}

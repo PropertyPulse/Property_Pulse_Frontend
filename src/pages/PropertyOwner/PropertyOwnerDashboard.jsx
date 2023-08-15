@@ -10,7 +10,7 @@ const PropertyOwnerDashboard = () => {
   const handleOnClose = () => setShowModal(false);
 
   return (
-    <div className="w-full h-[100vh] bg-[#EDF2FB]">
+    <div className="w-full bg-[#EDF2FB]">
       <PropertyType visible={showModal} onClose={handleOnClose} />
       <div className="w-full">
         {/* <DashboardPO />            */}
@@ -19,7 +19,7 @@ const PropertyOwnerDashboard = () => {
           <div className="w-full min-h-full h-fit p-10">
             <div className="registered-properties w-full min-w-[300px] h-[280px] bg-white py-5 px-7 mb-10 rounded-md shadow-lg shadow-[#EDF2FB] border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
-                <h1 className="text-lg font-semibold">Registered Properties</h1>
+                <h1 className="text-lg font-semibold">Properties</h1>
                 <div className="button-container flex gap-2">
                   <Link
                     to={{

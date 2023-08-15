@@ -64,7 +64,7 @@ import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmi
 import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
 import TasksOfProperties from './pages/TopManager/TasksOfProperties';
 import showTaskMangers from './pages/TopManager/showTaskManagers';
-import PropertyOwenerdb from './pages/PropertyOwner/PropertyOwenerdb';
+import PropertyOwnerdb from './pages/PropertyOwner/PropertyOwnerdb';
 import PoDashboard from './pages/PropertyOwner/PoDashboard';
 import Poproperties from './pages/PropertyOwner/Poproperties';
 import Potask from './pages/PropertyOwner/Potask';
@@ -160,7 +160,7 @@ function App() {
                 <Route path="property-owner/schedule-tasks" element={<TasksListPO />} /> */}
 
                 {/* property Owner thila */}
-                <Route path="po" element={<PropertyOwenerdb />}>
+                <Route path="po" element={<PropertyOwnerdb />}>
                     <Route path="dashboard" element={<PoDashboard />} />
                     <Route path="properties" element={<Poproperties />} />
                     <Route path="task" element={<Potask />} />

@@ -3,19 +3,17 @@ import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import InputText from '../../Components/Common/InputText';
 import ProfilePictureUploader from '../../Components/Common/ProfilePictureUploader';
 import { Link } from 'react-router-dom';
+import Dropdown from '../../Components/PropertyOwner/Dropdown';
 
 const LandRegistration = () => {
     const [values, setValues] = useState({
         address: "",
         district: "",
         location: "",
-        stories: "",
-        bedrooms: "",
-        livingRooms: "",
-        bathrooms: "",
-        diningRooms: "",
-        specialRooms: "",
-        specialRoomsDescription: "",
+        landSize: "",
+        haveCrops: "",
+        crops: "",
+        specialFacts: "",
     });
 
     const inputs = [
@@ -46,9 +44,18 @@ const LandRegistration = () => {
             label: 'Location',
             require: false,
         },
-        // Properties for Land Size input field
+        // Properties for duration input field
         {
             id: 4,
+            name: "duration",
+            type: "dropdown",
+            errorMessage: "",
+            label: "Duration to be Managed",
+            require: false,
+        },
+        // Properties for Land Size input field
+        {
+            id: 5,
             name: 'landSize',
             type: 'text',
             errorMessage: 'Land size should be a number and should be in ',
@@ -57,13 +64,13 @@ const LandRegistration = () => {
         },
         // Properties for crops input field
         {
-            id: 5,
+            id: 6,
             name: 'haveCrops',
             label: 'Are there any crops in the land?',
         },
         // properties for crops lising input field
         {
-            id: 6,
+            id: 7,
             name: 'crops',
             inputType: 'textarea',
             errorMessage: '',
@@ -80,6 +87,27 @@ const LandRegistration = () => {
             label: "Special Facts"
         },
         
+    ];
+
+    const durations = [
+        {
+            id: 1,
+            name: '6-months',
+            label: '6 months',
+            checked: false,
+        },
+        {
+            id: 2,
+            name: 'one-year',
+            label: 'One Year',
+            checked: false,
+        },
+        {
+            id: 3,
+            name: 'two-years',
+            label: 'Two Years',
+            checked: false,
+        }
     ];
 
     // Function for handling submit of the form
@@ -139,6 +167,8 @@ const LandRegistration = () => {
                                                 {/* {errorMessage}                                     */}
                                             </span>
                                         </div>
+                                    ) : input.type === "dropdown" ? (
+                                        <Dropdown options={durations} label="Select Duration" />
                                     ) : (
                                         <div></div>
                                     )}  
@@ -158,6 +188,32 @@ const LandRegistration = () => {
                                             please upload relevant documents)</p>
                                         <ProfilePictureUploader />
                                     </div>                                                          
+                                </div>
+
+                                <div class="flex m-10">
+                                    <div class="flex items-center h-5">
+                                        <input
+                                        id="helper-checkbox"
+                                        aria-describedby="helper-checkbox-text"
+                                        type="checkbox"
+                                        value=""
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        ></input>
+                                    </div>
+                                    <div class="ml-2 text-sm">
+                                        <label
+                                        for="helper-checkbox"
+                                        class="font-medium text-gray-900 dark:text-gray-300 text-lg mb-2"
+                                        >
+                                            Request Insurance
+                                        </label>
+                                        <p
+                                        id="helper-checkbox-text"
+                                        class="text-xs font-normal text-gray-500 dark:text-gray-300"
+                                        >
+                                            We highly recommend to take a insurance coverage for your property.
+                                        </p>
+                                    </div>
                                 </div>
                                 
                                 <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
