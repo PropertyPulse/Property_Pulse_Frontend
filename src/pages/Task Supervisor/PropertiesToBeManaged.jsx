@@ -3,9 +3,7 @@ import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
 import UploadAgreement from "./UploadAgreement";
-import PriceList from "./PriceList"
-import SuggestTaskForm from "./SuggestTask";
-import {compareArraysAsSet} from "@testing-library/jest-dom/dist/utils";
+import PriceList from "./PriceList";
 
 const PropertiesToBeManaged = () => {
 
@@ -13,13 +11,13 @@ const PropertiesToBeManaged = () => {
 
     const rows = [
         {owner: 'Anjalee Neelika',
-            id: 'Colombo 06',
+            id: 'P101',
             type: 'House',
             visitStatus: 'Not Visited',
             priceList: 'Not sent',
             legalDocuments: 'Not Uploaded'},
         {owner: 'Thilanka Jayathilake',
-            id: 'Gampaha',
+            id: 'P99',
             type: 'Land',
             visitStatus: 'Visited',
             priceList: 'Sent',
