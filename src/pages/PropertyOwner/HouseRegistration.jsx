@@ -8,6 +8,7 @@ import Dropdown from "../../Components/PropertyOwner/Dropdown";
 
 const HouseRegistration = () => {
   const [values, setValues] = useState({
+    type: "House",
     address: "",
     district: "",
     location: "",
@@ -22,100 +23,107 @@ const HouseRegistration = () => {
   });
 
   const inputs = [
-    // Properties for Address input field
+    // Properties for type input field
     {
-      id: 1,
-      name: "address",
-      type: "text",
-      label: "Address",
-      require: true,
-    },
-    // Properties for District input field
-    {
-      id: 2,
-      name: "district",
-      type: "text",
-      label: "District",
-      require: true,
-    },
-    // Properties for Location input field
-    {
-      id: 3,
-      name: "location",
-      type: "text",
-      errorMessage: "",
-      label: "Location",
-      require: false,
-    },
-    // Properties for duration input field
-    {
+        id: 1,
+        name: "type",
+        type: "text",
+        label: "Type",
+      },
+      // Properties for Address input field
+      {
+        id: 2,
+        name: "address",
+        type: "text",
+        label: "Address",
+        require: true,
+      },
+      // Properties for District input field
+      {
+        id: 3,
+        name: "district",
+        type: "text",
+        label: "District",
+        require: true,
+      },
+      // Properties for Location input field
+      {
         id: 4,
-        name: "duration",
-        type: "dropdown",
+        name: "location",
+        type: "text",
         errorMessage: "",
-        label: "Duration to be Managed",
+        label: "Location",
         require: false,
-    },
-    // Properties for No. of Stories input field
-    {
-      id: 5,
-      name: "stories",
-      type: "text",
-      errorMessage: "No. of stories should be a number",
-      label: "Stories",
-      require: false,
-    },
-    // Properties for No.of Bedrooms input field
-    {
-      id: 6,
-      name: "bedrooms",
-      type: "text",
-      errorMessage: "No. of bedrooms should be a number",
-      label: "No. of Bedrooms",
-      require: false,
-    },
-    // properties for cNo. of Living Rooms input field
-    {
-      id: 7,
-      name: "livingRooms",
-      type: "text",
-      errorMessage: "No. of living rooms should be a number",
-      label: "No. of Living Rooms",
-      require: false,
-    },
-    // Properties for No. of Bathrooms input field
-    {
-      id: 8,
-      name: "bathrooms",
-      type: "text",
-      errorMessage: "No. of bathrooms should be a number",
-      label: "No. of Bathrooms",
-      require: false,
-    },
-    // Properties for No. of Dining Rooms input field
-    {
-      id: 9,
-      name: "diningRooms",
-      type: "text",
-      errorMessage: "",
-      label: "No. of Dining Rooms",
-      require: false,
-    },
-    // Properties for special rooms radio button input field
-    {
-      id: 10,
-      name: "haveSpecialRooms",
-      label: "Are there any special rooms?",
-    },
-    // Properties for special rooms description input field
-    {
-      id: 11,
-      name: "specialRooms",
-      type: "textarea",
-      errorMessage: "",
-      label: "If 'Yes', what are they?",
-      require: false,
-    },
+      },
+      // Properties for duration input field
+      {
+          id: 5,
+          name: "duration",
+          type: "dropdown",
+          errorMessage: "",
+          label: "Duration to be Managed",
+          require: false,
+      },
+      // Properties for No. of Stories input field
+      {
+        id: 6,
+        name: "stories",
+        type: "text",
+        errorMessage: "No. of stories should be a number",
+        label: "Stories",
+        require: false,
+      },
+      // Properties for No.of Bedrooms input field
+      {
+        id: 7,
+        name: "bedrooms",
+        type: "text",
+        errorMessage: "No. of bedrooms should be a number",
+        label: "No. of Bedrooms",
+        require: false,
+      },
+      // properties for cNo. of Living Rooms input field
+      {
+        id: 8,
+        name: "livingRooms",
+        type: "text",
+        errorMessage: "No. of living rooms should be a number",
+        label: "No. of Living Rooms",
+        require: false,
+      },
+      // Properties for No. of Bathrooms input field
+      {
+        id: 9,
+        name: "bathrooms",
+        type: "text",
+        errorMessage: "No. of bathrooms should be a number",
+        label: "No. of Bathrooms",
+        require: false,
+      },
+      // Properties for No. of Dining Rooms input field
+      {
+        id: 10,
+        name: "diningRooms",
+        type: "text",
+        errorMessage: "",
+        label: "No. of Dining Rooms",
+        require: false,
+      },
+      // Properties for special rooms radio button input field
+      {
+        id: 11,
+        name: "haveSpecialRooms",
+        label: "Are there any special rooms?",
+      },
+      // Properties for special rooms description input field
+      {
+        id: 12,
+        name: "specialRooms",
+        type: "textarea",
+        errorMessage: "",
+        label: "If 'Yes', what are they?",
+        require: false,
+      },
   ];
 
   const appliances = [
