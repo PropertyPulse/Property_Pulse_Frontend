@@ -25,7 +25,7 @@ const UpcomingTasks= () => {
                     location: 'Hikkaduwa',
                     taskID: 'T912',
                     task: 'Trim grass',
-                    status: 'Accepted with Feedback',},
+                    status: 'Pending',},
 
                 {propertyID: 'P89',
                     location: 'Panadura',
@@ -221,9 +221,11 @@ const UpcomingTasks= () => {
                                             </button>
                                         </td>
                                     ) : (<td><button></button></td>)}
-                                    {(row.status === 'Accepted') ? (
+                                    {(row.status === 'Declined') ? (
                                         <td className="px-6 py-3">
-                                            <RiWechatFill className='text-secondary-gray text-2xl cursor-pointer' />
+                                            <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                                Reschedule
+                                            </button>
                                         </td>
                                     ) : (<td><button></button></td>)}
                                     {(row.status === 'Accepted') ? (
