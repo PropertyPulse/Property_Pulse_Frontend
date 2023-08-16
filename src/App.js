@@ -73,6 +73,8 @@ import Poproperties from './pages/PropertyOwner/Poproperties';
 import Potask from './pages/PropertyOwner/Potask';
 import PoPayment from './pages/PropertyOwner/PoPayment';
 import PoReport from './pages/PropertyOwner/PoReport';
+import OngoingTasksPO from './pages/PropertyOwner/OngoingTasksPO';
+import ViewOngoingTask from './pages/PropertyOwner/ViewOngoingTask';
 
 function App() {
     return (
@@ -161,12 +163,15 @@ function App() {
                 {/* property Owner thila */}
                 <Route path="po" element={<PropertyOwnerdb />}>
                     <Route path="dashboard" element={<PoDashboard />} />
+                    <Route path="dashboard/view-monthly-report/:id" element={<ViewMonthlyReport />} />
+                    <Route path="dashboard/ongoing-tasks" element={<OngoingTasksPO />} />
+                    <Route path='dashboard/ongoing-tasks/view-ongoing-task/:propertyId/:taskId' element={<ViewOngoingTask />} />
                     <Route path="properties" element={<Poproperties />} />
                     <Route path="task" element={<Potask />} />
                     <Route path="payment" element={<PoPayment />} />
                     <Route path="reports" element={<PoReport />} />
                     <Route path="land-registration" element={<LandRegistration />} />
-                <Route path="house-registration" element={<HouseRegistration />} />
+                    <Route path="house-registration" element={<HouseRegistration />} />
                 </Route>
 
 

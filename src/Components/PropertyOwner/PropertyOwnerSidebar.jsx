@@ -7,6 +7,7 @@ import { FaBars } from 'react-icons/fa';
 import dashboardIcon from '../../Assets/Icons/dashboard-icon.png';
 import propertiesIcon from '../../Assets/Icons/properties-icon.png';
 import tasksIcon from '../../Assets/Icons/tasks-icon.png';
+import paymentsIcon from '../../Assets/Icons/payments-icon.png';
 import taskApprovalsIcon from '../../Assets/Icons/task-approvals-icon.png';
 import logo from '../../Assets/logo.png';
 import {HiOutlineLogout} from "react-icons/hi";
@@ -22,7 +23,7 @@ const PropertyOwnerSidebar = () => {
       url: '/po/dashboard', // Example URL, replace with actual URLs
     },
     {
-      title: 'Property',
+      title: 'Properties',
       icon: propertiesIcon,
       url: '/po/properties', // Example URL, replace with actual URLs
     },
@@ -32,15 +33,15 @@ const PropertyOwnerSidebar = () => {
       url: '/po/task', // Example URL, replace with actual URLs
     },
     {
-      title: 'Payment',
-      icon: taskApprovalsIcon,
+      title: 'Payments',
+      icon: paymentsIcon,
       url: '/po/payment', // Example URL, replace with actual URLs
     },
     {
-        title: 'Report',
+        title: 'Reports',
         icon: taskApprovalsIcon,
         url: '/po/reports', // Example URL, replace with actual URLs
-      },
+    },
   ];
 
   useEffect(() => {
