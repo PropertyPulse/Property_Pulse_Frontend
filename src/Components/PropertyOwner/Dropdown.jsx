@@ -18,7 +18,7 @@ const Dropdown = ({label, options, searchEnable}) => {
         <div>
             <div 
                 onClick={() => setOpen(!open)}
-                className={`bg-white w-56 p-2 flex items-center justify-between rounded text-sm cursor-pointer ${!selected && "text-gray-700"}`}>
+                className={`bg-white w-64 p-2 flex items-center justify-between rounded text-sm cursor-pointer border-2 ${!selected && "text-gray-400 pl-4"}`}>
                 {selected 
                     ? selected.length > 25 
                         ? selected.substring(0, 25) + '...'
@@ -27,7 +27,7 @@ const Dropdown = ({label, options, searchEnable}) => {
                 }
                 <BsChevronDown size={12} className={`ml-5 ${open && "rotate-180"}`} />
             </div>
-            <ul className={`bg-white mt-2 rounded overflow-y-auto ${open ? 'max-h-60' : 'max-h-0'}`}>
+            <ul className={`bg-white rounded overflow-y-auto ${open ? 'max-h-60 border mt-2' : 'max-h-0'}`}>
                 <div className={`flex items-center justify-center px-2 sticky top-0 bg-white ${searchEnable ? '' : 'hidden'}`}>
                     <BsSearch size={12} className='text-gray-500' />
                     <input 

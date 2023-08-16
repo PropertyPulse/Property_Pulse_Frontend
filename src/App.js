@@ -54,23 +54,30 @@ import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
 import TasksListPO from './pages/PropertyOwner/TasksListPO';
 import Chat from "./pages/Task Supervisor/Chat";
-import TopManager from "./pages/TopManager/TopManager"; 
+import TopManager from "./pages/TopManager/TopManager";
 import Complaints from "./pages/TopManager/Complaints";
-import TopManagerDashboard  from './pages/TopManager/TopManagerDashboard';
-import ValuationExpert from  "./pages/ValuationExpert/ValuationExpert"
+import TopManagerDashboard from './pages/TopManager/TopManagerDashboard';
+import ValuationExpert from "./pages/ValuationExpert/ValuationExpert"
 import ViewReportSubmissions from "./pages/ValuationExpert/SubmittedValuationReports";
-import  ValuationDashboard from "./pages/ValuationExpert/ValuationDashboard";
+import ValuationDashboard from "./pages/ValuationExpert/ValuationDashboard";
 import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmissions';
 import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
 import TasksOfProperties from './pages/TopManager/TasksOfProperties';
 import showTaskMangers from './pages/TopManager/showTaskManagers';
 import LegalDocuments from "./pages/Task Supervisor/LegalDocuments";
 import MonthlyReports from "./pages/Task Supervisor/MonthlyReports";
+import VisitedProperties from "./pages/Task Supervisor/VisitedProperties";
+import PropertyOwnerdb from './pages/PropertyOwner/PropertyOwnerdb';
+import PoDashboard from './pages/PropertyOwner/PoDashboard';
+import Poproperties from './pages/PropertyOwner/Poproperties';
+import Potask from './pages/PropertyOwner/Potask';
+import PoPayment from './pages/PropertyOwner/PoPayment';
+import PoReport from './pages/PropertyOwner/PoReport';
 
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<Layout />}>
                 {/*Public router */}
                 <Route path="/" element={<PropertyPulseLanding />} />
                 <Route path="/contact-us" element={<ContactUs />} />
@@ -90,34 +97,37 @@ function App() {
                 </Route>
 
                 <Route path="fm" element={<FinancialManager />} >
-                    <Route path="dashboard" element={<FmDashboard/>} />
-                    <Route path="received" element={<FmRecieved/>} />
+                    <Route path="dashboard" element={<FmDashboard />} />
+                    <Route path="received" element={<FmRecieved />} />
                 </Route>
 
 
                 {/* Top Manager Routes */}
                 <Route path="tm" element={<TopManager />}>
-                   <Route path="view-complaints/:id" element={<Complaints />} />
-                   <Route path="dashboard" element={<TopManagerDashboard />} />
-                   <Route path="view-registered-properties" element={<TaskAssignmentsProperties/>} />
-                   <Route path="view-tasks" element={<TasksOfProperties/>} />
-                   <Route path="view-tasks-supervisors" element={<showTaskMangers />} />
+                    <Route path="view-complaints/:id" element={<Complaints />} />
+                    <Route path="dashboard" element={<TopManagerDashboard />} />
+                    <Route path="view-registered-properties" element={<TaskAssignmentsProperties />} />
+                    <Route path="view-tasks" element={<TasksOfProperties />} />
+                    <Route path="view-tasks-supervisors" element={<showTaskMangers />} />
                 </Route>
 
-               {/* Valuation Expert  Routes */}
-               <Route path="ve" element={<ValuationExpert />} >
-                   <Route path="dashboard" element={<ValuationDashboard />} />
-                   <Route path="view-report-submissions" element={<ViewReportSubmissions />} />
-                   <Route path="pending-report-submissions" element={<PendingReportSubmissions />} />
+
+                {/* Valuation Expert  Routes */}
+                <Route path="ve" element={<ValuationExpert />} >
+                    <Route path="dashboard" element={<ValuationDashboard />} />
+                    <Route path="view-report-submissions" element={<ViewReportSubmissions />} />
+
+                    <Route path="pending-report-submissions" element={<PendingReportSubmissions />} />
                 </Route>
 
                 {/* Task Supervisor Routes */}
                 <Route path="task-supervisor" element={<TaskSupervisor />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="assigned-properties" element={<AssignedProperties />} />
+                    <Route path="properties-to-be-managed/visited-properties" element={<VisitedProperties />} />
                     {/*<Route path="sample-modal" element={<Modal />} />*/}
                     <Route path="assigned-properties" element={<AssignedProperties />} />
-                    <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
+                    <Route path="properties-to-be-managed/not-visited-properties" element={<PropertiesToBeManaged />} />
                     <Route path="upcoming-tasks" element={<UpcomingTasks />} />
                     <Route path="ongoing-tasks" element={<OngoingTasks />} />
                     <Route path="completed-tasks" element={<CompletedTasks />} />
@@ -130,8 +140,8 @@ function App() {
                 </Route>
 
 
-                {/* PROPERTY OWNER ROUTES */}
-                <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
+                {/* PROPERTY OWNER ROUTES OLD */}
+                {/* <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
                 <Route path="property-owner" element={<PropertyOwnerDashboard />} />
                 <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
                 <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
@@ -140,17 +150,29 @@ function App() {
                 <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
                 <Route path="property-owner/land-registration" element={<LandRegistration />} />
                 <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-                {/* <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} /> */}
+                <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} />
                 <Route path="property-owner/payments" element={<AllPaymentsPO />} />
                 <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
                 <Route path="property-owner/land-registration/schedule-tasks" element={<TasksListPO />} />
                 <Route path="property-owner/payments" element={<AllPaymentsPO />} />
                 <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
-                <Route path="property-owner/schedule-tasks" element={<TasksListPO />} />
+                <Route path="property-owner/schedule-tasks" element={<TasksListPO />} /> */}
+
+                {/* property Owner thila */}
+                <Route path="po" element={<PropertyOwnerdb />}>
+                    <Route path="dashboard" element={<PoDashboard />} />
+                    <Route path="properties" element={<Poproperties />} />
+                    <Route path="task" element={<Potask />} />
+                    <Route path="payment" element={<PoPayment />} />
+                    <Route path="reports" element={<PoReport />} />
+                    <Route path="land-registration" element={<LandRegistration />} />
+                <Route path="house-registration" element={<HouseRegistration />} />
+                </Route>
+
 
                 {/*    Protected Routes*/}
 
-                <Route element={<PersistLogin/>}>
+                <Route element={<PersistLogin />}>
                     <Route element={<RequireAuth allowedRoles='MPC' />}>
                         <Route path="manpower-company" element={<ManPowerDashboard />}>
                             <Route path="dashboard" element={<MpDashboard />} />
@@ -163,18 +185,18 @@ function App() {
                     </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="financial-manager" element={<FinancialManager />} >
-                            <Route path="dashboard" element={<FmDashboard/>} />
-                            <Route path="received" element={<FmRecieved/>} />
+                            <Route path="dashboard" element={<FmDashboard />} />
+                            <Route path="received" element={<FmRecieved />} />
                         </Route>
                     </Route>
                     <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
-                        <Route path="po" element={<PropertyOwner/>} />
+                        <Route path="po" element={<PropertyOwner />} />
                     </Route>
                 </Route>
 
 
 
-                <Route path="*" element={<NotFound/>}/>
+                <Route path="*" element={<NotFound />} />
             </Route>
 
         </Routes>
