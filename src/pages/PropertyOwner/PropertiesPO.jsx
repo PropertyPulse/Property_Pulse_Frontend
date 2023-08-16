@@ -30,10 +30,11 @@ const PropertiesPO = () => {
   ];
 
   return (
-    <div className="w-full h-[100vh]">
-      <PropertyType visible={showModal} onClose={handleOnClose} />
-      <div className="w-full h-[calc(100vh-4.5rem)] p-10">
+    <div className="w-full h-[calc(100vh-4.5rem)]">
+      
+      <div className="w-full p-10">
         <div className="w-full flex justify-between items-center">
+          <PropertyType visible={showModal} onClose={handleOnClose} />
           <h1 className="text-2xl font-semibold">Properties</h1>
           <button
             type="button"
@@ -59,10 +60,10 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[480px] p-10">
+              <div className="w-full h-[380px] p-10 overflow-auto">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
-                    <thead className="bg-[#EDF2FB]">
+                    <thead className="bg-[#d5e4ff]">
                       <tr>
                         <th
                           scope="col"
