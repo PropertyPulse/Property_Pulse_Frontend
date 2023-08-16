@@ -3,15 +3,20 @@ import NavbarWithoutSidebar from "../../Components/Common/NavbarWithoutSidebar";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PropertyType from "./PropertyType";
 import { useState } from "react";
+import MakeComplaints from "./MakeComplaints";
 
 const PropertyOwnerDashboard = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
 
+  const [showComplainModal, setShowComplainModal] = useState(false);
+  const handleOnCloseComp = () => setShowComplainModal(false);
+
   return (
     <div className="w-full bg-[#EDF2FB]">
       <PropertyType visible={showModal} onClose={handleOnClose} />
+      <MakeComplaints visible={showComplainModal} onClose={handleOnCloseComp} /> 
       <div className="w-full">
         {/* <DashboardPO />            */}
 
@@ -103,23 +108,30 @@ const PropertyOwnerDashboard = () => {
             </div>
 
             <div className="upcomin-tasks w-full h-[280px] bg-white py-5 px-7 rounded-md shadow-md border border-[#EDF2FB]">
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between mb-1">
                     <h1 className="text-lg font-semibold">Ongoing Tasks</h1>
+                    <div>
+                        <Link
+                            to={{
+                                pathname: 'ongoing-tasks',
+                            }}
+                        >
+                            <button className="w-fit h-fit px-2.5 py-2 bg-primary-blue-800 text-xs text-white rounded-lg hover:bg-primary-blue-800/80 hover:-translate-y-0.5 transition duration-200">
+                                View All Ongoing Tasks
+                            </button>
+                        </Link>
+                    </div>
                     {/* <a href='property-owner/upcoming-tasks' className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View All Tasks</a> */}
                 </div>
 
                 <div className="w-full h-44 overflow-auto ">
+                    
                     <div className="overflow-auto">
                         <div className="tableRow text-sm w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#EDF2FB]">
                             <div>P001</div>
                             <div>T001</div>
                             <div className="w-64 text-center">Cleaning the house</div>
                             <div>2023/08/12</div>
-                            <div>
-                                <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
-                                    View
-                                </button>
-                            </div>
                         </div>
                         <div className="tableRow text-sm w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#D7E3FC]">
                             <div>P002</div>
@@ -128,25 +140,22 @@ const PropertyOwnerDashboard = () => {
                                 Weeding the flower beds
                             </div>
                             <div>2023/08/12</div>
-                            <div>
-                                <Link
-                                    to={{
-                                        pathname: 'ongoing-tasks',
-                                    }}
-                                >
-                                    <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
-                                        View
-                                    </button>
-                                </Link>
-                            </div>
                         </div>
                     </div>                
                 </div>
             </div>
           </div>
 
-          <div className="w-2/4 min-w-[300px] min-h-full h-fit bg-[#EDF2FB] pt-10 pr-4">
-            <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mb-10 rounded-md shadow-md border border-[#EDF2FB]">
+          <div className="w-2/4 min-w-[300px] min-h-full h-fit bg-[#EDF2FB] pr-4">
+            <div className='text-center mt-3'>  
+                <button 
+                    className='w-full mt-2 bg-primary-blue-800 text-white py-4 px-5 rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300 z-50'
+                    onClick={() => setShowComplainModal(true)}
+                >
+                    Make a complain
+                </button>
+            </div>
+            <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mt-3 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold mx-auto">
                   New Monthly Reports
@@ -186,7 +195,7 @@ const PropertyOwnerDashboard = () => {
               </div>
             </div>
 
-            <div className="due-payments w-full h-[280px] bg-white p-5 rounded-md shadow-md border border-[#EDF2FB]">
+            <div className="due-payments w-full h-[280px] bg-white p-5 mt-3 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold mx-auto">Due Payments</h1>
               </div>

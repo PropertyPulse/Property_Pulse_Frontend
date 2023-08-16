@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import InputText from '../../Components/Common/InputText';
 
-const RequestTask = ({ visible, onClose }) => {
+const MakeComplaints = ({ visible, onClose }) => {
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -11,37 +11,37 @@ const RequestTask = ({ visible, onClose }) => {
     }
 
     const [values, setValues] = useState({
-        task: "",
-        frequency: "",
-        proposedDate: "",
+        title: "",
+        reason: "",
+        description: "",
     });
 
     const inputs = [
         // Properties for Task Description input field
         {
             id: 1,
-            name: 'task',
-            type: 'textarea',
-            errorMessage: "",
-            label: 'Task Description',
-            required: true,
+            name: 'title',
+            type: 'text',
+            errorMessage: '',
+            label: 'Title',
+            required: false,
             styles: 'w-full max-h-[300px]',
         },
         // Properties for Frequency input field
         {
             id: 2,
-            name: 'dropdown',
-            type: 'text',
+            name: 'reason',
+            type: 'textarea',
             errorMessage: "",
-            label: 'Frequency',
+            label: 'Reason for Complaint',
         },
         // Properties for Proposed Start Date input field
         {
             id: 3,
-            name: 'proposedDate',
-            type: 'date',
+            name: 'description',
+            type: 'textarea',
             errorMessage: "",
-            label: 'Proposed Start Date',
+            label: 'Any Details',
         },
     ]; 
 
@@ -56,14 +56,14 @@ const RequestTask = ({ visible, onClose }) => {
 
     return (
         
-        <div id='container' onClick={handleOnClose} className='fixed w-full h-screen z-30 inset-0 bg-[#ADB5BD]
+        <div id='container' onClick={handleOnClose} className='fixed w-full h-screen z-50 inset-0 bg-[#ADB5BD]
         bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className="max-w-[500px] w-full h-fit bg-white p-10 pt-5 rounded border-3 border-[#E2EAFC]">
                 <form className='w-full'>
                     {/* <button onClick={handleOnClose} className='float-right mb-5'>
                         <AiOutlineClose />
                     </button> */}
-                    <h2 className='text-2xl text-center font-semibold mt-5 mb-10'>Request a New Task</h2>
+                    <h2 className='text-2xl text-center font-semibold mt-5 mb-10'>Make A Complaint</h2>
                     
                         {inputs.map((input) => (
                             <div className='flex-auto w-full mb-4'>
@@ -75,7 +75,7 @@ const RequestTask = ({ visible, onClose }) => {
                                             id={input.name}
                                             name={input.name}
                                             placeholder=''
-                                            className='peer h-44 items-center w-full min-w-[200px] border-2 border-gray-200 text-gray-800 focus:outline-none focus:ring-0 focus:border-[#2e8a99]/70
+                                            className='peer h-36 items-center w-full min-w-[200px] border-2 border-gray-200 text-gray-800 focus:outline-none focus:ring-0 focus:border-[#2e8a99]/70
                                             rounded-md px-3 hover:border-[#2e8a99]/70 placeholder-transparent text-sm'
                                             onChange={onChange}
                                             required
@@ -94,12 +94,7 @@ const RequestTask = ({ visible, onClose }) => {
                             </div>
                         ))}
                     
-
-                    {/* <a href={path} className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right cursor-pointer'>
-                        <div className='text-md'>Continue</div>
-                        <BsArrowRightCircle className='w-8 h-8 bg-white rounded-full' />
-                    </a> */}
-                    <button className='w-full h-fit bg-primary-blue-800 text-white py-3 mt-10 rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request</button>
+                    <button className='w-full h-fit bg-primary-blue-800 text-white py-3 mt-6 rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Complain</button>
 
                 </form> 
             </div>
@@ -109,4 +104,4 @@ const RequestTask = ({ visible, onClose }) => {
     )
 }
 
-export default RequestTask
+export default MakeComplaints
