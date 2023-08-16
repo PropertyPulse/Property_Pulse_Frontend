@@ -1,11 +1,43 @@
-import React from "react";
+import React, {useEffect} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
 import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
+
 
 const PropertiesToBeManaged = () => {
+    //
+    // const [{auth}] = useAuth()
+    // const axiosPrivate = useAxiosPrivate();
+    //
+    // console.log("fjdiafo")
+    // useEffect(() => {
+    //     // const fetchData = async () => {
+    //     //
+    //     //
+    //     //     try {
+    //     //         const response = await axiosPrivate.post("/api/v1/mpc/getallemployees", {
+    //     //             email: auth.user
+    //     //         });
+    //     //
+    //     //         setTableData(response.data);
+    //     //         console.log(response.data);
+    //     //     } catch (error) {
+    //     //         console.error("Error fetching data:", error);
+    //     //
+    //     //     }
+    //     //
+    //     //
+    //     // };
+    //     //
+    //     // fetchData();
+    //     console.log(auth)
+    // }, []);
+
+
 
     const NotVisitedHeadings = ['Owner', 'Property ID', 'Type', 'Location', 'Visit'];
 
@@ -38,6 +70,7 @@ const PropertiesToBeManaged = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
+
                 Swal.fire(
                     'Done!',
                     'Property added to the visited list!',
