@@ -125,8 +125,8 @@ const LandRegistration = () => {
 
 
     return (
-        <div className='w-full h-[100vh'> 
-            <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5'>
+        <div className='w-full '> 
+            <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5 overflow-auto'>
                 <h1 className='text-2xl font-semibold'>Land Registration</h1>
 
                 <div className='w-full h-full'>

@@ -10,13 +10,9 @@ const PropertyOwnerDashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
 
-  const [showComplainModal, setShowComplainModal] = useState(false);
-  const handleOnCloseComp = () => setShowComplainModal(false);
-
   return (
     <div className="w-full bg-[#EDF2FB]">
-      <PropertyType visible={showModal} onClose={handleOnClose} />
-      <MakeComplaints visible={showComplainModal} onClose={handleOnCloseComp} /> 
+      <PropertyType visible={showModal} onClose={handleOnClose} /> 
       <div className="w-full">
         {/* <DashboardPO />            */}
 
@@ -147,15 +143,7 @@ const PropertyOwnerDashboard = () => {
           </div>
 
           <div className="w-2/4 min-w-[300px] min-h-full h-fit bg-[#EDF2FB] pr-4">
-            <div className='text-center mt-3'>  
-                <button 
-                    className='w-full mt-2 bg-primary-blue-800 text-white py-4 px-5 rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300 z-50'
-                    onClick={() => setShowComplainModal(true)}
-                >
-                    Make a complain
-                </button>
-            </div>
-            <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mt-3 rounded-md shadow-md border border-[#EDF2FB]">
+            <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mt-10 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold mx-auto">
                   New Monthly Reports
@@ -195,7 +183,7 @@ const PropertyOwnerDashboard = () => {
               </div>
             </div>
 
-            <div className="due-payments w-full h-[280px] bg-white p-5 mt-3 rounded-md shadow-md border border-[#EDF2FB]">
+            <div className="due-payments w-full h-[280px] bg-white p-5 mt-10 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold mx-auto">Due Payments</h1>
               </div>

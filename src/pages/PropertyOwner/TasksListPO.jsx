@@ -82,11 +82,8 @@ const TasksListPO = () => {
     ];
 
     return (
-        <div className='w-full h-[100vh] bg-background-blue flex overflow-hidden'>
-            <div className='w-full'>
-                <div className='w-full z-40'>
-                    <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-                </div>  
+        <div className='w-full h-[calc(100vh-4.5rem)] flex'>
+            <div className='w-full overflow-auto'>  
                 
                 <section className='h-[calc(100vh-4.5rem)] w-full flex overflow-auto z-10'>
                     <div className='w-full min-h-full h-fit p-10'>
