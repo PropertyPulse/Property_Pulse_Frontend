@@ -200,6 +200,7 @@ function App() {
                     <Route path="task" element={<Potask />} />
                     <Route path="payment" element={<PoPayment />} />
                     <Route path="reports" element={<PoReport />} />
+                    <Route path="documents" element={<PropertyDocuments />} />
                     <Route path="land-registration" element={<LandRegistration />} />
                     <Route path="house-registration" element={<HouseRegistration />} />
                 </Route>

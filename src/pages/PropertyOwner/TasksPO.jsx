@@ -10,11 +10,11 @@ const TasksPO = () => {
   const handleOnClose = () => setShowModal(false);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-[100vh] fixed flex flex-col">
       <RequestTask visible={showModal} onClose={handleOnClose} />
-      <div className="flex-grow overflow-y-auto">
+      <div className="flex-grow overflow-auto">
         <div className="">
-          <div className="w-full overflow-auto p-4 sm:p-10">
+          <div className="w-full h-full overflow-auto p-4 sm:p-10">
             <div className="flex justify-between sticky px-10">
               <h1 className="text-2xl font-semibold">Related Tasks for {id}</h1>
               <button
