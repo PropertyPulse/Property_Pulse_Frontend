@@ -68,6 +68,10 @@ const DashboardPO = () => {
             </div>
 
             <div className='w-2/4 min-w-[300px] min-h-full h-fit bg-[#EDF2FB] p-10'>
+                <div>
+                    
+                </div>
+
                 <div className="monthly-reports w-full h-[280px] bg-white p-5 mb-10 rounded-md shadow-xl border border-[#EDF2FB]">
                     <div className='w-full flex justify-between'>
                         <h1 className='text-lg font-semibold mx-auto'>New Monthly Reports</h1>
