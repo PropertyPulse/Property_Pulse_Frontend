@@ -14,62 +14,56 @@ const InsuranceRequestTable = ({ searchTerm, pStatus }) => {
     {
       propertyId: "10101010",
       location: "Maharagama",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      quatationId: "Q1254345",
+      type: "House",
+      name: "Kavishka",
       response: "Accepted",
+      details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      quatationId: "q1224345",
+      type: "House",
+      name: "Kavishka",
       response: "Accepted",
+      details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      quatationId: "Q1254378",
+      type: "House",
+      name: "Kavishka",
       response: "Rejected",
+      details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      quatationId: "Q12543345",
+      type: "House",
+      name: "Kavishka",
       response: "Rejected",
+      details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      quatationId: "Q12543455",
+      type: "House",
+      name: "Kavishka",
       response: "Rejected",
+      details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      quatationId: "Q1266345",
+      type: "House",
+      name: "Kavishka",
       response: "Accepted",
+      details: "0711234567",
     },
   ];
 
@@ -101,13 +95,11 @@ const InsuranceRequestTable = ({ searchTerm, pStatus }) => {
         <Table striped>
           <Table.Head>
             <Table.HeadCell>Property Id</Table.HeadCell>
+            <Table.HeadCell>Quatation Id</Table.HeadCell>
+            <Table.HeadCell>Type</Table.HeadCell>
             <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task Id</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Payment</Table.HeadCell>
-            <Table.HeadCell>Finished Date</Table.HeadCell>
-            <Table.HeadCell>Assigned Person</Table.HeadCell>
-            <Table.HeadCell>Payment Status</Table.HeadCell>
+            <Table.HeadCell>Owner Name</Table.HeadCell>
+            <Table.HeadCell>Contact No</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Action</span>
             </Table.HeadCell>
@@ -128,19 +120,12 @@ const InsuranceRequestTable = ({ searchTerm, pStatus }) => {
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                     {rowData.propertyId}
                   </Table.Cell>
-                  <Table.Cell>
-                    <a
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                      href="/tables"
-                    >
-                      {rowData.location}
-                    </a>
-                  </Table.Cell>
-                  <Table.Cell>{rowData.taskid}</Table.Cell>
-                  <Table.Cell>{rowData.task}</Table.Cell>
-                  <Table.Cell>{rowData.payment}</Table.Cell>
-                  <Table.Cell>{rowData.finishedDate}</Table.Cell>
-                  <Table.Cell>{rowData.assignedPerson}</Table.Cell>
+                  
+                  <Table.Cell>{rowData.quatationId}</Table.Cell>
+                  <Table.Cell>{rowData.type}</Table.Cell>
+                  <Table.Cell>{rowData.location}</Table.Cell>
+                  <Table.Cell>{rowData.name}</Table.Cell>
+                  <Table.Cell>{rowData.details}</Table.Cell>
                   <Table.Cell>
                     <div className="flex items-center justify-center">
                       <Badge
@@ -175,7 +160,8 @@ const InsuranceRequestTable = ({ searchTerm, pStatus }) => {
                         <div className="text-center">
                           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
                           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                            Insurance Process Completed?Do you want to Closed the Request?
+                            Insurance Process Completed?Do you want to Closed
+                            the Request?
                           </h3>
                           <div className="flex justify-center gap-4">
                             <Button
