@@ -71,24 +71,32 @@ import ManageTs from './pages/TopManager/ManageTs';
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<Layout />}>
                 {/*Public routes */}
                 <Route path="/" element={<PropertyPulseLanding />} />
                 <Route path="/contact-us" element={<ContactUs />} />
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
-                <Route path="/unauthorized" element={<Unauthorized/>}/>
+                <Route path="/unauthorized" element={<Unauthorized />} />
 
-{/* top manager newly added */}
-<Route path="tm" element={<TopManager />} >
-                <Route path="dashboard" element={<TmDashboard />} />
-                <Route path="new-property" element={<NewProperty />} />
-                <Route path="valuation-reports" element={<ReceivedValuation />} />
-                <Route path="manage-task-supervisor" element={<ManageTs />} />
-                <Route path="complain" element={<Complaints />} />
-            </Route>
+                {/* top manager newly added */}
+                <Route path="tm" element={<TopManager />} >
+                    <Route path="dashboard" element={<TmDashboard />} />
+                    <Route path="new-property" element={<NewProperty />} />
+                    <Route path="valuation-reports" element={<ReceivedValuation />} />
+                    <Route path="manage-task-supervisor" element={<ManageTs />} />
+                    <Route path="complain" element={<Complaints />} />
+                </Route>
 
-            {/* finacence manager */}
+                {/* finacence manager */}
+                <Route>
+                    <Route path="ins" element={<IsDashboard />} >
+                        <Route path="quatation-request" element={<QuatationRequest />} />
+                        <Route path="ongoin-quatation" element={<OngoingQuation />} />
+                        <Route path="insurance-request" element={<InsuranceRequest />} />
+                    </Route>
+
+                </Route>
 
 
                 {/* insurance Agent */}
@@ -96,7 +104,7 @@ function App() {
 
                 {/*    Protected Routes*/}
 
-                <Route element={<PersistLogin/>}>
+                <Route element={<PersistLogin />}>
                     <Route element={<RequireAuth allowedRoles='MPC' />}>
                         <Route path="manpower-company" element={<ManPowerDashboard />}>
                             <Route path="dashboard" element={<MpDashboard />} />
@@ -136,12 +144,12 @@ function App() {
                     </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="financial-manager" element={<FinancialManager />} >
-                            <Route path="dashboard" element={<FmDashboard/>} />
-                            <Route path="received" element={<FmRecieved/>} />
+                            <Route path="dashboard" element={<FmDashboard />} />
+                            <Route path="received" element={<FmRecieved />} />
                         </Route>
                     </Route>
                     <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
-                        <Route path="po" element={<PropertyOwner/>} />
+                        <Route path="po" element={<PropertyOwner />} />
                         <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
                         <Route path="property-owner" element={<PropertyOwnerDashboard />} />
                         <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
@@ -156,26 +164,26 @@ function App() {
                     </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="fm" element={<FinancialManager />} >
-                            <Route path="dashboard" element={<FmDashboard/>} />
+                            <Route path="dashboard" element={<FmDashboard />} />
                             <Route path="receivable-payment" element={<ReceivablePayment />} />
                             <Route path="payble-payment" element={<PayblePayment />} />
                             <Route path="transaction-history" element={<TransactionHistory />} />
                         </Route>
 
                     </Route>
-                    <Route element={<RequireAuth allowedRoles='INSURANCEMANAGER' />}>
+                    {/* <Route element={<RequireAuth allowedRoles='INSURANCEMANAGER' />}>
                         <Route path="ins" element={<IsDashboard />} >
                             <Route path="quatation-request" element={<QuatationRequest/>} />
                             <Route path="ongoin-quatation" element={<OngoingQuation />} />
                             <Route path="insurance-request" element={<InsuranceRequest />} />
                         </Route>
 
-                    </Route>
+                    </Route> */}
                 </Route>
 
 
 
-                <Route path="*" element={<NotFound/>}/>
+                <Route path="*" element={<NotFound />} />
             </Route>
 
         </Routes>

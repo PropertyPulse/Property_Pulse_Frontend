@@ -12,11 +12,11 @@ import item5 from "../../Assets/imageSlider/item6.jpg";
 export default function SlidingInterval() {
   return (
     <Carousel>
-      <img alt="image" src={item1} />
-            <img alt="image" src={item2} />
-            <img alt="image" src={item3} />
-            <img alt="image" src={item4} />
-            <img alt="image" src={item5} />
+      <img src={item1} />
+            <img src={item2} />
+            <img src={item3} />
+            <img src={item4} />
+            <img src={item5} />
     </Carousel>
   )
 }

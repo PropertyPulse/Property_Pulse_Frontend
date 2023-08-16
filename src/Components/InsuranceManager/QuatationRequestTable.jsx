@@ -1,9 +1,7 @@
-import { Table, Button, Modal} from "flowbite-react";
+import { Table, Button, Modal } from "flowbite-react";
 import React, { useState } from "react";
 import { Pagination } from "flowbite-react";
-import { HiOutlineExclamationCircle } from 'react-icons/hi'; 
-
-
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const QuatationRequestTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
@@ -16,49 +14,43 @@ const QuatationRequestTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Kavishka",
       details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Kaduwela",
-      task: "Repair water pipe",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Deepamal",
       details: "0711234647",
     },
     {
       propertyId: "10101010",
       location: "Waliweriya",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "Land",
+      name: "Deepamal",
       details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Colombo",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Kavisha",
       details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "Land",
+      name: "Surani",
       details: "0711234647",
     },
     {
       propertyId: "10101010",
       location: "Colombo",
-      task: "Clean the land",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Shashika",
       details: "0711234567",
     },
     // Add more data objects for other rows...
@@ -90,11 +82,10 @@ const QuatationRequestTable = ({ searchTerm }) => {
         <Table striped>
           <Table.Head>
             <Table.HeadCell>Property Id</Table.HeadCell>
+            <Table.HeadCell>Type</Table.HeadCell>
             <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Estimated Price</Table.HeadCell>
-            <Table.HeadCell>Schedule Date</Table.HeadCell>
-            <Table.HeadCell>More info</Table.HeadCell>
+            <Table.HeadCell>Owner Name</Table.HeadCell>
+            <Table.HeadCell>Contact No</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Action</span>
             </Table.HeadCell>
@@ -115,34 +106,24 @@ const QuatationRequestTable = ({ searchTerm }) => {
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                     {rowData.propertyId}
                   </Table.Cell>
-                  <Table.Cell>
-                    <a
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                      href="/tables"
-                    >
-                      {rowData.location}
-                    </a>
-                  </Table.Cell>
-                  <Table.Cell>{rowData.task}</Table.Cell>
-                  <Table.Cell>{rowData.price + ".00"}</Table.Cell>
-                  <Table.Cell>{rowData.scheduleDate}</Table.Cell>
-
+                  <Table.Cell>{rowData.type}</Table.Cell>
+                  <Table.Cell>{rowData.location}</Table.Cell>
+                  <Table.Cell>{rowData.name}</Table.Cell>
                   <Table.Cell>{rowData.details}</Table.Cell>
                   <Table.Cell>
-
                     <div className="flex space-x-4">
-                    <Button
-                      className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
-                      onClick={() => props.setOpenModal("accept")}
-                    >
-                      Accept
-                    </Button>
-                    <Button
-                      className="font-medium bg-error-red hover:bg-error-red-hover"
-                      onClick={() => props.setOpenModal("reject")}
-                    >
-                      Reject
-                    </Button>
+                      <Button
+                        className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
+                        onClick={() => props.setOpenModal("accept")}
+                      >
+                        Accept
+                      </Button>
+                      <Button
+                        className="font-medium bg-error-red hover:bg-error-red-hover"
+                        onClick={() => props.setOpenModal("reject")}
+                      >
+                        Reject
+                      </Button>
                     </div>
                     <Modal
                       show={props.openModal === "accept"}
@@ -186,7 +167,8 @@ const QuatationRequestTable = ({ searchTerm }) => {
                         <div className="text-center">
                           <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
                           <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                            Are you sure you want to reject this quatation request?
+                            Are you sure you want to reject this quatation
+                            request?
                           </h3>
                           <div className="flex justify-center gap-4">
                             <Button

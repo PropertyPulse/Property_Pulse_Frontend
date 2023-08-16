@@ -1,6 +1,6 @@
-import { Table, Button, Modal} from "flowbite-react";
+import { Table, Button, Modal } from "flowbite-react";
 import React, { useState } from "react";
-import { Label} from "flowbite-react";
+import { Label } from "flowbite-react";
 import { Pagination } from "flowbite-react";
 import { FileInput } from "flowbite-react";
 
@@ -15,49 +15,43 @@ const OngoingQuatationTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Kavishka",
       details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Kaduwela",
-      task: "Repair water pipe",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Deepamal",
       details: "0711234647",
     },
     {
       propertyId: "10101010",
       location: "Waliweriya",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "Land",
+      name: "Deepamal",
       details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Colombo",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Kavisha",
       details: "0711234567",
     },
     {
       propertyId: "10101010",
       location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "Land",
+      name: "Surani",
       details: "0711234647",
     },
     {
       propertyId: "10101010",
       location: "Colombo",
-      task: "Clean the land",
-      price: "10000",
-      scheduleDate: "2023/09/10",
+      type: "House",
+      name: "Shashika",
       details: "0711234567",
     },
     // Add more data objects for other rows...
@@ -89,11 +83,10 @@ const OngoingQuatationTable = ({ searchTerm }) => {
         <Table striped>
           <Table.Head>
             <Table.HeadCell>Property Id</Table.HeadCell>
+            <Table.HeadCell>Type</Table.HeadCell>
             <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Estimated Price</Table.HeadCell>
-            <Table.HeadCell>Schedule Date</Table.HeadCell>
-            <Table.HeadCell>More info</Table.HeadCell>
+            <Table.HeadCell>Owner Name</Table.HeadCell>
+            <Table.HeadCell>Contact No</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Action</span>
             </Table.HeadCell>
@@ -114,18 +107,9 @@ const OngoingQuatationTable = ({ searchTerm }) => {
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                     {rowData.propertyId}
                   </Table.Cell>
-                  <Table.Cell>
-                    <a
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                      href="/tables"
-                    >
-                      {rowData.location}
-                    </a>
-                  </Table.Cell>
-                  <Table.Cell>{rowData.task}</Table.Cell>
-                  <Table.Cell>{rowData.price + ".00"}</Table.Cell>
-                  <Table.Cell>{rowData.scheduleDate}</Table.Cell>
-
+                  <Table.Cell>{rowData.type}</Table.Cell>
+                  <Table.Cell>{rowData.location}</Table.Cell>
+                  <Table.Cell>{rowData.name}</Table.Cell>
                   <Table.Cell>{rowData.details}</Table.Cell>
                   <Table.Cell>
                     <Button
@@ -152,9 +136,23 @@ const OngoingQuatationTable = ({ searchTerm }) => {
                               Then you can procede the insurance Process"
                               id="file"
                             />
+                            <div className="m-4">
+                              <label
+                                for="first_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Estimated Insurance amount
+                              </label>
+                              <input
+                                type="number"
+                                id="first_name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Enter the Amount"
+                                required
+                              ></input>
+                            </div>
                           </div>
                         </div>
-
                       </Modal.Body>
                       <Modal.Footer>
                         <Button

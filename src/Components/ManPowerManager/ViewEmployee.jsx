@@ -9,6 +9,7 @@ const ViewEmployee = (props) => {
     const [nic, setNic] = useState(props.employeeData.nic);
     const [district, setDistrict] = useState(props.employeeData.district);
     const [contactNo, setContactNo] = useState(props.employeeData.contactno);
+    const [skills, setSkills] = useState(props.employeeData.skills);
 
     return (
         <>
@@ -66,6 +67,17 @@ const ViewEmployee = (props) => {
                                 <TextInput
                                     id="contactNo"
                                     value={contactNo}
+                                    readOnly
+                                />
+                            </div>
+                            {/* newly added */}
+                            <div>
+                                <div className="block mb-2">
+                                    <Label htmlFor="contactNo" value="Skills" />
+                                </div>
+                                <TextInput
+                                    id="contactNo"
+                                    value={skills}
                                     readOnly
                                 />
                             </div>

@@ -102,7 +102,7 @@ const TaskHistory = () => {
                   </form>
                 </div>
                 <div>
-                  <TaskHistoryTable searchTerm={searchTerm} />
+                  <TaskHistoryTable searchTerm="paid" />
                 </div>
               </Tabs.Item>
               <Tabs.Item title="Pending">
@@ -145,7 +145,7 @@ const TaskHistory = () => {
                   </form>
                 </div>
                 <div>
-                  <TaskHistoryTable searchTerm={searchTerm} />
+                  <TaskHistoryTable searchTerm="pending" />
                 </div>
               </Tabs.Item>
             </Tabs.Group>

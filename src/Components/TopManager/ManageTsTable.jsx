@@ -14,7 +14,8 @@ const ManageTsTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Gampaha",
-      task: "Clean the house",
+      name:'Deepamal',
+      ongoingTask: "1",
       price: "10000",
       scheduleDate: "2023/09/10",
       details: "0711234567",
@@ -22,6 +23,8 @@ const ManageTsTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Kaduwela",
+      ongoingTask: "0",
+      name:'Deepamal',
       task: "Repair water pipe",
       price: "10000",
       scheduleDate: "2023/09/10",
@@ -30,7 +33,8 @@ const ManageTsTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Waliweriya",
-      task: "Clean the house",
+      name:'shashika',
+      ongoingTask: "5",
       price: "10000",
       scheduleDate: "2023/09/10",
       details: "0711234567",
@@ -38,7 +42,8 @@ const ManageTsTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Colombo",
-      task: "Clean the house",
+      name:'kavisha',
+      ongoingTask: "1",
       price: "10000",
       scheduleDate: "2023/09/10",
       details: "0711234567",
@@ -46,7 +51,8 @@ const ManageTsTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Gampaha",
-      task: "Clean the house",
+      name:'Deepamal',
+      ongoingTask: "0",
       price: "10000",
       scheduleDate: "2023/09/10",
       details: "0711234647",
@@ -54,7 +60,8 @@ const ManageTsTable = ({ searchTerm }) => {
     {
       propertyId: "10101010",
       location: "Colombo",
-      task: "Clean the land",
+      name:'surani',
+      ongoingTask: "3",
       price: "10000",
       scheduleDate: "2023/09/10",
       details: "0711234567",
@@ -89,9 +96,8 @@ const ManageTsTable = ({ searchTerm }) => {
           <Table.Head>
             <Table.HeadCell>Property Id</Table.HeadCell>
             <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Estimated Price</Table.HeadCell>
-            <Table.HeadCell>Schedule Date</Table.HeadCell>
+            <Table.HeadCell>Task Supervisor</Table.HeadCell>
+            <Table.HeadCell>No of ongoing Tasks</Table.HeadCell>
             <Table.HeadCell>More info</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Action</span>
@@ -121,11 +127,8 @@ const ManageTsTable = ({ searchTerm }) => {
                       {rowData.location}
                     </a>
                   </Table.Cell>
-                  <Table.Cell>{rowData.task}</Table.Cell>
-                  <Table.Cell>{rowData.price + ".00"}</Table.Cell>
-                  <Table.Cell>{rowData.scheduleDate}</Table.Cell>
-
-                  <Table.Cell>{rowData.details}</Table.Cell>
+                  <Table.Cell>{rowData.name}</Table.Cell>
+                  <Table.Cell>{rowData.ongoingTask}</Table.Cell>
                   <Table.Cell>
                     <div className="flex space-x-4">
                       <Button
