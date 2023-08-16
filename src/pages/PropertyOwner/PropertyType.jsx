@@ -34,7 +34,7 @@ const PropertyType = ({ visible, onClose, addPath }) => {
 
     return (
         
-        <div id='container' onClick={handleOnClose} className='fixed w-full h-full z-30 inset-0 bg-black
+        <div id='container' onClick={handleOnClose} className='fixed w-full h-full z-50 inset-0 bg-black
         bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className="max-w-[500px] w-full h-fit bg-white p-10 pt-5 rounded">
                 <form className='w-full'>

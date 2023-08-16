@@ -103,8 +103,19 @@ const PropertyOwnerDashboard = () => {
             </div>
 
             <div className="upcomin-tasks w-full h-[280px] bg-white py-5 px-7 rounded-md shadow-md border border-[#EDF2FB]">
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between mb-1">
                     <h1 className="text-lg font-semibold">Ongoing Tasks</h1>
+                    <div>
+                        <Link
+                            to={{
+                                pathname: 'ongoing-tasks',
+                            }}
+                        >
+                            <button className="w-fit h-fit px-2.5 py-2 bg-primary-blue-800 text-xs text-white rounded-lg hover:bg-primary-blue-800/80 hover:-translate-y-0.5 transition duration-200">
+                                View All Ongoing Tasks
+                            </button>
+                        </Link>
+                    </div>
                     {/* <a href='property-owner/upcoming-tasks' className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View All Tasks</a> */}
                 </div>
 
@@ -115,11 +126,6 @@ const PropertyOwnerDashboard = () => {
                             <div>T001</div>
                             <div className="w-64 text-center">Cleaning the house</div>
                             <div>2023/08/12</div>
-                            <div>
-                                <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
-                                    View
-                                </button>
-                            </div>
                         </div>
                         <div className="tableRow text-sm w-full h-fit px-3 py-2 mt-1 rounded-lg flex flex-row flex-wrap justify-between items-center bg-[#D7E3FC]">
                             <div>P002</div>
@@ -128,17 +134,6 @@ const PropertyOwnerDashboard = () => {
                                 Weeding the flower beds
                             </div>
                             <div>2023/08/12</div>
-                            <div>
-                                <Link
-                                    to={{
-                                        pathname: 'ongoing-tasks',
-                                    }}
-                                >
-                                    <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
-                                        View
-                                    </button>
-                                </Link>
-                            </div>
                         </div>
                     </div>                
                 </div>
