@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Table, Pagination, Badge } from "flowbite-react";
+import { Table, Pagination, Badge, Button, Modal } from "flowbite-react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
+const InsuranceRequestTable = ({ searchTerm, pStatus }) => {
+  const [openModal, setOpenModal] = useState();
+  const [modalPlacement, setModalPlacement] = useState("center");
+  const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
@@ -15,7 +19,7 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       payment: "2000.00",
       finishedDate: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Paid",
+      response: "Accepted",
     },
     {
       propertyId: "10101010",
@@ -25,7 +29,7 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       payment: "2000.00",
       finishedDate: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      response: "Accepted",
     },
     {
       propertyId: "10101010",
@@ -35,7 +39,7 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       payment: "2000.00",
       finishedDate: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      response: "Rejected",
     },
     {
       propertyId: "10101010",
@@ -45,7 +49,7 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       payment: "2000.00",
       finishedDate: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      response: "Rejected",
     },
     {
       propertyId: "10101010",
@@ -55,7 +59,7 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       payment: "2000.00",
       finishedDate: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      response: "Rejected",
     },
     {
       propertyId: "10101010",
@@ -65,7 +69,7 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       payment: "2000.00",
       finishedDate: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      response: "Accepted",
     },
   ];
 
@@ -141,17 +145,55 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
                     <div className="flex items-center justify-center">
                       <Badge
                         color={
-                          rowData.paymentStatus === "Paid"
+                          rowData.response === "Accepted"
                             ? "success"
-                            : rowData.paymentStatus === "Pending"
-                            ? "warning"
                             : "failure"
                         }
                         size="sm"
                       >
-                        <p className="text-center">{rowData.paymentStatus}</p>
+                        {rowData.response === "Accepted" ? (
+                          <Button
+                            onClick={() => props.setOpenModal("confirm")}
+                            className="bg-secondary-gray hover:bg-secondary-gray-light"
+                          >
+                            Confirm
+                          </Button>
+                        ) : (
+                          <button disabled>Rejected</button>
+                        )}
                       </Badge>
                     </div>
+                    {/* modal */}
+                    <Modal
+                      show={props.openModal === "confirm"}
+                      size="md"
+                      popup
+                      onClose={() => props.setOpenModal(undefined)}
+                    >
+                      <Modal.Header />
+                      <Modal.Body>
+                        <div className="text-center">
+                          <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                            Insurance Process Completed?Do you want to Closed the Request?
+                          </h3>
+                          <div className="flex justify-center gap-4">
+                            <Button
+                              color="success"
+                              onClick={() => props.setOpenModal(undefined)}
+                            >
+                              Yes, Close
+                            </Button>
+                            <Button
+                              color="gray"
+                              onClick={() => props.setOpenModal(undefined)}
+                            >
+                              No, cancel
+                            </Button>
+                          </div>
+                        </div>
+                      </Modal.Body>
+                    </Modal>
                   </Table.Cell>
                 </Table.Row>
               ))
@@ -172,4 +214,4 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
   );
 };
 
-export default TaskHistoryTable;
+export default InsuranceRequestTable;

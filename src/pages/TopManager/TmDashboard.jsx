@@ -1,13 +1,13 @@
 import React from "react";
 import { Card } from "flowbite-react";
-import DashboardCard from "../../Components/FinancialManager/DashboardCard";
+import DashboardCard from "../../Components/TopManager/DashboardCard";
 import Calander from "../../Components/FinancialManager/Calander";
-import RecentTransaction from "../../Components/FinancialManager/RecentTransaction";
-import IncomeChart from "../../Components/FinancialManager/IncomeChart";
 import { faChartBar, faUsers, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import TmChart from "./TmChart";
+import TopPeformance from "../../Components/TopManager/TopPeformance";
 
 
-const FmDashboard = () => {
+const TmDashboard = () => {
   // const labels = ['2023-01', '2023-02', '2023-03', /* ... */];
   // const inflows = [2000, 2500, 2200, /* ... */];
   // const outflows = [1500, 1800, 2000, /* ... */];
@@ -20,32 +20,32 @@ const FmDashboard = () => {
             <div>
               <DashboardCard
               icon={faChartBar}
-                topic="Total In"
+                topic="Property Request"
                 number="10"
-                link="/fm/receivable-payment"
+                link="/tm/new-property"
               />
             </div>
             <div>
               <DashboardCard
               icon={faUsers}
-                topic="Payble Out"
+                topic="Valualtion Report"
                 number="10"
-                link="/fm/payble-payment"
+                link="/tm/valuation-reports"
               />
             </div>
             <div>
               <DashboardCard
               icon={faShoppingCart}
-                topic="Balance"
+                topic="Complain"
                 number="10"
-                link="fm/transaction-history"
+                link="/tm/complain"
               />
             </div>
           </div>
           </Card>
           <Card className="max-w-screen m-4 mt-12">
           <div>
-            <IncomeChart />
+            <TmChart />
           </div>
           </Card>
         
@@ -55,10 +55,10 @@ const FmDashboard = () => {
           <Calander />
         </div>
         <div>
-          <RecentTransaction />
+          <TopPeformance />
         </div>
       </div>
     </div>
   );
 };
-export default FmDashboard;
+export default TmDashboard;

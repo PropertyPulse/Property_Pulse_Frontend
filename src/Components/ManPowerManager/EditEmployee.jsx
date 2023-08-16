@@ -157,8 +157,11 @@ const EditEmployee = (props) => {
       address: address,
       nic: nic,
       district: district,
-      contactno: contactNo
+      contactno: contactNo,
+      skills: dataList
     };
+
+    console.log(data)
 
     try {
       const response = await axiosPrivate.put(`/api/v1/mpc/updateemployee/${employeeid}`, data);

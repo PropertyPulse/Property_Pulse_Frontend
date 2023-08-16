@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Table, Pagination, Badge } from "flowbite-react";
 
-const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
+const TaskReceivableTable = ({ searchTerm }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
@@ -9,63 +9,69 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
   const tableData = [
     {
       propertyId: "10101010",
-      location: "Maharagama",
-      taskid: "T1254345",
-      task: "Clean the House",
+      tasksupervisorname: "john wick",
+      taskId:"T163748",
+      task:"clean the house",
+      telephone: "0711242531",
       payment: "2000.00",
-      finishedDate: "2023/09/10",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Paid",
+      paymentStatus: "Received",
     },
     {
       propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
+      tasksupervisorname: "john wick",
+      taskId:"T163748",
+      task:"clean the house",
+      telephone: "0711242531",
       payment: "2000.00",
-      finishedDate: "2023/09/10",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
       paymentStatus: "Pending",
     },
     {
       propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
+      tasksupervisorname: "john wick",
+      taskId:"T163748",
+      task:"clean the house",
+      telephone: "0711242531",
       payment: "2000.00",
-      finishedDate: "2023/09/10",
+      due_date: "2023/09/10",
+      assignedPerson: "Shashika",
+      paymentStatus: "Failed",
+    },
+    {
+      propertyId: "10101010",
+      tasksupervisorname: "john wick",
+      taskId:"T163748",
+      task:"clean the house",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
       paymentStatus: "Pending",
     },
     {
       propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
+      tasksupervisorname: "john wick",
+      taskId:"T163748",
+      task:"clean the house",
+      telephone: "0711242531",
       payment: "2000.00",
-      finishedDate: "2023/09/10",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      paymentStatus: "Received",
     },
     {
       propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
+      tasksupervisorname: "john wick",
+      taskId:"T163748",
+      task:"clean the house",
+      telephone: "0711242531",
       payment: "2000.00",
-      finishedDate: "2023/09/10",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      paymentStatus: "Pending",
-    },
-    {
-      propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
-      paymentStatus: "Pending",
+      paymentStatus: "Failed",
     },
   ];
 
@@ -96,17 +102,14 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
           <Table.Head>
-            <Table.HeadCell>Property Id</Table.HeadCell>
-            <Table.HeadCell>Location</Table.HeadCell>
+            <Table.HeadCell>Property ID</Table.HeadCell>
+            <Table.HeadCell>Task Supervisor name</Table.HeadCell>
             <Table.HeadCell>Task Id</Table.HeadCell>
             <Table.HeadCell>Task</Table.HeadCell>
+            <Table.HeadCell>Contact No</Table.HeadCell>
             <Table.HeadCell>Payment</Table.HeadCell>
-            <Table.HeadCell>Finished Date</Table.HeadCell>
-            <Table.HeadCell>Assigned Person</Table.HeadCell>
+            <Table.HeadCell>Due date</Table.HeadCell>
             <Table.HeadCell>Payment Status</Table.HeadCell>
-            <Table.HeadCell>
-              <span className="sr-only">Action</span>
-            </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
             {paginatedData.length === 0 ? (
@@ -129,29 +132,27 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
                       className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                       href="/tables"
                     >
-                      {rowData.location}
+                       {rowData.tasksupervisorname}
                     </a>
                   </Table.Cell>
-                  <Table.Cell>{rowData.taskid}</Table.Cell>
+                  <Table.Cell>{rowData.taskId}</Table.Cell>
                   <Table.Cell>{rowData.task}</Table.Cell>
+                  <Table.Cell>{rowData.telephone}</Table.Cell>
                   <Table.Cell>{rowData.payment}</Table.Cell>
-                  <Table.Cell>{rowData.finishedDate}</Table.Cell>
-                  <Table.Cell>{rowData.assignedPerson}</Table.Cell>
+                  <Table.Cell>{rowData.due_date}</Table.Cell>
                   <Table.Cell>
-                    <div className="flex items-center justify-center">
-                      <Badge
-                        color={
-                          rowData.paymentStatus === "Paid"
-                            ? "success"
-                            : rowData.paymentStatus === "Pending"
-                            ? "warning"
-                            : "failure"
-                        }
-                        size="sm"
-                      >
-                        <p className="text-center">{rowData.paymentStatus}</p>
-                      </Badge>
-                    </div>
+                    <Badge
+                      color={
+                        rowData.paymentStatus === "Received"
+                          ? "success"
+                          : rowData.paymentStatus === "Pending"
+                          ? "warning"
+                          : "failure"
+                      }
+                      size="sm"
+                    >
+                      <p>{rowData.paymentStatus}</p>
+                    </Badge>
                   </Table.Cell>
                 </Table.Row>
               ))
@@ -172,4 +173,4 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
   );
 };
 
-export default TaskHistoryTable;
+export default TaskReceivableTable;

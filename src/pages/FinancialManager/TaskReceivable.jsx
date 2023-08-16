@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import MonthlyPaymentTable from '../../Components/FinancialManager/MonthlyPaymentTable';
+import TaskReceivableTable from '../../Components/FinancialManager/TaskReceivableTable';
 
-const FmRecieved = () => {
+const TaskReceivable = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const handleSearch = (event) => {
       setSearchTerm(event.target.value);
@@ -12,7 +12,7 @@ const FmRecieved = () => {
         <div>
             <section className=''>
                 <div className="md:shadow px-10 py-5">
-                    <h2 className='sub-title text-md rounded-lg pb-4'>Monthly Receivable Payments</h2>
+                    <h2 className='sub-title text-md rounded-lg pb-4'>Receivable Payments for Task</h2>
                     <div className="flex-grow md:w-4/5 p-4">
                         {/* search form ... */}
                         <form>
@@ -52,7 +52,7 @@ const FmRecieved = () => {
                         </form>
                     </div>
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <MonthlyPaymentTable searchTerm={searchTerm} />
+                        <TaskReceivableTable searchTerm={searchTerm} />
                     </div>
                 </div>
 
@@ -62,4 +62,5 @@ const FmRecieved = () => {
         </div>
     )
     }
-export default FmRecieved
+
+export default TaskReceivable

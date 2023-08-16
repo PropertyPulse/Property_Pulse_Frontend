@@ -1,17 +1,17 @@
 import React from "react";
 import Navbar from "../../Components/Common/Navbar";
 import { Outlet } from "react-router-dom";
-import FinancialManagerSidebar from "../../Components/FinancialManager/FinancialManagerSidebar";
+import InsuranceSidebar from "../../Components/InsuranceManager/InsuranceSidebar";
 
-const FinancialManager = () => {
+const IsDashboard = () => {
     return (
         <div className='flex w-full bg-background-blue'>
             <div className='z-50'>
-                <FinancialManagerSidebar />
+                <InsuranceSidebar />
             </div>
             <div className='w-full'>
                 <div className='z-40 w-full'>
-                    <Navbar name="Shashika" userRole="Finance Manager" />
+                    <Navbar name="Thilanka Jayathilaka" userRole="Insurance Agent" />
                 </div>
                  <Outlet/>
                     
@@ -21,4 +21,4 @@ const FinancialManager = () => {
     );
 }
 
-export default FinancialManager;
+export default IsDashboard;

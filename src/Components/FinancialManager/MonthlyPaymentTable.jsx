@@ -1,52 +1,66 @@
 import React, { useState } from "react";
 import { Table, Pagination, Badge } from "flowbite-react";
 
-const RequestHistoryTable = ({ searchTerm }) => {
+const MonthlyPaymentTable = ({ searchTerm }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
+  // Define your table data object
   const tableData = [
     {
       propertyId: "10101010",
-      location: "Maharagama",
-      task: "Clean the House",
-      amount: 10000.0,
-      scheduleDate: "2023/09/10",
+      tasksupervisorname: "john wick",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      requestedTime: "2 days",
-      status: "Accepted",
+      paymentStatus: "Completed",
     },
     {
-      propertyId: "10101011",
-      location: "Gampaha",
-      task: "Painting",
-      amount: 25000.0,
-      scheduleDate: "2023/09/10",
+      propertyId: "10101010",
+      tasksupervisorname: "john wick",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      requestedTime: "2 days",
-      status: "Pending",
+      paymentStatus: "Pending",
     },
     {
-      propertyId: "10101011",
-      location: "Gampaha",
-      task: "Painting",
-      amount: 25000.0,
-      scheduleDate: "2023/09/10",
+      propertyId: "10101010",
+      tasksupervisorname: "john wick",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      requestedTime: "2 days",
-      status: "Rejected",
+      paymentStatus: "Failed",
     },
     {
-      propertyId: "10101011",
-      location: "Gampaha",
-      task: "Painting",
-      amount: 25000.0,
-      scheduleDate: "2023/09/10",
+      propertyId: "10101010",
+      tasksupervisorname: "john wick",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
       assignedPerson: "Shashika",
-      requestedTime: "2 days",
-      status: "Pending",
+      paymentStatus: "Pending",
     },
-    // ... add more data objects here ...
+    {
+      propertyId: "10101010",
+      tasksupervisorname: "john wick",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
+      assignedPerson: "Shashika",
+      paymentStatus: "Pending",
+    },
+    {
+      propertyId: "10101010",
+      tasksupervisorname: "john wick",
+      telephone: "0711242531",
+      payment: "2000.00",
+      due_date: "2023/09/10",
+      assignedPerson: "Shashika",
+      paymentStatus: "Failed",
+    },
   ];
 
   const itemsPerPage = 5; // Number of items per page
@@ -70,20 +84,18 @@ const RequestHistoryTable = ({ searchTerm }) => {
   return (
     <div>
       <div className="flex-grow md:w-4/5 p-4">
-        {/* search form ... */}
-        <form>{/* ... search form contents ... */}</form>
+        {/* Search Form */}
+        <form>{/* ... Search Form Content ... */}</form>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
           <Table.Head>
-            <Table.HeadCell>Property Id</Table.HeadCell>
-            <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Amount (Rs)</Table.HeadCell>
-            <Table.HeadCell>Schedule Date</Table.HeadCell>
-            <Table.HeadCell>Assigned Person</Table.HeadCell>
-            <Table.HeadCell>Requested Time</Table.HeadCell>
-            <Table.HeadCell>Status</Table.HeadCell>
+            <Table.HeadCell>Property ID</Table.HeadCell>
+            <Table.HeadCell>Task Supervisor name</Table.HeadCell>
+            <Table.HeadCell>Contact No</Table.HeadCell>
+            <Table.HeadCell>Payment</Table.HeadCell>
+            <Table.HeadCell>Due date</Table.HeadCell>
+            <Table.HeadCell>Payment Status</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
             {paginatedData.length === 0 ? (
@@ -93,40 +105,38 @@ const RequestHistoryTable = ({ searchTerm }) => {
                 </td>
               </tr>
             ) : (
-              paginatedData.map((item, index) => (
+              paginatedData.map((rowData, index) => (
                 <Table.Row
                   key={index}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                    {item.propertyId}
+                    {rowData.propertyId}
                   </Table.Cell>
                   <Table.Cell>
                     <a
                       className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                       href="/tables"
                     >
-                      {item.location}
+                       {rowData.tasksupervisorname}
                     </a>
                   </Table.Cell>
-                  <Table.Cell>{item.task}</Table.Cell>
-                  <Table.Cell>{item.amount.toFixed(2)}</Table.Cell>
-                  <Table.Cell>{item.scheduleDate}</Table.Cell>
-                  <Table.Cell>{item.assignedPerson}</Table.Cell>
-                  <Table.Cell>{item.requestedTime}</Table.Cell>
+                  <Table.Cell>{rowData.telephone}</Table.Cell>
+                  <Table.Cell>{rowData.payment}</Table.Cell>
+                  <Table.Cell>{rowData.due_date}</Table.Cell>
                   <Table.Cell>
-                    <div className="flex items-center justify-center">
-                      <Badge
-                        color={
-                          item.status === "Accepted" ? "success" : item.status === "Pending"
+                    <Badge
+                      color={
+                        rowData.paymentStatus === "Completed"
+                          ? "success"
+                          : rowData.paymentStatus === "Pending"
                           ? "warning"
                           : "failure"
-                        }
-                        size="sm"
-                      >
-                        <p className="text-center">{item.status}</p>
-                      </Badge>
-                    </div>
+                      }
+                      size="sm"
+                    >
+                      <p>{rowData.paymentStatus}</p>
+                    </Badge>
                   </Table.Cell>
                 </Table.Row>
               ))
@@ -147,4 +157,4 @@ const RequestHistoryTable = ({ searchTerm }) => {
   );
 };
 
-export default RequestHistoryTable;
+export default MonthlyPaymentTable;

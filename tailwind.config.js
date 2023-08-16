@@ -22,7 +22,7 @@ module.exports = {
         "sweet-red":"#DF6D6D",
         "calm-purple":"#FCFBFF",
         "choco-gray":"#8A8C91",
-        
+        "error-red-hover": "#571313",
       }
     },
   },

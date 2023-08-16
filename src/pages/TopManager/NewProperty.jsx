@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Card } from "flowbite-react";
-import ViewComplaintTable from "../../Components/TopManager/ViewComplaintTable";
+import NewPropertyTable from "../../Components/TopManager/NewPropertyTable";
 
-const Complaints = () => {
+const NewProperty = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -14,7 +14,7 @@ const Complaints = () => {
       <div className="flex flex-col md:flex-row">
         <Card className="flex-grow md:w-1/2 xl:w-full m-4">
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-           Complain
+            New Property Requests
           </h5>
           <div className="flex-grow md:w-4/5 p-4">
             {/* search form ... */}
@@ -55,7 +55,7 @@ const Complaints = () => {
             </form>
           </div>
           <div>
-            <ViewComplaintTable searchTerm={searchTerm}/>
+            <NewPropertyTable searchTerm={searchTerm}/>
           </div>
         </Card>
       </div>
@@ -63,4 +63,4 @@ const Complaints = () => {
   );
 };
 
-export default Complaints;
+export default NewProperty;
