@@ -10,6 +10,7 @@ import tasksIcon from '../../Assets/Icons/tasks-icon.png';
 import paymentsIcon from '../../Assets/Icons/payments-icon.png';
 import taskApprovalsIcon from '../../Assets/Icons/task-approvals-icon.png';
 import logo from '../../Assets/logo.png';
+import documentsIcon from '../../Assets/Icons/document.png';
 import {HiOutlineLogout} from "react-icons/hi";
 
 const PropertyOwnerSidebar = () => {
@@ -41,6 +42,11 @@ const PropertyOwnerSidebar = () => {
         title: 'Reports',
         icon: taskApprovalsIcon,
         url: '/po/reports', // Example URL, replace with actual URLs
+    },
+    {
+        title: 'Documents',
+        icon: documentsIcon,
+        url: '/po/documents', // Example URL, replace with actual URLs
     },
   ];
 

@@ -1,15 +1,8 @@
 import React from 'react';
-import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
-import { IoLogoWechat } from 'react-icons/io5';
-import OpenChat from '../../Components/PropertyOwner/OpenChat';
 
 const PropertyDocuments = () => {
     return (
-        <div className='w-full h-[100vh] bg-background-blue'>
-            <OpenChat />
-            <div className='w-full z-40'>
-                <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-            </div> 
+        <div className='w-full h-[90%]'>
             <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center px-10 py-8 gap-10'>
                 <div className='w-full h-full'>
                     <div className='flex-auto'>
