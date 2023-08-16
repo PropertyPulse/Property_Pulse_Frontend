@@ -9,7 +9,7 @@ const OngoingTasksPO = () => {
           propertyType: "House",
           taskID: '1234',
           taskDescription: "Repairing the roof",
-          startedDateTime: "2023/08/16 09:30"
+          startedDateTime: "2023/08/12 09:30"
         },
         {
           id: 2,
@@ -17,7 +17,7 @@ const OngoingTasksPO = () => {
           propertyType: "Land",
           taskID: '5677',
           taskDescription: "Weeding the land",
-          startedDateTime: "2023/08/16 09:30"
+          startedDateTime: "2023/08/12 09:30"
         },
     ];
 

@@ -164,10 +164,10 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[480px] p-10">
+              <div className="w-full h-[380px] p-10">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
-                    <thead className="bg-[#EDF2FB]">
+                    <thead className="bg-[#d5e4ff]">
                       <tr>
                         <th
                           scope="col"
@@ -268,10 +268,10 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[480px] p-10">
+              <div className="w-full h-[380px] p-10">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
-                    <thead className="bg-[#EDF2FB]">
+                    <thead className="bg-[#d5e4ff]">
                       <tr>
                         <th
                           scope="col"
@@ -372,10 +372,10 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[480px] p-10">
+              <div className="w-full h-[380px] p-10">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
-                    <thead className="bg-[#EDF2FB]">
+                    <thead className="bg-[#d5e4ff]">
                       <tr>
                         <th
                           scope="col"
