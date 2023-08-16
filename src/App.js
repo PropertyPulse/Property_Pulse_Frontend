@@ -54,7 +54,7 @@ import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
 import PropertyPayments from './pages/PropertyOwner/PropertyPayments';
 import TasksListPO from './pages/PropertyOwner/TasksListPO';
 import Chat from "./pages/Task Supervisor/Chat";
-import TopManager from "./pages/TopManager/TopManager";
+// import TopManager from "./pages/TopManager/TopManager";
 import Complaints from "./pages/TopManager/Complaints";
 import TopManagerDashboard from './pages/TopManager/TopManagerDashboard';
 import ValuationExpert from "./pages/ValuationExpert/ValuationExpert"
@@ -75,7 +75,7 @@ import PoPayment from './pages/PropertyOwner/PoPayment';
 import PoReport from './pages/PropertyOwner/PoReport';
 import OngoingTasksPO from './pages/PropertyOwner/OngoingTasksPO';
 import ViewOngoingTask from './pages/PropertyOwner/ViewOngoingTask';
-import PaymentsPO from './pages/PropertyOwner/PaymentsPO';
+// import PaymentsPO from './pages/PropertyOwner/PaymentsPO';
 import Unauthorized from "./pages/Common/Unauthorized";
 import IsDashboard from './pages/InsuranceManager/IsDashboard';
 import QuatationRequest from './pages/InsuranceManager/QuatationRequest';
@@ -88,7 +88,7 @@ import TopManager from './pages/TopManager/TopManager';
 import TmDashboard from './pages/TopManager/TmDashboard';
 import NewProperty from './pages/TopManager/NewProperty';
 import ReceivedValuation from './pages/TopManager/ReceivedValuation';
-import Complaints from './pages/TopManager/Complaints';
+// import Complaints from './pages/TopManager/Complaints';
 import ManageTs from './pages/TopManager/ManageTs';
 
 function App() {
@@ -207,16 +207,17 @@ function App() {
 
                 {/*    Protected Routes*/}
 
-                <Route element={<PersistLogin />}>
-                    <Route element={<RequireAuth allowedRoles='MPC' />}>
-                        <Route path="manpower-company" element={<ManPowerDashboard />}>
-                            <Route path="dashboard" element={<MpDashboard />} />
-                            <Route path="manage-employee" element={<ManageEmployee />} />
-                            <Route path="request" element={<Request />} />
-                            <Route path="task-history" element={<TaskHistory />} />
-                            <Route path="add-employee" element={<AddEmployee />} />
-                            <Route path="new-task-request" element={<NewTaskRequest />} />
-                        </Route>
+                {/*<Route element={<PersistLogin />}>*/}
+                {/*    <Route element={<RequireAuth allowedRoles='MPC' />}>*/}
+                {/*        <Route path="manpower-company" element={<ManPowerDashboard />}>*/}
+                {/*            <Route path="dashboard" element={<MpDashboard />} />*/}
+                {/*            <Route path="manage-employee" element={<ManageEmployee />} />*/}
+                {/*            <Route path="request" element={<Request />} />*/}
+                {/*            <Route path="task-history" element={<TaskHistory />} />*/}
+                {/*            <Route path="add-employee" element={<AddEmployee />} />*/}
+                {/*            <Route path="new-task-request" element={<NewTaskRequest />} />*/}
+                {/*        </Route>*/}
+                {/*    </Route>*/}
 
                 {/*    Protected Routes*/}
 
@@ -276,7 +277,7 @@ function App() {
                         <Route path="property-owner/land-registration" element={<LandRegistration />} />
                         <Route path="property-owner/house-registration" element={<HouseRegistration />} />
                         <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
-                        <Route path="property-owner/payments" element={<PaymentsPO />} />
+                        {/*<Route path="property-owner/payments" element={<PaymentsPO />} />*/}
                     </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="fm" element={<FinancialManager />} >
@@ -284,9 +285,9 @@ function App() {
                             <Route path="receivable-payment" element={<ReceivablePayment />} />
                             <Route path="payble-payment" element={<PayblePayment />} />
                             <Route path="transaction-history" element={<TransactionHistory />} />
-                        <Route path="financial-manager" element={<FinancialManager />} >
-                            <Route path="dashboard" element={<FmDashboard />} />
-                            <Route path="received" element={<FmRecieved />} />
+                        {/*<Route path="financial-manager" element={<FinancialManager />} >*/}
+                        {/*    <Route path="dashboard" element={<FmDashboard />} />*/}
+                        {/*    <Route path="received" element={<FmRecieved />} />*/}
                         </Route>
 
                     </Route>
@@ -296,13 +297,12 @@ function App() {
                             <Route path="ongoin-quatation" element={<OngoingQuation />} />
                             <Route path="insurance-request" element={<InsuranceRequest />} />
                         </Route>
+                    </Route>
 
                     <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
                         <Route path="po" element={<PropertyOwner />} />
                     </Route>
                 </Route>
-
-
 
                 <Route path="*" element={<NotFound />} />
             </Route>
