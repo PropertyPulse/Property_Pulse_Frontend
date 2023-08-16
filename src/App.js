@@ -64,6 +64,8 @@ import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmi
 import TaskAssignmentsProperties from './pages/TopManager/TaskAssignmentsProperties';
 import TasksOfProperties from './pages/TopManager/TasksOfProperties';
 import showTaskMangers from './pages/TopManager/showTaskManagers';
+import LegalDocuments from "./pages/Task Supervisor/LegalDocuments";
+import MonthlyReports from "./pages/Task Supervisor/MonthlyReports";
 import VisitedProperties from "./pages/Task Supervisor/VisitedProperties";
 import PropertyOwnerdb from './pages/PropertyOwner/PropertyOwnerdb';
 import PoDashboard from './pages/PropertyOwner/PoDashboard';
@@ -109,18 +111,16 @@ function App() {
                     <Route path="view-tasks-supervisors" element={<showTaskMangers />} />
                 </Route>
 
+
                 {/* Valuation Expert  Routes */}
                 <Route path="ve" element={<ValuationExpert />} >
                     <Route path="dashboard" element={<ValuationDashboard />} />
                     <Route path="view-report-submissions" element={<ViewReportSubmissions />} />
 
                     <Route path="pending-report-submissions" element={<PendingReportSubmissions />} />
-
                 </Route>
 
-
-
-
+                {/* Task Supervisor Routes */}
                 <Route path="task-supervisor" element={<TaskSupervisor />}>
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="assigned-properties" element={<AssignedProperties />} />
@@ -134,13 +134,10 @@ function App() {
                     <Route path="task-approvals" element={<TaskApprovals />} />
                     <Route path="assigned-properties/view-property" element={<ViewProperty />} />
                     <Route path="assigned-properties/view-property/chat" element={<Chat />} />
+                    <Route path="assigned-properties/view-property/legal-documents" element={<LegalDocuments />} />
+                    <Route path="assigned-properties/view-property/monthly-reports" element={<MonthlyReports />} />
 
                 </Route>
-
-
-
-
-
 
 
                 {/* PROPERTY OWNER ROUTES OLD */}
@@ -171,9 +168,6 @@ function App() {
                     <Route path="land-registration" element={<LandRegistration />} />
                 <Route path="house-registration" element={<HouseRegistration />} />
                 </Route>
-
-
-
 
 
                 {/*    Protected Routes*/}

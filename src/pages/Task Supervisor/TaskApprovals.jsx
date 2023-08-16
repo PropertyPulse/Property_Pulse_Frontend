@@ -15,17 +15,11 @@ const TaskApprovals = () => {
             task: 'Paint the house',
             status: 'Accepted',},
 
-        {propertyID: 'P67',
-            location: 'Hikkaduwa',
-            taskID: 'T912',
-            task: 'Trim grass',
-            status: 'Accepted with Feedback',},
-
         {propertyID: 'P89',
             location: 'Panadura',
             taskID: 'T812',
             task: 'Repair a water pipe',
-            status: 'Declined',},
+            status: 'Requested Reschedule',},
 
         {propertyID: 'P92',
             location: 'Rathnapura',
@@ -145,11 +139,7 @@ const TaskApprovals = () => {
                                         <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
                                             {row.status}
                                         </label>
-                                    ) : (row.status === 'Accepted with Feedback') ? (
-                                        <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
-                                        </label>
-                                    ) : (row.status === 'Declined') ? (
+                                    ) : (row.status === 'Requested Reschedule') ? (
                                         <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
                                             {row.status}
                                         </label>
@@ -164,17 +154,13 @@ const TaskApprovals = () => {
                                         <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                             View Details
                                         </button>
-                                    ) : (row.status === 'Declined') ? (
+                                    ) : (row.status === 'Requested Reschedule') ? (
                                         <button className="text-blue-700 border-2 border-blue-700 font-medium rounded-lg text-xs px-3 py-0.5 text-center inline-flex items-center hover:scale-[1.02]">
-                                            Make another Request
+                                            Reschedule
                                         </button>
                                     ) : (row.status === 'Pending') ? (
                                         <button className="text-red-700 border-2 border-red-700 font-medium rounded-lg text-xs px-3 py-0.5 text-center inline-flex items-center hover:scale-[1.02]">
                                             Cancel
-                                        </button>
-                                    ) : (row.status === 'Accepted with Feedback') ? (
-                                        <button className="text-yellow-700 border-2 border-yellow-700 font-medium rounded-lg text-xs px-3 py-0.5 text-center inline-flex items-center hover:scale-[1.02]">
-                                            Respond
                                         </button>
                                     ) : (<label></label>)}
                                 </td>
