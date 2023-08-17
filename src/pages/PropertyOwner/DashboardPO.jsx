@@ -2,6 +2,19 @@ import React from 'react';
 import MonthlyReportsPO from './MonthlyReportsPO';
 import { Link, useNavigate } from 'react-router-dom';
 
+const reports = [
+    {
+        id: 1,
+        propertyId: 'P001',
+        description: '2023 July Monthly Report',
+    },
+    {
+        id: 2,
+        propertyId: 'P002',
+        description: '2023 July Monthly Report',
+    },
+];
+
 const DashboardPO = () => {
     const navigate = useNavigate();
     return (
@@ -78,25 +91,20 @@ const DashboardPO = () => {
                     </div> 
 
                     <div className='w-full h-40 mb-4 overflow-auto'>
-                        <div className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/70 mt-1 rounded-md'>
-                            <div>P001</div>
-                            <div>2023 July Monthly Report</div> 
-                            <button className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</button>                       
-                        </div>
+                        {reports.map((report) => (
+                            <div key={report.id} className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/70 mt-1 rounded-md'>
+                                <div>{report.propertyId}</div>
+                                <div>{report.description}</div> 
+                                <button className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</button>                       
+                            </div>
+                        ))}
+                        
                         <div className='flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/30 mt-1 rounded-md'>
                             <div>P002</div>
                             <div>2023 July Monthly Report</div> 
                             <button className='w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200'>View</button>                       
                         </div>
-                    </div>
-                      
-                    <div className='w-full flex justify-center'>
-                        <button 
-                            className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'
-                            onClick={() => navigate('monthly-reports')}>
-                                View All Monthly Reports
-                        </button>  
-                    </div>                                   
+                    </div>                                  
                 </div>
 
                 <div className="due-payments w-full h-[280px] bg-white p-5 rounded-md shadow-xl border border-[#EDF2FB]">
@@ -106,9 +114,6 @@ const DashboardPO = () => {
                     <div className='w-full h-40 mt-2 flex justify-center items-center'>
                         <div className='w-full text-center text-sm italic text-[#61A5C2]'>No Due Payments</div>
                     </div>
-                    <div className='w-full flex justify-center mt-3'>
-                        <button className='bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300'>View Payments</button>  
-                    </div> 
                 </div>
             </div>            
         </section>

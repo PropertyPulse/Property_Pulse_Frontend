@@ -201,13 +201,14 @@ function App() {
                     <Route path='complaints' element={<ComplaintsPO />} />
                     <Route path="properties" element={<Poproperties />} />
                     <Route path="properties/property-details/:id" element={<PropertyViewMore />} />
-                    <Route path="land-registration/schedule-tasks" element={<TasksListPO />} />
                     <Route path="task" element={<Potask />} />
                     <Route path="payment" element={<PoPayment />} />
                     <Route path="reports" element={<PoReport />} />
                     <Route path="documents" element={<PropertyDocuments />} />
                     <Route path="land-registration" element={<LandRegistration />} />
                     <Route path="house-registration" element={<HouseRegistration />} />
+                    <Route path="land-registration/schedule-tasks" element={<TasksListPO />} />
+                    <Route path="house-registration/schedule-tasks" element={<TasksListPO />} />
                 </Route>
 
 
