@@ -10,6 +10,19 @@ const PropertyOwnerDashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
 
+  const reports = [
+        {
+            id: 1,
+            propertyId: 'P001',
+            description: '2023 July Monthly Report',
+        },
+        {
+            id: 2,
+            propertyId: 'P002',
+            description: '2023 July Monthly Report',
+        },
+    ];
+
   return (
     <div className="w-full bg-[#EDF2FB]">
       <PropertyType visible={showModal} onClose={handleOnClose} /> 
@@ -150,27 +163,22 @@ const PropertyOwnerDashboard = () => {
                 </h1>
               </div>
 
-              <div className="w-full h-40 mb-4 overflow-auto">
-                <div className="flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/70 mt-1 rounded-md">
-                  <div>P001</div>
-                  <div>2023 July Monthly Report</div>
-                  <Link
-                    to={{
-                      pathname: './view-monthly-report/P001',
-                    }}
-                  >
-                    <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
-                      View
-                    </button>
-                  </Link>
-                </div>
-                <div className="flex justify-between items-center py-2 px-4 text-sm bg-[#A9D6E5]/30 mt-1 rounded-md">
-                  <div>P002</div>
-                  <div>2023 July Monthly Report</div>
-                  <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
-                    View
-                  </button>
-                </div>
+                <div className="w-full h-40 mb-4 overflow-auto">
+                    {reports.map((report) => (
+                        <div className="flex justify-between items-center py-2 px-4 text-sm odd:bg-[#A9D6E5]/70 even:bg-[#A9D6E5]/30 mt-1 rounded-md">
+                            <div>{report.propertyId}</div>
+                            <div>{report.description}</div>
+                            <Link
+                            to={{
+                                pathname: `./view-monthly-report/${report.propertyId}`,
+                            }}
+                            >
+                                <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">
+                                    View
+                                </button>
+                            </Link>
+                        </div>
+                    ))}
               </div>
 
               <div className="w-full flex justify-center">
