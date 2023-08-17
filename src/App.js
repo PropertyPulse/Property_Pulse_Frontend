@@ -97,132 +97,13 @@ function App() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
 
-                {/* top manager newly added */}
-                <Route path="tm" element={<TopManager />} >
-                    <Route path="dashboard" element={<TmDashboard />} />
-                    <Route path="new-property" element={<NewProperty />} />
-                    <Route path="valuation-reports" element={<ReceivedValuation />} />
-                    <Route path="manage-task-supervisor" element={<ManageTs />} />
-                    <Route path="complain" element={<Complaints />} />
-                </Route>
-
-                {/* finacence manager */}
-
-
-                {/* insurance Agent */}
-
-                <Route path="system-admin" element={<SystemAdmin />} >
-                    <Route path="dashboard" element={<SystemAdminDashboard />} />
-                    <Route path="add-users/top-manager" element={<AddTopManagers />} />
-                    <Route path="add-users/finance-manager" element={<AddFinanceManagers />} />
-                    <Route path="add-users/valuation-expert" element={<AddValuationExperts />} />
-                    <Route path="add-users/task-supervisor" element={<AddTaskSupervisors />} />
-                    <Route path="add-users/manpower-company" element={<AddManpowerCompanies />} />
-                    <Route path="add-users/insurance-agent" element={<AddInsuranceAgent />} />
-                    <Route path="user-profiles" element={<UserProfiles />} />
-                    <Route path="user-profiles/view-profile" element={<ViewProfile />} />
-                </Route>
-
-                <Route path="fm" element={<FinancialManager />} >
-                    <Route path="dashboard" element={<FmDashboard />} />
-                    <Route path="received" element={<FmRecieved />} />
-                </Route>
-
-                {/* top manager newly added */}
-                <Route path="tm" element={<TopManager />} >
-                    <Route path="dashboard" element={<TmDashboard />} />
-                    <Route path="new-property" element={<NewProperty />} />
-                    <Route path="valuation-reports" element={<ReceivedValuation />} />
-                    <Route path="manage-task-supervisor" element={<ManageTs />} />
-                    <Route path="complain" element={<Complaints />} />
-                </Route>
-
-                {/* finacence manager */}
-
-
-                {/* Top Manager Routes
-                <Route path="tm" element={<TopManager />}>
-                    <Route path="view-complaints/:id" element={<Complaints />} />
-                    <Route path="dashboard" element={<TopManagerDashboard />} />
-                    <Route path="view-registered-properties" element={<TaskAssignmentsProperties />} />
-                    <Route path="view-tasks" element={<TasksOfProperties />} />
-                    <Route path="view-tasks-supervisors" element={<showTaskMangers />} />
-                </Route> */}
 
 
                 {/* Valuation Expert  Routes */}
-                <Route path="ve" element={<ValuationExpert />} >
-                    <Route path="pending-valuation-reports" element={<PendingValuationReport />} />
-                    <Route path="submited-valuation-reports" element={<SubmittedValutationReport />} />
-                </Route>
 
                 {/* Task Supervisor Routes */}
-                <Route path="task-supervisor" element={<TaskSupervisor />}>
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="assigned-properties" element={<AssignedProperties />} />
-                    <Route path="properties-to-be-managed/visited-properties" element={<VisitedProperties />} />
-                    {/*<Route path="sample-modal" element={<Modal />} />*/}
-                    <Route path="assigned-properties" element={<AssignedProperties />} />
-                    <Route path="properties-to-be-managed/not-visited-properties" element={<PropertiesToBeManaged />} />
-                    <Route path="upcoming-tasks" element={<UpcomingTasks />} />
-                    <Route path="ongoing-tasks" element={<OngoingTasks />} />
-                    <Route path="completed-tasks" element={<CompletedTasks />} />
-                    <Route path="task-approvals" element={<TaskApprovals />} />
-                    <Route path="assigned-properties/view-property" element={<ViewProperty />} />
-                    <Route path="assigned-properties/view-property/chat" element={<Chat />} />
-                    <Route path="assigned-properties/view-property/legal-documents" element={<LegalDocuments />} />
-                    <Route path="assigned-properties/view-property/monthly-reports" element={<MonthlyReports />} />
-
-                </Route>
 
 
-                {/* PROPERTY OWNER ROUTES OLD */}
-                {/* <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
-                <Route path="property-owner" element={<PropertyOwnerDashboard />} />
-                <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
-                <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-                <Route path="property-owner/tasks/:id" element={<TasksPO />} />
-                <Route path="property-owner/properties" element={<PropertiesPO />} />
-                <Route path="property-owner/properties/view-more" element={<PropertyViewMore />} />
-                <Route path="property-owner/land-registration" element={<LandRegistration />} />
-                <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-                <Route path='property-owner/tasks/:id/completed-tasks' element={<CompletedTasksPO />} />
-                <Route path="property-owner/payments" element={<AllPaymentsPO />} />
-                <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
-                <Route path="property-owner/land-registration/schedule-tasks" element={<TasksListPO />} />
-                <Route path="property-owner/payments" element={<AllPaymentsPO />} />
-                <Route path="property-owner/properties/property-details/:id/payments" element={<PropertyPayments />} />
-                <Route path="property-owner/schedule-tasks" element={<TasksListPO />} /> */}
-
-                {/* property Owner thila */}
-                <Route path="po" element={<PropertyOwnerdb />}>
-                    <Route path="dashboard" element={<PoDashboard />} />
-                    <Route path="dashboard/view-monthly-report/:id" element={<ViewMonthlyReport />} />
-                    <Route path="dashboard/ongoing-tasks" element={<OngoingTasksPO />} />
-                    <Route path='dashboard/ongoing-tasks/view-ongoing-task/:propertyId/:taskId' element={<ViewOngoingTask />} />
-                    <Route path="properties" element={<Poproperties />} />
-                    <Route path="task" element={<Potask />} />
-                    <Route path="payment" element={<PoPayment />} />
-                    <Route path="reports" element={<PoReport />} />
-                    <Route path="documents" element={<PropertyDocuments />} />
-                    <Route path="land-registration" element={<LandRegistration />} />
-                    <Route path="house-registration" element={<HouseRegistration />} />
-                </Route>
-
-
-                {/*    Protected Routes*/}
-
-                {/*<Route element={<PersistLogin />}>*/}
-                {/*    <Route element={<RequireAuth allowedRoles='MPC' />}>*/}
-                {/*        <Route path="manpower-company" element={<ManPowerDashboard />}>*/}
-                {/*            <Route path="dashboard" element={<MpDashboard />} />*/}
-                {/*            <Route path="manage-employee" element={<ManageEmployee />} />*/}
-                {/*            <Route path="request" element={<Request />} />*/}
-                {/*            <Route path="task-history" element={<TaskHistory />} />*/}
-                {/*            <Route path="add-employee" element={<AddEmployee />} />*/}
-                {/*            <Route path="new-task-request" element={<NewTaskRequest />} />*/}
-                {/*        </Route>*/}
-                {/*    </Route>*/}
 
                 {/*    Protected Routes*/}
 
@@ -249,40 +130,51 @@ function App() {
                             <Route path="user-profiles" element={<UserProfiles />} />
                             <Route path="user-profiles/view-profile" element={<ViewProfile />} />
                         </Route>
+
                     </Route>
                     <Route element={<RequireAuth allowedRoles='TASKSUPERVISOR' />}>
                         <Route path="task-supervisor" element={<TaskSupervisor />}>
                             <Route path="dashboard" element={<Dashboard />} />
                             <Route path="assigned-properties" element={<AssignedProperties />} />
+                            <Route path="properties-to-be-managed/visited-properties" element={<VisitedProperties />} />
                             {/*<Route path="sample-modal" element={<Modal />} />*/}
                             <Route path="assigned-properties" element={<AssignedProperties />} />
-                            <Route path="properties-to-be-managed" element={<PropertiesToBeManaged />} />
+                            <Route path="properties-to-be-managed/not-visited-properties" element={<PropertiesToBeManaged />} />
                             <Route path="upcoming-tasks" element={<UpcomingTasks />} />
                             <Route path="ongoing-tasks" element={<OngoingTasks />} />
                             <Route path="completed-tasks" element={<CompletedTasks />} />
                             <Route path="task-approvals" element={<TaskApprovals />} />
-                            <Route path="properties/view-property" element={<ViewProperty />} />
+                            <Route path="assigned-properties/view-property" element={<ViewProperty />} />
+                            <Route path="assigned-properties/view-property/chat" element={<Chat />} />
+                            <Route path="assigned-properties/view-property/legal-documents" element={<LegalDocuments />} />
+                            <Route path="assigned-properties/view-property/monthly-reports" element={<MonthlyReports />} />
+
                         </Route>
+
                     </Route>
-                    <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
-                        <Route path="financial-manager" element={<FinancialManager />} >
-                            <Route path="dashboard" element={<FmDashboard />} />
-                            <Route path="received" element={<FmRecieved />} />
+                    <Route element={<RequireAuth allowedRoles='TOPMANAGER' />}>
+                        <Route path="tm" element={<TopManager />} >
+                            <Route path="dashboard" element={<TmDashboard />} />
+                            <Route path="new-property" element={<NewProperty />} />
+                            <Route path="valuation-reports" element={<ReceivedValuation />} />
+                            <Route path="manage-task-supervisor" element={<ManageTs />} />
+                            <Route path="complain" element={<Complaints />} />
                         </Route>
                     </Route>
                     <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
-                        <Route path="po" element={<PropertyOwner />} />
-                        <Route path="property-owner/profile-setup" element={<ProfileSetupAfterRegister />}></Route>
-                        <Route path="property-owner" element={<PropertyOwnerDashboard />} />
-                        <Route path="property-owner/monthly-reports" element={<MonthlyReportsPO />} />
-                        <Route path="property-owner/monthly-reports/view-monthly-report" element={<ViewMonthlyReport />} />
-                        <Route path="property-owner/tasks/:id" element={<TasksPO />} />
-                        <Route path="property-owner/properties" element={<PropertiesPO />} />
-                        <Route path="property-owner/properties/property-details/:id" element={<PropertyViewMore />} />
-                        <Route path="property-owner/land-registration" element={<LandRegistration />} />
-                        <Route path="property-owner/house-registration" element={<HouseRegistration />} />
-                        <Route path="property-owner/properties/property-details/:id/documents" element={<PropertyDocuments />} />
-                        {/*<Route path="property-owner/payments" element={<PaymentsPO />} />*/}
+                        <Route path="po" element={<PropertyOwnerdb />}>
+                            <Route path="dashboard" element={<PoDashboard />} />
+                            <Route path="dashboard/view-monthly-report/:id" element={<ViewMonthlyReport />} />
+                            <Route path="dashboard/ongoing-tasks" element={<OngoingTasksPO />} />
+                            <Route path='dashboard/ongoing-tasks/view-ongoing-task/:propertyId/:taskId' element={<ViewOngoingTask />} />
+                            <Route path="properties" element={<Poproperties />} />
+                            <Route path="task" element={<Potask />} />
+                            <Route path="payment" element={<PoPayment />} />
+                            <Route path="reports" element={<PoReport />} />
+                            <Route path="documents" element={<PropertyDocuments />} />
+                            <Route path="land-registration" element={<LandRegistration />} />
+                            <Route path="house-registration" element={<HouseRegistration />} />
+                        </Route>
                     </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="fm" element={<FinancialManager />} >
@@ -304,8 +196,12 @@ function App() {
                         </Route>
                     </Route>
 
-                    <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
-                        <Route path="po" element={<PropertyOwner />} />
+                    <Route element={<RequireAuth allowedRoles='VE' />}>
+                        <Route path="ve" element={<ValuationExpert />} >
+                            <Route path="pending-valuation-reports" element={<PendingValuationReport />} />
+                            <Route path="submited-valuation-reports" element={<SubmittedValutationReport />} />
+                        </Route>
+
                     </Route>
                 </Route>
 

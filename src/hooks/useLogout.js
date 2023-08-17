@@ -1,3 +1,35 @@
+import axios from "../api/axios";
+import useAuth from "./useAuth";
+
+const useLogout = () => {
+    const { setAuth } = useAuth();
+
+    const logout = async () => {
+        setAuth({});
+        try {
+            const response = await axios('/api/v1/auth/logout', {
+                withCredentials: true
+            });
+            if(response.status === 200) console.log('logout success');
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    return logout;
+}
+
+export default useLogout
+
+
+
+
+
+
+
+
+
+
 // import useAuth from "./useAuth";
 // import axios from "../api/axios";
 // import Cookies from "js-cookie";

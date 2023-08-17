@@ -13,11 +13,20 @@ import { FiChevronDown } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import {HiOutlineLogout} from "react-icons/hi";
+import useLogout from "../../hooks/useLogout";
 
 const TaskSupervisorSidebar = () => {
     const [open, setOpen] = useState(true);
     const [openSubmenus, setOpenSubmenus] = useState([]);
     const location = useLocation();
+
+    const logout = useLogout();
+
+    const handleLogout = () => {
+        logout();
+    }
+
+
 
     const SidebarItems = [
         {title: "Dashboard",
@@ -125,7 +134,7 @@ const TaskSupervisorSidebar = () => {
                         </React.Fragment>
                     ))}
                 </ul>
-                <div className='flex w-full items-center text-primary-blue-800 px-4 py-2 space-x-2 cursor-pointer
+                <div onClick={handleLogout} className='flex w-full items-center text-primary-blue-800 px-4 py-2 space-x-2 cursor-pointer
                            hover:bg-selected absolute bottom-6'>
                     <span className="text-2xl block float-left">
                         <HiOutlineLogout />
