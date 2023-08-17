@@ -1,10 +1,59 @@
 import InputText from "../../Components/Common/InputText";
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const AddTopManagers = () => {
 
     const [values, setValues] = useState("");
+
+    const navigate = useNavigate();
+
+    const axiosPrivate = useAxiosPrivate()
+
+    const handleAddTopManagers = async (e) => {
+        e.preventDefault();
+
+
+        const dataFromInput ={
+            firstname: values.firstName,
+            lastname: values.lastName,
+            address: values.address,
+            nic: values.nic,
+            district: values.district,
+            contactNo: values.contactNumber,
+            gender: values.gender,
+            dob: values.dob,
+            email: values.email,
+            role:'TOPMANAGER'
+        }
+        console.log(dataFromInput)
+
+        try {
+            const response = await axiosPrivate.post("/api/v1/admin/addtopmanager", {
+                firstname: values.firstName,
+                lastname: values.lastName,
+                address: values.address,
+                nic: values.nic,
+                district: values.district,
+                contactNo: values.contactNumber,
+                gender: values.gender,
+                dob: values.dob,
+                email: values.email,
+                role:'TOPMANAGER'
+            },{
+
+            });
+            console.log(response.data);
+            if (response){
+                navigate(-1);
+            }
+
+        }
+        catch(e){
+            console.log(e,"Error");
+        }
+    }
 
     const inputs = [
         {
@@ -15,21 +64,31 @@ const AddTopManagers = () => {
             label: 'User Role',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-2/5 border-0',
+            styles: 'w-1/3 border-0',
             defaultValue: 'Top Manager',
         },
         {
             id: 2,
-            name: 'userName',
+            name: 'firstName',
             type: 'text',
             // errorMessage: "This is a required field",
-            label: 'User Name',
+            label: 'First Name',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-auto flex-auto border-0'
+            styles: 'w-1/3 border-0'
         },
         {
             id: 3,
+            name: 'lastName',
+            type: 'text',
+            // errorMessage: "This is a required field",
+            label: 'Last Name',
+            pattern: "^[A-Za-z]+$",
+            required: true,
+            styles: 'w-1/3 border-0'
+        },
+        {
+            id: 4,
             name: 'address',
             type: 'text',
             // errorMessage: "This is a required field",
@@ -38,7 +97,7 @@ const AddTopManagers = () => {
             styles: 'w-3/5 border-0'
         },
         {
-            id: 4,
+            id: 5,
             name: 'district',
             type: 'text',
             // errorMessage: "This is a required field",
@@ -48,7 +107,7 @@ const AddTopManagers = () => {
             styles: 'w-auto flex-auto border-0'
         },
         {
-            id: 5,
+            id: 6,
             name: 'contactNumber',
             type: 'text',
             // errorMessage: "This is a required field",
@@ -58,7 +117,7 @@ const AddTopManagers = () => {
             styles: 'w-2/5 flex-auto border-0'
         },
         {
-            id: 6,
+            id: 7,
             name: 'email',
             type: 'email',
             // errorMessage: "This is a required field",
@@ -68,7 +127,7 @@ const AddTopManagers = () => {
             styles: 'w-3/5 flex-auto border-0'
         },
         {
-            id: 7,
+            id: 8,
             name: 'nic',
             type: 'text',
             // errorMessage: "Invalid NIC",
@@ -78,7 +137,7 @@ const AddTopManagers = () => {
             styles: 'w-auto flex-auto border-0'
         },
         {
-            id: 8,
+            id: 9,
             name: 'dob',
             type: 'date',
             // errorMessage: "This is a required field and should contain at least 6 characters",
@@ -87,13 +146,14 @@ const AddTopManagers = () => {
             styles: 'w-1/2 border-0'
         },
         {
-            id: 9,
+            id: 10,
             name: 'gender',
             label: 'Gender',
+            required: true,
             styles: 'w-1/2 border-0'
         },
         {
-            id: 10,
+            id: 11,
             name: 'password',
             type: 'password',
             // errorMessage: "This is a required field and should contain at least 6 characters",
@@ -106,6 +166,13 @@ const AddTopManagers = () => {
 
     const onChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
+    };
+    const onChangeRadio = (e) => {
+        if (e.target.type === 'radio') {
+            setValues({...values, [e.target.name]: e.target.value});
+        } else {
+            setValues({...values, [e.target.name]: e.target.value});
+        }
     };
 
     return (
@@ -139,17 +206,21 @@ const AddTopManagers = () => {
                                     {(input.type === 'text') || (input.type === 'password') || (input.type === 'email') || (input.type === 'date') ? (
                                         <InputText key={input.id} {...input} value={values[input.name]} onChange={onChange} />
                                     ) : (input.name === 'gender') ? (
-                                        <div className='w-full flex space-x-16 py-5 text-md'>
-                                            <label className='pl-3 text-md text-secondary-gray'>Gender</label>
-                                            <div className='flex justify-around items-center gap-24 text-[#8c8c8c]'>
-                                                    <span className='flex items-center'>
-                                                        <input type='radio' className='mx-2' name='gender' id='gender-male' value='Male' defaultChecked onChange={onChange} />
-                                                        <span className='text-sm'>Male</span>
-                                                    </span>
+                                        <div className='w-full min-w-[200px]'>
+                                            <label>Gender</label>
+                                            <div className='flex justify-around items-center gap-3 text-[#8c8c8c]'>
+                                                {/* For female */}
                                                 <span className='flex items-center'>
-                                                        <input type='radio' className='mx-2' name='gender' id='gender-female' value='Female' onChange={onChange} />
-                                                        <span className='text-sm'>Female</span>
-                                                    </span>
+                                                    <input type='radio' className='mr-1' name='gender' id='gender-female'
+                                                           checked={values.gender === 'FEMALE'} value='FEMALE' defaultChecked onChange={onChangeRadio} />
+                                                    Female
+                                                </span>
+                                                {/* For male */}
+                                                <span className='flex items-center'>
+                                                    <input type='radio' className='mr-1' name='gender' id='gender-male'
+                                                           checked={values.gender === 'MALE'} value='MALE' onChange={onChangeRadio} />
+                                                    Male
+                                                </span>
                                             </div>
                                         </div>
                                     ) : (
@@ -159,7 +230,7 @@ const AddTopManagers = () => {
                             ))}
                         </div>
                         <div className='w-full pt-8 flex justify-center items-center space-x-6'>
-                            <button className='btn-lg bg-primary-blue-800 text-white'>Add User</button>
+                            <button onClick={handleAddTopManagers} className='btn-lg bg-primary-blue-800 text-white'>Add User</button>
                         </div>
                     </form>
                 </div>
