@@ -13,11 +13,11 @@ const IsDashboard = () => {
                 <div className='z-40 w-full'>
                     <Navbar name="Thilanka Jayathilaka" userRole="Insurance Agent" />
                 </div>
-                 <Outlet/>
-                    
+                <Outlet/>
+
             </div>
         </div>
-     
+
     );
 }
 
