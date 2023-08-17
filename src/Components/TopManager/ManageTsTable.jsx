@@ -12,7 +12,7 @@ const ManageTsTable = ({ searchTerm }) => {
 
   const tableData = [
     {
-      propertyId: "10101010",
+      propertyId: "10101011",
       location: "Gampaha",
       name:'Deepamal',
       ongoingTask: "1",
@@ -21,7 +21,7 @@ const ManageTsTable = ({ searchTerm }) => {
       details: "0711234567",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10111010",
       location: "Kaduwela",
       ongoingTask: "0",
       name:'Deepamal',
@@ -31,7 +31,7 @@ const ManageTsTable = ({ searchTerm }) => {
       details: "0711234647",
     },
     {
-      propertyId: "10101010",
+      propertyId: "11101110",
       location: "Waliweriya",
       name:'shashika',
       ongoingTask: "5",
@@ -40,7 +40,7 @@ const ManageTsTable = ({ searchTerm }) => {
       details: "0711234567",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10101000",
       location: "Colombo",
       name:'kavisha',
       ongoingTask: "1",
@@ -49,7 +49,7 @@ const ManageTsTable = ({ searchTerm }) => {
       details: "0711234567",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10001010",
       location: "Gampaha",
       name:'Deepamal',
       ongoingTask: "0",
@@ -58,7 +58,7 @@ const ManageTsTable = ({ searchTerm }) => {
       details: "0711234647",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10101000",
       location: "Colombo",
       name:'surani',
       ongoingTask: "3",
@@ -66,8 +66,8 @@ const ManageTsTable = ({ searchTerm }) => {
       scheduleDate: "2023/09/10",
       details: "0711234567",
     },
-    // Add more data objects for other rows...
-  ];
+    // Add more data objects for other rows...
+  ];
   //pagination and filtering
 
   const itemsPerPage = 5; // Number of items per page

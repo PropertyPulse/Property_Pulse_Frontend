@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Table, Pagination, Badge } from "flowbite-react";
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Label, Modal, TextInput } from "flowbite-react";
 
 const RequestRescheduleTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
@@ -25,33 +25,77 @@ const RequestRescheduleTable = ({ searchTerm }) => {
       location: "Gampaha",
       task: "Painting",
       amount: 25000.0,
-      scheduleDate: "2023/09/10",
-      assignedPerson: "Shashika",
-      requestedTime: "2 days",
+      scheduleDate: "2023/08/12",
+      assignedPerson: "Nirmal",
+      requestedTime: "1 days",
       status: "Pending",
     },
     {
-      propertyId: "10101011",
-      location: "Gampaha",
-      task: "Painting",
-      amount: 25000.0,
-      scheduleDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      propertyId: "11001100",
+      location: "Rathnapura",
+      task: "Clean the Garden",
+      amount: 20000.0,
+      scheduleDate: "2023/07/10",
+      assignedPerson: "Pavan",
       requestedTime: "2 days",
       status: "Rejected",
     },
     {
-      propertyId: "10101011",
-      location: "Gampaha",
-      task: "Painting",
-      amount: 25000.0,
-      scheduleDate: "2023/09/10",
+      propertyId: "01010101",
+      location: "Colombo 05",
+      task: "Bathroom makeover",
+      amount: 50000.0,
+      scheduleDate: "2023/06/10",
       assignedPerson: "Shashika",
       requestedTime: "2 days",
       status: "Pending",
     },
-    // ... add more data objects here ...
-  ];
+
+    {
+      propertyId: "11110000",
+      location: "Anuradhapura",
+      task: "Clean the House",
+      amount: 10000.0,
+      scheduleDate: "2023/04/02",
+      assignedPerson: "Shashika",
+      requestedTime: "2 days",
+      status: "Accepted", 
+    },
+
+    {
+      propertyId: "10100010",
+      location: "Colombo 15",
+      task: "Paint the Gate",
+      amount: 5000.0,
+      scheduleDate: "2023/10/10",
+      assignedPerson: "Shashika",
+      requestedTime: "1 day",
+      status: "Pending",
+    },
+
+    {
+      propertyId: "01101001",
+      location: "Gampaha",
+      task: "Clean Backyard",
+      amount: 15000.0,
+      scheduleDate: "2023/09/10",
+      assignedPerson: "Nirmal",
+      requestedTime: "2 days",
+      status: "Rejected",
+    },
+
+    {
+      propertyId: "100100110",
+      location: "Minuwangoda",
+      task: "Water System Makeover",
+      amount: 35000.0,
+      scheduleDate: "2023/12/08",
+      assignedPerson: "Shashika",
+      requestedTime: "2 days",
+      status: "Pending",
+    },
+    // ... add more data objects here ...
+  ];
 
   const itemsPerPage = 5; // Number of items per page
 

@@ -175,8 +175,9 @@ const NewTaskRequestTable = ({ searchTerm }) => {
 
                   <Table.Cell>{rowData.moreInfo}</Table.Cell>
                   <Table.Cell>
-                    <Button
-                      className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
+                  <div className="flex gap-1">
+                    <div><Button
+                      className="font-medium hover:bg-secondary-gray-light"
                       onClick={() => {
                         setOpenModal("placement");
                         setRequestId(rowData.id); // Set the propertyId in the state
@@ -184,8 +185,10 @@ const NewTaskRequestTable = ({ searchTerm }) => {
                     >
                       Accept
                     </Button>
+                    </div>
+                    <div>
                     <Button
-                      className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
+                      className="font-medium bg-[#b99d2c] hover:bg-secondary-gray-light"
                       onClick={() => {
                         setOpenModal("reshedule");
                         setRequestId(rowData.id); // Set the propertyId in the state
@@ -193,6 +196,8 @@ const NewTaskRequestTable = ({ searchTerm }) => {
                     >
                       Reshedule
                     </Button>
+                    </div>
+                    </div>
                     <Modal
                       show={props.openModal === "placement"}
                       position={props.modalPlacement}

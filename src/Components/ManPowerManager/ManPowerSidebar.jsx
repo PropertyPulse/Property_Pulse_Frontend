@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FiChevronDown } from 'react-icons/fi';
-import { FaBars } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FiChevronDown } from "react-icons/fi";
+import { FaBars } from "react-icons/fa";
+import { HiOutlineLogout } from "react-icons/hi";
 
 // Import your icon images
-import dashboardIcon from '../../Assets/Icons/dashboard-icon.png';
-import propertiesIcon from '../../Assets/Icons/properties-icon.png';
-import tasksIcon from '../../Assets/Icons/tasks-icon.png';
-import taskApprovalsIcon from '../../Assets/Icons/task-approvals-icon.png';
-import logo from '../../Assets/logo.png';
+import dashboardIcon from "../../Assets/Icons/dashboard-icon.png";
+import propertiesIcon from "../../Assets/Icons/properties-icon.png";
+import tasksIcon from "../../Assets/Icons/tasks-icon.png";
+import taskApprovalsIcon from "../../Assets/Icons/task-approvals-icon.png";
+import logo from "../../Assets/logo.png";
 
 const ManPowerSidebar = () => {
   const [open, setOpen] = useState(true);
@@ -16,24 +17,24 @@ const ManPowerSidebar = () => {
 
   const SidebarItems = [
     {
-      title: 'Dashboard',
+      title: "Dashboard",
       icon: dashboardIcon,
-      url: '/manpower-company/dashboard', // Example URL, replace with actual URLs
+      url: "/manpower-company/dashboard", // Example URL, replace with actual URLs
     },
     {
-      title: 'Requests',
+      title: "Requests",
       icon: propertiesIcon,
-      url: '/manpower-company/request', // Example URL, replace with actual URLs
+      url: "/manpower-company/request", // Example URL, replace with actual URLs
     },
     {
-      title: 'Tasks History',
+      title: "Tasks History",
       icon: tasksIcon,
-      url: '/manpower-company/task-history', // Example URL, replace with actual URLs
+      url: "/manpower-company/task-history", // Example URL, replace with actual URLs
     },
     {
-      title: 'Manage Employee',
+      title: "Manage Employee",
       icon: taskApprovalsIcon,
-      url: '/manpower-company/manage-employee', // Example URL, replace with actual URLs
+      url: "/manpower-company/manage-employee", // Example URL, replace with actual URLs
     },
   ];
 
@@ -45,25 +46,23 @@ const ManPowerSidebar = () => {
     <div className="flex h-full">
       <section
         className={`sidebar md:h-full sm:h-full bg-white text-primary-blue-800 pt-2 relative duration-300 shadow-md ${
-          open ? 'w-[15rem]' : 'w-24'
-        } min-h-screen`} 
+          open ? "w-[15rem]" : "w-24"
+        } min-h-screen`}
       >
         <FaBars
           className={`absolute text-2xl text-primary-blue-800 cursor-pointer -right-10 top-6 md ${
-            !open && 'rotate-180'
+            !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}
         />
-        <div
-          className={`row-auto flex space-x-6 ${!open ? 'pl-4' : 'pl-6'}`}
-        >
+        <div className={`row-auto flex space-x-6 ${!open ? "pl-4" : "pl-6"}`}>
           <img
-            className={`${!open ? 'w-16 h-16' : 'w-16 h-16'} duration-300`}
+            className={`${!open ? "w-16 h-16" : "w-16 h-16"} duration-300`}
             src={logo}
             alt="logo"
           />
           <div className="pt-1 text-center">
-            <h1 className={`title p-0 ${!open && 'scale-0'} duration-300`}>
+            <h1 className={`title p-0 ${!open && "scale-0"} duration-300`}>
               Property
               <br /> Pulse
             </h1>
@@ -75,16 +74,12 @@ const ManPowerSidebar = () => {
             <React.Fragment key={index}>
               <li className="flex items-center px-4 py-2 m-2 my-3 cursor-pointer text-primary-blue-800 gap-x-3 hover:bg-selected rounded-xl">
                 <Link to={menu.url} className="block float-left text-xl">
-                  <img
-                    className="w-6 h-6"
-                    src={menu.icon}
-                    alt="logo"
-                  />
+                  <img className="w-6 h-6" src={menu.icon} alt="logo" />
                 </Link>
                 <Link
                   to={menu.url}
                   className={`pt-1 font-semibold text-md flex-1 ${
-                    !open && 'hidden'
+                    !open && "hidden"
                   }`}
                 >
                   {menu.title}
@@ -92,7 +87,7 @@ const ManPowerSidebar = () => {
                 {menu.submenu && open && (
                   <FiChevronDown
                     className={`pt-2 text-2xl ${
-                      openSubmenus.includes(index) && 'rotate-180'
+                      openSubmenus.includes(index) && "rotate-180"
                     }`}
                     onClick={() => {
                       setOpenSubmenus((prevState) => {
@@ -112,7 +107,7 @@ const ManPowerSidebar = () => {
                     <li
                       key={subIndex}
                       className={`text-primary-blue-500 flex items-center font-medium text-sm cursor-pointer py-2 m-2 my-0.5 space-x-3 hover:bg-selected rounded-lg pl-12 ${
-                        !open && 'hidden'
+                        !open && "hidden"
                       }`}
                     >
                       <Link
@@ -128,7 +123,7 @@ const ManPowerSidebar = () => {
                       <Link
                         to={submenuItem.url}
                         className={`pt-1 font-semibold text-md flex-1 ${
-                          !open && 'hidden'
+                          !open && "hidden"
                         }`}
                       >
                         {submenuItem.title}
@@ -140,10 +135,24 @@ const ManPowerSidebar = () => {
             </React.Fragment>
           ))}
         </ul>
+        <div
+          className="flex w-full items-center text-primary-blue-800 px-4 space-x-2 cursor-pointer
+                           hover:bg-selected absolute bottom-2"
+        >
+          <span className="text-2xl block float-left">
+            <HiOutlineLogout />
+          </span>
+          <span
+            className={`pt-1 font-semibold text-md flex-1 ${
+              !open ? "hidden" : ""
+            }`}
+          >
+            Logout
+          </span>
+        </div>
       </section>
     </div>
   );
 };
 
 export default ManPowerSidebar;
-

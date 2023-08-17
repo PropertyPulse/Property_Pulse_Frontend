@@ -5,7 +5,7 @@ import InsuranceSidebar from "../../Components/InsuranceManager/InsuranceSidebar
 
 const IsDashboard = () => {
     return (
-        <div className='flex w-full bg-background-blue'>
+        <div className='flex w-full bg-[#EDF2FB]'>
             <div className='z-50'>
                 <InsuranceSidebar />
             </div>

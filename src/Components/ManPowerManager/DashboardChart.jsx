@@ -109,7 +109,7 @@ const DashboardChart = () => {
       <div className="lg:w-2/3 md:w-auto">
         <Card className="m-4">
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
-            <p>Last 3 Months Revenue Comparision</p>
+            <p>Last 3 Months Revenue Comparison</p>
           </h5>
           {/* Chart Section */}
           <div className="mt-4">

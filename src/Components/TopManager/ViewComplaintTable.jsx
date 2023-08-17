@@ -21,47 +21,29 @@ const ViewComplaintTable = ({ searchTerm }) => {
     },
     {
       
-      complainId: "10101010",
-      title:'Cannot sign in',
-      reason: "I cannot sign in.",
-      details: "when i trying to signin popup a error msg",
+      complainId: "10101000",
+      title:'Cannot upload images',
+      reason: "I cannot upload images",
+      details: "I tried many times to upload but it shows an error",
       phoneNo:'0712452366',
     },
     {
       
-      complainId: "10101010",
+      complainId: "10111010",
       title:'Cannot sign in',
       reason: "I cannot sign in.",
-      details: "when i trying to signin popup a error msg",
+      details: "Error msg came. I tried many times",
       phoneNo:'0712452366',
     },
     {
      
-      complainId: "10101010",
-      title:'Cannot sign in',
-      reason: "I cannot sign in.",
-      details: "when i trying to signin popup a error msg",
+      complainId: "10101110",
+      title:'Cannot update details',
+      reason: "I cannot update details",
+      details: "I changed my phone number. I tried to update it here. But it is not updating",
       phoneNo:'0712452366',
     },
-    {
-      
-      complainId: "10101010",
-      title:'Cannot sign in',
-      reason: "I cannot sign in.",
-      details: "when i trying to signin popup a error msg",
-      phoneNo:'0712452366',
-    },
-    {
-      
-      complainId: "10101010",
-      title:'Cannot sign in',
-      reason: "I cannot sign in.",
-      details: "when i trying to signin popup a error msg",
-      phoneNo:'0712452366',
-    },
-    // Add more data objects for other rows...
-  ];
-  //pagination and filtering
+  ]
 
   const itemsPerPage = 5; // Number of items per page
 

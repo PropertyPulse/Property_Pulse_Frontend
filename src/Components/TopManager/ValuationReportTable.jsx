@@ -20,60 +20,60 @@ const ValuationReportTable = ({ searchTerm }) => {
       task: "Clean the house",
       price: "10000",
       scheduleDate: "2023/09/10",
-      details: "0711234567",
-      status:'Received',
+      details: "0711334567",
+      status: "Received",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10101110",
       type: "Land",
       location: "Kaduwela",
       task: "Repair water pipe",
       price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-      status:'Pending',
+      scheduleDate: "2023/10/10",
+      details: "0713222792",
+      status: "Pending",
     },
     {
-      propertyId: "10101010",
+      propertyId: "11101110",
       type: "House",
       location: "Waliweriya",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-      status:'Received',
+      task: "Clean the Rooftop",
+      price: "20000",
+      scheduleDate: "2023/08/10",
+      details: "0719899693",
+      status: "Received",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10111010",
       type: "House",
       location: "Colombo",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-      status:'Pending',
+      task: "Clean the backyard",
+      price: "5000",
+      scheduleDate: "2023/07/10",
+      details: "0766899693",
+      status: "Pending",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10100010",
       type: "House",
-      location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-      status:'Received',
+      location: "Kaluthara",
+      task: "Bathroom makeover",
+      price: "20000",
+      scheduleDate: "2023/09/11",
+      details: "0719954321",
+      status: "Received",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10111010",
       type: "Land",
-      location: "Colombo",
+      location: "Colombo 03",
       task: "Clean the land",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-      status:'Pending',
+      price: "8000",
+      scheduleDate: "2023/11/15",
+      details: "0725347234",
+      status: "Pending",
     },
-    // Add more data objects for other rows...
+    // Add more data objects for other rows...
   ];
   //pagination and filtering
 
@@ -132,9 +132,7 @@ const ValuationReportTable = ({ searchTerm }) => {
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                     {rowData.type}
                   </Table.Cell>
-                  <Table.Cell>
-                      {rowData.location}
-                  </Table.Cell>
+                  <Table.Cell>{rowData.location}</Table.Cell>
                   <Table.Cell>
                     <Button onClick={() => props.setOpenModal("viewTask")}>
                       View Tasks
@@ -156,13 +154,13 @@ const ValuationReportTable = ({ searchTerm }) => {
                         <Table.Body className="divide-y">
                           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                             Clean House
+                              Clean House
                             </Table.Cell>
                             <Table.Cell>Once Week</Table.Cell>
                           </Table.Row>
                           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                             Clean Land
+                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                              Clean Land
                             </Table.Cell>
                             <Table.Cell>Once 2 Week</Table.Cell>
                           </Table.Row>
@@ -177,8 +175,8 @@ const ValuationReportTable = ({ searchTerm }) => {
                       View
                     </Button>
 
-                      {/* view Land modal */}
-                      <Modal
+                    {/* view Land modal */}
+                    <Modal
                       show={props.openModal === "viewValuation"}
                       size="7xl"
                       onClose={() => props.setOpenModal(undefined)}
@@ -197,8 +195,8 @@ const ValuationReportTable = ({ searchTerm }) => {
                       View
                     </Button>
 
-                      {/* view Land modal */}
-                      <Modal
+                    {/* view Land modal */}
+                    <Modal
                       show={props.openModal === "view"}
                       size="7xl"
                       onClose={() => props.setOpenModal(undefined)}

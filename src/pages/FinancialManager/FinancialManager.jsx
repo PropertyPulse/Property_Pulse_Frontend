@@ -5,7 +5,7 @@ import FinancialManagerSidebar from "../../Components/FinancialManager/Financial
 
 const FinancialManager = () => {
     return (
-        <div className='flex w-full bg-background-blue'>
+        <div className='flex w-full bg-[#EDF2FB]'>
             <div className='z-50'>
                 <FinancialManagerSidebar />
             </div>

@@ -10,65 +10,74 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
     {
       propertyId: "10101010",
       location: "Maharagama",
-      taskid: "T1254345",
+      taskid: "T2568531",
       task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
+      payment: "20000.00",
+      finishedDate: "2023/04/10",
       assignedPerson: "Shashika",
       paymentStatus: "Paid",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10101011",
       location: "Gampaha",
       taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      task: "Clean the Backyard",
+      payment: "15000.00",
+      finishedDate: "2023/09/02",
+      assignedPerson: "Nirmal",
       paymentStatus: "Pending",
     },
     {
-      propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
+      propertyId: "10111010",
+      location: "Minuwangoda",
+      taskid: "T1354845",
+      task: "Painting",
+      payment: "25000.00",
+      finishedDate: "2023/10/10",
+      assignedPerson: "Supun",
       paymentStatus: "Pending",
     },
     {
-      propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
+      propertyId: "11101110",
+      location: "Rathnapura",
+      taskid: "T1004345",
+      task: "Clean the Gate",
+      payment: "45000.00",
+      finishedDate: "2023/11/10",
+      assignedPerson: "Nipul",
+      paymentStatus: "Paid",
+    },
+    {
+      propertyId: "10101011",
+      location: "Colombo 03",
+      taskid: "T0257345",
+      task: "Paint the walls",
+      payment: "55000.00",
+      finishedDate: "2023/03/10",
       assignedPerson: "Shashika",
+      paymentStatus: "Paid",
+    },
+    {
+      propertyId: "10111010",
+      location: "Papiliyana",
+      taskid: "T1224000",
+      task: "Clean the Rooftop",
+      payment: "75000.00",
+      finishedDate: "2023/09/10",
+      assignedPerson: "Nirmal",
       paymentStatus: "Pending",
     },
     {
-      propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
+      propertyId: "10101000",
+      location: "Modara",
+      taskid: "T7548333",
+      task: "Bathroom Makeover",
+      payment: "40000.00",
+      finishedDate: "2023/07/18",
       assignedPerson: "Shashika",
       paymentStatus: "Pending",
-    },
-    {
-      propertyId: "10101010",
-      location: "Gampaha",
-      taskid: "T1254345",
-      task: "Clean the House",
-      payment: "2000.00",
-      finishedDate: "2023/09/10",
-      assignedPerson: "Shashika",
-      paymentStatus: "Pending",
-    },
-  ];
-
+    },
+  ];
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
@@ -104,9 +113,6 @@ const TaskHistoryTable = ({ searchTerm ,pStatus}) => {
             <Table.HeadCell>Finished Date</Table.HeadCell>
             <Table.HeadCell>Assigned Person</Table.HeadCell>
             <Table.HeadCell>Payment Status</Table.HeadCell>
-            <Table.HeadCell>
-              <span className="sr-only">Action</span>
-            </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
             {paginatedData.length === 0 ? (

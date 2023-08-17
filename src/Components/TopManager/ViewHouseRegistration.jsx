@@ -5,16 +5,15 @@ import ViewUploadedFile from "../Common/ViewUploadedFile";
 
 const ViewHouseRegistration = () => {
   const [values, setValues] = useState({
-    address: "",
-    district: "",
-    location: "",
-    stories: "",
-    bedrooms: "",
-    livingRooms: "",
-    bathrooms: "",
-    diningRooms: "",
-    specialRooms: "",
-    specialRoomsDescription: "",
+    address: "58,A,Miriswatta,Gampaha",
+    district: "Gampaha",
+    stories: "2",
+    bedrooms: "5",
+    livingRooms: "1",
+    bathrooms: "2",
+    diningRooms: "1",
+    specialRooms: "1",
+    specialRoomsDescription: "Not Specified",
   });
   const images = [
     "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(1).webp",
@@ -43,23 +42,14 @@ const ViewHouseRegistration = () => {
       label: "District",
       styles: "w-32",
     },
-    // Properties for Location input field
-    {
-      id: 3,
-      name: "location",
-      type: "text",
-      errorMessage: "",
-      label: "Location",
-      required: true,
-    },
     // Properties for Land Size input field
     {
       id: 4,
       name: "landSize",
       type: "text",
-      errorMessage: "Land size should be a number and should be in ",
       label: "Land Size()",
       required: true,
+      value:"100 perch",
     },
     // Properties for crops input field
     {

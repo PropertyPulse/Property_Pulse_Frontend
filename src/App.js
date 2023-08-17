@@ -57,8 +57,6 @@ import Chat from "./pages/Task Supervisor/Chat";
 // import TopManager from "./pages/TopManager/TopManager";
 import Complaints from "./pages/TopManager/Complaints";
 import ValuationExpert from "./pages/ValuationExpert/ValuationExpert"
-import ViewReportSubmissions from "./pages/ValuationExpert/SubmittedValuationReports";
-import PendingReportSubmissions from './pages/ValuationExpert/PendingReportSubmissions';
 import LegalDocuments from "./pages/Task Supervisor/LegalDocuments";
 import MonthlyReports from "./pages/Task Supervisor/MonthlyReports";
 import VisitedProperties from "./pages/Task Supervisor/VisitedProperties";
@@ -85,6 +83,8 @@ import NewProperty from './pages/TopManager/NewProperty';
 import ReceivedValuation from './pages/TopManager/ReceivedValuation';
 // import Complaints from './pages/TopManager/Complaints';
 import ManageTs from './pages/TopManager/ManageTs';
+import PendingValuationReport from './pages/ValuationExpert/PendingValuationReport';
+import SubmittedValutationReport from './pages/ValuationExpert/SubmittedValutationReport';
 
 function App() {
     return (
@@ -150,13 +150,11 @@ function App() {
                 </Route> */}
 
 
-                {/* Valuation Expert  Routes
+                {/* Valuation Expert  Routes */}
                 <Route path="ve" element={<ValuationExpert />} >
-                    <Route path="dashboard" element={<ValuationDashboard />} />
-                    <Route path="view-report-submissions" element={<ViewReportSubmissions />} />
-
-                    <Route path="pending-report-submissions" element={<PendingReportSubmissions />} />
-                </Route> */}
+                    <Route path="pending-valuation-reports" element={<PendingValuationReport />} />
+                    <Route path="submited-valuation-reports" element={<SubmittedValutationReport />} />
+                </Route>
 
                 {/* Task Supervisor Routes */}
                 <Route path="task-supervisor" element={<TaskSupervisor />}>

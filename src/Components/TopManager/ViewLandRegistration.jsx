@@ -1,29 +1,22 @@
 import React, { useState } from "react";
 import InputText from "../../Components/Common/InputText";
 import ViewUploadedFile from "../Common/ViewUploadedFile";
-
+import l1 from "../../Assets/LandImage/l1.jpg";
+import l2 from "../../Assets/LandImage/l2.jpg";
+import l3 from "../../Assets/LandImage/l3.jpg";
+import l4 from "../../Assets/LandImage/l4.jpg";
+import l5 from "../../Assets/LandImage/l5.jpg";
 
 const ViewLandRegistration = () => {
   const [values, setValues] = useState({
-    address: "",
-    district: "",
-    location: "",
-    stories: "",
-    bedrooms: "",
-    livingRooms: "",
-    bathrooms: "",
-    diningRooms: "",
-    specialRooms: "",
-    specialRoomsDescription: "",
+    address: "58/a,Gampaha,Miriswatta",
+    district: "Gampaha",
+    location: "Gampaha",
+    landSize: "50 perch",
+    crops: "Coconut,Banana,Chilli",
+    specialFacts: "No",
   });
-  const images = [
-    "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(1).webp",
-    "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(2).webp",
-    "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(3).webp",
-    "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(4).webp",
-    "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(5).webp",
-    "https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(6).webp",
-  ];
+  const images = [l1, l2, l3, l4, l5];
 
   const inputs = [
     // Properties for Address input field
@@ -59,6 +52,7 @@ const ViewLandRegistration = () => {
       type: "text",
       errorMessage: "Land size should be a number and should be in ",
       label: "Land Size()",
+      value: "100p erch",
       required: true,
     },
     // Properties for crops input field
@@ -116,6 +110,7 @@ const ViewLandRegistration = () => {
                       key={input.id}
                       {...input}
                       value={values[input.name]}
+                      disabled
                       onChange={onChange}
                     />
                   ) : input.name === "haveCrops" ? (
@@ -155,6 +150,9 @@ const ViewLandRegistration = () => {
                       <textarea
                         className="w-full bg-white text-sm border-2 border-gray-200 rounded-lg p-3 mt-1 placeholder:text-[#adadad] hover:border-[#2e8a99]/70 focus:border-[#2e8a99]/70 focus:ring-0 outline-none"
                         placeholder={input.placeholderText}
+                        value={values[input.name]}
+                        disabled
+                        onChange={onChange}
                       />
                       <span className="error-msg text-xs text-red-500 leading-tight line-clamp-3 hidden">
                         {/* {errorMessage}                                     */}
@@ -171,16 +169,17 @@ const ViewLandRegistration = () => {
               <div className="h-full w-full gap-10 items-center p-10">
                 <div className="w-full">
                   <label>Images of the Property</label>
-                  <div classname="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
-                    <div classname="-m-1 flex flex-wrap md:-m-2">
+                  <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
+                    <div className="flex flex-wrap md:-m-2">
                       {images.map((image, index) => (
                         <div
-                          key="{index}"
-                          classname="flex w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-1 md:p-2"
+                          key={index}
+                          className="flex w-full sm:w-1/2 p-1 md:p-2"
                         >
                           <img
-                            className="block mx-auto h-full object-cover object-center rounded-lg shadow-md"
+                            className="block mx-auto h-full object-cover object-center rounded-lg shadow-md max-w-sm m-2"
                             src={image}
+                            alt={`Image ${index + 1}`}
                           />
                         </div>
                       ))}
@@ -188,7 +187,7 @@ const ViewLandRegistration = () => {
                   </div>
                 </div>
                 <div className="w-full m-4">
-                  <label>Insuarnce Documents</label>
+                  <label>Insurance Documents</label>
                   <p className="text-xs italic"></p>
                   <ViewUploadedFile />
                 </div>
