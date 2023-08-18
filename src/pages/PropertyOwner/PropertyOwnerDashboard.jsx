@@ -45,12 +45,12 @@ const PropertyOwnerDashboard = () => {
                     </button>
                   </Link> */}
 
-                  {/* <button
+                  <button
                     className="bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300"
                     onClick={() => setShowModal(true)}
                   >
                     + Add New Property
-                  </button> */}
+                  </button>
                 </div>
               </div>
 
