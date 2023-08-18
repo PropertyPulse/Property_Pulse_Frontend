@@ -26,9 +26,9 @@ const PropertyPayments = () => {
 
     return (
         <div className="h-[100vh] fixed flex flex-col">
-            <div className='w-full h-[calc(100vh-5rem)] px-10 py-5 gap-10 overflow-auto'>
+            <div className='w-full h-[calc(100vh-5rem)] px-10 py-4 pb-2 gap-10 overflow-auto'>
                 <h1 className='text-2xl font-semibold'>Payments: {id}</h1>
-                <div className='w-full min-h-[92%] h-fit mt-2'>
+                <div className='w-full min-h-[92%] h-fit'>
                     <div className='w-full h-fit flex flex-auto items-center gap-5'>
                         <div className='w-1/3 h-full px-3 py-2'>
                             <div className='w-full h-fit text-center rounded-md shadow-lg shadow-[#E2EAFC] bg-white mt-2 p-5'>
@@ -72,7 +72,7 @@ const PropertyPayments = () => {
                         </div>
                     </div>
 
-                    <div className='w-full h-[280px] px-7'>
+                    {/* <div className='w-full h-[280px] px-7'>
                         <h2 className='text-xl font-medium'>Payment History</h2>
                         <div className='w-full h-[230px] p-5 rounded-md shadow-lg shadow-[#E2EAFC] bg-white mt-2 overflow-auto'>
                             <table className='min-w-full divide-y divide-gray-200'>
@@ -124,7 +124,7 @@ const PropertyPayments = () => {
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className='w-full h-[280px] px-7'>
                         <h2 className='text-xl font-medium'>Payment History</h2>
