@@ -12,7 +12,7 @@ registerLicense('Ngo9BigBOggjHTQxAR8/V1NGaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnx
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-    <React.StrictMode>
+
         <BrowserRouter>
             <AuthProvider>
                 <Routes>
@@ -20,5 +20,5 @@ root.render(
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
-    </React.StrictMode>
+
 )

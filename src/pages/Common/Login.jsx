@@ -38,7 +38,7 @@ const Login = () => {
 
 
 
-    console.log(from)
+    // console.log(from)
 
 
 
@@ -77,8 +77,8 @@ const Login = () => {
                 setUser('');
                 setPwd('');
 
-            console.log(roles)
-            console.log("printing auth",auth)
+            // console.log(roles)
+            console.log("printing auth",auth.roles)
 
 
             if (from === "/") {
@@ -95,7 +95,7 @@ const Login = () => {
                     navigate("/task-supervisor/dashboard");
                 }
                 else if (roles === "FINANCIALMANAGER"){
-                    navigate("/financial-manager/dashboard");
+                    navigate("/fm/dashboard");
                 }
                 else if (roles === "MPC"){
                     navigate("/manpower-company/dashboard");
@@ -109,9 +109,7 @@ const Login = () => {
                 else if (roles === "INSURANCEMANAGER"){
                     navigate("/ins/quatation-request");
                 }
-                else if (roles === "FINANCIALMANAGER"){
-                    navigate("/fm/dashboard");
-                }
+
 
 
             } else {

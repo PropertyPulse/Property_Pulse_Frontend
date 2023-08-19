@@ -15,7 +15,7 @@ const useLogout = () => {
             console.error(err);
         }
     }
-
+    // setAuth({});
     return logout;
 }
 
