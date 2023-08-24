@@ -55,6 +55,11 @@ const PropertyOwnerSidebar = () => {
         icon: documentsIcon,
         url: '/po/documents', // Example URL, replace with actual URLs
     },
+    {
+        title: 'Complaints',
+        icon: documentsIcon,
+        url: '/po/complaints', // Example URL, replace with actual URLs
+    },
   ];
 
   useEffect(() => {

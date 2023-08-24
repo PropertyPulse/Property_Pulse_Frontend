@@ -83,8 +83,12 @@ import NewProperty from './pages/TopManager/NewProperty';
 import ReceivedValuation from './pages/TopManager/ReceivedValuation';
 // import Complaints from './pages/TopManager/Complaints';
 import ManageTs from './pages/TopManager/ManageTs';
+
 import PendingValuationReport from './pages/ValuationExpert/PendingValuationReport';
 import SubmittedValutationReport from './pages/ValuationExpert/SubmittedValutationReport';
+
+import ScheduledTasksList from './Components/TaskSupervisor/ScheduledTasksList';
+import ComplaintsPO from './pages/PropertyOwner/ComplaintsPO';
 
 function App() {
     return (
