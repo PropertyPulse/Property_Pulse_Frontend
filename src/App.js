@@ -89,7 +89,7 @@ import SubmittedValutationReport from './pages/ValuationExpert/SubmittedValutati
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Layout />}>g
                 {/*Public router */}
                 <Route path="/" element={<PropertyPulseLanding />} />
                 <Route path="/contact-us" element={<ContactUs />} />
