@@ -66,17 +66,16 @@ const ViewOngoingTask = () => {
                             <h2 className='text-xl font-semibold'>Give Feedback</h2>
                             <textarea className='w-full min-h-[300px] mt-2 rounded-md border-gray-400 placeholder:text-gray-300 text-sm outline-none focus:ring-0' placeholder='Add your feedback...'></textarea>
                         </div>
-                        <div className='text-center mt-5'>
-                            
+                        <div className='text-center mt-5'>                            
                             <button 
-                                className='w-full mt-2 bg-primary-blue-800 text-white py-5 px-5 rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300 z-50'
+                                className='w-full mt-2 bg-primary-blue-800 text-white py-4 px-5 rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300 z-50'
                                 onClick={() => setShowModal(true)}
                             >
                                 Make a complain
                             </button>
                         </div>
                         <div className='text-center mt-6'>
-                            <button className='w-full mt-2 bg-sky-600 py-4 px-5 text-white rounded-md hover:bg-sky-blue-600/80 hover:-translate-y-1 transition duration-300 flex justify-center items-center gap-5'>
+                            <button className='w-full mt-2 bg-sky-600 py-3 px-5 text-white rounded-md hover:bg-sky-400 hover:-translate-y-1 transition duration-300 flex justify-center items-center gap-5'>
                                 <AiFillWechat className='w-8 h-8 hover:bg-sky-300' />
                                 Open Chat
                             </button>

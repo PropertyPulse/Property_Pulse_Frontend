@@ -27,11 +27,8 @@ const PropertyViewMore = () => {
     ];
 
     return (
-        <div className='w-full h-[100vh] bg-background-blue'>
+        <div className='w-full'>
             <OpenChat />
-            <div className='w-full z-40'>
-                <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
-            </div> 
             <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center'>
                 <div className='w-2/3 h-full p-10'>
                     <h1 className='text-2xl font-semibold'>Property Details: {id}</h1>
@@ -80,7 +77,7 @@ const PropertyViewMore = () => {
                         </div>
                     </div>
 
-                    <div className='w-full min-h-[350px] bg-white border border-[#E2EAFC] shadow-lg shadow-[#E2EAFC] px-8 py-5 mt-10 rounded-lg'>
+                    <div className='w-full min-h-[300px] bg-white border border-[#E2EAFC] shadow-lg shadow-[#E2EAFC] px-8 py-5 mt-10 rounded-lg'>
                         <h1 className='text-xl font-medium'>Scheduled Tasks</h1>
                         <div className='w-full h-[250px] mt-3 overflow-x-auto'>
                             <table className='w-full border-separate border-spacing-y-2'>
@@ -106,7 +103,7 @@ const PropertyViewMore = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-1/3 h-full bg-[#EDF2FB] p-5'>
+                <div className='w-1/3 h-full p-5'>
                     <div className='w-full h-56 bg-white rounded-md mb-10'>
                         <h2 className='text-xl font-md text-center p-2'>Gallery</h2>
                         <div className='w-full h-[70%] flex-auto px-2 overflow-auto'>

@@ -83,8 +83,12 @@ import NewProperty from './pages/TopManager/NewProperty';
 import ReceivedValuation from './pages/TopManager/ReceivedValuation';
 // import Complaints from './pages/TopManager/Complaints';
 import ManageTs from './pages/TopManager/ManageTs';
+
 import PendingValuationReport from './pages/ValuationExpert/PendingValuationReport';
 import SubmittedValutationReport from './pages/ValuationExpert/SubmittedValutationReport';
+
+import ScheduledTasksList from './Components/TaskSupervisor/ScheduledTasksList';
+import ComplaintsPO from './pages/PropertyOwner/ComplaintsPO';
 
 function App() {
     return (
@@ -200,13 +204,17 @@ function App() {
                     <Route path="dashboard/view-monthly-report/:id" element={<ViewMonthlyReport />} />
                     <Route path="dashboard/ongoing-tasks" element={<OngoingTasksPO />} />
                     <Route path='dashboard/ongoing-tasks/view-ongoing-task/:propertyId/:taskId' element={<ViewOngoingTask />} />
+                    <Route path='complaints' element={<ComplaintsPO />} />
                     <Route path="properties" element={<Poproperties />} />
+                    <Route path="properties/property-details/:id" element={<PropertyViewMore />} />
                     <Route path="task" element={<Potask />} />
                     <Route path="payment" element={<PoPayment />} />
                     <Route path="reports" element={<PoReport />} />
                     <Route path="documents" element={<PropertyDocuments />} />
                     <Route path="land-registration" element={<LandRegistration />} />
                     <Route path="house-registration" element={<HouseRegistration />} />
+                    <Route path="land-registration/schedule-tasks" element={<TasksListPO />} />
+                    <Route path="house-registration/schedule-tasks" element={<TasksListPO />} />
                 </Route>
 
 

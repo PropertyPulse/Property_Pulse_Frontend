@@ -125,8 +125,8 @@ const LandRegistration = () => {
 
 
     return (
-        <div className='w-full h-[100vh'> 
-            <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5'>
+        <div className='w-full '> 
+            <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5 overflow-auto'>
                 <h1 className='text-2xl font-semibold'>Land Registration</h1>
 
                 <div className='w-full h-full'>
@@ -224,7 +224,6 @@ const LandRegistration = () => {
                                     >
                                         <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
                                     </Link>
-                                    <button className='w-64 bg-[#01497C] px-10 py-4 text-white rounded-md hover:bg-[#01497C]/80 hover:-translate-y-1 transition duration-300'>Request Insurance</button>
                                 </div>
                             </div>
                     </form>
