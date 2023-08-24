@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Table, Pagination, Badge } from "flowbite-react";
+import { Button, Label, Modal, TextInput } from "flowbite-react";
 
-const RequestHistoryTable = ({ searchTerm }) => {
+const RequestRescheduleTable = ({ searchTerm }) => {
+  const [openModal, setOpenModal] = useState();
+  const [modalPlacement, setModalPlacement] = useState("center");
+  const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
@@ -162,15 +166,57 @@ const RequestHistoryTable = ({ searchTerm }) => {
                     <div className="flex items-center justify-center">
                       <Badge
                         color={
-                          item.status === "Accepted" ? "success" : item.status === "Pending"
-                          ? "warning"
-                          : "failure"
+                          item.status === "Accepted"
+                            ? "success"
+                            : item.status === "Pending"
+                            ? "warning"
+                            : "failure"
                         }
                         size="sm"
                       >
                         <p className="text-center">{item.status}</p>
                       </Badge>
                     </div>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button
+                      className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
+                      onClick={() => {
+                        setOpenModal("reshedule"); // Set the propertyId in the state
+                      }}
+                    >
+                      Reshedule
+                    </Button>
+
+                    <Modal
+                      show={props.openModal === "reshedule"}
+                      size="md"
+                      popup
+                      onClose={() => props.setOpenModal(undefined)}
+                    >
+                      <Modal.Header />
+                      <Modal.Body>
+                        <div className="space-y-6">
+                          <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                            Reshedule
+                          </h3>
+                          <div>
+                            <div className="mb-2 block">
+                              <Label htmlFor="password" value="Start date" />
+                            </div>
+                            <TextInput id="password" type="date" required />
+                          </div>
+                          <div>
+                            <div className="mb-2 block">
+                              <Label htmlFor="password" value="End date" />
+                            </div>
+                            <TextInput id="password" type="date" required />
+                          </div>
+    
+                            <Button>Reschedule</Button>
+                          </div>
+                      </Modal.Body>
+                    </Modal>
                   </Table.Cell>
                 </Table.Row>
               ))
@@ -191,4 +237,4 @@ const RequestHistoryTable = ({ searchTerm }) => {
   );
 };
 
-export default RequestHistoryTable;
+export default RequestRescheduleTable;

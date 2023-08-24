@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import NewTaskRequestTable from "../../Components/ManPowerManager/NewTaskRequestTable";
 import { Card } from "flowbite-react";
+import QuatationRequestTable from "../../Components/InsuranceManager/QuatationRequestTable";
 
-const NewTaskRequest = () => {
+const QuatationRequest = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -14,7 +14,7 @@ const NewTaskRequest = () => {
       <div className="flex flex-col md:flex-row">
         <Card className="flex-grow md:w-1/2 xl:w-full m-4">
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            New Requests
+            New Quatation Requests
           </h5>
           <div className="flex-grow md:w-4/5 p-4">
             {/* search form ... */}
@@ -47,7 +47,7 @@ const NewTaskRequest = () => {
                   type="search"
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search"
+                  placeholder="Search EmployeeId, Name, Nic..."
                   value={searchTerm}
                   onChange={handleSearch}
                 />
@@ -55,7 +55,7 @@ const NewTaskRequest = () => {
             </form>
           </div>
           <div>
-            <NewTaskRequestTable searchTerm={searchTerm}/>
+            <QuatationRequestTable searchTerm={searchTerm}/>
           </div>
         </Card>
       </div>
@@ -63,4 +63,4 @@ const NewTaskRequest = () => {
   );
 };
 
-export default NewTaskRequest;
+export default QuatationRequest;

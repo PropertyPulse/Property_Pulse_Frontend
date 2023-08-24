@@ -13,56 +13,37 @@ const ViewComplaintTable = ({ searchTerm }) => {
 
   const tableData = [
     {
-      propertyId: "10101010",
-      location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      complainId: "10101010",
+      title:'Cannot sign in',
+      reason: "I cannot sign in.",
+      details: "when i trying to signin popup a error msg",
+      phoneNo:'0712452366',
     },
     {
-      propertyId: "10101010",
-      location: "Kaduwela",
-      task: "Repair water pipe",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
+      
+      complainId: "10101000",
+      title:'Cannot upload images',
+      reason: "I cannot upload images",
+      details: "I tried many times to upload but it shows an error",
+      phoneNo:'0712452366',
     },
     {
-      propertyId: "10101010",
-      location: "Waliweriya",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      
+      complainId: "10111010",
+      title:'Cannot sign in',
+      reason: "I cannot sign in.",
+      details: "Error msg came. I tried many times",
+      phoneNo:'0712452366',
     },
     {
-      propertyId: "10101010",
-      location: "Colombo",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+     
+      complainId: "10101110",
+      title:'Cannot update details',
+      reason: "I cannot update details",
+      details: "I changed my phone number. I tried to update it here. But it is not updating",
+      phoneNo:'0712452366',
     },
-    {
-      propertyId: "10101010",
-      location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-    },
-    {
-      propertyId: "10101010",
-      location: "Colombo",
-      task: "Clean the land",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    // Add more data objects for other rows...
-  ];
-  //pagination and filtering
+  ]
 
   const itemsPerPage = 5; // Number of items per page
 
@@ -88,11 +69,10 @@ const ViewComplaintTable = ({ searchTerm }) => {
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
           <Table.Head>
-            <Table.HeadCell>Property Id</Table.HeadCell>
-            <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Estimated Price</Table.HeadCell>
-            <Table.HeadCell>Schedule Date</Table.HeadCell>
+            <Table.HeadCell>Compalin Id</Table.HeadCell>
+            <Table.HeadCell>Title</Table.HeadCell>
+            <Table.HeadCell>Reason</Table.HeadCell>
+            <Table.HeadCell>Description</Table.HeadCell>
             <Table.HeadCell>More info</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Action</span>
@@ -112,21 +92,15 @@ const ViewComplaintTable = ({ searchTerm }) => {
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                    {rowData.propertyId}
+                    {rowData.complainId}
                   </Table.Cell>
                   <Table.Cell>
-                    <a
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                      href="/tables"
-                    >
-                      {rowData.location}
-                    </a>
+                   
+                      {rowData.title}
                   </Table.Cell>
-                  <Table.Cell>{rowData.task}</Table.Cell>
-                  <Table.Cell>{rowData.price + ".00"}</Table.Cell>
-                  <Table.Cell>{rowData.scheduleDate}</Table.Cell>
-
+                  <Table.Cell>{rowData.reason}</Table.Cell>
                   <Table.Cell>{rowData.details}</Table.Cell>
+                  <Table.Cell>{rowData.phoneNo}</Table.Cell>
                   <Table.Cell>
                     <div className="flex space-x-4">
                       <Button

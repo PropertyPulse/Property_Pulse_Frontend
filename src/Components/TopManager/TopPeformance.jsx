@@ -5,18 +5,18 @@ import { Card } from 'flowbite-react';
 const TopPeformance = () => {
   const tableData = [
     {
-        description: "P10101010 Monthly payment",
+        description: "shashika",
         paymentStatus: "Credit",
-        amount: "2000.00",
+        amount: "10",
       },
       {
-        description: "P10101010 Monthly payment",
+        description: "Kavisha",
         paymentStatus: "Debit",
-        amount: "2000.00",
+        amount: "8",
       },{
-        description: "P10101010 Monthly payment",
+        description: "Deepamal",
         paymentStatus: "Debit",
-        amount: "2000.00",
+        amount: "5",
       },
     // Add more transaction data entries here...
   ];
@@ -45,7 +45,7 @@ const TopPeformance = () => {
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
               >
                 <Table.Cell className="px-auto">
-                    No.1
+                    #
                   </Table.Cell>
                 <Table.Cell>{transaction.description}</Table.Cell>
                 <Table.Cell>{transaction.amount}</Table.Cell>

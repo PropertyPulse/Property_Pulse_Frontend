@@ -2,7 +2,9 @@ import { Table, Button, Modal } from "flowbite-react";
 import React, { useState } from "react";
 import { Pagination } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { Label, Select } from 'flowbite-react';
+import { Label, Select } from "flowbite-react";
+import ViewLandRegistration from "./ViewLandRegistration";
+import ViewHouseRegistration from "./ViewHouseRegistration";
 
 const NewPropertyTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
@@ -13,8 +15,10 @@ const NewPropertyTable = ({ searchTerm }) => {
 
   const tableData = [
     {
-      propertyId: "10101010",
+      propertyId: "10101110", 
+      type: "Land",
       location: "Gampaha",
+      duration:'3 Months',
       task: "Clean the house",
       price: "10000",
       scheduleDate: "2023/09/10",
@@ -22,46 +26,56 @@ const NewPropertyTable = ({ searchTerm }) => {
     },
     {
       propertyId: "10101010",
+      type: "Land",
       location: "Kaduwela",
+      duration:'6 Months', 
       task: "Repair water pipe",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
+      price: "12000",
+      scheduleDate: "2023/10/12",
+      details: "0713222792",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10111010", 
+      type: "House",
       location: "Waliweriya",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      duration:'4 Months',
+      task: "Clean the yard", 
+      price: "100000",
+      scheduleDate: "2023/08/25",
+      details: "0766899693",
     },
     {
-      propertyId: "10101010",
+      propertyId: "11111010",
+      type: "House",
       location: "Colombo",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      duration:'12 Months',
+      task: "Bathroom Makeover",
+      price: "90000",
+      scheduleDate: "2023/08/31",
+      details: "0713258974",
     },
     {
-      propertyId: "10101010",
-      location: "Gampaha",
-      task: "Clean the house",
+      propertyId: "11101010",
+      type: "Land",
+      location: "Rathnapura",
+      duration:'1 Months',
+      task: "Fence Makeover",
       price: "10000",
       scheduleDate: "2023/09/10",
-      details: "0711234647",
+      details: "0749857235",
     },
     {
-      propertyId: "10101010",
+      propertyId: "10101110",
+      type: "House",
       location: "Colombo",
-      task: "Clean the land",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      duration:'8 Months',
+      task: "Clean the Rooftop",
+      price: "80000",
+      scheduleDate: "2023/11/10",
+      details: "0712244896",
     },
-    // Add more data objects for other rows...
-  ];
+    // Add more data objects for other rows...
+  ];
   //pagination and filtering
 
   const itemsPerPage = 5; // Number of items per page
@@ -88,11 +102,12 @@ const NewPropertyTable = ({ searchTerm }) => {
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <Table striped>
           <Table.Head>
-            <Table.HeadCell>Property Id</Table.HeadCell>
+            <Table.HeadCell>Request Id</Table.HeadCell>
+            <Table.HeadCell>Type</Table.HeadCell>
             <Table.HeadCell>Location</Table.HeadCell>
-            <Table.HeadCell>Task</Table.HeadCell>
-            <Table.HeadCell>Estimated Price</Table.HeadCell>
-            <Table.HeadCell>Schedule Date</Table.HeadCell>
+            <Table.HeadCell>Task List</Table.HeadCell>
+            <Table.HeadCell>Duration</Table.HeadCell>
+            <Table.HeadCell>Contact</Table.HeadCell>
             <Table.HeadCell>More info</Table.HeadCell>
             <Table.HeadCell>
               <span className="sr-only">Action</span>
@@ -115,18 +130,26 @@ const NewPropertyTable = ({ searchTerm }) => {
                     {rowData.propertyId}
                   </Table.Cell>
                   <Table.Cell>
-                    <a
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                      href="/tables"
-                    >
+                    
+                    {rowData.type}
+                </Table.Cell>
+                  <Table.Cell>
+                    
                       {rowData.location}
-                    </a>
                   </Table.Cell>
-                  <Table.Cell>{rowData.task}</Table.Cell>
-                  <Table.Cell>{rowData.price + ".00"}</Table.Cell>
-                  <Table.Cell>{rowData.scheduleDate}</Table.Cell>
-
+                  <Table.Cell>
+                    {" "}
+                    <Button onClick={() => props.setOpenModal("viewTask")}>
+                      View Tasks
+                    </Button>
+                  </Table.Cell>
+                  <Table.Cell>{rowData.duration}</Table.Cell>
                   <Table.Cell>{rowData.details}</Table.Cell>
+                  <Table.Cell>
+                    <Button onClick={() => props.setOpenModal("viewLand")}>
+                      View
+                    </Button>
+                  </Table.Cell>
                   <Table.Cell>
                     <div className="flex space-x-4">
                       <Button
@@ -218,6 +241,64 @@ const NewPropertyTable = ({ searchTerm }) => {
                             </Button>
                           </div>
                         </div>
+                      </Modal.Body>
+                    </Modal>
+
+                    {/* view Land modal */}
+                    <Modal
+                      show={props.openModal === "viewLand"}
+                      size="7xl"
+                      onClose={() => props.setOpenModal(undefined)}
+                    >
+                      <Modal.Header>View Request</Modal.Header>
+                      <Modal.Body>
+                        <div className="space-y-6">
+                          <ViewLandRegistration />
+                        </div>
+                      </Modal.Body>
+                    </Modal>
+
+                    {/* view House modal */}
+                    <Modal
+                      show={props.openModal === "viewHouse"}
+                      size="7xl"
+                      onClose={() => props.setOpenModal(undefined)}
+                    >
+                      <Modal.Header>View Request</Modal.Header>
+                      <Modal.Body>
+                        <div className="space-y-6">
+                          <ViewHouseRegistration />
+                        </div>
+                      </Modal.Body>
+                    </Modal>
+
+                    <Modal
+                      show={props.openModal === "viewTask"}
+                      size="7xl"
+                      onClose={() => props.setOpenModal(undefined)}
+                    >
+                      <Modal.Header>View Lask List</Modal.Header>
+                      <Modal.Body>
+                        <Table>
+                          <Table.Head>
+                            <Table.HeadCell>Task name</Table.HeadCell>
+                            <Table.HeadCell>Frequency</Table.HeadCell>
+                          </Table.Head>
+                          <Table.Body className="divide-y">
+                            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                Clean House
+                              </Table.Cell>
+                              <Table.Cell>Once Week</Table.Cell>
+                            </Table.Row>
+                            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                Clean Land
+                              </Table.Cell>
+                              <Table.Cell>Once 2 Week</Table.Cell>
+                            </Table.Row>
+                          </Table.Body>
+                        </Table>
                       </Modal.Body>
                     </Modal>
                   </Table.Cell>

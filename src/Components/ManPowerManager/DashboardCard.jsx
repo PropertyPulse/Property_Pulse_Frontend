@@ -11,12 +11,12 @@ const DashboardCard = (props) => {
         <div>
           <Card className="w-52 m-4 md:w-72 h-40" >
             <div className="flex items-center justify-center">
-              <FontAwesomeIcon icon={icon} className="mr-2 text-xl text-gray-500 dark:text-gray-300" />
+              <FontAwesomeIcon icon={icon} className="mr-2 text-4xl text-black" />
               <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
                 {topic}
               </h5>
             </div>
-            <p className="font-normal text-gray-700 dark:text-gray-400 text-center">
+            <p className="font-normal text-gray-700 text-center text-xl">
               {number}
             </p>
           </Card>

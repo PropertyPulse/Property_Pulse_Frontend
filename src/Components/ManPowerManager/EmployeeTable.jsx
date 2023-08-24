@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Table, Pagination, Modal } from "flowbite-react";
 import ViewEmployee from "./ViewEmployee";
 import EditEmployee from "./EditEmployee";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate"
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useAuth from "../../hooks/useAuth";
-
-
-
 
 const EmployeeTable = ({ searchTerm }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,25 +15,24 @@ const EmployeeTable = ({ searchTerm }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const onPageChange = (page) => setCurrentPage(page);
-   const {auth} = useAuth()
-  const axiosPrivate = useAxiosPrivate()
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     const fetchData = async () => {
-
-
       try {
-        const response = await axiosPrivate.post("/api/v1/mpc/getallemployees", {
-          email: auth.user
-        });
+        const response = await axiosPrivate.post(
+          "/api/v1/mpc/getallemployees",
+          {
+            email: auth.user,
+          }
+        );
 
         setTableData(response.data);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-
-
     };
 
     fetchData();
@@ -44,102 +40,100 @@ const EmployeeTable = ({ searchTerm }) => {
   // console.log(table)
 
   // Example table data
- // let  table_Data = [
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "kaveesha",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "kaveesha",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    {
- //      employeeId: "10101010",
- //      name: "Deepamal Shaminda",
- //      address: "Galla",
- //      contactNo: "0715992210",
- //      skills: "Carpenter",
- //    },
- //    // Add more data objects as needed
- //  ];
-
-
+  // let  table_Data = [
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "kaveesha",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "kaveesha",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    {
+  //      employeeId: "10101010",
+  //      name: "Deepamal Shaminda",
+  //      address: "Galla",
+  //      contactNo: "0715992210",
+  //      skills: "Carpenter",
+  //    },
+  //    // Add more data objects as needed
+  //  ];
 
   const itemsPerPage = 5; // Number of items per page
 
@@ -149,16 +143,16 @@ const EmployeeTable = ({ searchTerm }) => {
   //     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
   //   )
   // );
-//
-//   const filteredData = tableData.filter((rowData) =>
-//   Object.values(rowData).some((value) =>
-//     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-//   )
-// )
+  //
+  //   const filteredData = tableData.filter((rowData) =>
+  //   Object.values(rowData).some((value) =>
+  //     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  // )
   const filteredData = tableData.filter((rowData) =>
-      Object.values(rowData).some((value) =>
-          value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    Object.values(rowData).some((value) =>
+      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -169,7 +163,7 @@ const EmployeeTable = ({ searchTerm }) => {
 
   // Slice the data to display based on startIndex and endIndex
   const paginatedData = dataToDisplay.slice(startIndex, endIndex);
- 
+
   const openViewModal = (rowData) => {
     setSelectedRowData(rowData); // Set selected row data
     setViewModalOpen(true); // Open view modal
@@ -197,62 +191,65 @@ const EmployeeTable = ({ searchTerm }) => {
           </Table.Head>
           <Table.Body className="divide-y">
             {paginatedData.length === 0 ? (
-            <tr className="h-32">
-            <td colSpan="8" className="text-center py-4">
-              No data found.
-            </td>
-          </tr>
+              <tr className="h-32">
+                <td colSpan="8" className="text-center py-4">
+                  No data found.
+                </td>
+              </tr>
             ) : (
               paginatedData.map((rowData, index) => (
                 <Table.Row
                   key={index}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {rowData.id}
-                </Table.Cell>
-                <Table.Cell>{rowData.name}</Table.Cell>
-                <Table.Cell>{rowData.address}</Table.Cell>
+                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    {rowData.id}
+                  </Table.Cell>
+                  <Table.Cell>{rowData.name}</Table.Cell>
+                  <Table.Cell>{rowData.address}</Table.Cell>
                   <Table.Cell>{rowData.district}</Table.Cell>
                   <Table.Cell>{rowData.contactno}</Table.Cell>
-                  {rowData.skills && typeof rowData.skills === 'string' ? (
-                      <Table.Cell>
-                        {rowData.skills.split(',').map((skill, index) => (
-                            <span key={index} className="mr-1">
-        {skill}
-                              {index < rowData.skills.split(',').length - 1 ? ',' : ''}
-      </span>
-                        ))}
-                      </Table.Cell>
+
+                  {rowData.skills && typeof rowData.skills === "string" ? (
+                    <Table.Cell>
+                      {rowData.skills.split(",").map((skill, index) => (
+                        <span key={index} className="mr-1">
+                          {skill}
+                          {index < rowData.skills.split(",").length - 1
+                            ? ","
+                            : ""}
+                        </span>
+                      ))}
+                    </Table.Cell>
                   ) : (
-                      <Table.Cell>{rowData.skills}</Table.Cell>
+                    <Table.Cell>{rowData.skills}</Table.Cell>
                   )}
 
-
                   <Table.Cell>
-                  <div className="flex space-x-4">
-                    <button
-                      onClick={() => openViewModal(rowData)}
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    >
-                      View
-                    </button>
-                    <button
-                      onClick={() => openEditModal(rowData)}
-                      className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    >
-                      Edit
-                    </button>
-                    <a
-                      className="font-medium text-red-500 hover:underline dark:text-red-500"
-                      href={`/employee/${rowData.employeeId}/delete`}
-                    >
-                      Delete
-                    </a>
-                  </div>
-                </Table.Cell>
-              </Table.Row>
-            )))}
+                    <div className="flex space-x-4">
+                      <button
+                        onClick={() => openViewModal(rowData)}
+                        className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                      >
+                        View
+                      </button>
+                      <button
+                        onClick={() => openEditModal(rowData)}
+                        className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                      >
+                        Edit
+                      </button>
+                      <a
+                        className="font-medium text-red-500 hover:underline dark:text-red-500"
+                        href={`/employee/${rowData.employeeId}/delete`}
+                      >
+                        Delete
+                      </a>
+                    </div>
+                  </Table.Cell>
+                </Table.Row>
+              ))
+            )}
           </Table.Body>
         </Table>
         {/* Model */}
@@ -287,7 +284,7 @@ const EmployeeTable = ({ searchTerm }) => {
         </Modal>
 
         <div className="flex items-center justify-center text-center">
-        <Pagination
+          <Pagination
             currentPage={currentPage}
             layout="table"
             onPageChange={onPageChange}

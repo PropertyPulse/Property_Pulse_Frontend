@@ -13,56 +13,39 @@ const TpPaybleTable = ({ searchTerm }) => {
 
   const tableData = [
     {
-      propertyId: "10101010",
-      location: "Gampaha",
-      descriotion:"Cleaning equipment",
+      propertyId: "10111010",
+      location: "Colombo 05",
+      description:"Cleaning equipment",
       task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      price: "8000",
+      scheduleDate: "2023/08/10",
+      details: "0713222792",
     },
     {
-      propertyId: "10101010",
-      descriotion:"Water Pipe,Water Pipe,Water Pipe,Water Pipe,Water Pipe,",
+      propertyId: "10111010",
+      description:"Water Pipe,Water Pipe,Water Pipe,Water Pipe,Water Pipe,",
       task: "Repair water pipe",
       price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
+      scheduleDate: "2023/11/05",
+      details: "0766899693",
     },
     {
-      propertyId: "10101010",
-      descriotion:"Cleaning equipment",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
+      propertyId: "10101110",
+      description:"Cleaning equipment",
+      task: "Clean the rooftop",
+      price: "7000",
+      scheduleDate: "2023/08/31",
+      details: "0775367234",
     },
     {
-      propertyId: "10101010",
-      descriotion:"Cleaning equipment",
-      task: "Clean the house",
+      propertyId: "10001010",
+      description:"Cleaning equipment",
+      task: "Clean the backyard",
       price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10101010",
-      descriotion:"Cleaning equipment",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-    },
-    {
-      propertyId: "10101010",
-      descriotion:"Cleaning equipment",
-      task: "Clean the land",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    // Add more data objects for other rows...
-  ];
+      scheduleDate: "2023/06/10",
+      details: "0714563218",
+    },
+  ];
   //pagination and filtering
 
   const itemsPerPage = 5; // Number of items per page
@@ -116,7 +99,7 @@ const TpPaybleTable = ({ searchTerm }) => {
                     {rowData.propertyId}
                   </Table.Cell>
                   <Table.Cell>
-                      {rowData.descriotion}
+                      {rowData.description}
                   </Table.Cell>
                   <Table.Cell>{rowData.task}</Table.Cell>
                   <Table.Cell>{rowData.price + ".00"}</Table.Cell>

@@ -51,7 +51,7 @@ const TaskHistory = () => {
                         type="search"
                         id="default-search"
                         className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search EmployeeId, Name, Nic..."
+                        placeholder="Search"
                         value={searchTerm}
                         onChange={handleSearch}
                       />
@@ -102,7 +102,7 @@ const TaskHistory = () => {
                   </form>
                 </div>
                 <div>
-                  <TaskHistoryTable searchTerm={searchTerm} />
+                  <TaskHistoryTable searchTerm="paid" />
                 </div>
               </Tabs.Item>
               <Tabs.Item title="Pending">
@@ -145,7 +145,7 @@ const TaskHistory = () => {
                   </form>
                 </div>
                 <div>
-                  <TaskHistoryTable searchTerm={searchTerm} />
+                  <TaskHistoryTable searchTerm="pending" />
                 </div>
               </Tabs.Item>
             </Tabs.Group>

@@ -1,70 +1,105 @@
-import React from 'react'
-import {Link} from "react-router-dom";
-import  Calender  from "../Task Supervisor/Calender.jsx"
-import TopManagerLineChart from "../../Components/TopManager/TopManagerLineChart";
-const   ValuationDashboard = () => {
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Calender from "../Task Supervisor/Calender.jsx";
+import { Card } from "flowbite-react";
+import PendingReportSubmissionTable from "../../Components/ValuationExpert/PendingReportSubmissionTable.jsx";
+const ValuationDashboard = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
-<div className= "grid mt-8 grid-cols-1 md:grid-cols-2  gap-8 content-center md:mx-12 bg-stale-50">
-          
-
-        <div className="bg-choco-gray px-6 py-6 w-64 text-sm  text-white  font-medium rounded-lg box-border">
-            <div className="flex flex-row space-x-4 items-center ">
-
-                <div className = "flex flex-col  space-y-3">
-                    <p className=" my-1   uppercase leading-4 flex justify-between ">Pending Submissions</p>
-
-                    <p className="text-white text-2xl  ">
-                        <span>6</span></p>
-                   <Link to="/ve/pending-report-submissions" className= "flex space-x-0"><div className = "flex items-center space-x-3 justify-center" >See here 
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-  </svg>
-  </div>
-  </Link>
-  
-                </div>
-
-                <div>
-
-
-
-                </div>
+    <div className="flex flex-col-1">
+      <div className="w-3/5 m-4">
+        <Card>
+          {/* search form ... */}
+          <form>
+            <label
+              htmlFor="default-search"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="default-search"
+                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search EmployeeId, Name, Nic..."
+                value={searchTerm}
+                onChange={handleSearch}
+              />
             </div>
-        </div>
+          </form>
+          <div>
+            <PendingReportSubmissionTable searchTerm={searchTerm} />
+          </div>
+        </Card>
+      </div>
 
-        <div className="bg-choco-gray px-6 py-6 w-64 text-sm text-white font-medium rounded-lg box-border">
-            <div className="flex flex-row space-x-4 items-center">
-
-                <div className = "flex flex-col  space-y-3">
-                    <p className=" my-1   uppercase leading-4 flex justify-between "> Submitted  Reports</p>
-
-                    <p className="text-red-500  text-2xl  ">
-                        <span>6</span></p>
-                        <Link to="/ve/view-report-submissions" className= "flex space-x-0"><div className = "flex items-center space-x-3 justify-center" >See here 
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-  </svg>
-  </div>
-  </Link>
-  
-                </div>
-
-                <div>
-
-
-
-                </div>
+      <div className="w-2/5 m-4">
+        <Card>
+          {/* search form ... */}
+          <form>
+            <label
+              htmlFor="default-search"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="default-search"
+                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search EmployeeId, Name, Nic..."
+                value={searchTerm}
+                onChange={handleSearch}
+              />
             </div>
-        </div>
+          </form>
+          <div>
+          <PendingReportSubmissionTable searchTerm={searchTerm} />
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+};
 
-
-        <Calender />
-
-        <TopManagerLineChart />
-</div>
-
-  )
-}
-
-
-export default ValuationDashboard
+export default ValuationDashboard;

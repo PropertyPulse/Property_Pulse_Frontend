@@ -5,7 +5,7 @@ import TpSideBar from "../../Components/TopManager/TpSideBar";
 
 const TopManager = () => {
     return (
-        <div className='flex w-full bg-background-blue'>
+        <div className='flex w-full bg-[#EDF2FB]'>
             <div className='z-50'>
                 <TpSideBar />
             </div>
