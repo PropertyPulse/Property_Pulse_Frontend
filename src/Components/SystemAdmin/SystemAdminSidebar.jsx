@@ -3,8 +3,6 @@ import React, {useState} from "react";
 import {FiChevronDown} from "react-icons/fi";
 import dashboardIcon from "../../Assets/Icons/dashboard-icon.png";
 import addUsersIcon from "../../Assets/Icons/add-users-icon.png";
-import internalUsersIcon from "../../Assets/Icons/internal-users-icon.png";
-import externalUserIcon from "../../Assets/Icons/external-users-icon.png";
 import userProfilesIcon from "../../Assets/Icons/user-profiles-icon.png"
 import {FaBars} from "react-icons/fa";
 import {Link, useLocation, useNavigate} from "react-router-dom";
@@ -34,15 +32,7 @@ const SystemAdminSidebar = () => {
             url: '/system-admin/dashboard'},
         {title: "Add Users",
             icon: addUsersIcon,
-            submenu: true,
-            submenuItems: [
-                {title: "Internal Users",
-                    icon: internalUsersIcon,
-                    url: '/system-admin/add-users/top-manager'},
-                {title: "External Users",
-                    icon: externalUserIcon,
-                    url: '/system-admin/add-users/manpower-company'},
-            ]},
+            url: '/system-admin/add-users/top-manager'},
         {title: "User Profiles",
             icon: userProfilesIcon,
             url: '/system-admin/user-profiles'},

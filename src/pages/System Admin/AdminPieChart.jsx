@@ -13,7 +13,6 @@ function AdminPieChart() {
     const data = [
         { x: 'Top Manager', y: 2, text: 'Top Manager' }, { x: 'Finance Manager', y: 3, text: 'Finance Manager' },
         { x: 'Task Supervisor', y: 60, text: 'Task Supervisor' }, { x: 'Valuation Expert', y: 30, text: 'Valuation Expert' },
-        { x: 'Insurance Agent', y: 20, text: 'Insurance Agent' }, { x: 'Manpower Company', y: 35, text: 'Manpower Company' },
 
     ];
 

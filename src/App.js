@@ -46,8 +46,6 @@ import AssignedProperties from "./pages/Task Supervisor/AssignedProperties"
 import AddFinanceManagers from "./pages/System Admin/AddFinanceManagers";
 import AddValuationExperts from "./pages/System Admin/AddValuationExperts";
 import AddTaskSupervisors from "./pages/System Admin/AddTaskSupervisors";
-import AddManpowerCompanies from "./pages/System Admin/AddManpowerCompanies";
-import AddInsuranceAgent from "./pages/System Admin/AddInsuranceAgents";
 import UserProfiles from "./pages/System Admin/UserProfiles";
 import ViewProfile from "./pages/System Admin/ViewProfile";
 import AllPaymentsPO from './pages/PropertyOwner/AllPaymentsPO';
@@ -129,8 +127,6 @@ function App() {
                             <Route path="add-users/finance-manager" element={<AddFinanceManagers />} />
                             <Route path="add-users/valuation-expert" element={<AddValuationExperts />} />
                             <Route path="add-users/task-supervisor" element={<AddTaskSupervisors />} />
-                            <Route path="add-users/manpower-company" element={<AddManpowerCompanies />} />
-                            <Route path="add-users/insurance-agent" element={<AddInsuranceAgent />} />
                             <Route path="user-profiles" element={<UserProfiles />} />
                             <Route path="user-profiles/view-profile" element={<ViewProfile />} />
                         </Route>
