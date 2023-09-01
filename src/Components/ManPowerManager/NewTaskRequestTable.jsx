@@ -76,6 +76,9 @@ const NewTaskRequestTable = ({ searchTerm }) => {
     // // Close the modal
     props.setOpenModal(undefined);
   };
+
+
+
   const fetchData = async () => {
     try {
       const response = await axiosPrivate.get(
@@ -96,6 +99,9 @@ const NewTaskRequestTable = ({ searchTerm }) => {
     fetchAvailableEmployees();
     fetchData();
   }, []);
+
+
+
 
   const fetchAvailableEmployees = async () => {
     try {

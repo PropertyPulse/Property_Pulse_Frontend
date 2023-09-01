@@ -3,13 +3,20 @@ import { Link } from 'react-router-dom';
 import { FiChevronDown } from 'react-icons/fi';
 import { FaBars } from 'react-icons/fa';
 
+// import useLogout from '../../hooks/useLogout'
 // Import your icon images
 import dashboardIcon from '../../Assets/Icons/dashboard-icon.png';
 import propertiesIcon from '../../Assets/Icons/properties-icon.png';
 import tasksIcon from '../../Assets/Icons/tasks-icon.png';
 import logo from '../../Assets/logo.png';
+import {HiOutlineLogout} from "react-icons/hi";
+import useLogout from "../../hooks/useLogout";
 
 const InsuranceSidebar = () => {
+
+    const logout = useLogout();
+
+
     const [open, setOpen] = useState(true);
     const [openSubmenus, setOpenSubmenus] = useState([]);
 
@@ -34,6 +41,13 @@ const InsuranceSidebar = () => {
     useEffect(() => {
         // ... your existing resize logic ...
     }, []);
+
+
+
+    const handleLogout = async () => {
+
+        await logout();
+    }
 
     return (
         <div className="flex h-full">
@@ -134,6 +148,21 @@ const InsuranceSidebar = () => {
                         </React.Fragment>
                     ))}
                 </ul>
+                <div onClick={handleLogout}
+                    className="flex w-full items-center text-primary-blue-800 px-4 mb-6 space-x-2 cursor-pointer
+                           hover:bg-selected absolute bottom-2"
+                >
+          <span className="text-2xl block float-left">
+            <HiOutlineLogout />
+          </span>
+                    <span
+                        className={`pt-1 font-semibold text-md flex-1 ${
+                            !open ? "hidden" : ""
+                        }`}
+                    >
+            Logout
+          </span>
+                </div>
             </section>
         </div>
     );

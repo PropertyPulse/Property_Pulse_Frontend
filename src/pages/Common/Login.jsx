@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useContext } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import logo from '../../Assets/logo.png'
 import eyeIcon from '../../Assets/Icons/eye-icon.png'
@@ -6,7 +6,7 @@ import passwordIcon from '../../Assets/Icons/password-icon.png'
 import userIcon from '../../Assets/Icons/user-icon.png'
 
 import jwtDecode from "jwt-decode";
-import Cookies from "js-cookie";
+
 import axios from '../../api/axios';
 
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
@@ -38,7 +38,7 @@ const Login = () => {
 
 
 
-    console.log(from)
+    // console.log(from)
 
 
 
@@ -64,7 +64,7 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.access_token;
-            const refreshToken = response?.data?.refresh_token;
+
 
             const firstname = response?.data?.firstname;
             const lastname = response?.data?.lastname;
@@ -77,8 +77,8 @@ const Login = () => {
                 setUser('');
                 setPwd('');
 
-            console.log(roles)
-            console.log("printing auth",auth)
+            // console.log(roles)
+            console.log("printing auth",auth.roles)
 
 
             if (from === "/") {
@@ -86,16 +86,22 @@ const Login = () => {
 
 
                 if (roles === "PROPERTYOWNER") {
-                    navigate("/property-owner");
+                    navigate("/po/dashboard");
+                }
+                if (roles === "TOPMANAGER") {
+                    navigate("/tm/dashboard");
                 }
                 else if (roles === "TASKSUPERVISOR"){
                     navigate("/task-supervisor/dashboard");
                 }
                 else if (roles === "FINANCIALMANAGER"){
-                    navigate("/financial-manager/dashboard");
+                    navigate("/fm/dashboard");
                 }
                 else if (roles === "MPC"){
                     navigate("/manpower-company/dashboard");
+                }
+                else if (roles === "VE"){
+                    navigate("/ve/pending-valuation-reports");
                 }
                 else if (roles === "ADMIN"){
                     navigate("/system-admin/dashboard");
@@ -103,9 +109,7 @@ const Login = () => {
                 else if (roles === "INSURANCEMANAGER"){
                     navigate("/ins/quatation-request");
                 }
-                else if (roles === "FINANCIALMANAGER"){
-                    navigate("/fm/dashboard");
-                }
+
 
 
             } else {

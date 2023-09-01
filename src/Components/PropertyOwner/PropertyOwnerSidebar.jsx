@@ -12,10 +12,17 @@ import taskApprovalsIcon from '../../Assets/Icons/task-approvals-icon.png';
 import logo from '../../Assets/logo.png';
 import documentsIcon from '../../Assets/Icons/document.png';
 import {HiOutlineLogout} from "react-icons/hi";
+import useLogout from "../../hooks/useLogout";
 
 const PropertyOwnerSidebar = () => {
   const [open, setOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState([]);
+
+  const logout = useLogout()
+
+    const handleLogout = () => {
+        logout()
+    }
 
   const SidebarItems = [
     {
@@ -158,7 +165,7 @@ const PropertyOwnerSidebar = () => {
             </React.Fragment>
           ))}
         </ul>
-        <div className='flex w-full items-center text-primary-blue-800 px-4 py-2 space-x-2 cursor-pointer
+        <div onClick={handleLogout} className='flex w-full items-center text-primary-blue-800 px-4 py-2 space-x-2 cursor-pointer
                            hover:bg-selected absolute bottom-6'>
                     <span className="text-2xl block float-left">
                         <HiOutlineLogout />

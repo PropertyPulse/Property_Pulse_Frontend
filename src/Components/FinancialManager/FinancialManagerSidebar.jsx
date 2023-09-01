@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiChevronDown } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
+import useLogout from '../../hooks/useLogout'
 
 // Import your icon images
 import dashboardIcon from "../../Assets/Icons/dashboard-icon.png";
@@ -14,6 +15,8 @@ import logo from "../../Assets/logo.png";
 const FinancialManagerSidebar = () => {
   const [open, setOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState([]);
+
+  const logout = useLogout()
 
   const SidebarItems = [
     {
@@ -41,6 +44,10 @@ const FinancialManagerSidebar = () => {
   useEffect(() => {
     // ... your existing resize logic ...
   }, []);
+
+  const handleLogout = () =>{
+    logout()
+  }
 
   return (
     <div className="flex h-full">
@@ -135,8 +142,8 @@ const FinancialManagerSidebar = () => {
             </React.Fragment>
           ))}
         </ul>
-        <div
-          className="flex w-full items-center text-primary-blue-800 px-4 space-x-2 cursor-pointer
+        <div onClick={handleLogout}
+          className="flex w-full items-center mb-40 text-primary-blue-800 px-4 space-x-2 cursor-pointer
                            hover:bg-selected absolute bottom-2"
         >
           <span className="text-2xl block float-left">

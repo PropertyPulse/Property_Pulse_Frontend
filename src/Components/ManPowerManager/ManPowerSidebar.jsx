@@ -10,10 +10,20 @@ import propertiesIcon from "../../Assets/Icons/properties-icon.png";
 import tasksIcon from "../../Assets/Icons/tasks-icon.png";
 import taskApprovalsIcon from "../../Assets/Icons/task-approvals-icon.png";
 import logo from "../../Assets/logo.png";
+import useLogout from "../../hooks/useLogout";
 
 const ManPowerSidebar = () => {
   const [open, setOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState([]);
+
+
+  const logout = useLogout()
+
+
+    const handlelogout = () => {
+        logout()
+    }
+
 
   const SidebarItems = [
     {
@@ -135,8 +145,8 @@ const ManPowerSidebar = () => {
             </React.Fragment>
           ))}
         </ul>
-        <div
-          className="flex w-full items-center text-primary-blue-800 px-4 space-x-2 cursor-pointer
+        <div onClick={handlelogout}
+          className="flex w-full items-center text-primary-blue-800 mb-8 px-4 space-x-2 cursor-pointer
                            hover:bg-selected absolute bottom-2"
         >
           <span className="text-2xl block float-left">
