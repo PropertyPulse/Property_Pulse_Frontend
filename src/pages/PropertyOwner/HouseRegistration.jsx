@@ -1,14 +1,32 @@
 import React, { useState } from "react";
-import NavbarWithoutSidebar from "../../Components/Common/NavbarWithoutSidebar";
 import InputText from "../../Components/Common/InputText";
 import ProfilePictureUploader from "../../Components/Common/ProfilePictureUploader";
-import RequestSuccessful from "../../Components/PropertyOwner/RequestSuccessful";
-import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Dropdown from "../../Components/PropertyOwner/Dropdown";
+import { useRef } from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import axios from "../../api/axios";
+
+
+// const REGISTER_URL = '/api/v1/property/addProperty';
 
 const HouseRegistration = () => {
+    const navigate = useNavigate();
+    const {auth} = useAuth();
+    const axiosPrivate = useAxiosPrivate();
+
+    console.log(auth.user)
+    const errRef = useRef();
+
+    const [success, setSuccess] = useState(false);
+
+    const [errMessage, setErrMessage] = useState("");
+
+    const [isValid, setIsValid] = useState();
+
   const [values, setValues] = useState({
-    type: "House",
+    type: "HOME",
     address: "",
     district: "",
     location: "",
@@ -19,7 +37,7 @@ const HouseRegistration = () => {
     bathrooms: "",
     diningRooms: "",
     specialRooms: "",
-    specialRoomsDescription: "",
+    haveSpecialRooms: "Yes",
   });
 
   const inputs = [
@@ -35,6 +53,7 @@ const HouseRegistration = () => {
         id: 2,
         name: "address",
         type: "text",
+        errMessage: "",
         label: "Address",
         require: true,
       },
@@ -43,6 +62,7 @@ const HouseRegistration = () => {
         id: 3,
         name: "district",
         type: "text",
+        errMessage: "",
         label: "District",
         require: true,
       },
@@ -53,7 +73,6 @@ const HouseRegistration = () => {
         type: "text",
         errorMessage: "",
         label: "Location",
-        require: false,
       },
       // Properties for duration input field
       {
@@ -62,52 +81,51 @@ const HouseRegistration = () => {
           type: "dropdown",
           errorMessage: "",
           label: "Duration to be Managed",
-          require: false,
       },
       // Properties for No. of Stories input field
       {
         id: 6,
         name: "stories",
         type: "text",
-        errorMessage: "No. of stories should be a number",
-        label: "Stories",
-        require: false,
+        pattern: "[0-9]*",
+        errorMessage: "No. of floors should be a number",
+        label: "No. of Floors",
       },
       // Properties for No.of Bedrooms input field
       {
         id: 7,
         name: "bedrooms",
         type: "text",
+        pattern: "[0-9]*",
         errorMessage: "No. of bedrooms should be a number",
         label: "No. of Bedrooms",
-        require: false,
       },
       // properties for cNo. of Living Rooms input field
       {
         id: 8,
         name: "livingRooms",
         type: "text",
+        pattern: "[0-9]*",
         errorMessage: "No. of living rooms should be a number",
         label: "No. of Living Rooms",
-        require: false,
       },
       // Properties for No. of Bathrooms input field
       {
         id: 9,
         name: "bathrooms",
         type: "text",
+        pattern: "[0-9]*",
         errorMessage: "No. of bathrooms should be a number",
         label: "No. of Bathrooms",
-        require: false,
       },
       // Properties for No. of Dining Rooms input field
       {
         id: 10,
         name: "diningRooms",
         type: "text",
-        errorMessage: "",
+        pattern: "[0-9]*",
+        errorMessage: "No. of dining rooms should be a number",
         label: "No. of Dining Rooms",
-        require: false,
       },
       // Properties for special rooms radio button input field
       {
@@ -122,7 +140,6 @@ const HouseRegistration = () => {
         type: "textarea",
         errorMessage: "",
         label: "If 'Yes', what are they?",
-        require: false,
       },
   ];
 
@@ -236,7 +253,7 @@ const HouseRegistration = () => {
       amount: "",
     },
     {
-      id: 11,
+      id: 19,
       name: "coffee-table",
       label: "Coffee Table",
       amount: "",
@@ -264,10 +281,59 @@ const HouseRegistration = () => {
     }
   ];
 
-  // Function for handling submit of the form
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+    // Function for handling submit of the form
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setIsValid = true;
+
+        if(values.address === "" || values.district === "") {
+            isValid = false;
+        }
+
+        if(isValid) {
+            console.log("Form submitted");
+        }
+    };
+
+    const handleAddProperty = async (e) => {
+        e.preventDefault();
+
+        try{
+
+            const formFields = {
+                address: values.address,
+                type: values.type,
+                location: values.location,
+                district: values.district,
+                duration: values.duration,
+                stories: parseInt(values.stories),
+                bathrooms: parseInt(values.bathrooms),
+                bedrooms: parseInt(values.bedrooms),
+                dining_rooms: parseInt(values.diningRooms),
+                living_rooms: parseInt(values.livingRooms),
+                have_special_rooms: values.haveSpecialRooms,
+                special_rooms: values.specialRooms, 
+            }
+
+            // console.log(formFields);
+
+            const response = await axiosPrivate.post(
+                "/api/v1/property/addProperty",
+                JSON.stringify(formFields), // Convert the object to JSON string
+                {
+                    
+                }
+            );
+            console.log(response.data);
+            if(response && isValid) {
+                navigate(-1);
+            }           
+            
+        } catch(err){
+            console.log(err);
+        }
+    }
 
   // Function for handling value changes of input fields
   const onChange = (e) => {
@@ -288,9 +354,17 @@ const HouseRegistration = () => {
 
         <div className="max-w-[800px] w-full h-full mt-4 mx-auto">
           <form
-            action=""
             className="w-full h-fit mt-1 shadow-md shadow-[#D7E3FC] border border-[#D7E3FC] bg-white rounded-md pb-10"
+            onSubmit={handleSubmit}
           >
+            {/*Error message*/}
+            <div ref={errRef} className={errMessage === "" ? "hidden": "my-4 bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative"}
+                 role="alert">
+                <strong className="font-bold">Registration Failed!</strong>
+                <span className="block sm:inline"> {errMessage} </span>
+                <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+            </div>
+
             <div className="w-full h-fit flex flex-auto justify-between">
               <div className="min-w-[200px] w-full p-10 pb-5">
                 {inputs.map((input) => (
@@ -337,10 +411,15 @@ const HouseRegistration = () => {
                           </span>
                         </div>
                       </div>
-                    ) : input.type === "textarea" ? (
+                    ) : input.type === "textarea" && values.haveSpecialRooms === "Yes" ? (
                       <div>
                         <label className="text-sm">{input.label}</label>
                         <textarea
+                          key={input.id}
+                          {...input}
+                          value={values[input.name]}
+                          onChange={onChange}
+                          required
                           className="w-full bg-white text-sm text-ellipsis border-2 border-gray-200 rounded-lg p-3 mt-1 placeholder:text-[#adadad] hover:border-[#2e8a99]/70 focus:border-[#2e8a99]/70 focus:ring-0 outline-none"
                           placeholder={input.placeholderText}
                         />
@@ -395,8 +474,8 @@ const HouseRegistration = () => {
                 </div>
               </div>
             </div>
-            <div class="flex m-10">
-              <div class="flex items-center h-5">
+            <div className="flex m-10">
+              <div className="flex items-center h-5">
                 <input
                   id="helper-checkbox"
                   aria-describedby="helper-checkbox-text"
@@ -405,29 +484,29 @@ const HouseRegistration = () => {
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 ></input>
               </div>
-              <div class="ml-2 text-sm">
+              <div className="ml-2 text-sm">
                 <label
                   for="helper-checkbox"
-                  class="font-medium text-gray-900 dark:text-gray-300 text-lg mb-2"
+                  className="font-medium text-gray-900 dark:text-gray-300 text-lg mb-2"
                 >
                   Request Insurance
                 </label>
                 <p
                   id="helper-checkbox-text"
-                  class="text-xs font-normal text-gray-500 dark:text-gray-300"
+                  className="text-xs font-normal text-gray-500 dark:text-gray-300"
                 >
                   We highly recommend to take a insurance coverage for your property.
                 </p>
               </div>
             </div>
             <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
-                <Link
+                {/* <Link
                     to={{
                         pathname: "schedule-tasks"
                     }}
-                >
-                    <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
-                </Link>
+                > */}
+                    <button onClick={handleAddProperty} className='w-64 bg-primary-blue-800 px-10 py-4 border-none text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
+                {/* </Link> */}
             </div>
             {/* <div className="w-full flex justify-center items-center gap-10">
               <NavLink

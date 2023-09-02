@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import InputText from '../../Components/Common/InputText';
 import ProfilePictureUploader from '../../Components/Common/ProfilePictureUploader';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Dropdown from '../../Components/PropertyOwner/Dropdown';
+import { axiosPrivate } from '../../api/axios';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const LandRegistration = () => {
+    const navigate = useNavigate();
+    const {auth} = useAuth();
+    const axiosPrivate = useAxiosPrivate();
+
+    console.log(auth.user)
+    const errRef = useRef();
+
+    const [errMessage, setErrMessage] = useState("");
+
     const [values, setValues] = useState({
+        type: "LAND",
         address: "",
         district: "",
         location: "",
+        duration: "",
         landSize: "",
-        haveCrops: "",
+        haveCrops: "Yes",
         crops: "",
         specialFacts: "",
     });
@@ -113,7 +127,53 @@ const LandRegistration = () => {
     // Function for handling submit of the form
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        let isValid = true;
+
+        if(values.address === "" || values.district === "") {
+            isValid = false;
+        }
+
+        if(isValid) {
+            console.log("Form submitted");
+        }
     };
+
+    const handleAddProperty = async (e) => {
+        e.preventDefault();
+
+        try{
+
+            const formFields = {
+                address: values.address,
+                type: values.type,
+                location: values.location,
+                district: values.district,
+                duration: values.duration,
+                land_size: parseFloat(values.landSize),
+                have_crops: values.haveCrops,
+                crops: values.crops,
+                special_facts: values.specialFacts,
+            }
+
+            // console.log(formFields);
+
+            const response = await axiosPrivate.post(
+                "/api/v1/property/addProperty",
+                JSON.stringify(formFields), // Convert the object to JSON string
+                {
+                    
+                }
+            );
+            console.log(response.data);
+            if(response) {
+                navigate(-1);
+            }           
+            
+        } catch(err){
+            console.log(err);
+        }
+    }
 
     // Function for handling value changes of input fields
     const onChange = (e) => {
@@ -130,7 +190,18 @@ const LandRegistration = () => {
                 <h1 className='text-2xl font-semibold'>Land Registration</h1>
 
                 <div className='w-full h-full'>
-                    <form action="" className='w-full h-fit mt-1 shadow-md shadow-[#D7E3FC] border border-[#D7E3FC] bg-white rounded-md flex flex-auto justify-between gap-10'>
+                    <form 
+                        className='w-full h-fit mt-1 shadow-md shadow-[#D7E3FC] border border-[#D7E3FC] bg-white rounded-md flex flex-auto justify-between gap-10'
+                        onSubmit={handleSubmit}
+                    >
+                        {/*Error message*/}
+                        <div ref={errRef} className={errMessage === "" ? "hidden": "my-4 bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative"}
+                            role="alert">
+                            <strong className="font-bold">Registration Failed!</strong>
+                            <span className="block sm:inline"> {errMessage} </span>
+                            <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+                        </div>
+
                         <div className='min-w-[200px] w-1/3 p-10 pb-5'>
                             {inputs.map((input) => (
                                 <div className='flex-auto min-w-[200px] w-full mb-4'>
@@ -156,7 +227,7 @@ const LandRegistration = () => {
                                                 </span>
                                             </div>
                                         </div>
-                                    ) : (input.inputType === 'textarea') ? (
+                                    ) : (input.inputType === 'textarea' && (values.haveCrops === "Yes" || input.name === "specialFacts")) ? (
                                         <div>
                                             <label className='text-sm'>{input.label}</label>
                                             <textarea 
@@ -193,23 +264,23 @@ const LandRegistration = () => {
                                 <div class="flex m-10">
                                     <div class="flex items-center h-5">
                                         <input
-                                        id="helper-checkbox"
-                                        aria-describedby="helper-checkbox-text"
-                                        type="checkbox"
-                                        value=""
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                            id="helper-checkbox"
+                                            aria-describedby="helper-checkbox-text"
+                                            type="checkbox"
+                                            value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         ></input>
                                     </div>
                                     <div class="ml-2 text-sm">
                                         <label
-                                        for="helper-checkbox"
-                                        class="font-medium text-gray-900 dark:text-gray-300 text-lg mb-2"
+                                            for="helper-checkbox"
+                                            class="font-medium text-gray-900 dark:text-gray-300 text-lg mb-2"
                                         >
                                             Request Insurance
                                         </label>
                                         <p
-                                        id="helper-checkbox-text"
-                                        class="text-xs font-normal text-gray-500 dark:text-gray-300"
+                                            id="helper-checkbox-text"
+                                            class="text-xs font-normal text-gray-500 dark:text-gray-300"
                                         >
                                             We highly recommend to take a insurance coverage for your property.
                                         </p>
@@ -217,13 +288,14 @@ const LandRegistration = () => {
                                 </div>
                                 
                                 <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
-                                    <Link
+                                    {/* <Link
                                         to={{
                                             pathname: "schedule-tasks"
                                         }}
-                                    >
-                                        <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
-                                    </Link>
+                                    > */}
+                                        <button onClick={handleAddProperty} className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
+                                    {/* </Link> */}
+                                    {/* <button className='w-64 bg-[#01497C] px-10 py-4 text-white rounded-md hover:bg-[#01497C]/80 hover:-translate-y-1 transition duration-300'>Request Insurance</button> */}
                                 </div>
                             </div>
                     </form>
