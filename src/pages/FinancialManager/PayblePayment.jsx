@@ -16,7 +16,7 @@ const PayblePayment = () => {
       <div className="flex flex-col md:flex-row">
         <Card className="flex-grow md:w-1/2 xl:w-full m-4">
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Payble Payment
+            Payable Payment
           </h5>
           <div>
             <Tabs.Group aria-label="Pills" style="pills">
