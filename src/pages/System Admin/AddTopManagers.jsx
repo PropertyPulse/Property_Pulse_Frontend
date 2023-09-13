@@ -1,10 +1,42 @@
 import InputText from "../../Components/Common/InputText";
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const AddTopManagers = () => {
 
+    const navigate = useNavigate();
+    const axiosPrivate = useAxiosPrivate();
+
     const [values, setValues] = useState("");
+
+    const handleAddUser = async (e) => {
+        e.preventDefault();
+
+        const userData = {};
+
+        inputs.forEach((input) => {
+            if (input.name) {
+                userData[input.name] = values[input.name];
+            }
+        });
+
+        try {
+            const response = await axiosPrivate.post("/api/v1/admin/addTopManager", userData, {});
+
+            if (response.status === 200) {
+                console.log(response.data);
+                navigate(-1); // Navigate back to the previous page
+            } else {
+                // Handle unsuccessful response here
+                console.log('Request was not successful:', response);
+            }
+        } catch (err) {
+            // Handle errors more gracefully here
+            console.error('Error:', err);
+        }
+    };
+
 
     const inputs = [
         {
@@ -159,7 +191,7 @@ const AddTopManagers = () => {
                             ))}
                         </div>
                         <div className='w-full pt-8 flex justify-center items-center space-x-6'>
-                            <button className='btn-lg bg-primary-blue-800 text-white'>Add User</button>
+                            <button className='btn-lg bg-primary-blue-800 text-white' onClick={handleAddUser}>Add User</button>
                         </div>
                     </form>
                 </div>
