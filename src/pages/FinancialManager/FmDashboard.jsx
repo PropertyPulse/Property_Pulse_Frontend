@@ -1,16 +1,44 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Card } from "flowbite-react";
 import DashboardCard from "../../Components/FinancialManager/DashboardCard";
 import Calander from "../../Components/FinancialManager/Calander";
 import RecentTransaction from "../../Components/FinancialManager/RecentTransaction";
 import IncomeChart from "../../Components/FinancialManager/IncomeChart";
 import { faChartBar, faUsers, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 
 const FmDashboard = () => {
-  // const labels = ['2023-01', '2023-02', '2023-03', /* ... */];
-  // const inflows = [2000, 2500, 2200, /* ... */];
-  // const outflows = [1500, 1800, 2000, /* ... */];
+
+  const axiosPrivate = useAxiosPrivate();
+
+  const[income,setIncome] =useState(0);
+  const[outcome,setOutcome] =useState(0);
+
+
+  const fetchData = async () => {
+    try {
+      const income = await axiosPrivate.get('/api/v1/payments/getTotalIncome');
+      const outcome = await axiosPrivate.get('/api/v1/payments/getTotalOutcome');
+      setIncome(income.data); // Store response data in state
+      setOutcome(outcome.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  console.log(income);
+  console.log(outcome);
+
+  var balance = income - outcome;
+    console.log(balance);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+
 
   return (
     <div className="flex flex-col-1">
@@ -20,16 +48,16 @@ const FmDashboard = () => {
             <div>
               <DashboardCard
               icon={faChartBar}
-                topic="Total In"
-                number="10"
+                topic="Total Income"
+                number={income}
                 link="/fm/receivable-payment"
               />
             </div>
             <div>
               <DashboardCard
               icon={faUsers}
-                topic="Payble Out"
-                number="10"
+                topic="Total Expenses"
+                number={outcome}
                 link="/fm/payble-payment"
               />
             </div>
@@ -37,7 +65,7 @@ const FmDashboard = () => {
               <DashboardCard
               icon={faShoppingCart}
                 topic="Balance"
-                number="10"
+                number={balance}
                 link="fm/transaction-history"
               />
             </div>
