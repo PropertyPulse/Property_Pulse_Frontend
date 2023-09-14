@@ -13,9 +13,6 @@ const DashboardCard = (props) => {
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
           <p>{props.topic}</p>
         </h5>
-        <div className="text-sm font-bold tracking-tight text-gray-900 dark:text-white text-center">
-          <p>{props.topic}</p>
-        </div>
         <p className="font-normal text-gray-700 dark:text-gray-400 text-center">
           {props.number}
         </p>
