@@ -1,10 +1,39 @@
 import InputText from "../../Components/Common/InputText";
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const AddValuationExpert = () => {
 
+    const navigate = useNavigate();
+    const axiosPrivate = useAxiosPrivate();
+
     const [values, setValues] = useState("");
+
+    const handleAddUser = async (e) => {
+        e.preventDefault();
+
+        const userData = {};
+
+        inputs.forEach((input) => {
+            if (input.name) {
+                userData[input.name] = values[input.name];
+            }
+        });
+
+        try {
+            const response = await axiosPrivate.post("/api/v1/admin/addValuationExpert", userData, {});
+
+            if (response.status === 200) {
+                console.log(response.data);
+                navigate('/system-admin/user-profiles');
+            } else {
+                console.log('Request was not successful:', response);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+        }
+    };
 
     const inputs = [
         {
@@ -15,21 +44,31 @@ const AddValuationExpert = () => {
             label: 'User Role',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-2/5 border-0',
+            styles: 'w-1/3 border-0',
             defaultValue: 'Valuation Expert',
         },
         {
             id: 2,
-            name: 'userName',
+            name: 'firstName',
             type: 'text',
             // errorMessage: "This is a required field",
-            label: 'User Name',
+            label: 'First Name',
             pattern: "^[A-Za-z]+$",
             required: true,
-            styles: 'w-3/5 flex-auto border-0'
+            styles: 'w-1/3 border-0'
         },
         {
             id: 3,
+            name: 'lastName',
+            type: 'text',
+            // errorMessage: "This is a required field",
+            label: 'Last Name',
+            pattern: "^[A-Za-z]+$",
+            required: true,
+            styles: 'w-auto flex-auto border-0'
+        },
+        {
+            id: 4,
             name: 'address',
             type: 'text',
             // errorMessage: "This is a required field",
@@ -38,7 +77,7 @@ const AddValuationExpert = () => {
             styles: 'w-3/5 border-0'
         },
         {
-            id: 4,
+            id: 5,
             name: 'nearestTown',
             type: 'text',
             // errorMessage: "This is a required field",
@@ -48,7 +87,7 @@ const AddValuationExpert = () => {
             styles: 'w-2/5 flex-auto border-0'
         },
         {
-            id: 5,
+            id: 6,
             name: 'district',
             type: 'text',
             // errorMessage: "This is a required field",
@@ -58,7 +97,7 @@ const AddValuationExpert = () => {
             styles: 'w-2/5 border-0'
         },
         {
-            id: 6,
+            id: 7,
             name: 'email',
             type: 'email',
             // errorMessage: "This is a required field",
@@ -68,8 +107,8 @@ const AddValuationExpert = () => {
             styles: 'w-3/5 flex-auto border-0'
         },
         {
-            id: 7,
-            name: 'contactNumber',
+            id: 8,
+            name: 'contactNo',
             type: 'text',
             // errorMessage: "This is a required field",
             label: 'Contact Number',
@@ -78,7 +117,7 @@ const AddValuationExpert = () => {
             styles: 'w-1/3 border-0'
         },
         {
-            id: 8,
+            id: 9,
             name: 'nic',
             type: 'text',
             // errorMessage: "Invalid NIC",
@@ -88,7 +127,7 @@ const AddValuationExpert = () => {
             styles: 'w-1/3 border-0'
         },
         {
-            id: 9,
+            id: 10,
             name: 'dob',
             type: 'date',
             // errorMessage: "This is a required field and should contain at least 6 characters",
@@ -97,13 +136,13 @@ const AddValuationExpert = () => {
             styles: 'w-1/3 border-0'
         },
         {
-            id: 10,
+            id: 11,
             name: 'gender',
             label: 'Gender',
             styles: 'w-1/2 border-0'
         },
         {
-            id: 11,
+            id: 12,
             name: 'password',
             type: 'password',
             // errorMessage: "This is a required field and should contain at least 6 characters",
@@ -153,11 +192,11 @@ const AddValuationExpert = () => {
                                             <label className='pl-3 text-md text-secondary-gray'>Gender</label>
                                             <div className='flex justify-around items-center gap-24 text-[#8c8c8c]'>
                                                     <span className='flex items-center'>
-                                                        <input type='radio' className='mx-2' name='gender' id='gender-male' value='Male' defaultChecked onChange={onChange} />
+                                                        <input type='radio' className='mx-2' name='gender' id='gender-male' value='MALE' onChange={onChange} />
                                                         <span className='text-sm'>Male</span>
                                                     </span>
                                                 <span className='flex items-center'>
-                                                        <input type='radio' className='mx-2' name='gender' id='gender-female' value='Female' onChange={onChange} />
+                                                        <input type='radio' className='mx-2' name='gender' id='gender-female' value='FEMALE' onChange={onChange} />
                                                         <span className='text-sm'>Female</span>
                                                     </span>
                                             </div>
@@ -169,7 +208,7 @@ const AddValuationExpert = () => {
                             ))}
                         </div>
                         <div className='w-full pt-8 flex justify-center items-center space-x-6'>
-                            <button className='btn-lg bg-primary-blue-800 text-white'>Add User</button>
+                            <button className='btn-lg bg-primary-blue-800 text-white' onClick={handleAddUser}>Add User</button>
                         </div>
                     </form>
                 </div>
