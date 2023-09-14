@@ -26,7 +26,7 @@ const AddValuationExpert = () => {
 
             if (response.status === 200) {
                 console.log(response.data);
-                navigate(-1); // Navigate back to the previous page
+                navigate('/system-admin/user-profiles');
             } else {
                 console.log('Request was not successful:', response);
             }
