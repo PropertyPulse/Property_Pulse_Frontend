@@ -1,27 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
-import {RiWechatFill} from "react-icons/ri";
-import {FcAddImage} from "react-icons/fc";
 import {Link} from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const ViewUserProfiles = () => {
 
-    const headings = ['User ID', 'User Name', 'User Role', 'Contact Number', 'Email', ''];
+        const axiosPrivate = useAxiosPrivate();
+        const [users, setUsers] = useState([]);
 
-    const rows = [
-        {userId: 'U81',
-            userName: 'Kavisha Abeynayake',
-            userRole: 'Top Manager',
-            contactNumber: '077-2674829',
-            email: 'kavisha@gmail.com',},
-        {userId: 'U56',
-            userName: 'Deepamal Shaminda',
-            userRole: 'Task Supervisor',
-            contactNumber: '076-6544829',
-            email: 'deepamalsh@gmail.com',},
-    ];
+        const fetchData = async () => {
+            try {
+                const response = await axiosPrivate.get(
+                    '/api/v1/admin/viewUsers'
+                );
+                setUsers(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        useEffect(() => {
+            fetchData();
+        }, []);
+
+        const headings = ['User ID', 'User Name', 'User Role', 'Contact Number', 'Email', ''];
 
     return (
         <div className='w-full px-24 py-10'>
@@ -117,20 +122,27 @@ const ViewUserProfiles = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        {rows.map((row, index) => (
+                        {(users.length === 0 ?
+                            (<tr className="h-32">
+                                <td colSpan="4" className="text-center py-4">
+                                    No data found.
+                                </td>
+                            </tr>
+                        ):(users.map((user, index) => (
                             <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.userId}</td>
-                                <td scope="col" className="px-6 py-3">{row.userName}</td>
-                                <td scope="col" className="px-6 py-3">{row.userRole}</td>
-                                <td scope="col" className="px-6 py-3">{row.contactNumber}</td>
-                                <td scope="col" className="px-6 py-3">{row.email}</td>
+                                <td scope="col" className="px-6 py-3">{user.userId}</td>
+                                <td scope="col" className="px-6 py-3">{user.userName}</td>
+                                <td scope="col" className="px-6 py-3">{user.userRole}</td>
+                                <td scope="col" className="px-6 py-3">{user.contactNo}</td>
+                                <td scope="col" className="px-6 py-3">{user.email}</td>
                                 <td className="px-6 py-3">
                                     <Link to='/system-admin/user-profiles/view-profile' className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                         View Details
                                     </Link>
                                 </td>
                             </tr>
-                        ))}
+                        )))
+                        )}
                         </tbody>
                     </table>
                 </div>
