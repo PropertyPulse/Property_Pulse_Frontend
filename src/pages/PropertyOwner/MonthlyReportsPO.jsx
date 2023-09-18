@@ -3,6 +3,7 @@ import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
 import { Link } from 'react-router-dom';
 
 const MonthlyReportsPO = () => {
+
     const [values, setValues] = useState({
         reportID: "",
     });
@@ -99,7 +100,7 @@ const MonthlyReportsPO = () => {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                                             <Link 
                                                 to={{
-                                                    pathname: 'view-monthly-report'
+                                                    pathname: 'view-monthly-report/P001'
                                                 }}
                                             >
                                                 <button className="bg-[#013A63] py-1.5 px-3 text-white rounded-lg hover:bg-[#013A63]/80 hover:shadow">
