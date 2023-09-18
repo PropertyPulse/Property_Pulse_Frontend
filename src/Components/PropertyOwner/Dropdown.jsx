@@ -4,11 +4,19 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { BsChevronDown, BsSearch } from 'react-icons/bs';
 
-const Dropdown = ({label, options, searchEnable}) => {
+const Dropdown = ({label, options, searchEnable, onSelect}) => {
     const [frequency, setFrequency] = useState(null);
     const [inputValue, setInputValue] = useState("");
     const [selected, setSelected] = useState("");
     const [open, setOpen] = useState(false);
+
+    const handleOptionClick = (option) => {
+        setSelected(option.label);
+        setOpen(false);
+        setInputValue("");
+        onSelect(option.label);
+    }
+
     useEffect(() => {
         
     })
@@ -18,7 +26,7 @@ const Dropdown = ({label, options, searchEnable}) => {
         <div>
             <div 
                 onClick={() => setOpen(!open)}
-                className={`bg-white w-64 p-2 flex items-center justify-between rounded text-sm cursor-pointer border-2 ${!selected && "text-gray-400 pl-4"}`}>
+                className={`bg-white w-full p-2 flex items-center justify-between rounded text-sm cursor-pointer border-2 ${!selected && "text-gray-400 pl-4"}`}>
                 {selected 
                     ? selected.length > 25 
                         ? selected.substring(0, 25) + '...'
@@ -46,12 +54,12 @@ const Dropdown = ({label, options, searchEnable}) => {
                         'bg-sky-600 text-white'}
                         ${option.label.toLowerCase().startsWith(inputValue) ? "block" : "hidden"}`}
                         onClick={() => {
-                            if(option.label.toLowerCase() !== selected.toLowerCase()) {
-                                setSelected(option.label);
-                                setOpen(false);
-                                setInputValue("");
-                            }
-                        
+                            // if(option.label.toLowerCase() !== selected.toLowerCase()) {
+                            //     setSelected(option.label);
+                            //     setOpen(false);
+                            //     setInputValue("");
+                            // }
+                            handleOptionClick(option)
                         }}
                     >
                         {option.label}

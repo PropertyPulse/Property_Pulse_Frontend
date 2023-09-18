@@ -5,6 +5,7 @@ import { useState } from 'react';
 import PropertyImg1 from '../../Assets/property-image.jpg';
 import { Link } from 'react-router-dom';
 import OpenChat from '../../Components/PropertyOwner/OpenChat';
+import { IoLogoWechat } from 'react-icons/io5';
 
 const PropertyViewMore = () => {
     const { id } = useParams();
@@ -28,7 +29,6 @@ const PropertyViewMore = () => {
 
     return (
         <div className='w-full'>
-            <OpenChat />
             <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center'>
                 <div className='w-2/3 h-full p-10'>
                     <h1 className='text-2xl font-semibold'>Property Details: {id}</h1>
@@ -69,7 +69,7 @@ const PropertyViewMore = () => {
                         <div>
                             <Link 
                                 to={{
-                                    pathname: 'documents',
+                                    pathname: `documents`,
                                 }}
                             >
                                 <button className='bg-primary-blue-800 px-5 py-3 text-white shadow-md shadow-[#89C2D9] rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Show Documents</button>
@@ -141,6 +141,12 @@ const PropertyViewMore = () => {
                                 </button>
                             </Link>
                         </div>
+                    </div>
+                    <div className='mt-10'>
+                        <button className='w-full bg-[#2588d4] p-4 rounded-md text-white flex justify-center gap-3 peer hover:opacity-80 hover:-translate-y-1 transition duration-200 shadow-lg'>
+                            <IoLogoWechat className='w-6 h-6 fill-white peer-hover:opacity-80'/>
+                            Open Chat
+                        </button>
                     </div>
                 </div>
             </div>

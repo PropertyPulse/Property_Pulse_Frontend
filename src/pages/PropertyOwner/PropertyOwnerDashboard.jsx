@@ -24,26 +24,17 @@ const PropertyOwnerDashboard = () => {
     ];
 
   return (
-    <div className="w-full bg-[#EDF2FB]">
+    <div className="w-full">
       <PropertyType visible={showModal} onClose={handleOnClose} /> 
       <div className="w-full">
         {/* <DashboardPO />            */}
 
-        <section className="dashboard-po h-[calc(100vh-4.5rem)] w-full flex overflow-auto z-10 gap-5">
-          <div className="w-full min-h-full h-fit py-10 px-5">
+        <section className="dashboard-po w-full h-[calc(100vh-4.5rem)] flex justify-center items-center z-10 gap-5 overflow-auto px-5">
+          <div className="w-full min-h-full h-fit py-9 px-5">
             <div className="registered-properties w-full min-w-[300px] h-[280px] bg-white py-5 px-7 mb-10 rounded-md shadow-md border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold">Properties</h1>
                 <div className="button-container flex gap-2">
-                  {/* <Link
-                    to={{
-                      pathname: "/po/properties",
-                    }}
-                  >
-                    <button className="bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300">
-                      View All Properties
-                    </button>
-                  </Link> */}
 
                   <button
                     className="bg-primary-blue-800 px-3 py-2 text-sm text-white rounded-md hover:bg-primary-blue-500 hover:-translate-y-1 transition duration-300"
@@ -116,7 +107,7 @@ const PropertyOwnerDashboard = () => {
               </div>
             </div>
 
-            <div className="upcomin-tasks w-full h-[280px] bg-white py-5 px-7 rounded-md shadow-md border border-[#EDF2FB]">
+            <div className="upcoming-tasks w-full h-[279px] bg-white py-5 px-7 rounded-md shadow-md border border-[#EDF2FB]">
                 <div className="w-full flex justify-between mb-1">
                     <h1 className="text-lg font-semibold">Ongoing Tasks</h1>
                     <div>
@@ -170,7 +161,7 @@ const PropertyOwnerDashboard = () => {
                             <div>{report.description}</div>
                             <Link
                             to={{
-                                pathname: `./view-monthly-report/${report.propertyId}`,
+                                pathname: `../reports/view-monthly-report/${report.propertyId}`,
                             }}
                             >
                                 <button className="w-fit h-fit px-2.5 py-1 bg-[#01497C] text-xs text-white rounded-lg hover:bg-[#01497C]/90 hover:-translate-y-0.5 transition duration-200">

@@ -7,7 +7,7 @@ const ViewMonthlyReport = () => {
     const {id} = useParams();
 
     return (
-        <div className='w-full flex'>
+        <section className='w-full flex'>
             <div className='w-full'>
                 <div className='w-full h-full flex justify-between items-center'>
                     {/* <div className='title'>
@@ -35,7 +35,7 @@ const ViewMonthlyReport = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 
