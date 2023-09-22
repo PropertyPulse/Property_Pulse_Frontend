@@ -24,7 +24,7 @@ const OngoingTasksPO = () => {
 
     return (
         <div>
-            <div className="flex w-full h-[calc(100vh-4.5rem)] bg-[#EDF2FB] p-10">
+            <div className="flex w-full p-10">
                 <div className="w-full h-full">
                     <h1 className='text-2xl font-semibold'>Ongoing Tasks</h1>
                     <Outlet />

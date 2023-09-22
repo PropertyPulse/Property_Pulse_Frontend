@@ -7,6 +7,7 @@ import Dropdown from '../../Components/PropertyOwner/Dropdown';
 import { axiosPrivate } from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import MultipleImageUploader from '../../Components/Common/MultipleImageUploader';
 
 const LandRegistration = () => {
     const navigate = useNavigate();
@@ -17,6 +18,12 @@ const LandRegistration = () => {
     const errRef = useRef();
 
     const [errMessage, setErrMessage] = useState("");
+    const [wantInsurance, setWantInsurance] = useState(false);
+    const [duration, setDuration] = useState();
+
+    const handleDropdownSelect = (selectedValue) => {
+        setDuration(selectedValue);
+    }
 
     const [values, setValues] = useState({
         type: "LAND",
@@ -31,9 +38,17 @@ const LandRegistration = () => {
     });
 
     const inputs = [
-        // Properties for Address input field
+        // Properties for Type input field
         {
             id: 1,
+            name: "type",
+            type: "text",
+            label: "Type",
+            disabled: true,
+        },
+        // Properties for Address input field
+        {
+            id: 2,
             name: 'address',
             type: 'text',
             label: 'Address',
@@ -42,7 +57,7 @@ const LandRegistration = () => {
         },
         // Properties for District input field
         {
-            id: 2,
+            id: 3,
             name: 'district',
             type: 'text',
             label: 'District',
@@ -51,16 +66,16 @@ const LandRegistration = () => {
         },
         // Properties for Location input field
         {
-            id: 3,
+            id: 4,
             name: 'location',
             type: 'text',
             errorMessage: '',
             label: 'Location',
-            require: false,
+            require: true,
         },
         // Properties for duration input field
         {
-            id: 4,
+            id: 5,
             name: "duration",
             type: "dropdown",
             errorMessage: "",
@@ -69,31 +84,31 @@ const LandRegistration = () => {
         },
         // Properties for Land Size input field
         {
-            id: 5,
+            id: 6,
             name: 'landSize',
             type: 'text',
-            errorMessage: 'Land size should be a number and should be in ',
-            label: 'Land Size()',
-            required: true,
+            errorMessage: 'Land size should be a number and should be in Perches',
+            label: 'Land Size(Perches)',
+            require: true,
         },
         // Properties for crops input field
         {
-            id: 6,
+            id: 7,
             name: 'haveCrops',
             label: 'Are there any crops in the land?',
         },
         // properties for crops lising input field
         {
-            id: 7,
+            id: 8,
             name: 'crops',
-            inputType: 'textarea',
+            type: 'textarea',
             errorMessage: '',
             placeholderText: 'State the crops...',
             label: 'If "Yes", what are they?',
         },
         // Properties for special facts input field
         {
-            id: 8,
+            id: 9,
             name: 'specialFacts',
             inputType: 'textarea',
             errorMessage: '',
@@ -149,17 +164,19 @@ const LandRegistration = () => {
                 type: values.type,
                 location: values.location,
                 district: values.district,
-                duration: values.duration,
+                duration: duration,
                 land_size: parseFloat(values.landSize),
                 have_crops: values.haveCrops,
                 crops: values.crops,
                 special_facts: values.specialFacts,
+                want_insurance: wantInsurance,
+                property_owner_email: auth.user,
             }
 
             // console.log(formFields);
 
             const response = await axiosPrivate.post(
-                "/api/v1/property/addProperty",
+                "/api/v1/property/addNewProperty",
                 JSON.stringify(formFields), // Convert the object to JSON string
                 {
                     headers: {
@@ -170,7 +187,7 @@ const LandRegistration = () => {
             );
             console.log(response.data);
             if(response) {
-                navigate(-1);
+                navigate("schedule-tasks");
             }           
             
         } catch(err){
@@ -189,13 +206,13 @@ const LandRegistration = () => {
 
     return (
         <div className='w-full '> 
-            <div className='w-full h-[calc(100vh-5.5rem)] px-10 py-5 overflow-auto'>
+            <div className='w-full h-[calc(100vh-4.5rem)] px-10 py-5 overflow-auto'>
                 <h1 className='text-2xl font-semibold'>Land Registration</h1>
 
-                <div className='w-full h-full'>
+                <div className='w-full mt-3'>
                     <form 
-                        className='w-full h-fit mt-1 shadow-md shadow-[#D7E3FC] border border-[#D7E3FC] bg-white rounded-md flex flex-auto justify-between gap-10'
-                        onSubmit={handleSubmit}
+                        className='w-full h-fit mt-1 shadow-md shadow-[#D7E3FC] border border-[#D7E3FC] bg-white rounded-md flex flex-auto justify-between items-center gap-10'
+                        onSubmit={handleAddProperty}
                     >
                         {/*Error message*/}
                         <div ref={errRef} className={errMessage === "" ? "hidden": "my-4 bg-red-100 text-center border border-red-400 text-red-700 px-4 py-3 rounded relative"}
@@ -230,19 +247,20 @@ const LandRegistration = () => {
                                                 </span>
                                             </div>
                                         </div>
-                                    ) : (input.inputType === 'textarea' && (values.haveCrops === "Yes" || input.name === "specialFacts")) ? (
+                                    ) : (input.type === 'textarea' && (values.haveCrops === "Yes" || input.name === "specialFacts")) ? (
                                         <div>
                                             <label className='text-sm'>{input.label}</label>
                                             <textarea 
                                                 className='w-full bg-white text-sm border-2 border-gray-200 rounded-lg p-3 mt-1 placeholder:text-[#adadad] hover:border-[#2e8a99]/70 focus:border-[#2e8a99]/70 focus:ring-0 outline-none' 
                                                 placeholder={input.placeholderText}
+                                                key={input.id} {...input} value={values[input.name]} onChange={onChange} 
                                             />
                                             <span className='error-msg text-xs text-red-500 leading-tight line-clamp-3 hidden'>
                                                 {/* {errorMessage}                                     */}
                                             </span>
                                         </div>
                                     ) : input.type === "dropdown" ? (
-                                        <Dropdown options={durations} label="Select Duration" />
+                                        <Dropdown options={durations} label="Select Duration" searchEnable={true} onSelect={handleDropdownSelect}  />
                                     ) : (
                                         <div></div>
                                     )}  
@@ -251,10 +269,10 @@ const LandRegistration = () => {
                         </div>
 
                         <div className='h-full w-full'>
-                                <div className='h-full flex w-full gap-10 items-center p-10'>
+                                <div className='h-full flex w-full gap-10 items-center px-10 py-5'>
                                     <div className='w-full'>
                                         <label>Images of the Property</label>
-                                        <ProfilePictureUploader />
+                                        <MultipleImageUploader />
                                     </div>   
                                     <div className='w-full'>
                                         <label>Insurance Documents</label>
@@ -264,13 +282,15 @@ const LandRegistration = () => {
                                     </div>                                                          
                                 </div>
 
-                                <div class="flex m-10">
+                                <div class="flex justify-center">
                                     <div class="flex items-center h-5">
                                         <input
                                             id="helper-checkbox"
                                             aria-describedby="helper-checkbox-text"
                                             type="checkbox"
                                             value=""
+                                            checked={wantInsurance}
+                                            onChange={() => setWantInsurance(!wantInsurance)}
                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         ></input>
                                     </div>
@@ -290,13 +310,13 @@ const LandRegistration = () => {
                                     </div>
                                 </div>
                                 
-                                <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
+                                <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-5'>
                                     {/* <Link
                                         to={{
                                             pathname: "schedule-tasks"
                                         }}
                                     > */}
-                                        <button onClick={handleAddProperty} className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
+                                        <button className='w-64 bg-primary-blue-800 px-10 py-4 text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
                                     {/* </Link> */}
                                     {/* <button className='w-64 bg-[#01497C] px-10 py-4 text-white rounded-md hover:bg-[#01497C]/80 hover:-translate-y-1 transition duration-300'>Request Insurance</button> */}
                                 </div>

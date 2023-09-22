@@ -9,6 +9,7 @@ const PropertyType = ({ visible, onClose, addPath }) => {
 
     const [type, setType] = useState("House");
     const [path,setPath] = useState('/po/house-registration');
+    const navigate = useNavigate();
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -38,7 +39,7 @@ const PropertyType = ({ visible, onClose, addPath }) => {
         bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className="max-w-[500px] w-full h-fit bg-white p-10 pt-5 rounded">
                 <form className='w-full'>
-                    <button onClick={handleOnClose} className='float-right mb-5'>
+                    <button onClick={onClose} className='float-right mb-5'>
                         <AiOutlineClose />
                     </button>
                     <h2 className='text-3xl text-center font-bold mt-5 mb-10'>CHOOSE THE PROPERTY TYPE</h2>
