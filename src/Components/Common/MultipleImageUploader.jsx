@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { MdCloudUpload } from 'react-icons/md';
 
-const MultipleImageUploader = () => {
+const MultipleImageUploader = ({onImagesSelected}) => {
     const [selectedImages, setSelectedImages] = useState([]);
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -21,7 +21,12 @@ const MultipleImageUploader = () => {
         updatedImages.splice(index, 1);
         setSelectedImages(updatedImages);
     };
-  
+      
+
+    useEffect(() => {
+        onImagesSelected(selectedImages);
+    }, [selectedImages, onImagesSelected]);
+    
     return (
         <div>
             <div 
