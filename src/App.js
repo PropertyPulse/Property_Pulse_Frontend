@@ -152,7 +152,6 @@ function App() {
                         </Route>
 
                     </Route>
-                    <Route element={<RequireAuth allowedRoles='TOPMANAGER' />}>
                         <Route path="tm" element={<TopManager />} >
                             <Route path="dashboard" element={<TmDashboard />} />
                             <Route path="new-property" element={<NewProperty />} />
@@ -160,8 +159,8 @@ function App() {
                             <Route path="manage-task-supervisor" element={<ManageTs />} />
                             <Route path="complain" element={<Complaints />} />
                         </Route>
-                    </Route>
-                    <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
+                    
+                    
                         <Route path="po" element={<PropertyOwnerdb />}>
                             <Route path="dashboard" element={<PoDashboard />} />
                             <Route path="dashboard/view-monthly-report/:id" element={<ViewMonthlyReport />} />
@@ -175,7 +174,7 @@ function App() {
                             <Route path="land-registration" element={<LandRegistration />} />
                             <Route path="house-registration" element={<HouseRegistration />} />
                         </Route>
-                    </Route>
+                    
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="fm" element={<FinancialManager />} >
                             <Route path="dashboard" element={<FmDashboard />} />
@@ -196,11 +195,11 @@ function App() {
                         </Route>
                     </Route>
 
-                    <Route element={<RequireAuth allowedRoles='VE' />}>
+
                         <Route path="ve" element={<ValuationExpert />} >
                             <Route path="pending-valuation-reports" element={<PendingValuationReport />} />
                             <Route path="submited-valuation-reports" element={<SubmittedValutationReport />} />
-                        </Route>
+  
 
                     </Route>
                 </Route>

@@ -162,8 +162,11 @@ const LandRegistration = () => {
                 "/api/v1/property/addProperty",
                 JSON.stringify(formFields), // Convert the object to JSON string
                 {
-                    
+                    headers: {
+                        "Content-type":"multipart/form-data",
                 }
+            }
+
             );
             console.log(response.data);
             if(response) {
