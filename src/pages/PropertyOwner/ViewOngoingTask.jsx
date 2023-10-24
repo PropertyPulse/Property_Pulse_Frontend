@@ -15,7 +15,7 @@ const ViewOngoingTask = () => {
 
     return (
         <div>
-            <div className="flex w-full h-[calc(100vh-4.5rem)] bg-[#EDF2FB]">
+            <div className="flex w-full h-[calc(100vh-4.5rem)]">
                 <MakeComplaints visible={showModal} onClose={handleOnClose} />  
                 <div className="w-full h-full flex flex-auto gap-5 p-10">  
                     <div>                 

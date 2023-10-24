@@ -44,7 +44,7 @@ const PropertyOwnerSidebar = () => {
     {
       title: 'Payments',
       icon: paymentsIcon,
-      url: '/po/payment', // Example URL, replace with actual URLs
+      url: '/po/all-payments', // Example URL, replace with actual URLs
     },
     {
         title: 'Reports',

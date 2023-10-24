@@ -4,8 +4,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import PropertyType from "./PropertyType";
 import { useState } from "react";
 import MakeComplaints from "./MakeComplaints";
+import useAuth from "../../hooks/useAuth";
 
 const PropertyOwnerDashboard = () => {
+    const {auth} = useAuth();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const handleOnClose = () => setShowModal(false);
@@ -22,6 +24,8 @@ const PropertyOwnerDashboard = () => {
             description: '2023 July Monthly Report',
         },
     ];
+
+    
 
   return (
     <div className="w-full">
@@ -146,7 +150,7 @@ const PropertyOwnerDashboard = () => {
             </div>
           </div>
 
-          <div className="w-2/4 min-w-[300px] min-h-full h-fit bg-[#EDF2FB] pr-4">
+          <div className="w-2/4 min-w-[300px] min-h-full h-fit pr-4">
             <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mt-10 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold mx-auto">

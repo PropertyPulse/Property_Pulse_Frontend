@@ -14,7 +14,7 @@ const AllDocuments = () => {
                     </Tabs.Item>
                     <Tabs.Item active title="Valuation Reports">
                         <div className='w-full h-full'>
-                            <h1 className='text-xl font-semibold'>Valuation Report</h1>
+                            <h1 className='text-xl font-semibold'>Valuation Reports</h1>
                             <div className='div-insurance card h-full mt-5 bg-white flex justify-center items-center'>No Valuation Reports to Show</div>
                         </div>
                     </Tabs.Item>
