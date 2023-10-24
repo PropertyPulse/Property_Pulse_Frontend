@@ -1,10 +1,10 @@
 import React from 'react'
 import PropertyPayments from './PropertyPayments'
 
-function PoPayment() {
+function PoAllPayments() {
   return (
     <div><PropertyPayments /></div>
   )
 }
 
-export default PoPayment
+export default PoAllPayments

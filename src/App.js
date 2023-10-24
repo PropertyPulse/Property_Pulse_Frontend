@@ -62,7 +62,6 @@ import PropertyOwnerdb from './pages/PropertyOwner/PropertyOwnerdb';
 import PoDashboard from './pages/PropertyOwner/PoDashboard';
 import Poproperties from './pages/PropertyOwner/Poproperties';
 import Potask from './pages/PropertyOwner/Potask';
-import PoPayment from './pages/PropertyOwner/PoPayment';
 import PoReport from './pages/PropertyOwner/PoReport';
 import OngoingTasksPO from './pages/PropertyOwner/OngoingTasksPO';
 import ViewOngoingTask from './pages/PropertyOwner/ViewOngoingTask';
@@ -88,6 +87,8 @@ import SubmittedValutationReport from './pages/ValuationExpert/SubmittedValutati
 import ScheduledTasksList from './Components/TaskSupervisor/ScheduledTasksList';
 import ComplaintsPO from './pages/PropertyOwner/ComplaintsPO';
 import AllDocuments from './pages/PropertyOwner/AllDocuments';
+import PoAllPayments from './pages/PropertyOwner/PoAllPayments';
+import PaymentsForProperty from './pages/PropertyOwner/PaymentsForProperty';
 
 function App() {
     return (
@@ -170,8 +171,9 @@ function App() {
                             <Route path="properties" element={<Poproperties />} />
                             <Route path="properties/property-details/:id" element={<PropertyViewMore />} />
                             <Route path="properties/property-details/:id/documents" element={<PropertyDocuments />} />
+                            <Route path="properties/property-details/:id/payments" element={<PaymentsForProperty />} />
                             <Route path="tasks" element={<Potask />} />                            
-                            <Route path="payment" element={<PoPayment />} />
+                            <Route path="all-payments" element={<PoAllPayments />} />
                             <Route path="reports" element={<PoReport />} />
                             <Route path="documents" element={<AllDocuments />} />
                             <Route path="land-registration" element={<LandRegistration />} />

@@ -134,7 +134,12 @@ const PropertiesPO = () => {
                             )}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.taskSupervisor}
+                            {property.registeredStatus === "Registered" ? (
+                                <span>{property.taskSupervisor}</span>
+                            ) : (
+                                <span>_</span>
+                            )}
+                            
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                             <Link
@@ -342,7 +347,7 @@ const PropertiesPO = () => {
                             )}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.taskSupervisor}
+                            <span>_</span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                             <Link
@@ -446,7 +451,7 @@ const PropertiesPO = () => {
                             )}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.taskSupervisor}
+                                <span>_</span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                             <Link
