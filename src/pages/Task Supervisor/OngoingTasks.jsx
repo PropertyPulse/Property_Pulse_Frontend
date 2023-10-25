@@ -1,21 +1,43 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
 import {RiWechatFill} from "react-icons/ri";
 import {FcAddImage} from "react-icons/fc";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
 
 const OngoingTasks = () => {
 
+    const axiosPrivate = useAxiosPrivate();
+    const {auth} = useAuth();
+    const [ongoingTasks, setOngoingTasks] = useState([]);
+
+    const fetchData = async () => {
+        try {
+            const response = await axiosPrivate.get('/api/v1/ts/ongoing-tasks',{
+                params: { email: auth.user }
+            });
+            setOngoingTasks(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const headings = ['Property ID', 'Location', 'Task ID', 'Manpower Company', '', 'Upload Images', '', ''];
 
-    const rows = [
-        {propertyID: 'P76',
-            location: 'Colombo 06',
-            taskID: 'T9892',
-            // task: 'Paint the house',
-            manpowerCompany: 'ABC Company',},
-    ];
+    // const tasks = [
+    //     {propertyID: 'P76',
+    //         location: 'Colombo 06',
+    //         taskID: 'T9892',
+    //         // task: 'Paint the house',
+    //         manpowerCompany: 'ABC Company',},
+    // ];
 
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
 
@@ -101,7 +123,7 @@ const OngoingTasks = () => {
                 </div>
             </div>
             <div className='py-2'>
-                <div className='pb-4 font-medium'>Today, 17th August 2023</div>
+                {/*<div className='pb-4 font-medium'>Today, 17th August 2023</div>*/}
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
@@ -114,9 +136,9 @@ const OngoingTasks = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        {rows.map((row, index) => (
+                        {ongoingTasks.map((task, index) => (
                             <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.propertyID}</td>
+                                <td scope="col" className="px-6 py-3">{task.propertyId}</td>
                                 <td className="px-6 py-3">
                                     <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
                                             onClick={() => {setShowModalViewOnMap(true);} }
@@ -167,9 +189,9 @@ const OngoingTasks = () => {
                                             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                                         </>
                                     ) : null }
-                                <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                {/*<td scope="col" className="px-6 py-3">{row.task}</td>*/}
-                                <td scope="col" className="px-6 py-3">{row.manpowerCompany}</td>
+                                <td scope="col" className="px-6 py-3">{task.taskId}</td>
+                                {/*<td scope="col" className="px-6 py-3">{task.location}</td>*/}
+                                <td scope="col" className="px-6 py-3">{task.manpowerCompany}</td>
                                 <td className="px-6 py-3">
                                     <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                         View Details
