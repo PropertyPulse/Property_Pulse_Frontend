@@ -1,50 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
 
 const CompletedTasks = () => {
 
-    const headings = ['Property ID', 'Task ID', 'Task', 'Started Date', '', ''];
+    const axiosPrivate = useAxiosPrivate();
+    const [completedTasks, setCompletedTasks] = useState([]);
+    const {auth} = useAuth();
 
-    const dates = [
-        {date: 'Today, 17th August 2023',
-            rows: [
-                {propertyID: 'P123',
-                    taskID: 'T6492',
-                    task: 'Repair a water pipe',
-                    startedDate: '16-08-2023'},
-            ]
-        },
-        {date: 'Yesterday, 16th August 2023',
-            rows: [
-                {propertyID: 'P76',
-                 taskID: 'T9892',
-                 task: 'Paint the house',
-                 startedDate: '10-08-2023'},
-                {propertyID: 'P123',
-                 taskID: 'T6492',
-                 task: 'Repair a water pipe',
-                 startedDate: '16-08-2023'},
-                {propertyID: 'P89',
-                 taskID: 'T8957',
-                 task: 'Clean the Garden',
-                 startedDate: '15-08-2023'},
-            ]
-        },
-        {date: '15th August 2023',
-            rows: [
-                {propertyID: 'P76',
-                    taskID: 'T9892',
-                    task: 'Paint the house',
-                    startedDate: '10-08-2023'},
-                {propertyID: 'P89',
-                    taskID: 'T8957',
-                    task: 'Clean the Garden',
-                    startedDate: '15-08-2023'},
-            ]
-        },
-    ];
+    const fetchData = async () => {
+        try {
+            const response = await axiosPrivate.get('/api/v1/ts/completed-tasks',{
+                    params: { email: auth.user }
+                 });
+            setCompletedTasks(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const headings = ['Property ID', 'Task ID', 'Task', 'Started Date', '', ''];
 
     return (
         <div className='w-full px-24 py-10'>
@@ -128,10 +111,9 @@ const CompletedTasks = () => {
                 </div>
             </div>
 
-            {/*Table 01*/}
-            {dates.map((table, index) => (
+            {Object.keys(completedTasks).map((date, index) => (
                 <div className='pb-6'>
-                    <div className='pt-2 pb-4 font-medium'>{table.date}</div>
+                    <div className='pt-2 pb-4 font-medium'>{date}</div>
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
@@ -144,12 +126,12 @@ const CompletedTasks = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {table.rows.map((row, index) => (
+                            {completedTasks[date].map((task, index) => (
                                 <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                    <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                    <td scope="col" className="px-6 py-3">{row.task}</td>
-                                    <td scope="col" className="px-6 py-3">{row.startedDate}</td>
+                                    <td scope="col" className="px-6 py-3">{task.propertyId}</td>
+                                    <td scope="col" className="px-6 py-3">{task.taskId}</td>
+                                    <td scope="col" className="px-6 py-3">{task.task}</td>
+                                    <td scope="col" className="px-6 py-3">{task.startDate}</td>
                                     <td className="px-6 py-3">
                                         <button className="text-white bg-orange-500 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                             View Complaints
