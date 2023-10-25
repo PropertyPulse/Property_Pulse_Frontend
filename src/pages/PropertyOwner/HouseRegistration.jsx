@@ -16,7 +16,25 @@ const HouseRegistration = () => {
     const {auth} = useAuth();
     const axiosPrivate = useAxiosPrivate();
 
-    
+
+    const [selectedAppliances, setSelectedAppliances] = useState([]);
+
+    // Function to handle checkbox changes
+    const handleApplianceCheckboxChange = (event) => {
+        const applianceName = event.target.value;
+        if (event.target.checked) {
+            // If the checkbox is checked, add the appliance to the selectedAppliances array
+            setSelectedAppliances([...selectedAppliances, applianceName]);
+        } else {
+            // If the checkbox is unchecked, remove the appliance from the selectedAppliances array
+            setSelectedAppliances(selectedAppliances.filter((name) => name !== applianceName));
+        }
+
+
+    };
+
+
+
 
     console.log(auth.user)
     const errRef = useRef();
@@ -317,24 +335,26 @@ const HouseRegistration = () => {
                 special_rooms: values.specialRooms,
                 want_insurance: wantInsurance,
                 property_owner_email: auth.user,
+                checklist:selectedAppliances
+
             }
 
-            // console.log(formFields);
+            console.log(formFields);
 
-            const response = await axiosPrivate.post(
-                "/api/v1/property/addNewProperty",
-                JSON.stringify(formFields), // Convert the object to JSON string
-                {
-                    
-                }
-            );
-            console.log(response.data);
-            if(response) {
-                navigate("schedule-tasks");
-            }           
+            // const response = await axiosPrivate.post(
+            //     "/api/v1/property/addNewProperty",
+            //     JSON.stringify(formFields), // Convert the object to JSON string
+            //     {
+            //
+            //     }
+            // );
+            // console.log(response.data);
+            // if(response) {
+            //     navigate("schedule-tasks");
+            // }
             
         } catch(err){
-            console.log(err);
+            // console.log(err);
         }
     }
 
@@ -444,7 +464,7 @@ const HouseRegistration = () => {
                     <div className="h-full p-10">
                     <div className="w-full mb-10">
                         <label>Images of the Property</label>
-                        <MultipleImageUploader />
+                        {/*<MultipleImageUploader />*/}
                     </div>
                     <div className="w-full">
                         <label>Insurance Documents</label>
@@ -452,7 +472,7 @@ const HouseRegistration = () => {
                         (If you have already got an insurance for the property,
                         please upload relevant documents)
                         </p>
-                        <ProfilePictureUploader />
+                        {/*<ProfilePictureUploader />*/}
                     </div>
                     </div>
                 </div>
@@ -463,19 +483,21 @@ const HouseRegistration = () => {
                     Appliances and Furniture Checklist
                     </h2>
                     <div className="w-full h-fit flex flex-wrap gap-x-5 gap-y-2 mt-5">
-                    {appliances.map((appliance) => (
-                        <span
-                        key={appliance.id}
-                        className="w-fit flex gap-2 items-center px-4 py-1 rounded-full text-white text-sm bg-[#2C7DA0]"
-                        >
+                        {appliances.map((appliance) => (
+                            <span
+                                key={appliance.id}
+                                className="w-fit flex gap-2 items-center px-4 py-1 rounded-full text-white text-sm bg-[#2C7DA0]"
+                            >
                         <input
                             type="checkbox"
                             value={appliance.label}
+                            checked={selectedAppliances.includes(appliance.label)}
+                            onChange={handleApplianceCheckboxChange}
                             className="w-3 h-3 bg-[#A9D6E5] border-none cursor-pointer fill-slate-100"
                         />
                         <label>{appliance.label}</label>
-                        </span>
-                    ))}
+                    </span>
+                        ))}
                     </div>
                 </div>
                 </div>
