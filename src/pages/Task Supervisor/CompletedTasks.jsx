@@ -13,7 +13,7 @@ const CompletedTasks = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axiosPrivate.get('/api/v1/ts/completed-tasks',{
+            const response = await axiosPrivate.get('/api/v1/tasks/completed-tasks',{
                     params: { email: auth.user }
                  });
             setCompletedTasks(response.data);

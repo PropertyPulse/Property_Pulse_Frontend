@@ -16,7 +16,7 @@ const UpcomingTasks= () => {
 
     const fetchData = async () => {
         try {
-            const response = await axiosPrivate.get('/api/v1/ts/upcoming-tasks',{
+            const response = await axiosPrivate.get('/api/v1/tasks/upcoming-tasks',{
                 params: { email: auth.user }
             });
             setUpcomingTasks(response.data);

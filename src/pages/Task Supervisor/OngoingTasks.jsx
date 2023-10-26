@@ -15,7 +15,7 @@ const OngoingTasks = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axiosPrivate.get('/api/v1/ts/ongoing-tasks',{
+            const response = await axiosPrivate.get('/api/v1/tasks/ongoing-tasks',{
                 params: { email: auth.user }
             });
             setOngoingTasks(response.data);
@@ -30,14 +30,6 @@ const OngoingTasks = () => {
     }, []);
 
     const headings = ['Property ID', 'Location', 'Task ID', 'Manpower Company', '', 'Upload Images', '', ''];
-
-    // const tasks = [
-    //     {propertyID: 'P76',
-    //         location: 'Colombo 06',
-    //         taskID: 'T9892',
-    //         // task: 'Paint the house',
-    //         manpowerCompany: 'ABC Company',},
-    // ];
 
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
 
