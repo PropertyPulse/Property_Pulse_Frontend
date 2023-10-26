@@ -1,8 +1,16 @@
 import React from 'react'
 import OpenChat from '../../Components/PropertyOwner/OpenChat';
 import NavbarWithoutSidebar from '../../Components/Common/NavbarWithoutSidebar';
+// import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
+
 
 const AllPaymentsPO = () => {
+
+
+    const {auth} = useAuth();
+
+
     const duePayments = [
         {
             id: 1,
@@ -37,7 +45,7 @@ const AllPaymentsPO = () => {
         <div className='w-full h-[100vh] bg-background-blue'>
             <OpenChat />
             <div className='w-full z-40'>
-                <NavbarWithoutSidebar name="Anjalee Neelika" userRole="Property Owner" />
+                <NavbarWithoutSidebar name={auth.username} userRole="Property Owner" />
             </div> 
             <div className='w-full h-[calc(100vh-4.5rem)] px-10 py-5 gap-10'>
                 <h1 className='text-2xl font-semibold'>Payments</h1>

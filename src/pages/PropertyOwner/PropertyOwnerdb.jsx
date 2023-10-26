@@ -5,6 +5,7 @@ import PropertyOwnerSidebar from "../../Components/PropertyOwner/PropertyOwnerSi
 import useAuth from "../../hooks/useAuth";
 
 const PropertyOwnerdb = () => {
+
     const {auth} = useAuth();
     console.log(auth);
 

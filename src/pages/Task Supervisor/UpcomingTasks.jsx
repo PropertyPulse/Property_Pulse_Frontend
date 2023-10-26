@@ -1,57 +1,37 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
-import {RiWechatFill} from "react-icons/ri";
 import ManpowerRequest from "./ManpowerRequest";
-import PriceList from "./PriceList";
 import ViewManpowerRequestDetails from "./ViewManpowerRequestDetails";
 import RescheduleTask from "./RescheduleTask";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
 
 const UpcomingTasks= () => {
 
+    const axiosPrivate = useAxiosPrivate();
+    const [upcomingTasks, setUpcomingTasks] = useState([]);
+    const {auth} = useAuth();
+
+    const fetchData = async () => {
+        try {
+            const response = await axiosPrivate.get('/api/v1/ts/upcoming-tasks',{
+                params: { email: auth.user }
+            });
+            setUpcomingTasks(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+
     const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', '', ''];
-
-    const dates = [
-        {date: 'Today, 17th August 2023',
-            rows: [
-                {propertyID: 'P123',
-                    location: 'Colombo 06',
-                    taskID: 'T989',
-                    task: 'Paint the house',
-                    status: 'Accepted',},
-            ]
-        },
-        {date: 'Tomorrow, 18th August 2023',
-            rows: [
-                {propertyID: 'P67',
-                    location: 'Hikkaduwa',
-                    taskID: 'T912',
-                    task: 'Trim grass',
-                    status: 'Pending',},
-
-                {propertyID: 'P89',
-                    location: 'Panadura',
-                    taskID: 'T812',
-                    task: 'Repair a water pipe',
-                    status: 'Declined',},
-            ]
-        },
-        {date: '19th August 2023',
-            rows: [
-                {propertyID: 'P92',
-                    location: 'Rathnapura',
-                    taskID: 'T785',
-                    task: 'Clean the Garden',
-                    status: 'Pending',},
-                {propertyID: 'P103',
-                    location: 'Anuradhapura',
-                    taskID: 'T456',
-                    task: 'Paint the house',
-                    status: 'Make a Request',},
-            ]
-        },
-    ];
 
     const [showModalMakeRequest, setShowModalMakeRequest] = React.useState(false);
     const [showModalManpowerRequest, setShowModalManpowerRequest] = React.useState(false);
@@ -139,9 +119,9 @@ const UpcomingTasks= () => {
                 </div>
             </div>
 
-            {dates.map((table, index) => (
+            {Object.keys(upcomingTasks).map((date, index) => (
                 <div className='pb-6'>
-                    <div className='pt-2 pb-4 font-medium'>{table.date}</div>
+                    <div className='pt-2 pb-4 font-medium'>{date}</div>
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400 pb-2">
@@ -154,34 +134,34 @@ const UpcomingTasks= () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {table.rows.map((row, index) => (
+                            {upcomingTasks[date].map((task, index) => (
                                 <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                    <td scope="col" className="px-6 py-3">{row.location}</td>
-                                    <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                    <td scope="col" className="px-6 py-3">{row.task}</td>
+                                    <td scope="col" className="px-6 py-3">{task.propertyId}</td>
+                                    <td scope="col" className="px-6 py-3">{task.location}</td>
+                                    <td scope="col" className="px-6 py-3">{task.taskId}</td>
+                                    <td scope="col" className="px-6 py-3">{task.task}</td>
                                     <td className="px-6 py-3">
-                                        {(row.status === 'Accepted') ? (
+                                        {(task.requestStatus === 'Accepted') ? (
                                             <label className="text-white bg-green-500 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                                {row.status}
+                                                {task.requestStatus}
                                             </label>
-                                        ) : (row.status === 'Pending') ? (
+                                        ) : (task.requestStatus === 'Pending') ? (
                                             <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                                {row.status}
+                                                {task.requestStatus}
                                             </label>
-                                        ) : (row.status === 'Accepted with Feedback') ? (
+                                        ) : (task.requestStatus === 'Accepted with Feedback') ? (
                                             <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                                {row.status}
+                                                {task.requestStatus}
                                             </label>
-                                        ) : (row.status === 'Declined') ? (
+                                        ) : (task.requestStatus === 'Declined') ? (
                                             <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                                {row.status}
+                                                {task.requestStatus}
                                             </label>
-                                        ) : (row.status === 'Make a Request') ? (
+                                        ) : (task.requestStatus === 'Make a Request') ? (
                                             <button className="text-white bg-blue-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
                                                     onClick={() => {setShowModalMakeRequest(true);} }
                                             >
-                                                {row.status}
+                                                {task.requestStatus}
                                             </button>
 
                                         ) : (<label></label>)}
@@ -219,7 +199,7 @@ const UpcomingTasks= () => {
                                             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                                         </>
                                     ) : null}
-                                    {(row.status === 'Accepted') ? (
+                                    {(task.requestStatus === 'Accepted') ? (
                                         <td className="px-6 py-3">
                                             <button onClick={() => {setShowModalManpowerRequest(true);} } className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                                 View Details
@@ -227,7 +207,7 @@ const UpcomingTasks= () => {
                                         </td>
 
                                     ) : (<td><button></button></td>)}
-                                    {(row.status === 'Declined') ? (
+                                    {(task.requestStatus === 'Declined') ? (
                                         <td className="px-6 py-3">
                                             <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
                                                     onClick={() => {setShowModalManpowerReschedule(true);} }
@@ -236,7 +216,7 @@ const UpcomingTasks= () => {
                                             </button>
                                         </td>
                                     ) : (<td><button></button></td>)}
-                                    {(row.status === 'Accepted') ? (
+                                    {(task.requestStatus === 'Accepted') ? (
                                         <td className="px-6 py-3">
                                             <button className="text-white bg-green-600 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                                 Start
