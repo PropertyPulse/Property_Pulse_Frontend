@@ -3,8 +3,11 @@ import { useState } from 'react';
 import InputText from '../../Components/Common/InputText';
 import { AiOutlineClose } from 'react-icons/ai';
 import Dropdown from '../../Components/PropertyOwner/Dropdown';
+import { axiosPrivate } from '../../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 const RequestTask = ({ visible, onClose }) => {
+    const navigate = useNavigate();
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -19,6 +22,7 @@ const RequestTask = ({ visible, onClose }) => {
     }
 
     const [values, setValues] = useState({
+        propertyId: "",
         task: "",
         frequency: "",
         proposedDate: "",
@@ -72,10 +76,11 @@ const RequestTask = ({ visible, onClose }) => {
     const inputs = [
         // Properties for property ID
         {
-            id: 2,
+            id: 1,
             name: 'property_id',
             type: 'text',
-            errorMessage: "",
+            pattern: "[0-9]*",
+            errorMessage: "Property ID should be an integer value",
             label: 'Property ID',
             require: true,
             styles: 'w-full max-h-[300px]',
@@ -130,7 +135,7 @@ const RequestTask = ({ visible, onClose }) => {
                     {/* <button onClick={handleOnClose} className='float-right mb-5'>
                         <AiOutlineClose />
                     </button> */}
-                    <h2 className='text-2xl text-center font-semibold mt-5 mb-10'>Request a New Task</h2>
+                    <h2 className='text-2xl text-center font-semibold mt-5 mb-10'>Request A New Task</h2>
                     
                         {inputs.map((input) => (
                             <div className='flex-auto w-full mb-4'>
