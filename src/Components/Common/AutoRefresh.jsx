@@ -16,7 +16,7 @@ function AutoRefresh() {
 
     return (
         <div>
-            {/* Your component's content */}
+
         </div>
     );
 }
