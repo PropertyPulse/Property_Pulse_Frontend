@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
@@ -10,8 +10,8 @@ import useAuth from "../../hooks/useAuth";
 
 const PropertiesToBeManaged = () => {
     //
-    // const [{auth}] = useAuth()
     // const axiosPrivate = useAxiosPrivate();
+    // const [{auth}] = useAuth()
     //
     // console.log("fjdiafo")
     // useEffect(() => {
@@ -37,6 +37,25 @@ const PropertiesToBeManaged = () => {
     //     console.log(auth)
     // }, []);
 
+    const axiosPrivate = useAxiosPrivate();
+    const [propertiesToBeManaged, setPropertiesToBeManaged] = useState([]);
+    const {auth} = useAuth();
+
+    const fetchData = async () => {
+        try {
+            const response = await axiosPrivate.get('/api/v1/TS/propertiesToBeManged',{
+                params: { email: auth.user }
+            });
+            setPropertiesToBeManaged(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
 
     const NotVisitedHeadings = ['Owner', 'Property ID', 'Type', 'Location', 'Visit'];
@@ -184,13 +203,13 @@ const PropertiesToBeManaged = () => {
                         </tr>
                         </thead>
                         <tbody>
-                            {rows.map((row, index) => (
+                            {propertiesToBeManaged.map((row, index) => (
                                 <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                     <td scope="col" className="px-6 py-3">
-                                        {row.owner}
+                                        {row.propertyOwnerName}
                                     </td>
                                     <td className="px-6 py-3">
-                                        {row.id}
+                                        {row.propertyId}
                                     </td>
                                     <td className="px-6 py-3">
                                         {row.type}
