@@ -13,7 +13,7 @@ const ProfileSetupAfterRegister = () => {
     const handleOnClose = () => setShowModal(false);
 
     return (
-        <div className='bg-background-blue w-full h-full'>
+        <div className='w-full h-[100vh] bg-background-blue'>
             <NavbarWithoutSidebar userRole="Property Owner" name="Anjalee Neelika" />
             <PropertyType visible={showModal} onClose={handleOnClose} />
             <div className='w-full h-full flex justify-between items-center p-10 gap-10 overflow-auto'>
