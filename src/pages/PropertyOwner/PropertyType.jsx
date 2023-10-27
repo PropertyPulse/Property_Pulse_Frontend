@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHouse, FaCircleArrowRight } from 'react-icons/fa6';
 import {BsArrowRightCircle} from 'react-icons/bs'
 import { BiSolidLandscape } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai'
 
-const PropertyType = ({ visible, onClose }) => {
+const PropertyType = ({ visible, onClose, addPath }) => {
 
     const [type, setType] = useState("House");
+    const [path,setPath] = useState('/po/house-registration');
+    const navigate = useNavigate();
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {
@@ -17,33 +19,34 @@ const PropertyType = ({ visible, onClose }) => {
 
     const handleOnChange = (e) => {
         setType(e.target.value);
-        console.log(type)
+        
+        if(e.target.value === "House") {
+            setPath('/po/house-registration')
+        } else if(e.target.value === "Land"){
+            setPath('/po/land-registration')
+        } 
+
+        console.log(e.target.value);
     }
 
-    const handleNavigate = () => {
-        if(type === "House") {
-
-        } else if(type === "Land") {
-
-        }
-    }
+    
 
     if(!visible) return null;
 
     return (
         
-        <div id='container' onClick={handleOnClose} className='fixed w-full h-screen z-30 inset-0 bg-black
+        <div id='container' onClick={handleOnClose} className='fixed w-full h-full z-50 inset-0 bg-black
         bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className="max-w-[500px] w-full h-fit bg-white p-10 pt-5 rounded">
                 <form className='w-full'>
-                    <button onClick={handleOnClose} className='float-right mb-5'>
+                    <button onClick={onClose} className='float-right mb-5'>
                         <AiOutlineClose />
                     </button>
                     <h2 className='text-3xl text-center font-bold mt-5 mb-10'>CHOOSE THE PROPERTY TYPE</h2>
                     <ul className='flex justify-between items-center w-full gap-6 mb-10'>
                         
                         <li className='w-full'>
-                            <input type='radio' id='type-house' name='prop-type' value='House' className='hidden peer' onChange={handleOnChange} checked />
+                            <input type='radio' id='type-house' name='prop-type' value='House' className='hidden peer' onChange={handleOnChange} defaultChecked />
                             <label 
                                 htmlFor='type-house' 
                                 className='flex justify-between items-center p-5 bg-[#0e2954] rounded-lg text-gray-400 border-2 cursor-pointer
@@ -75,10 +78,17 @@ const PropertyType = ({ visible, onClose }) => {
 
                     </ul>
 
-                    <a href={handleNavigate} className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right'>
-                        <div className='text-md'>Continue</div>
-                        <BsArrowRightCircle className='w-8 h-8 bg-white rounded-full' />
-                    </a>
+                    <Link
+                        to={{
+                            pathname: path
+                        }}
+                    >
+                        <button className='flex justify-between items-center gap-5 bg-gray-200 py-1 pr-1 pl-6 rounded-full border-2 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-100 float-right cursor-pointer'>
+                            <div className='text-md'>Continue</div>
+                            <BsArrowRightCircle className='w-8 h-8 bg-white rounded-full' />
+                        </button>
+                    </Link>
+                    
 
                 </form> 
             </div>
