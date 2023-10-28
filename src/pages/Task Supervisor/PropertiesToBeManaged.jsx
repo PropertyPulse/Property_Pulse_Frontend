@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useAuth from "../../hooks/useAuth";
+import axios from 'axios';
 
 
 const PropertiesToBeManaged = () => {
@@ -78,7 +79,41 @@ const PropertiesToBeManaged = () => {
 
     }
 
-    const handleButtonClick = () => {
+    // const handleButtonClick = (propertyId) => {
+    //     console.log(propertyId);
+    //     Swal.fire({
+    //         title: 'Did you visit the property?',
+    //         text: "Property will be added to the visited list!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             // Make an API call to update the property visit status
+    //             axios
+    //                 .post('/api/v1/TS/updatePropertyVisitStatus', {
+    //                     // params: { propertyId: propertyId , visitStatus: 'true'}
+    //                     propertyId: propertyId,
+    //                     visitStatus: true,
+    //                 })
+    //                 .then((response) => {
+    //                     Swal.fire(
+    //                         'Done!',
+    //                         'Property added to the visited list!',
+    //                         'success'
+    //                     );
+    //                 })
+    //                 .catch((error) => {
+    //                     // Handle error
+    //                     Swal.fire('Error', 'Failed to update property visit status', 'error');
+    //                 });
+    //         }
+    //     });
+    // };
+
+    const handleButtonClick = (propertyId) => {
         Swal.fire({
             title: 'Did you visit the property?',
             text: "Property will be added to the visited list!",
@@ -89,15 +124,31 @@ const PropertiesToBeManaged = () => {
             confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
+                // Create a JSON object with propertyId and visitStatus
+                const data = {
+                    propertyId: propertyId,
+                    visitStatus: true, // Update to the desired visit status
+                };
+                console.log(data);
 
-                Swal.fire(
-                    'Done!',
-                    'Property added to the visited list!',
-                    'success'
-                );
+                // Make an API call to update the property visit status
+                axiosPrivate
+                    .post('http://localhost:8080/api/v1/TS/updatePropertyVisitStatus', data)
+                    .then((response) => {
+                        Swal.fire(
+                            'Done!',
+                            'Property added to the visited list!',
+                            'success'
+                        );
+                    })
+                    .catch((error) => {
+                        // Handle error
+                        Swal.fire('Error', 'Failed to update property visit status', 'error');
+                    });
             }
         });
     };
+
 
     return (
         <div className='w-full px-24 py-10'>
@@ -212,7 +263,7 @@ const PropertiesToBeManaged = () => {
                                         {row.propertyId}
                                     </td>
                                     <td className="px-6 py-3">
-                                        {row.type}
+                                        {row.propertyType}
                                     </td>
                                     <td className="px-6 py-3">
                                         <button type="button" className="text-white bg-blue-button-end font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
@@ -266,7 +317,7 @@ const PropertiesToBeManaged = () => {
 
                                     <td className="px-6 py-3">
                                         <button type="button" className="text-white bg-green-600 font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
-                                            onClick={handleButtonClick}
+                                                onClick={() => handleButtonClick(row.propertyId)}
                                         >
                                         >
                                             Mark Visit
