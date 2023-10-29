@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
@@ -7,28 +7,68 @@ import PriceList from "./PriceList"
 import SuggestTaskForm from "./SuggestTask";
 import {compareArraysAsSet} from "@testing-library/jest-dom/dist/utils";
 import {Link} from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
+
 
 const PropertiesToBeManaged = () => {
+    const axiosPrivate = useAxiosPrivate();
+    const [propertiesToBeManagedVisited, setPropertiesToBeManagedVisited] = useState([]);
+    const {auth} = useAuth();
+
+    const fetchData = async () => {
+        try {
+            const response = await axiosPrivate.get('/api/v1/TS/propertiesToBeMangedVisited',{
+                params: { email: auth.user }
+            });
+            setPropertiesToBeManagedVisited(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const VisitedHeadings = ['Owner', 'Property ID', 'Type', 'Location', 'Price List', 'Legal Contract'];
-    const NotVisitedHeadings = ['Owner', 'Property ID', 'Type', 'Location'];
 
-    const rows = [
-        {owner: 'Anjalee Neelika',
-            id: 'Colombo 06',
-            type: 'House',
-            priceList: 'Not sent',
-            legalDocuments: 'Not Uploaded'},
-        {owner: 'Thilanka Jayathilake',
-            id: 'Gampaha',
-            type: 'Land',
-            priceList: 'Sent',
-            legalDocuments: 'Uploaded'},
-    ];
+    // const rows = [
+    //     {owner: 'Anjalee Neelika',
+    //         id: 'Colombo 06',
+    //         type: 'House',
+    //         priceList: 'Not sent',
+    //         legalDocuments: 'Not Uploaded'},
+    //     {owner: 'Thilanka Jayathilake',
+    //         id: 'Gampaha',
+    //         type: 'Land',
+    //         priceList: 'Sent',
+    //         legalDocuments: 'Uploaded'},
+    // ];
 
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
     const [showModalPriceList, setShowModalPriceList] = React.useState(false);
     const [showModalUploadAgreement, setShowModalUploadAgreement] = React.useState(false);
+    const [propertyTasks, setPropertyTasks] = useState([]);
+
+    const setPriceList = (propertyId) => {
+
+        // Fetch tasks from the backend for the selected property
+        // You can use axios or your preferred HTTP client to make this API call
+        // Replace 'PROPERTY_ID' with the actual property ID
+        axiosPrivate.get('/api/v1/TS/getTaskList', {params : {propertyId : propertyId}})
+            .then((response) => {
+                setPropertyTasks(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching tasks: ', error);
+            });
+
+        // Set showModalPriceList to true
+        setShowModalPriceList(true);
+    };
+
 
     const setAsVisited = (status) => {
         status = 'Visited';
@@ -141,16 +181,16 @@ const PropertiesToBeManaged = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {rows.map((row, index) => (
+                        {propertiesToBeManagedVisited.map((row, index) => (
                             <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                 <td scope="col" className="px-6 py-3">
-                                    {row.owner}
+                                    {row.propertyOwnerName}
                                 </td>
                                 <td className="px-6 py-3">
-                                    {row.id}
+                                    {row.propertyId}
                                 </td>
                                 <td className="px-6 py-3">
-                                    {row.type}
+                                    {row.propertyType}
                                 </td>
                                 <td className="px-6 py-3">
                                     <button type="button" className="text-white bg-blue-button-end font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
@@ -203,13 +243,13 @@ const PropertiesToBeManaged = () => {
                                     </>
                                 ) : null}
                                 <td className="px-6 py-3">
-                                    {(row.priceList === 'Sent') ? (
+                                    {(row.priceListStatus === 'Sent') ? (
                                         <label className="text-white bg-green-600 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center hover:scale-[1.02]">
                                             Sent
                                         </label>
-                                    ) : (row.priceList === 'Not sent') ? (
+                                    ) : (row.priceListStatus === 'NotSent') ? (
                                         <button className="text-white bg-yellow-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
-                                                onClick={() => {setShowModalPriceList(true);} }
+                                                onClick={() => setPriceList(row.propertyId) }
                                         >
                                             Send
                                         </button>
@@ -241,7 +281,7 @@ const PropertiesToBeManaged = () => {
                                                         </button>
                                                     </div>
                                                     {/*body*/}
-                                                    <PriceList />
+                                                    <PriceList tasks={propertyTasks} />
                                                 </div>
                                             </div>
                                         </div>
@@ -250,11 +290,11 @@ const PropertiesToBeManaged = () => {
                                 ) : null}
 
                                 <td className="px-6 py-3">
-                                    {(row.legalDocuments === 'Uploaded') ? (
+                                    {(row.legalContractStatus === 'Uploaded') ? (
                                         <label className="text-white bg-green-600 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                             Uploaded
                                         </label>
-                                    ) : (row.legalDocuments  === 'Not Uploaded') ? (
+                                    ) : (row.legalContractStatus  === 'NotUploaded') ? (
                                         <button className="text-white bg-yellow-700 font-medium rounded-lg text-xs px-3
                                                 py-1 text-center inline-flex items-center shadow-md shadow-gray-300
                                                 hover:scale-[1.02] transition-transform" onClick={() => {setShowModalUploadAgreement(true);} }>

@@ -1,32 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import filterIcon from "../../Assets/Icons/filter-icon.png"
 import sortIcon from "../../Assets/Icons/sort-icon.png"
 import {Button} from "flowbite-react";
 import {RiWechatFill} from "react-icons/ri";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const TaskApprovals = () => {
 
+    const {auth} = useAuth();
+    const axiosPrivate = useAxiosPrivate();
+
+    const [taskApprovals, setTaskApprovals] = useState([]);
+
+    const fetchData = async () => {
+        try {
+            const response = await axiosPrivate.get('api/v1/task-requests/task-approvals', {
+                params: {email: auth.user}
+            });
+            setTaskApprovals(response.data);
+            console.log(response.data);
+        }catch (error) {
+            console.log('Error fetching data: ', error);
+        }
+    }
+
+    useEffect( () => {
+        fetchData();
+    }, []);
+
     const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', ''];
-
-    const rows = [
-        {propertyID: 'P123',
-            location: 'Colombo 06',
-            taskID: 'T989',
-            task: 'Paint the house',
-            status: 'Accepted',},
-
-        {propertyID: 'P89',
-            location: 'Panadura',
-            taskID: 'T812',
-            task: 'Repair a water pipe',
-            status: 'Requested Reschedule',},
-
-        {propertyID: 'P92',
-            location: 'Rathnapura',
-            taskID: 'T785',
-            task: 'Clean the Garden',
-            status: 'Pending',}
-    ];
 
     return (
         <div className='w-full px-24 py-10'>
@@ -124,47 +127,47 @@ const TaskApprovals = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        {rows.map((row, index) => (
+                        {taskApprovals.map((task, index) => (
                             <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                <td scope="col" className="px-6 py-3">{row.propertyID}</td>
-                                <td scope="col" className="px-6 py-3">{row.location}</td>
-                                <td scope="col" className="px-6 py-3">{row.taskID}</td>
-                                <td scope="col" className="px-6 py-3">{row.task}</td>
+                                <td scope="col" className="px-6 py-3">{task.propertyId}</td>
+                                <td scope="col" className="px-6 py-3">{task.location}</td>
+                                <td scope="col" className="px-6 py-3">{task.taskId}</td>
+                                <td scope="col" className="px-6 py-3">{task.task}</td>
                                 <td className="px-6 py-3">
-                                    {(row.status === 'Accepted') ? (
+                                    {(task.manpowerCompanyRequestStatus === 'Accepted') ? (
                                         <label className="text-white bg-green-500 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
+                                            {task.manpowerCompanyRequestStatus}
                                         </label>
-                                    ) : (row.status === 'Pending') ? (
+                                    ) : (task.manpowerCompanyRequestStatus === 'Pending') ? (
                                         <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
+                                            {task.manpowerCompanyRequestStatus}
                                         </label>
-                                    ) : (row.status === 'Requested Reschedule') ? (
+                                    ) : (task.manpowerCompanyRequestStatus === 'Requested Reschedule') ? (
                                         <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                            {row.status}
+                                            {task.manpowerCompanyRequestStatus}
                                         </label>
-                                    ) : (row.status === 'Make a Request') ? (
+                                    ) : (task.manpowerCompanyRequestStatus === 'Make a Request') ? (
                                         <button className="text-white bg-blue-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
-                                            {row.status}
+                                            {task.manpowerCompanyRequestStatus}
                                         </button>
                                     ) : (<label></label>)}
                                 </td>
                                 <td className="px-6 py-3">
-                                    {(row.status === 'Accepted') ? (
+                                    {(task.manpowerCompanyRequestStatus === 'Accepted') ? (
                                         <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                             View Details
                                         </button>
-                                    ) : (row.status === 'Requested Reschedule') ? (
+                                    ) : (task.manpowerCompanyRequestStatus === 'Requested Reschedule') ? (
                                         <button className="text-blue-700 border-2 border-blue-700 font-medium rounded-lg text-xs px-3 py-0.5 text-center inline-flex items-center hover:scale-[1.02]">
                                             Reschedule
                                         </button>
-                                    ) : (row.status === 'Pending') ? (
+                                    ) : (task.manpowerCompanyRequestStatus === 'Pending') ? (
                                         <button className="text-red-700 border-2 border-red-700 font-medium rounded-lg text-xs px-3 py-0.5 text-center inline-flex items-center hover:scale-[1.02]">
                                             Cancel
                                         </button>
                                     ) : (<label></label>)}
                                 </td>
-                                {(row.status === 'Accepted') ? (
+                                {(task.manpowerCompanyRequestStatus === 'Accepted') ? (
                                     <td className="px-6 py-3">
                                         <RiWechatFill className='text-secondary-gray text-2xl cursor-pointer' />
                                     </td>
