@@ -50,6 +50,25 @@ const PropertiesToBeManaged = () => {
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
     const [showModalPriceList, setShowModalPriceList] = React.useState(false);
     const [showModalUploadAgreement, setShowModalUploadAgreement] = React.useState(false);
+    const [propertyTasks, setPropertyTasks] = useState([]);
+
+    const setPriceList = (propertyId) => {
+
+        // Fetch tasks from the backend for the selected property
+        // You can use axios or your preferred HTTP client to make this API call
+        // Replace 'PROPERTY_ID' with the actual property ID
+        axiosPrivate.get('/api/v1/TS/getTaskList', {params : {propertyId : propertyId}})
+            .then((response) => {
+                setPropertyTasks(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching tasks: ', error);
+            });
+
+        // Set showModalPriceList to true
+        setShowModalPriceList(true);
+    };
+
 
     const setAsVisited = (status) => {
         status = 'Visited';
@@ -230,7 +249,7 @@ const PropertiesToBeManaged = () => {
                                         </label>
                                     ) : (row.priceListStatus === 'NotSent') ? (
                                         <button className="text-white bg-yellow-700 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
-                                                onClick={() => {setShowModalPriceList(true);} }
+                                                onClick={() => setPriceList(row.propertyId) }
                                         >
                                             Send
                                         </button>
@@ -262,7 +281,7 @@ const PropertiesToBeManaged = () => {
                                                         </button>
                                                     </div>
                                                     {/*body*/}
-                                                    <PriceList />
+                                                    <PriceList tasks={propertyTasks} />
                                                 </div>
                                             </div>
                                         </div>
