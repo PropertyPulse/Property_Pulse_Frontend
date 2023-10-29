@@ -59,7 +59,7 @@ const UpcomingTasks= () => {
             confirmButtonText: 'Yes'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await axiosPrivate.put('/api/v1/tasks/upcoming-tasks/update-task-status', {
+                await axiosPrivate.put('/api/v1/tasks/upcoming-tasks/start-task', {
                     taskId: taskId,
                 }).then((response) => {
                     Swal.fire(
