@@ -133,7 +133,22 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                         className="p-4"
                         style={{ height: "100%", overflowY: "auto" }}
                       >
-                        <h2>Create Valuation Report</h2>
+                        <div className="flex justify-between items-center mb-4">
+                          <h2>Create Valuation Report</h2>
+                          <button
+                            onClick={() => props.setOpenModal(undefined)}
+                            className="text-white p-2 rounded"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95 1.414-1.414 4.95 4.95z" />
+                            </svg>
+                          </button>
+                        </div>
                         {currentStep === 0 && (
                           <StepperComponent
                             step={currentStep}
