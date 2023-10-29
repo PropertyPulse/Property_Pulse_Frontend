@@ -25,6 +25,7 @@ const MultipleImageUploader = ({onImagesSelected}) => {
 
     useEffect(() => {
         onImagesSelected(selectedImages);
+        console.log(selectedImages)
     }, [selectedImages, onImagesSelected]);
     
     return (
