@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Table, Pagination } from "flowbite-react";
-import { Button,Modal} from "flowbite-react";
-import ProfilePictureUploader from "../Common/ProfilePictureUploader";
+import { Button, Modal } from "flowbite-react";
+import StepperComponent from "./Stepper";
 
 const PendingReportSubmissionTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
+  const [currentStep, setCurrentStep] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
@@ -54,6 +55,15 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
       value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
+
+  const handleModalOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleModalClose = () => {
+    setOpenModal(false);
+    setCurrentStep(0); // Reset the stepper to the first step when closing the modal
+  };
 
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -109,30 +119,40 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                         setOpenModal("Upload"); // Set the propertyId in the state
                       }}
                     >
-                      Upload report
+                      Create report
                     </Button>
-                  </Table.Cell>
-                  <Modal
-                    show={props.openModal === "Upload"}
-                    size="md"
-                    popup
-                    onClose={() => props.setOpenModal(undefined)}
-                  >
-                    <Modal.Header />
-                    <Modal.Body>
-                      <div className="space-y-6">
-                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                          Upload the Valuation Report
-                        </h3>
-                        <div>
-                            <ProfilePictureUploader />
-
-                        </div>
-
-                        <Button>Upload</Button>
+                    {/* Modal for report creation */}
+                    <Modal
+                      show={props.openModal === "Upload"}
+                      placement={modalPlacement}
+                      size="3xl"
+                      onClose={() => props.setOpenModal(undefined)}
+                      style={{ height: "auto", minHeight: "90vh" }}
+                    >
+                      <div
+                        className="p-4"
+                        style={{ height: "100%", overflowY: "auto" }}
+                      >
+                        <h2>Create Valuation Report</h2>
+                        {currentStep === 0 && (
+                          <StepperComponent
+                            step={currentStep}
+                            onNextStep={() => setCurrentStep(currentStep + 1)}
+                            onPrevStep={() => setCurrentStep(currentStep - 1)}
+                            onFinish={handleModalClose}
+                          />
+                        )}
+                        {currentStep > 0 && (
+                          <StepperComponent
+                            step={currentStep}
+                            onNextStep={() => setCurrentStep(currentStep + 1)}
+                            onPrevStep={() => setCurrentStep(currentStep - 1)}
+                            onFinish={handleModalClose}
+                          />
+                        )}
                       </div>
-                    </Modal.Body>
-                  </Modal>
+                    </Modal>
+                  </Table.Cell>
                 </Table.Row>
               ))
             )}
