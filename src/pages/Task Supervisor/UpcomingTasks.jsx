@@ -7,6 +7,7 @@ import ViewManpowerRequestDetails from "./ViewManpowerRequestDetails";
 import RescheduleTask from "./RescheduleTask";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const UpcomingTasks= () => {
 
@@ -30,12 +31,50 @@ const UpcomingTasks= () => {
         fetchData();
     }, []);
 
+    const date = new Date();
+
+    const year = date.getFullYear().toString().padStart(4, '0');
+    const month = (date.getMonth()+1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    const currentDate = `${year}-${month}-${day}`;
+
+    console.log(currentDate);
+
 
     const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', '', ''];
 
     const [showModalMakeRequest, setShowModalMakeRequest] = React.useState(false);
     const [showModalManpowerRequest, setShowModalManpowerRequest] = React.useState(false);
     const [showModalManpowerReschedule, setShowModalManpowerReschedule] = React.useState(false);
+
+    const startTask = (taskId) => {
+        Swal.fire({
+            title: 'Do you want to start the task?',
+            text: "Task will be marked as started!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axiosPrivate.put('/api/v1/tasks/upcoming-tasks/update-task-status', {
+                    taskId: taskId,
+                }).then((response) => {
+                    Swal.fire(
+                        'Done!',
+                        'Task Started!',
+                        'success'
+                    );
+                })
+                .catch((error) => {
+                    Swal.fire('Error', 'Unable to Mark the Task as started', 'error');
+                });
+            }
+        });
+    };
+
 
     return (
         <div className='w-full px-24 py-10'>
@@ -149,12 +188,8 @@ const UpcomingTasks= () => {
                                             <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
                                                 {task.requestStatus}
                                             </label>
-                                        ) : (task.requestStatus === 'Accepted with Feedback') ? (
+                                        ) : (task.requestStatus === 'Request Reschedule') ? (
                                             <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
-                                                {task.requestStatus}
-                                            </label>
-                                        ) : (task.requestStatus === 'Declined') ? (
-                                            <label className="text-white bg-red-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
                                                 {task.requestStatus}
                                             </label>
                                         ) : (task.requestStatus === 'Make a Request') ? (
@@ -216,9 +251,10 @@ const UpcomingTasks= () => {
                                             </button>
                                         </td>
                                     ) : (<td><button></button></td>)}
-                                    {(task.requestStatus === 'Accepted') ? (
+                                    {(task.requestStatus === 'Accepted' && date === currentDate) ? (
                                         <td className="px-6 py-3">
-                                            <button className="text-white bg-green-600 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                            <button className="text-white bg-green-600 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
+                                            onClick={() => startTask(task.taskId)}>
                                                 Start
                                             </button>
                                         </td>
