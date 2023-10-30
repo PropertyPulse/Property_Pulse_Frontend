@@ -8,12 +8,16 @@ import useAuth from "../../hooks/useAuth";
 const stripePromise = loadStripe("pk_test_51O6YMFDe6Cwf3TWU89r6X24yXb5wbwGDCQUjael4C0Pj67gr6s24958bOIxXHg1XUUfDKXp2Sqx24vvrXoDZ5uvd00ZT4ocKvT");
 
 const PaymentForm = () => {
+
+   let amount = 100.00;
   const stripe = useStripe();
   const elements = useElements();
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
   const handlePayment = async (e) => {
     e.preventDefault();
+
+
 
     if (!stripe || !elements) {
       // Stripe and/or Elements are not ready, you should handle this case.
@@ -34,13 +38,20 @@ const PaymentForm = () => {
     }
   };
 
+  let description = "monthly payments"
+ 
   const sendTokenToServer = async (token) => {
     const formData = new FormData();
     formData.append("token", token.id);
+    formData.append("amount",amount);
+    formData.append("description",description);
   
     try {
-      const response = await axiosPrivate.post("/api/v1/payments/charge", formData,
-      {headers: {  "Content-Type" :"multipart/form-data" },}
+      const response = await axiosPrivate.post("/api/v1/payments/charge",
+       formData,
+       {
+        headers: {"Content-Type" : "multipart/form-data"},
+       }
       );
   
       if (response.status === 200) {
@@ -75,6 +86,7 @@ const PaymentForm = () => {
           >
             Credit or Debit Card
           </label>
+          <h1>Amount : ${amount}</h1>
           <div className="border rounded p-2" id="card-element">
             <CardElement />
           </div>
