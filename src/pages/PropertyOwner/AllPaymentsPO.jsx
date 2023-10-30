@@ -30,7 +30,7 @@ const AllPaymentsPO = () => {
         {
             id: 1,
             propertyID: 'P001',
-            amount: 20000.00,
+            amount: 30000.00,
             date: '2023/08/25',
         },
         {

@@ -37,7 +37,8 @@ const PropertyPayments = () => {
                                     <div key={due.id} className='w-fit h-fit border text-sm text-center text-[#6C757D] px-10 py-5 m-2 bg-[#ffefef] rounded-xl shadow-md mx-auto'>
                                         For <span className='font-semibold text-black'>{due.propertyID}</span> <div className='text-3xl py-2 text-[#BA0001] font-semibold'>
                                         Rs. {due.amount}</div> is <span className='italic text-[#BA0001]'>due</span> since <span className='font-semibold text-black'>{due.date}</span>
-                                        <div><button className='px-5 py-2 mt-3 bg-[#014F86] text-white rounded-lg hover:bg-[#014F86]'>Pay</button></div>
+                                        <div><button className='px-5 py-2 mt-3 bg-[#014F86] text-white rounded-lg hover:bg-[#014F86]'>Pay</button>
+                                        </div>
                                     </div>
                                 ))}                                
                             </div>
