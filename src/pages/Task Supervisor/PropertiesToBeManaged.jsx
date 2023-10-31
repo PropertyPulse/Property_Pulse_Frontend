@@ -319,7 +319,7 @@ const PropertiesToBeManaged = () => {
                                         <button type="button" className="text-white bg-green-600 font-medium rounded-lg text-xs px-5 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
                                                 onClick={() => handleButtonClick(row.propertyId)}
                                         >
-                                        >
+                                        
                                             Mark Visit
                                         </button>
                                     </td>
