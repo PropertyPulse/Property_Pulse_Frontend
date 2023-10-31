@@ -1,97 +1,117 @@
 import { Table, Button, Modal } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { Pagination } from "flowbite-react";
 import { Label, Select } from "flowbite-react";
 import ViewLandRegistration from "./ViewLandRegistration";
 import ViewUploadedFile from "../Common/ViewUploadedFile";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import ViewHouseRegistration from "./ViewHouseRegistration";
 
-const ValuationReportTable = ({ searchTerm }) => {
+
+
+const ValuationReportTable = ({mode ,search}) => {
   const [openModal, setOpenModal] = useState();
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
+  const [selectedRowData, setSelectedRowData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
   const onPageChange = (page) => setCurrentPage(page);
+  const  [Supervisors,setSupervisors] = useState([]);
+  const [selectedSupervisorId, setSelectedSupervisorId] = useState(null);
+ const [ SelectedPropertyId,setSelectedPropertyId] = useState(null);
+ const [tableData,setTableData] = useState([{}]);
 
-  const tableData = [
-    {
-      propertyId: "10101010",
-      type: "House",
-      location: "Gampaha",
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711334567",
-      status: "Received",
-    },
-    {
-      propertyId: "10101110",
-      type: "Land",
-      location: "Kaduwela",
-      task: "Repair water pipe",
-      price: "10000",
-      scheduleDate: "2023/10/10",
-      details: "0713222792",
-      status: "Pending",
-    },
-    {
-      propertyId: "11101110",
-      type: "House",
-      location: "Waliweriya",
-      task: "Clean the Rooftop",
-      price: "20000",
-      scheduleDate: "2023/08/10",
-      details: "0719899693",
-      status: "Received",
-    },
-    {
-      propertyId: "10111010",
-      type: "House",
-      location: "Colombo",
-      task: "Clean the backyard",
-      price: "5000",
-      scheduleDate: "2023/07/10",
-      details: "0766899693",
-      status: "Pending",
-    },
-    {
-      propertyId: "10100010",
-      type: "House",
-      location: "Kaluthara",
-      task: "Bathroom makeover",
-      price: "20000",
-      scheduleDate: "2023/09/11",
-      details: "0719954321",
-      status: "Received",
-    },
-    {
-      propertyId: "10111010",
-      type: "Land",
-      location: "Colombo 03",
-      task: "Clean the land",
-      price: "8000",
-      scheduleDate: "2023/11/15",
-      details: "0725347234",
-      status: "Pending",
-    },
-    // Add more data objects for other rows...
-  ];
+  // useEffect(() => {
+   
+  //   axiosPrivate.get("http://localhost:8080/api/v1/tm/NewManagmentRequests", {})
+  //     .then((response) => {
+        
+  //       setSupervisors(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching supervisors:", error);
+  //     });
+  // }, []);
+
+
+  const fetchSupervisors = (propertyAddress) => {
+    axiosPrivate
+      .get("http://localhost:8080/api/v1/tm/select-a-task-supervisor", {
+        params: { address: propertyAddress } // Include property's address in the API call
+      })
+      .then((response) => {
+        setSupervisors(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching supervisors:", error);
+      });
+  };
+
+  const assignTask = (selectedSupervisorId,selectedPropertyId) => {
+    axiosPrivate.post("http://localhost:8080/api/v1/tm/Assign-a-task-supervisor", {
+      propertyId: selectedPropertyId, // Pass the selected property's ID
+      taskSupervisorId: selectedSupervisorId, // Pass the selected supervisor's ID
+    })
+    .then((response) => {
+      // Handle the API response as needed
+    })
+    .catch((error) => {
+      console.error("Error assigning the task supervisor:", error);
+    });
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Make a GET request using axiosPrivate to fetch valuation reports
+        const response = await axiosPrivate.get("/api/v1/tm/valuation-reports", {
+          params: {
+            status: mode, 
+          }
+        });
+
+        // Check if the response status is 200 (OK)
+        if (response.status === 200) {
+          // Set the loaded valuation reports into the state
+          setTableData(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching valuation reports:", error);
+      }
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, [axiosPrivate, mode]);
+  
+  
   //pagination and filtering
 
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
-  const filteredData = tableData.filter((rowData) =>
-    Object.values(rowData).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
+// Filter data based on search term for propertyId and type
+const filteredData = tableData.filter((rowData) => {
+  const propertyId = rowData.propertyId || "";
+  const type = rowData.type || "";
+  const location  = rowData.location || "";
+
+  return (
+    propertyId.toString().toLowerCase().includes(search.toLowerCase()) ||
+    type.toString().toLowerCase().includes(search.toLowerCase()) || 
+    location.toString().toLowerCase().includes(search.toLowerCase())
   );
+});
+
 
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
   // Determine which data to display based on the search term
-  const dataToDisplay = searchTerm ? filteredData : tableData;
+  const dataToDisplay = search ? filteredData : tableData;
 
   // Slice the data to display based on startIndex and endIndex
   const paginatedData = dataToDisplay.slice(startIndex, endIndex);
@@ -168,12 +188,13 @@ const ValuationReportTable = ({ searchTerm }) => {
                       </Table>
                     </Modal.Body>
                   </Modal>
-                  <Table.Cell>{rowData.details}</Table.Cell>
+                  <Table.Cell>{rowData.contact}</Table.Cell>
                   <Table.Cell>{rowData.status}</Table.Cell>
                   <Table.Cell>
-                    <Button onClick={() => props.setOpenModal("viewValuation")}>
+                    <Button onClick={() =>   setOpenModal("viewValuation")}>
                       View
                     </Button>
+                    
 
                     {/* view Land modal */}
                     <Modal
@@ -191,20 +212,33 @@ const ValuationReportTable = ({ searchTerm }) => {
                   </Table.Cell>
 
                   <Table.Cell>
-                    <Button onClick={() => props.setOpenModal("view")}>
+                    <Button onClick={()  => {  setSelectedRowData(rowData);
+                      props.setOpenModal(rowData.type === "LAND" ? "viewLand" : "viewHouse");}}>
                       View
                     </Button>
 
                     {/* view Land modal */}
                     <Modal
-                      show={props.openModal === "view"}
+                      show={props.openModal === "viewLand"}
                       size="7xl"
                       onClose={() => props.setOpenModal(undefined)}
                     >
                       <Modal.Header>View Request</Modal.Header>
                       <Modal.Body>
                         <div className="space-y-6">
-                          <ViewLandRegistration />
+                          <ViewLandRegistration  data = { selectedRowData}/>
+                        </div>
+                      </Modal.Body>
+                    </Modal>
+                    <Modal
+                      show={props.openModal === "viewHouse"}
+                      size="7xl"
+                      onClose={() => props.setOpenModal(undefined)}
+                    >
+                      <Modal.Header>View Request</Modal.Header>
+                      <Modal.Body>
+                        <div className="space-y-6">
+                          <ViewHouseRegistration data = { selectedRowData}/>
                         </div>
                       </Modal.Body>
                     </Modal>
@@ -213,7 +247,11 @@ const ValuationReportTable = ({ searchTerm }) => {
                     <div className="flex space-x-4">
                       <Button
                         className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
-                        onClick={() => props.setOpenModal("accept")}
+                        onClick={() => 
+                          {
+                            props.setOpenModal("accept");
+                            setSelectedPropertyId(rowData.propertyId);
+                            fetchSupervisors(rowData.location);}}
                       >
                         Assign
                       </Button>
@@ -234,22 +272,30 @@ const ValuationReportTable = ({ searchTerm }) => {
                                 value="Select the task supervisor"
                               />
                             </div>
-                            <Select id="countries" required>
-                              <option>Shashika</option>
-                              <option>Kavisha</option>
-                              <option>Surani</option>
-                              <option>Anjalee</option>
+                            <Select id="countries"   value={selectedSupervisorId}
+  onChange={(e) => setSelectedSupervisorId(e.target.value)} required>
+                            {Supervisors.map((supervisor) => (
+                 
+                 <option key={supervisor.id} value={supervisor.id
+                }>
+                 {supervisor.user.firstname + " " + supervisor.user.lastname}
+                  </option>
+                ))}
                             </Select>
                           </div>
                         </div>
                       </Modal.Body>
                       <Modal.Footer>
-                        <Button
-                          onClick={() => props.setOpenModal(undefined)}
-                          className="bg-secondary-gray hover:bg-secondary-gray-light"
-                        >
-                          Assign
-                        </Button>
+                      <Button
+  className="font-medium bg-secondary-gray hover:bg-secondary-gray-light"
+  onClick={() => {
+    assignTask(selectedSupervisorId,SelectedPropertyId);
+    props.setOpenModal(undefined); 
+  }}
+>
+  Assign
+</Button>
+
                         <Button
                           color="gray"
                           onClick={() => props.setOpenModal(undefined)}

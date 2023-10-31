@@ -1,92 +1,45 @@
 import { Table, Button, Modal } from "flowbite-react";
-import React, { useState } from "react";
+import axios from "axios";
+
+import React, { useEffect, useState } from "react";
 import { Pagination } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Label, Select } from "flowbite-react";
 import ViewLandRegistration from "./ViewLandRegistration";
 import ViewHouseRegistration from "./ViewHouseRegistration";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
 
 const NewPropertyTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentPage, setCurrentPage] = useState(1);
+  const axiosPrivate = useAxiosPrivate();
   const onPageChange = (page) => setCurrentPage(page);
+  let [tableData, setTableData] = useState([]);
+  const [selectedRowData, setSelectedRowData] = useState([]);
 
-  const tableData = [
-    {
-      propertyId: "10101110", 
-      type: "Land",
-      location: "Gampaha",
-      duration:'3 Months',
-      task: "Clean the house",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10101010",
-      type: "Land",
-      location: "Kaduwela",
-      duration:'6 Months', 
-      task: "Repair water pipe",
-      price: "12000",
-      scheduleDate: "2023/10/12",
-      details: "0713222792",
-    },
-    {
-      propertyId: "10111010", 
-      type: "House",
-      location: "Waliweriya",
-      duration:'4 Months',
-      task: "Clean the yard", 
-      price: "100000",
-      scheduleDate: "2023/08/25",
-      details: "0766899693",
-    },
-    {
-      propertyId: "11111010",
-      type: "House",
-      location: "Colombo",
-      duration:'12 Months',
-      task: "Bathroom Makeover",
-      price: "90000",
-      scheduleDate: "2023/08/31",
-      details: "0713258974",
-    },
-    {
-      propertyId: "11101010",
-      type: "Land",
-      location: "Rathnapura",
-      duration:'1 Months',
-      task: "Fence Makeover",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0749857235",
-    },
-    {
-      propertyId: "10101110",
-      type: "House",
-      location: "Colombo",
-      duration:'8 Months',
-      task: "Clean the Rooftop",
-      price: "80000",
-      scheduleDate: "2023/11/10",
-      details: "0712244896",
-    },
-    // Add more data objects for other rows...
-  ];
+  // This is the data that will be displayed in the table
+
   //pagination and filtering
 
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
-  const filteredData = tableData.filter((rowData) =>
-    Object.values(rowData).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
-
+  const filteredData = tableData.filter((rowData) => {
+    const propertyId = rowData.id|| "";
+    const type = rowData.type || "";
+    const location  = rowData.location || "";
+  
+    return (
+      propertyId.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+      type.toString().toLowerCase().includes(searchTerm.toLowerCase()) || 
+      location.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+  
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -96,6 +49,72 @@ const NewPropertyTable = ({ searchTerm }) => {
 
   // Slice the data to display based on startIndex and endIndex
   const paginatedData = dataToDisplay.slice(startIndex, endIndex);
+
+
+  useEffect(() => {
+   
+
+    const fetchData = async () => {
+      try {
+        const response = await axiosPrivate.get("http://localhost:8080/api/v1/tm/newmanagmentrequest",{
+         
+        }); 
+        if (response.status === 200) {
+          setTableData(response.data); 
+        } else {
+          console.error("Failed to fetch data from the backend.");
+        }
+      } catch (error) {
+        console.error("Error while fetching data:", error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+
+
+
+  // ... Rest of your component code
+
+
+
+
+
+
+
+
+
+  const handleRequestValuation = async (propertyId) => {
+    try {
+      const data = { propertyId }; // Create a data object with the propertyId
+      const response = await axiosPrivate.post(
+        "http://localhost:8080/api/v1/tm/requestValuationandAcceptProperty",
+        data
+      );
+      console.log(response);
+
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  const handleReject = (propertyId) => {
+   
+    axiosPrivate
+      .post("http://localhost:8080/api/v1/tm/reject-property", { propertyId: propertyId })
+      .then((response) => {
+
+        if (response.status === 200) {
+          setTableData((prevData) => prevData.filter((rowData) => rowData.id !== propertyId));
+          props.setOpenModal(undefined); 
+        }
+
+      })
+      .catch((error) => {
+        console.error("Error rejecting property: ", error);
+      });
+  };
+  
 
   return (
     <>
@@ -127,7 +146,7 @@ const NewPropertyTable = ({ searchTerm }) => {
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                    {rowData.propertyId}
+                    {rowData.id}
                   </Table.Cell>
                   <Table.Cell>
                     
@@ -144,9 +163,13 @@ const NewPropertyTable = ({ searchTerm }) => {
                     </Button>
                   </Table.Cell>
                   <Table.Cell>{rowData.duration}</Table.Cell>
-                  <Table.Cell>{rowData.details}</Table.Cell>
+                  <Table.Cell>{rowData.propertyOwnerContactNo}</Table.Cell>
                   <Table.Cell>
-                    <Button onClick={() => props.setOpenModal("viewLand")}>
+        
+                    <Button onClick={() => {
+                      setSelectedRowData(rowData);
+                      props.setOpenModal(rowData.type === "LAND" ? "viewLand" : "viewHouse");
+                    }}>
                       View
                     </Button>
                   </Table.Cell>
@@ -159,11 +182,11 @@ const NewPropertyTable = ({ searchTerm }) => {
                         Accept
                       </Button>
                       <Button
-                        className="font-medium bg-error-red hover:bg-error-red-hover"
-                        onClick={() => props.setOpenModal("reject")}
-                      >
-                        Reject
-                      </Button>
+  color="failure"
+  onClick={ () => props.setOpenModal("reject")}
+>
+ Reject
+</Button>
                     </div>
                     <Modal
                       show={props.openModal === "accept"}
@@ -181,7 +204,10 @@ const NewPropertyTable = ({ searchTerm }) => {
                           <div className="flex justify-center gap-4">
                             <Button
                               color="success"
-                              onClick={() => props.setOpenModal(undefined)}
+                              onClick={() => {
+                                handleRequestValuation(rowData.propertyId);
+                                props.setOpenModal(undefined);
+                              }}
                             >
                               Yes,Accept and Request Valuation Report
                             </Button>
@@ -229,7 +255,7 @@ const NewPropertyTable = ({ searchTerm }) => {
                           <div className="flex justify-center gap-4">
                             <Button
                               color="failure"
-                              onClick={() => props.setOpenModal(undefined)}
+                              onClick={() => handleReject(rowData.propertyId)}
                             >
                               Yes, Reject
                             </Button>
@@ -253,7 +279,7 @@ const NewPropertyTable = ({ searchTerm }) => {
                       <Modal.Header>View Request</Modal.Header>
                       <Modal.Body>
                         <div className="space-y-6">
-                          <ViewLandRegistration />
+                          <ViewLandRegistration data = {selectedRowData} />
                         </div>
                       </Modal.Body>
                     </Modal>
@@ -267,7 +293,7 @@ const NewPropertyTable = ({ searchTerm }) => {
                       <Modal.Header>View Request</Modal.Header>
                       <Modal.Body>
                         <div className="space-y-6">
-                          <ViewHouseRegistration />
+                          <ViewHouseRegistration data = {selectedRowData} />
                         </div>
                       </Modal.Body>
                     </Modal>
