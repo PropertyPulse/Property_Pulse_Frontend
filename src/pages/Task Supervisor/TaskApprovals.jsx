@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import ViewManpowerRequestDetails from "./ViewManpowerRequestDetails";
 import ManpowerRequest from "./ManpowerRequest";
-// import AddContactPerson from "./AddContactPerson";
+import AddContactPerson from "./AddContactPerson";
 
 const TaskApprovals = () => {
 
@@ -233,9 +233,6 @@ const TaskApprovals = () => {
                                                     {/*header*/}
                                                     <div
                                                         className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                        {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
-                                                        {/*    Suggest Task*/}
-                                                        {/*</h3>*/}
                                                         <span className='font-semibold text-xl text-primary-blue-500 px-0'>Send Manpower Company Request</span>
                                                         <button type="button"
                                                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -296,9 +293,6 @@ const TaskApprovals = () => {
                                                     {/*header*/}
                                                     <div
                                                         className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                        {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
-                                                        {/*    Suggest Task*/}
-                                                        {/*</h3>*/}
                                                         <span className='font-semibold text-xl text-primary-blue-500 px-0'>Task Details</span>
                                                         <button type="button"
                                                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -334,9 +328,6 @@ const TaskApprovals = () => {
                                                     {/*header*/}
                                                     <div
                                                         className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                        {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
-                                                        {/*    Suggest Task*/}
-                                                        {/*</h3>*/}
                                                         <span className='font-semibold text-xl text-primary-blue-500 px-0'>Task Details</span>
                                                         <button type="button"
                                                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -418,9 +409,6 @@ const TaskApprovals = () => {
                                                     {/*header*/}
                                                     <div
                                                         className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                        {/*<h3 className="text-lg font-semibold text-gray-900 lg:text-2xl dark:text-white">*/}
-                                                        {/*    Suggest Task*/}
-                                                        {/*</h3>*/}
                                                         <span className='font-semibold text-xl text-primary-blue-500 px-0'>Add Contact Person</span>
                                                         <button type="button"
                                                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -437,7 +425,7 @@ const TaskApprovals = () => {
                                                         </button>
                                                     </div>
                                                     {/*body*/}
-                                                    {/*<AddContactPerson taskId={modalAddContactPersonDetails.taskId}/>*/}
+                                                    <AddContactPerson taskId={modalAddContactPersonDetails.taskId}/>
                                                 </div>
                                             </div>
                                         </div>
