@@ -5,6 +5,10 @@ import StepperComponent from "./Stepper";
 
 const PendingReportSubmissionTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
+
+
+  const [selectedPropertyId, setSelectedPropertyId] = useState(null);
+
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentStep, setCurrentStep] = useState(0);
@@ -37,7 +41,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
       contact: "0715702788",
     },
     {
-      propertyId: "10101010",
+      propertyId: "99999999",
       type: "Home",
       location: "Maharagama",
       Requesteddata: "2023/09/10",
@@ -56,9 +60,10 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
     )
   );
 
-  const handleModalOpen = () => {
-    setOpenModal(true);
-  };
+ const handleModalOpen = (propertyId) => {
+  setSelectedPropertyId(propertyId); // Set the selected property ID
+  setOpenModal("Upload");
+};
 
   const handleModalClose = () => {
     setOpenModal(false);
@@ -117,6 +122,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                     <Button
                       onClick={() => {
                         setOpenModal("Upload");
+                        handleModalOpen(item.propertyId);//past the property id.
                       }}
                     >
                       Create report
@@ -135,6 +141,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                       >
                         <div className="flex justify-between items-center mb-4">
                           <h2>Create Valuation Report</h2>
+                          <h2></h2>
                           <button
                             onClick={() => props.setOpenModal(undefined)}
                             className="text-white p-2 rounded"
@@ -151,6 +158,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                         </div>
                         {currentStep === 0 && (
                           <StepperComponent
+                          propertyId={item.propertyId}
                             step={currentStep}
                             onNextStep={() => setCurrentStep(currentStep + 1)}
                             onPrevStep={() => setCurrentStep(currentStep - 1)}
@@ -159,6 +167,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                         )}
                         {currentStep > 0 && (
                           <StepperComponent
+                          propertyId={item.propertyId}
                             step={currentStep}
                             onNextStep={() => setCurrentStep(currentStep + 1)}
                             onPrevStep={() => setCurrentStep(currentStep - 1)}

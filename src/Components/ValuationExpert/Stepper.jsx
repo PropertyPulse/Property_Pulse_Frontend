@@ -17,27 +17,35 @@ const steps = [
   { title: 'Declaration' },
 ];
 
-const mockValues = {
-  
-  propertyOwnerName: 'Shashika',
-  propertyAddress: 'Malwana',
-  propertyType: 'Land',
-  buildUpArea: 0,
-  superBuildUpArea: 0,
-  marketValue: 0,
-  realizableValue: 0,
-  insurableValue: 100,
-  landAreaValue: 0,
-  superBuildupAreaValue: 0,
-  totalValue: 0,
-  isAgreed: false,
-};
 
-const StepperComponent = () => {
+const StepperComponent = (props) => {
+
+  const { propertyId } = props;
+
+  const mockValues = {
+
+    //table eke tiyena property id eka mekata pass wenwa
+    propertyId: propertyId,
+    propertyOwnerName: 'Shashika',
+    propertyAddress: 'Malwana',
+    propertyType: 'Land',
+    buildUpArea: 0,
+    superBuildUpArea: 0,
+    marketValue: 0,
+    realizableValue: 0,
+    insurableValue: 100,
+    landAreaValue: 0,
+    superBuildupAreaValue: 0,
+    totalValue: 0,
+    isAgreed: false,
+  };
+
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState(mockValues);
   const [showReport, setShowReport] = useState(false);
   const [isDeclarationChecked, setIsDeclarationChecked] = useState(false);
+
+
 
   const handleNextStep = () => {
     setStep(step + 1);
