@@ -42,33 +42,73 @@ const ViewHouseRegistration = () => {
       label: "District",
       styles: "w-32",
     },
+    {
+      id:3,
+      name: "duration",
+      type: "text",
+      label: "Duration",
+      styles: "w-32",
+    
+    },
     // Properties for Land Size input field
     {
       id: 4,
       name: "landSize",
       type: "text",
-      label: "Land Size()",
+      label: "Land Size",
       required: true,
       value:"100 perch",
     },
-    // Properties for crops input field
     {
       id: 5,
-      name: "haveCrops",
-      label: "Are there any crops in the land?",
+      name: "livingRooms",
+      type: "text",
+      label: "No of  Living Rooms",
+      required: true,
+      value:"6",
+    },
+    {
+      id: 6,
+      name: "bathrooms",
+      type: "text",
+      label: "No of bath rooms",
+      required: true,
+      value:"3",
+    },
+    {
+      id: 7,
+      name: "bedrooms",
+      type: "text",
+      label: "No of  Bedrooms",
+      required: true,
+      value:"6",
+    }, {
+      id: 8,
+      name: "stories",
+      type: "text",
+      label: "No of  stories",
+      required: true,
+      value:"6",
+    },
+
+    // Properties for crops input field
+    {
+      id: 9,
+      name: "haveSpecialRooms",
+      label: "Are there any special rooms in the house?",
     },
     // properties for crops lising input field
     {
-      id: 6,
-      name: "crops",
+      id: 10,
+      name: "specialRooms",
       inputType: "textarea",
       errorMessage: "",
-      placeholderText: "State the crops...",
+      placeholderText: "State the special Rooms",
       label: 'If "Yes", what are they?',
     },
     // Properties for special facts input field
     {
-      id: 8,
+      id: 11,
       name: "specialFacts",
       inputType: "textarea",
       errorMessage: "",
@@ -108,7 +148,7 @@ const ViewHouseRegistration = () => {
                       value={values[input.name]}
                       onChange={onChange}
                     />
-                  ) : input.name === "haveCrops" ? (
+                  ) : input.name === "haveSpecialRooms" ? (
                     <div className="w-full min-w-[200px]">
                       <label className="text-sm">{input.label}</label>
                       <div className="flex justify-around items-center gap-3 text-[#6f6f6f]">
@@ -117,7 +157,7 @@ const ViewHouseRegistration = () => {
                           <input
                             type="radio"
                             className="mr-1"
-                            name="haveCrops"
+                            name="specialRooms"
                             id="yes"
                             value="Yes"
                             defaultChecked
@@ -130,7 +170,7 @@ const ViewHouseRegistration = () => {
                           <input
                             type="radio"
                             className="mr-1"
-                            name="haveCrops"
+                            name="specialRooms"
                             id="no"
                             value="No"
                             onChange={onChange}

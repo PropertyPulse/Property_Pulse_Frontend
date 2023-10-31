@@ -8,6 +8,7 @@ import { axiosPrivate } from '../../api/axios';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import MultipleImageUploader from '../../Components/Common/MultipleImageUploader';
+import InsuaranceDocsUploader from '../../Components/Common/InsuaranceDocsUploader';
 
 const LandRegistration = () => {
     const navigate = useNavigate();
@@ -20,7 +21,9 @@ const LandRegistration = () => {
     const [errMessage, setErrMessage] = useState("");
     const [wantInsurance, setWantInsurance] = useState(false);
     const [duration, setDuration] = useState();
+    const [selectedImages, setSelectedImages] = useState([]);
 
+    const [selectedInsuaranceDocuments, setSelectedInsuaranceDocuments] = useState([]);
     const handleDropdownSelect = (selectedValue) => {
         setDuration(selectedValue);
     }
@@ -171,19 +174,20 @@ const LandRegistration = () => {
                 special_facts: values.specialFacts,
                 want_insurance: wantInsurance,
                 property_owner_email: auth.user,
+                property_images: selectedImages,
+                insurance_documents: selectedInsuaranceDocuments
             }
 
-            // console.log(formFields);
+            console.log(formFields);
 
-            const response = await axiosPrivate.post(
+            const response =axiosPrivate.post(
                 "/api/v1/property/addNewProperty",
-                JSON.stringify(formFields), // Convert the object to JSON string
+                formFields, 
                 {
                     headers: {
-                        "Content-type":"multipart/form-data",
+                        'Content-Type': 'multipart/form-data', 
+                    },
                 }
-            }
-
             );
             console.log(response.data);
             if(response) {
@@ -201,6 +205,15 @@ const LandRegistration = () => {
     };
 
     console.log(values);
+
+    const handleImagesSelected = (images) => {
+        setSelectedImages(images);
+    };
+    
+
+    const handleInsuranceDocumentsSelected = (documents) => {
+        setSelectedInsuaranceDocuments(documents);
+    };
 
 
 
@@ -267,18 +280,17 @@ const LandRegistration = () => {
                                 </div>                            
                             ))} 
                         </div>
-
                         <div className='h-full w-full'>
                                 <div className='h-full flex w-full gap-10 items-center px-10 py-5'>
                                     <div className='w-full'>
                                         <label>Images of the Property</label>
-                                        <MultipleImageUploader />
+                                        <MultipleImageUploader onImagesSelected={handleImagesSelected} />
                                     </div>   
                                     <div className='w-full'>
                                         <label>Insurance Documents</label>
                                         <p className='text-xs italic'>(If you have already got an insurance for the property, 
                                             please upload relevant documents)</p>
-                                        <ProfilePictureUploader />
+                                        <InsuaranceDocsUploader OnFilesUpload = {handleInsuranceDocumentsSelected} />
                                     </div>                                                          
                                 </div>
 

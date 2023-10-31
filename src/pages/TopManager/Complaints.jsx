@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
+import axios from "axios";
 import { Card } from "flowbite-react";
 import ViewComplaintTable from "../../Components/TopManager/ViewComplaintTable";
+
 
 const Complaints = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -8,6 +10,24 @@ const Complaints = () => {
     setSearchTerm(event.target.value);
   };
 
+    const [complaints, setComplaints] = useState([]);
+  
+  
+    // Fetch complaint details when the component mounts
+    useEffect(() => {
+      fetchComplaints(); // Fetch complaints from your API
+    }, []);
+  
+    const fetchComplaints = () => {
+      // Make an HTTP request to fetch complaint details from your backend API
+      axios.get("http://localhost:8080/api/v1/tm/all")
+        .then((response) => {
+          // Set the state of the complaints list to the value received from the API.
+          // This will trigger a re-render and display the complaint details.
+          setComplaints(response.data);
+        });
+    };
+  
 // const navigate = useNavigate();
   return (
     <>
@@ -50,12 +70,12 @@ const Complaints = () => {
                   placeholder="Search EmployeeId, Name, Nic..."
                   value={searchTerm}
                   onChange={handleSearch}
-                />
+                /> 
               </div>
             </form>
           </div>
           <div>
-            <ViewComplaintTable searchTerm={searchTerm}/>
+            <ViewComplaintTable searchTerm={searchTerm}  complaints = {complaints}/>
           </div>
         </Card>
       </div>

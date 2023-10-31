@@ -7,6 +7,7 @@ import { useRef } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import MultipleImageUploader from "../../Components/Common/MultipleImageUploader";
+import InsuaranceDocsUploader from "../../Components/Common/InsuaranceDocsUploader";
 
 
 // const REGISTER_URL = '/api/v1/property/addProperty';
@@ -32,6 +33,11 @@ const HouseRegistration = () => {
     const [wantInsurance, setWantInsurance] = useState(false);
 
     const [duration, setDuration] = useState();
+
+    const [selectedImages, setSelectedImages] = useState([]);
+
+    
+    const [selectedInsuaranceDocuments, setSelectedInsuaranceDocuments] = useState([]);
 
     const handleDropdownSelect = (selectedValue) => {
         setDuration(selectedValue);
@@ -296,53 +302,71 @@ const HouseRegistration = () => {
         }
     ];
 
-
     const handleAddProperty = async (e) => {
         e.preventDefault();
+        
+        const formData = new FormData();
+    
+        // Add JSON data to the FormData
+        formData.append("address", values.address);
+        formData.append("type", values.type);
+        formData.append("location", values.location);
+        formData.append("district", values.district);
+        formData.append("duration", duration);
+        formData.append("stories", parseInt(values.stories));
+        formData.append("bathrooms", parseInt(values.bathrooms));
+        formData.append("bedrooms", parseInt(values.bedrooms));
+        formData.append("dining_rooms", parseInt(values.diningRooms));
+        formData.append("living_rooms", parseInt(values.livingRooms));
+        formData.append("have_special_rooms", values.haveSpecialRooms);
+        formData.append("special_rooms", values.specialRooms);
+        formData.append("want_insurance", wantInsurance);
+        formData.append("property_owner_email", auth.user);
+    
 
-        try{
-
-            const formFields = {
-                address: values.address,
-                type: values.type,
-                location: values.location,
-                district: values.district,
-                duration: duration,
-                stories: parseInt(values.stories),
-                bathrooms: parseInt(values.bathrooms),
-                bedrooms: parseInt(values.bedrooms),
-                dining_rooms: parseInt(values.diningRooms),
-                living_rooms: parseInt(values.livingRooms),
-                have_special_rooms: values.haveSpecialRooms,
-                special_rooms: values.specialRooms,
-                want_insurance: wantInsurance,
-                property_owner_email: auth.user,
-            }
-
-            // console.log(formFields);
-
+        for (const image of selectedImages) {
+            formData.append("landImages", image);
+        }
+    
+        for (const document of selectedInsuaranceDocuments) {
+            formData.append("landDocuments", document);
+        }
+        console.log(formData);
+        try {
             const response = await axiosPrivate.post(
                 "/api/v1/property/addNewProperty",
-                JSON.stringify(formFields), // Convert the object to JSON string
+                formData, 
                 {
-                    
+                    headers: {
+                        "Content-Type": "multipart/form-data", 
+                    },
                 }
             );
             console.log(response.data);
-            if(response) {
+            if (response) {
                 navigate("schedule-tasks");
-            }           
-            
-        } catch(err){
-            console.log(err);
+            }
+        } catch (err) {
+            console.error(err);
         }
-    }
-
+    };
+    
     
     // Function for handling value changes of input fields
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
     };
+
+
+
+    const handleImagesSelected = (images) => {
+        setSelectedImages(images);
+    };
+
+
+    const handleInsuranceDocumentsSelected = (documents) => {
+      setSelectedInsuaranceDocuments(documents);
+  };
 
     console.log(values);
 
@@ -444,7 +468,7 @@ const HouseRegistration = () => {
                     <div className="h-full p-10">
                     <div className="w-full mb-10">
                         <label>Images of the Property</label>
-                        <MultipleImageUploader />
+                        <MultipleImageUploader onImagesSelected={handleImagesSelected} />
                     </div>
                     <div className="w-full">
                         <label>Insurance Documents</label>
@@ -452,7 +476,7 @@ const HouseRegistration = () => {
                         (If you have already got an insurance for the property,
                         please upload relevant documents)
                         </p>
-                        <ProfilePictureUploader />
+                        <InsuaranceDocsUploader OnFilesUpload = {handleInsuranceDocumentsSelected}/>
                     </div>
                     </div>
                 </div>

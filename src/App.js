@@ -153,6 +153,7 @@ function App() {
                         </Route>
 
                     </Route>
+                    <Route element={<RequireAuth allowedRoles='TOPMANAGER' />}>
                         <Route path="tm" element={<TopManager />} >
                             <Route path="dashboard" element={<TmDashboard />} />
                             <Route path="new-property" element={<NewProperty />} />
@@ -160,8 +161,8 @@ function App() {
                             <Route path="manage-task-supervisor" element={<ManageTs />} />
                             <Route path="complain" element={<Complaints />} />
                         </Route>
-                    
-                    
+                     </Route>
+                        <Route element={<RequireAuth allowedRoles='PROPERTYOWNER' />}>
                         <Route path="po" element={<PropertyOwnerdb />}>
                             <Route path="dashboard" element={<PoDashboard />} />
                             <Route path="reports/view-monthly-report/:id" element={<ViewMonthlyReport />} />
@@ -180,7 +181,7 @@ function App() {
                             <Route path="house-registration/schedule-tasks" element={<TasksListPO />} />
                             <Route path="complaints" element={<ComplaintsPO />} />
                         </Route>
-                    
+                    </Route>
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>
                         <Route path="fm" element={<FinancialManager />} >
                             <Route path="dashboard" element={<FmDashboard />} />
