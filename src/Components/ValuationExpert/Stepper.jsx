@@ -18,6 +18,7 @@ const steps = [
 ];
 
 const mockValues = {
+  
   propertyOwnerName: 'Shashika',
   propertyAddress: 'Malwana',
   propertyType: 'Land',
