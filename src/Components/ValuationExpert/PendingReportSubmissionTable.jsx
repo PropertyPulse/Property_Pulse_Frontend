@@ -60,10 +60,11 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
     )
   );
 
- const handleModalOpen = (propertyId) => {
-  setSelectedPropertyId(propertyId); // Set the selected property ID
-  setOpenModal("Upload");
-};
+  const handleModalOpen = (propertyId) => {
+    setSelectedPropertyId(propertyId); // Set the selected property ID
+    setOpenModal("Upload");
+  };
+  
 
   const handleModalClose = () => {
     setOpenModal(false);
@@ -158,7 +159,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                         </div>
                         {currentStep === 0 && (
                           <StepperComponent
-                          propertyId={item.propertyId}
+                          propertyId={selectedPropertyId}
                             step={currentStep}
                             onNextStep={() => setCurrentStep(currentStep + 1)}
                             onPrevStep={() => setCurrentStep(currentStep - 1)}
@@ -167,7 +168,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                         )}
                         {currentStep > 0 && (
                           <StepperComponent
-                          propertyId={item.propertyId}
+                          
                             step={currentStep}
                             onNextStep={() => setCurrentStep(currentStep + 1)}
                             onPrevStep={() => setCurrentStep(currentStep - 1)}
