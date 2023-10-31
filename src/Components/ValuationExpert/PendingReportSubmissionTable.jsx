@@ -116,7 +116,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                   <Table.Cell>
                     <Button
                       onClick={() => {
-                        setOpenModal("Upload"); // Set the propertyId in the state
+                        setOpenModal("Upload");
                       }}
                     >
                       Create report

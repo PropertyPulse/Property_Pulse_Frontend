@@ -10,9 +10,24 @@ import {
 } from "@react-pdf/renderer";
 import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
+import { Button, Modal} from 'flowbite-react';
+import InsuaranceDocsUploader from "../../Components/Common/InsuaranceDocsUploader";
 
-const FullReport = ({ formData, onBackToStepper }) => {
+const FullReport = ({ formData, onBackToStepper}) => {
   const [pdfVisible, setPdfVisible] = useState(false);
+  const [openModal, setOpenModal] = useState();
+const props = { openModal,setOpenModal };
+
+
+// meka wenas karpan upload ekedi
+
+const [selectedInsuaranceDocuments, setSelectedInsuaranceDocuments] = useState();
+
+const handleInsuranceDocumentsSelected = (documents) => {
+  setSelectedInsuaranceDocuments(documents);
+};
+
+
 
   const styles = StyleSheet.create({
     page: {
@@ -23,7 +38,7 @@ const FullReport = ({ formData, onBackToStepper }) => {
     section: {
       margin: 5, // Reduce the margin between sections
       padding: 5,
-      paddingRight: 10 , // Reduce the padding between sections
+      paddingRight: 10, // Reduce the padding between sections
       flexGrow: 1,
       fontSize: 13,
       marginBottom: 5,
@@ -84,8 +99,8 @@ const FullReport = ({ formData, onBackToStepper }) => {
 
     customSection: {
       fontSize: 16, // Set your desired font size
-      color: 'rgba(25, 25, 130)', // Set the color to your desired color
-      fontStyle: 'italic', // Make it italic
+      color: "rgba(25, 25, 130)", // Set the color to your desired color
+      fontStyle: "italic", // Make it italic
       padding: 10, // Add padding as needed
     },
   });
@@ -103,22 +118,23 @@ const FullReport = ({ formData, onBackToStepper }) => {
 
           {/* Header Text (Vertical Layout) */}
           <View style={{ flexDirection: "row" }}>
-          <View>
-              <Text style={styles.customSection}>Your Property, Our Priority</Text>
+            <View>
+              <Text style={styles.customSection}>
+                Your Property, Our Priority
+              </Text>
             </View>
 
-
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.headerText}>Property Pulse</Text>
-            <Text style={styles.headerText}>
-              Address: No.508/2/4,Jayamini Building
-            </Text>
-            <Text style={styles.headerText}>
-              Avissawella rd, Kaduwela, Sri Lanka
-            </Text>
-            <Text style={styles.headerText}>Phone: (+94) 71-356 1825</Text>
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.headerText}>Property Pulse</Text>
+              <Text style={styles.headerText}>
+                Address: No.508/2/4,Jayamini Building
+              </Text>
+              <Text style={styles.headerText}>
+                Avissawella rd, Kaduwela, Sri Lanka
+              </Text>
+              <Text style={styles.headerText}>Phone: (+94) 71-356 1825</Text>
+            </View>
           </View>
-        </View>
         </View>
         <View>
           <View style={{ ...styles.section, alignItems: "center" }}>
@@ -198,8 +214,8 @@ const FullReport = ({ formData, onBackToStepper }) => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Legal Disclaimer</Text>
           <Text>
-             This is electronically generated and considered valid
-            without a handwritten signature.
+            This is electronically generated and considered valid without a
+            handwritten signature.
           </Text>
         </View>
         <View style={styles.footer}>
@@ -339,11 +355,35 @@ const FullReport = ({ formData, onBackToStepper }) => {
           Back
         </button>
         <button
-          onClick={generatePDF}
-          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+          onClick={() => {
+            generatePDF();
+            setOpenModal("Upload"); // Set the modal key to "Upload"
+          }}
+          className="px-4 py-2 bg-red-500 text-white rounded-md hover-bg-red-600"
         >
           Generate PDF
         </button>
+
+        {/* Modal for upload downloaded document */}
+        <Modal show={props.openModal === 'Upload'} onClose={() => props.setOpenModal(undefined)}>
+        <Modal.Header>Upload the Document</Modal.Header>
+        <Modal.Body>
+        <div className="w-full">
+            <label>Upload the Document</label>
+
+            <InsuaranceDocsUploader
+            OnFilesUpload={handleInsuranceDocumentsSelected}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => props.setOpenModal(undefined)}>Upload</Button>
+          <Button color="gray" onClick={() => props.setOpenModal(undefined)}>
+            Decline
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       </div>
 
       {pdfVisible && (
