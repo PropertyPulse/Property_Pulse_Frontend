@@ -42,7 +42,7 @@ const UpcomingTasks= () => {
     console.log(currentDate);
 
 
-    const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', '', ''];
+    const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', ''];
 
     const [showModalMakeRequest, setShowModalMakeRequest] = React.useState(false);
     const [showModalManpowerRequest, setShowModalManpowerRequest] = React.useState(false);
@@ -188,7 +188,7 @@ const UpcomingTasks= () => {
                                             <label className="text-white bg-yellow-400 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
                                                 {task.requestStatus}
                                             </label>
-                                        ) : (task.requestStatus === 'Request Reschedule') ? (
+                                        ) : (task.requestStatus === 'Requested Reschedule') ? (
                                             <label className="text-white bg-yellow-700 font-medium rounded-2xl text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300">
                                                 {task.requestStatus}
                                             </label>
@@ -201,6 +201,8 @@ const UpcomingTasks= () => {
 
                                         ) : (<label></label>)}
                                     </td>
+
+
                                     {showModalMakeRequest ? (
                                         <>
                                             <div className="z-40 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -234,23 +236,17 @@ const UpcomingTasks= () => {
                                             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                                         </>
                                     ) : null}
+
+
                                     {(task.requestStatus === 'Accepted') ? (
                                         <td className="px-6 py-3">
                                             <button onClick={() => {setShowModalManpowerRequest(true);} } className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
                                                 View Details
                                             </button>
                                         </td>
+                                    ) : (<td><button></button></td>)}
 
-                                    ) : (<td><button></button></td>)}
-                                    {(task.requestStatus === 'Declined') ? (
-                                        <td className="px-6 py-3">
-                                            <button className="text-white bg-gradient-to-br bg-blue-button-end font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
-                                                    onClick={() => {setShowModalManpowerReschedule(true);} }
-                                            >
-                                                Reschedule
-                                            </button>
-                                        </td>
-                                    ) : (<td><button></button></td>)}
+
                                     {(task.requestStatus === 'Accepted' && date === currentDate) ? (
                                         <td className="px-6 py-3">
                                             <button className="text-white bg-green-600 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"

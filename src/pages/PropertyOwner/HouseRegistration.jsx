@@ -346,8 +346,8 @@ const HouseRegistration = () => {
                 formData,
                 {
                     headers: {
-                        "Content-Type":"multipart/form-data",
-                    }
+                        "Content-Type":"multipart/form-data"
+                    },
                 }
             );
             console.log(response);
