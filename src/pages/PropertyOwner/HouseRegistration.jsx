@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import InputText from "../../Components/Common/InputText";
 import ProfilePictureUploader from "../../Components/Common/ProfilePictureUploader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "../../Components/PropertyOwner/Dropdown";
 import { useRef } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import MultipleImageUploader from "../../Components/Common/MultipleImageUploader";
+import { useEffect } from "react";
+import ConfirmationModal from "../../Components/PropertyOwner/ConfirmationModal";
 
 
 // const REGISTER_URL = '/api/v1/property/addProperty';
@@ -15,7 +17,8 @@ const HouseRegistration = () => {
     const navigate = useNavigate();
     const {auth} = useAuth();
     const axiosPrivate = useAxiosPrivate();
-
+    const [propertyId, setPropertyId] = useState();
+    const [showModal, setShowModal] = useState(false);
 
     const [selectedAppliances, setSelectedAppliances] = useState([]);
 
@@ -41,11 +44,9 @@ const HouseRegistration = () => {
 
     const [propertyOwner, setPropertyOwner] = useState();
 
-    const [success, setSuccess] = useState(false);
 
     const [errMessage, setErrMessage] = useState("");
 
-    const [isValid, setIsValid] = useState();
 
     const [wantInsurance, setWantInsurance] = useState(false);
 
@@ -341,23 +342,25 @@ const HouseRegistration = () => {
 
             console.log(formFields);
 
-            // const response = await axiosPrivate.post(
-            //     "/api/v1/property/addNewProperty",
-            //     JSON.stringify(formFields), // Convert the object to JSON string
-            //     {
-            //
-            //     }
-            // );
-            // console.log(response.data);
-            // if(response) {
-            //     navigate("schedule-tasks");
-            // }
+            const response = await axiosPrivate.post(
+                "/api/v1/property/addNewProperty",
+                JSON.stringify(formFields), // Convert the object to JSON string
+                {
+            
+                }
+            );
+            console.log(response.data);
+            if(response) {
+                const newPropertyId = response.data.id;
+                setPropertyId(newPropertyId);
+                console.log(`Newly created property ID: ${newPropertyId}`);
+                navigate("schedule-tasks");
+            }
             
         } catch(err){
-            // console.log(err);
+            console.error(err);
         }
     }
-
     
     // Function for handling value changes of input fields
     const onChange = (e) => {
@@ -530,9 +533,7 @@ const HouseRegistration = () => {
                 </div>
                 <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
                     {/* <Link
-                        to={{
-                            pathname: "schedule-tasks"
-                        }}
+                        to={`schedule-tasks/${propertyId}`}
                     > */}
                         <button className='w-64 bg-primary-blue-800 px-10 py-4 border-none text-white rounded-md hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>Request to Register</button>   
                     {/* </Link> */}

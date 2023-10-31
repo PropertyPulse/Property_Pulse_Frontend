@@ -173,16 +173,16 @@ const LandRegistration = () => {
                 property_owner_email: auth.user,
             }
 
-            // console.log(formFields);
+            console.log(formFields);
 
             const response = await axiosPrivate.post(
                 "/api/v1/property/addNewProperty",
                 JSON.stringify(formFields), // Convert the object to JSON string
                 {
-                    headers: {
-                        "Content-type":"multipart/form-data",
+                    // headers: {
+                    //     "Content-type":"multipart/form-data",
                 }
-            }
+            // }
 
             );
             console.log(response.data);
@@ -272,7 +272,7 @@ const LandRegistration = () => {
                                 <div className='h-full flex w-full gap-10 items-center px-10 py-5'>
                                     <div className='w-full'>
                                         <label>Images of the Property</label>
-                                        <MultipleImageUploader />
+                                        {/* <MultipleImageUploader /> */}
                                     </div>   
                                     <div className='w-full'>
                                         <label>Insurance Documents</label>
