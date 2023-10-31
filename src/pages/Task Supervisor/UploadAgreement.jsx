@@ -3,7 +3,13 @@ import {
 } from "@material-tailwind/react";
 
 
-const UploadAgreement = () => {
+const UploadAgreement = (props) => {
+
+    let id = props.id;
+
+    
+
+
 
     return (
         <div className=''>
@@ -20,7 +26,7 @@ const UploadAgreement = () => {
                             </svg>
 
                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                className="font-semibold">Click to upload</span> or drag and drop</p>
+                                className="font-semibold">Click to upload </span> or drag and drop</p>
                             {/*<p className="text-xs text-gray-500 dark:text-gray-400">PDF, DOCX</p>*/}
                         </div>
                         <input id="dropzone-file" type="file" className="hidden"/>

@@ -322,7 +322,7 @@ const PropertiesToBeManaged = () => {
                                                         </button>
                                                     </div>
                                                     {/*body*/}
-                                                    <UploadAgreement />
+                                                    <UploadAgreement id={row.propertyId} />
                                                 </div>
                                             </div>
                                         </div>
