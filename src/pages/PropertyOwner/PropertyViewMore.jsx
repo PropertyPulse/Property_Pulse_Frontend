@@ -65,7 +65,7 @@ const PropertyViewMore = () => {
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Registered Date: </label>
                                 <div className='text-[#014F86]'>
-                                    {property.registered_date?.[0]+"/"+property.registered_date?.[1]+"/"+property.registered_date?.[2]}
+                                    {property.registered_date?.[0]+"/"+(property.registered_date?.[1] < 10 ? "0"+property.registered_date?.[1] : property.registered_date?.[1]) +"/"+(property.registered_date?.[2] < 10 ? "0"+property.registered_date?.[2] : property.registered_date?.[2])}
                                 </div>
                             </div>
                             <div className='flex gap-2'>
@@ -74,7 +74,7 @@ const PropertyViewMore = () => {
                             </div>
                         </div>
                         
-                        {property.registered_status.toUpperCase() === "REGISTERED" ? (
+                        {property.registered_status && property.registered_status.toUpperCase() === "REGISTERED" ? (
                             <div className=''>
                                 <h3 className='font-semibold text-[#012A4A] text-lg underline text-center'>Assigned Task Supervisor: </h3>
                                 <div className='mt-2 px-10 text-center'>

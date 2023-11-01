@@ -225,7 +225,7 @@ const PropertiesPO = () => {
 
                     {properties.map((property) => (
                       <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
-                        {property.registeredStatus.toUpperCase === "REGISTERED" ? (
+                        {property.registeredStatus.toUpperCase() === "REGISTERED" ? (
                             <tr>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                               {property.propertyId}
