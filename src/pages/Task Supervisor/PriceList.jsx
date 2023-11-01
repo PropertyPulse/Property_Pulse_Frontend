@@ -1,22 +1,30 @@
 import React, { useState } from "react";
-import axiosPrivate from "axios"; // Import axios or use it from your project
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const PriceList = ({ tasks }) => {
+
     const [formData, setFormData] = useState([]);
+    const axiosPrivate = useAxiosPrivate();
 
     const handleSubmit = async () => {
         const data = formData.map((formDataItem, index) => {
             const task = tasks[index];
             return {
                 taskId: task.taskId, 
-                estimatedDays: formDataItem.estimatedDays || 0,
-                numWorkers: formDataItem.numWorkers || 0,
-                price: formDataItem.price || 0,
+                timeInDays: formDataItem.estimatedDays || 0,
+                noOfWorkers: formDataItem.numWorkers || 0,
+                cost: formDataItem.price || 0,
             };
         });
 
+        console.log(JSON.stringify(data));
+
         try {
-            const response = await axiosPrivate.post("http://localhost:8080/api/v1/TS/setTaskList", data);
+            const response = await axiosPrivate.post("http://localhost:8080/api/v1/TS/setTaskList", JSON.stringify(data), {
+            headers: {
+                "Content-Type": "application/json", 
+            },
+            });
 
             if (response.status === 200) {
                 console.log(response.data);
