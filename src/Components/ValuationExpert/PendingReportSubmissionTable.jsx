@@ -1,52 +1,33 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Table, Pagination } from "flowbite-react";
 import { Button, Modal } from "flowbite-react";
 import StepperComponent from "./Stepper";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
 
 const PendingReportSubmissionTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
   const [modalPlacement, setModalPlacement] = useState("center");
+  const {auth} = useAuth();
+  const axiosPrivate = useAxiosPrivate();
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentStep, setCurrentStep] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
 
-  const tableData = [
-    {
-      propertyId: "10101010",
-      type: "Home",
-      location: "Maharagama",
-      Requesteddata: "2023/09/10",
-      contactPerson: "shashika",
-      contact: "0715702788",
-    },
-    {
-      propertyId: "10101010",
-      type: "Home",
-      location: "Maharagama",
-      Requesteddata: "2023/09/10",
-      contactPerson: "shashika",
-      contact: "0715702788",
-    },
-    {
-      propertyId: "10101010",
-      type: "Home",
-      location: "Maharagama",
-      Requesteddata: "2023/09/10",
-      contactPerson: "shashika",
-      contact: "0715702788",
-    },
-    {
-      propertyId: "10101010",
-      type: "Home",
-      location: "Maharagama",
-      Requesteddata: "2023/09/10",
-      contactPerson: "shashika",
-      contact: "0715702788",
-    },
-    // ... add more data objects here ...
-  ];
+  const [tableData, setTableData] = useState([]); // Initialize tableData as an empty array
+  useEffect(() => {
 
+    axiosPrivate
+      .get("api/v1/tm/viewPendingReports?status=pending")
+      .then((response) => {
+        setTableData(response.data); 
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [tableData]);
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
@@ -110,8 +91,8 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                   </Table.Cell>
                   <Table.Cell>{item.type}</Table.Cell>
                   <Table.Cell>{item.location}</Table.Cell>
-                  <Table.Cell>{item.Requesteddata}</Table.Cell>
-                  <Table.Cell>{item.contactPerson}</Table.Cell>
+                  <Table.Cell>{item.requestedData}</Table.Cell>
+                  <Table.Cell>{item.name}</Table.Cell>
                   <Table.Cell>{item.contact}</Table.Cell>
                   <Table.Cell>
                     <Button
