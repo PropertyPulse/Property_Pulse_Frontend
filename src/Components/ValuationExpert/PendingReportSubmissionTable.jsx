@@ -17,7 +17,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
 
   const tableData = [
     {
-      propertyId: "10101010",
+      propertyId: "1",
       type: "Home",
       location: "Maharagama",
       Requesteddata: "2023/09/10",
@@ -25,7 +25,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
       contact: "0715702788",
     },
     {
-      propertyId: "10101010",
+      propertyId: "2",
       type: "Home",
       location: "Maharagama",
       Requesteddata: "2023/09/10",
@@ -33,7 +33,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
       contact: "0715702788",
     },
     {
-      propertyId: "10101010",
+      propertyId: "3",
       type: "Home",
       location: "Maharagama",
       Requesteddata: "2023/09/10",
@@ -41,7 +41,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
       contact: "0715702788",
     },
     {
-      propertyId: "99999999",
+      propertyId: "4",
       type: "Home",
       location: "Maharagama",
       Requesteddata: "2023/09/10",

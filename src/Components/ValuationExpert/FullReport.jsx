@@ -13,12 +13,15 @@ import { pdf } from "@react-pdf/renderer";
 import { Button, Modal} from 'flowbite-react';
 import InsuaranceDocsUploader from "../../Components/Common/InsuaranceDocsUploader";
 
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
 const FullReport = ({ formData, onBackToStepper}) => {
   const [pdfVisible, setPdfVisible] = useState(false);
   const [openModal, setOpenModal] = useState();
 const props = { openModal,setOpenModal };
+let propid =Number(formData.propertyId);
 
-
+console.log();
 // meka wenas karpan upload ekedi
 
 const [selectedInsuaranceDocuments, setSelectedInsuaranceDocuments] = useState();
@@ -26,6 +29,27 @@ const [selectedInsuaranceDocuments, setSelectedInsuaranceDocuments] = useState()
 const handleInsuranceDocumentsSelected = (documents) => {
   setSelectedInsuaranceDocuments(documents);
 };
+console.log(propid);
+
+
+const axiosPrivate = useAxiosPrivate();
+const uploadDocument = async () => {
+  const forma = new FormData();
+  forma.append("property_id", propid);
+  forma.append("document", selectedInsuaranceDocuments[0]);
+  console.log("document", selectedInsuaranceDocuments[0]);
+
+  try {
+    const response = await axiosPrivate.post('/api/v1/property/addValuationReport', forma, {
+      headers: { "Content-Type": "multipart/form-data" }
+    });
+    // You can add code here to handle the successful response if needed
+  } catch (error) {
+    // You should do something with the error, e.g., log it or handle it
+    console.error("Error:", error);
+  }
+}
+
 
 
 
@@ -377,7 +401,11 @@ const handleInsuranceDocumentsSelected = (documents) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => props.setOpenModal(undefined)}>Upload</Button>
+          <Button onClick={() => {
+            uploadDocument();
+            props.setOpenModal(undefined);
+            
+          }}>Upload</Button>
           <Button color="gray" onClick={() => props.setOpenModal(undefined)}>
             Decline
           </Button>

@@ -21,6 +21,7 @@ const steps = [
 const StepperComponent = (props) => {
 
   const { propertyId } = props;
+  // console.log(propertyId);
 
   const mockValues = {
 
