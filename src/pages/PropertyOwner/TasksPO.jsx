@@ -1,29 +1,46 @@
 import React from "react";
 import { useState } from "react";
 import RequestTask from "./RequestTask";
-import axios from "../../api/axios";
+import axios, { axiosPrivate } from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const TasksPO = () => {
     const {auth} = useAuth();
+    const axiosPrivate = useAxiosPrivate();
     
     const propertyOwnerEmail = auth.user;
     console.log(propertyOwnerEmail);
 
+    const [ongoingTasks, setOngoingTasks] = useState([]);
+
     const [showModal, setShowModal] = useState(false);
     const handleOnClose = () => setShowModal(false);
 
-    const handleOnLoad = async(propertyOwnerEmail) => {
+    const fetchData = async () => {
         try {
-            
+            const response = await axiosPrivate.get('/api/v1/tasks/ongoing-tasks-po', {
+                params: { email: auth.user }
+            });
+            setOngoingTasks(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
         }
-        catch {}
-    }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [auth.user]);
+
+    useEffect(() => {
+        console.log(ongoingTasks);
+    })
 
     return (
-        <div className="w-full" onLoad={handleOnLoad}>
+        <div className="w-full">
             <RequestTask visible={showModal} onClose={handleOnClose} />
 
             <div className="w-full">      
@@ -109,6 +126,81 @@ const TasksPO = () => {
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 <button className="w-fit h-fit bg-[#013A63] text-white text-sm py-1.5 px-4 rounded-md hover:bg-[#013A63]/80">
                                                 Reject
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="w-full max-h-[500px] bg-white border-[#D7E3FC] shadow-md shadow-[#D7E3FC] mb-8 mt-4 px-8 py-5 rounded-md">
+                        <h2 className="w-full text-lg font-semibold">
+                           Task Prices To Be Accepted
+                        </h2>
+                        <div className="mt-3 w-full">
+                            <div className="shadow overflow-hidden border-b border-gray-200 rounded-lg">
+                                <table className="min-w-full divide-y divide-gray-200">
+                                    <thead className="bg-[#EDF2FB]">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            >
+                                                Property ID
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            >
+                                                Task ID
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            >
+                                                Task
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            >
+                                                Price
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            ></th>
+                                            <th
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            ></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                2
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                1
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                Cleaning the garden
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                Rs. 2000.00
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <button className="w-fit h-fit bg-[#2A6F97] text-white text-sm py-1.5 px-4 rounded-md hover:bg-[#2A6F97]/80">
+                                                    Accept
+                                                </button>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <button className="w-fit h-fit bg-[#013A63] text-white text-sm py-1.5 px-4 rounded-md hover:bg-[#013A63]/80">
+                                                    Reject
                                                 </button>
                                             </td>
                                         </tr>

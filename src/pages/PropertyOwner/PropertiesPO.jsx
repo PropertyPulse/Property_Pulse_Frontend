@@ -1,33 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import PropertyType from "./PropertyType";
 import { Link } from "react-router-dom";
 import { Tabs } from "flowbite-react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const PropertiesPO = () => {
-  const [showModal, setShowModal] = useState(false);
-  const handleOnClose = () => setShowModal(false);
+    const axiosPrivate = useAxiosPrivate();
+    const [showModal, setShowModal] = useState(false);
+    const handleOnClose = () => setShowModal(false);
+    const [properties, setProperties] = useState([]);
+    const { auth } = useAuth();
 
-  const properties = [
-    {
-      id: 1,
-      propertyID: "P001",
-      propertyType: "House",
-      registeredDate: "2023/02/05",
-      duration: "1 year",
-      registeredStatus: "Registered",
-      taskSupervisor: "TS001",
-    },
-    {
-      id: 2,
-      propertyID: "P002",
-      propertyType: "Land",
-      registeredDate: "2023/02/05",
-      duration: "1 year",
-      registeredStatus: "Pending",
-      taskSupervisor: "TS003",
-    },
-  ];
+    const fetchAllProperties = async () => {
+        try {
+            const response = await axiosPrivate.get(`/api/v1/property/get-all-properties-by-owner?email=${auth.user}`);
+            setProperties(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchAllProperties();
+    }, [auth.user]);
+
+    useEffect(() => {
+        console.log(properties);
+    });
+
+    const [propertyId, setPropertyId] = useState();
 
   return (
     <div className="w-full h-[calc(100vh-4.5rem)]">
@@ -109,32 +112,36 @@ const PropertiesPO = () => {
 
                     <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
                       {properties.map((property) => (
-                        <tr key={property.id}>
+                        <tr>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyID}
+                            {property.propertyId}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {property.propertyType}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredDate}
+                            {property.registeredDate?.[0]+"/"+property.registeredDate?.[1]+"/"+property.registeredDate?.[2]}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {property.duration}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredStatus === "Registered" ? (
+                            {property.registeredStatus.toUpperCase() === "REGISTERED" ? (
                               <span className="bg-[#b7efc5] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#25a244]">
                                 Registered
                               </span>
-                            ) : (
+                            ) : property.registeredStatus.toUpperCase() === "PENDING" ? (
                               <span className="bg-[#f7e1d3] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#f26b21]">
                                 Pending
+                              </span>
+                            ) : (
+                              <span className="bg-[#ff9595] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#f00]">
+                                Rejected
                               </span>
                             )}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredStatus === "Registered" ? (
+                            {property.registeredStatus.toUpperCase() === "REGISTERED" ? (
                                 <span>{property.taskSupervisor}</span>
                             ) : (
                                 <span>_</span>
@@ -144,7 +151,7 @@ const PropertiesPO = () => {
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                             <Link
                               to={{
-                                pathname: `property-details/${property.propertyID}`,
+                                pathname: `property-details/${property.propertyId}`,
                               }}
                             >
                               <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
@@ -169,7 +176,7 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[380px] p-10">
+              <div className="w-full h-[380px] p-10 overflow-auto">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
                     <thead className="bg-[#d5e4ff]">
@@ -216,49 +223,42 @@ const PropertiesPO = () => {
                       </tr>
                     </thead>
 
-                    <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
-                      {properties.map((property) => (
-                        <tr key={property.id}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyID}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyType}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredDate}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.duration}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredStatus === "Registered" ? (
-                              <span className="bg-[#b7efc5] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#25a244]">
-                                Registered
-                              </span>
-                            ) : (
-                              <span className="bg-[#b7efc5] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#25a244]">
-                                Registered
-                              </span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.taskSupervisor}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                            <Link
-                              to={{
-                                pathname: `property-details/${property.propertyID}`,
-                              }}
-                            >
-                              <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
-                                View
-                              </button>
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
+                    {properties.map((property) => (
+                      <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
+                        {property.registeredStatus.toUpperCase === "REGISTERED" ? (
+                            <tr>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.propertyId}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.propertyType}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.registeredDate?.[0]+"/"+property.registeredDate?.[1]+"/"+property.registeredDate?.[2]}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.duration}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <span>{property.taskSupervisor}</span>                              
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
+                              <Link
+                                to={{
+                                  pathname: `property-details/${property.propertyId}`,
+                                }}
+                              >
+                                <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
+                                  View
+                                </button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ) : (
+                            <div></div>
+                        )}  
+                      </tbody>
+                    ))}
                   </table>
                 </div>
               </div>
@@ -273,7 +273,7 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[380px] p-10">
+              <div className="w-full h-[380px] p-10 overflow-auto">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
                     <thead className="bg-[#d5e4ff]">
@@ -302,67 +302,45 @@ const PropertiesPO = () => {
                         >
                           Managing Duration
                         </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Registered Status
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Assigned Task Supervisor
-                        </th>
                         <th scope="col" className="relative px-6 py-3">
                           <span className="sr-only">View</span>
                         </th>
                       </tr>
                     </thead>
 
-                    <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
-                      {properties.map((property) => (
-                        <tr key={property.id}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyID}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyType}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredDate}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.duration}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredStatus === "Registered" ? (
-                              <span className="bg-[#f7e1d3] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#f26b21]">
-                                Pending
-                              </span>
-                            ) : (
-                              <span className="bg-[#f7e1d3] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#f26b21]">
-                                Pending
-                              </span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <span>_</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                            <Link
-                              to={{
-                                pathname: `property-details/${property.propertyID}`,
-                              }}
-                            >
-                              <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
-                                View
-                              </button>
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
+                    {properties.map((property) => (
+                      <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
+                        {property.registeredStatus.toUpperCase() === "PENDING" ? (
+                            <tr>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.propertyId}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.propertyType}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.registeredDate?.[0]+"/"+property.registeredDate?.[1]+"/"+property.registeredDate?.[2]}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.duration}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
+                              <Link
+                                to={{
+                                  pathname: `property-details/${property.propertyId}`,
+                                }}
+                              >
+                                <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
+                                  View
+                                </button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ) : (
+                            <div></div>
+                        )}  
+                      </tbody>
+                    ))}
                   </table>
                 </div>
               </div>
@@ -377,7 +355,7 @@ const PropertiesPO = () => {
                 />
               </div>
 
-              <div className="w-full h-[380px] p-10">
+              <div className="w-full h-[380px] p-10 overflow-auto">
                 <div className="shadow border-b bg-slate-300 border-gray-200 rounded-lg overflow-auto">
                   <table className="max-h-full min-w-full divide-y divide-gray-200">
                     <thead className="bg-[#d5e4ff]">
@@ -406,67 +384,45 @@ const PropertiesPO = () => {
                         >
                           Managing Duration
                         </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Registered Status
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Assigned Task Supervisor
-                        </th>
                         <th scope="col" className="relative px-6 py-3">
                           <span className="sr-only">View</span>
                         </th>
                       </tr>
                     </thead>
 
-                    <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
-                      {properties.map((property) => (
-                        <tr key={property.id}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyID}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.propertyType}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredDate}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.duration}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {property.registeredStatus === "Registered" ? (
-                              <span className="bg-[#df5252] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#ffffff]">
-                                Rejected
-                              </span>
-                            ) : (
-                              <span className="bg-[#df5252] py-1 px-2 rounded-full text-xs font-semibold uppercase text-[#ffffff]">
-                                Rejected
-                              </span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <span>_</span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
-                            <Link
-                              to={{
-                                pathname: `property-details/${property.propertyID}`,
-                              }}
-                            >
-                              <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
-                                View
-                              </button>
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
+                    {properties.map((property) => (
+                      <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
+                        {property.registeredStatus.toUpperCase() === "REJECTED" ? (
+                            <tr>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.propertyId}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.propertyType}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.registeredDate?.[0]+"/"+property.registeredDate?.[1]+"/"+property.registeredDate?.[2]}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {property.duration}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
+                              <Link
+                                to={{
+                                  pathname: `property-details/${property.propertyId}`,
+                                }}
+                              >
+                                <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
+                                  View
+                                </button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ) : (
+                            <div></div>
+                        )}  
+                      </tbody>
+                    ))}
                   </table>
                 </div>
               </div>

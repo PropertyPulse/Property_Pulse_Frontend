@@ -181,6 +181,7 @@ function App() {
                             <Route path="land-registration/schedule-tasks" element={<TasksListPO />} />
                             <Route path="house-registration" element={<HouseRegistration />} />
                             <Route path="house-registration/schedule-tasks" element={<TasksListPO />} />
+                            <Route path="schedule-tasks" element={<TasksListPO />} />
                             <Route path="complaints" element={<ComplaintsPO />} />
                             <Route path="payment-form" element={<PaymentPage />} />
                         </Route>

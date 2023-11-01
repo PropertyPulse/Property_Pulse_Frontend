@@ -163,6 +163,9 @@ const LandRegistration = () => {
         try {
             const form = new FormData(); // Create a new FormData object
 
+
+            // console.log(formFields);
+
             // Append each form field value to the FormData object
             form.append('address', values.address);
             form.append('type', values.type);
@@ -194,6 +197,7 @@ const LandRegistration = () => {
                         "Content-Type":"multipart/form-data",
                     }
                 }
+
             );
 
             console.log(response.data);
@@ -331,6 +335,7 @@ const LandRegistration = () => {
                         </div>
 
                         <div className='h-full w-full'>
+
                             <div className='h-full flex w-full gap-10 items-center px-10 py-5'>
                                 <div className='w-full'>
                                     <label>Images of the Property</label>
@@ -341,6 +346,7 @@ const LandRegistration = () => {
                                     <p className='text-xs italic'>(If you have already got an insurance for the property,
                                         please upload relevant documents)</p>
                                     <InsuaranceDocsUploader OnFilesUpload = {handleInsuranceDocumentsSelected} />
+
                                 </div>
                             </div>
 

@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import InputText from '../../Components/Common/InputText';
+import Dropdown from "../../Components/PropertyOwner/Dropdown";
 
 const ComplaintsPO = () => {
+    const handleDropdownSelect = (selectedValue) => {
+        setValues({ ...values, complaintType: selectedValue });
+    }
 
     const [values, setValues] = useState({
         title: "",
-        reason: "",
+        complaintType: "",
         description: "",
     });
 
@@ -23,10 +27,10 @@ const ComplaintsPO = () => {
         // Properties for Frequency input field
         {
             id: 2,
-            name: 'reason',
-            type: 'textarea',
+            name: 'complaintType',
+            type: 'dropdown',
             errorMessage: "",
-            label: 'Reason for Complaint',
+            label: 'Complaint Type',
         },
         // Properties for Proposed Start Date input field
         {
@@ -34,14 +38,41 @@ const ComplaintsPO = () => {
             name: 'description',
             type: 'textarea',
             errorMessage: "",
-            label: 'Any Details',
+            label: 'Description',
         },
     ]; 
+
+    const types = [
+        {
+            id: 1,
+            name: 'incompletion',
+            label: 'Incompletion',
+            checked: false,
+        },
+        {
+            id: 2,
+            name: 'work-delay',
+            label: 'Work Delay',
+            checked: false,
+        },
+        {
+            id: 3,
+            name: 'maintenance-issue',
+            label: 'Maintenance Issue',
+            checked: false,
+        },
+        {
+            id: 4,
+            name: 'bad-communication',
+            label: 'Bad Communication',
+            checked: false,
+        }
+    ];
 
     // Function for handling value changes of input fields
     const onChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
-    };
+    };    
 
     console.log(values);
 
@@ -78,6 +109,8 @@ const ComplaintsPO = () => {
                                             {input.errorMessage}
                                         </span>
                                     </div>
+                                ) : input.type === "dropdown" ? (
+                                    <Dropdown options={types} label="Complaint Type" onSelect={handleDropdownSelect} />
                                 ) : (
                                     <InputText key={input.id} {...input} value={values[input.name]} onChange={onChange} />
                                 )}
