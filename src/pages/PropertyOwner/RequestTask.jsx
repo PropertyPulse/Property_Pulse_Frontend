@@ -7,13 +7,11 @@ import { axiosPrivate } from '../../api/axios';
 import { redirect, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { useNavigate } from 'react-router-dom';
+
 const RequestTask = ({ visible, onClose }) => {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const {auth} = useAuth;
-    const RequestTask = ({ visible, onClose }) => {
-    const navigate = useNavigate();
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') {

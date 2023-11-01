@@ -19,20 +19,17 @@ const TasksPO = () => {
     const [showModal, setShowModal] = useState(false);
     const handleOnClose = () => setShowModal(false);
 
-    const fetchData = async () => {
+    const fetchOngoingTasks = async () => {
         try {
-            const response = await axiosPrivate.get('/api/v1/tasks/ongoing-tasks-po', {
-                params: { email: auth.user }
-            });
+            const response = await axiosPrivate.get(`/api/v1/tasks/ongoing-tasks-po?email=${auth.user}`);
             setOngoingTasks(response.data);
-            console.log(response.data);
         } catch (error) {
-            console.error("Error fetching data: ", error);
+            console.error('Error fetching data: ', error);
         }
     };
 
     useEffect(() => {
-        fetchData();
+        fetchOngoingTasks();
     }, [auth.user]);
 
     useEffect(() => {
@@ -56,7 +53,7 @@ const TasksPO = () => {
                         </button>
                     </div>
 
-                    <div className="w-full max-h-[500px] bg-white border-[#D7E3FC] shadow-md shadow-[#D7E3FC] mb-8 mt-4 px-8 py-5 rounded-md">
+                    {/* <div className="w-full max-h-[500px] bg-white border-[#D7E3FC] shadow-md shadow-[#D7E3FC] mb-8 mt-4 px-8 py-5 rounded-md">
                         <h2 className="w-full text-lg font-semibold">
                             Suggested Tasks by Task Supervisor
                         </h2>
@@ -133,7 +130,7 @@ const TasksPO = () => {
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="w-full max-h-[500px] bg-white border-[#D7E3FC] shadow-md shadow-[#D7E3FC] mb-8 mt-4 px-8 py-5 rounded-md">
                         <h2 className="w-full text-lg font-semibold">
@@ -236,13 +233,13 @@ const TasksPO = () => {
                                                     scope="col"
                                                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                 >
-                                                    Started Date
+                                                    Property ID
                                                 </th>
                                                 <th 
                                                     scope="col"
                                                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                 >
-                                                    Started Time
+                                                    Started Date
                                                 </th>
                                                 <th 
                                                     scope="col"
@@ -252,23 +249,33 @@ const TasksPO = () => {
                                         </thead>
 
                                         <tbody className="bg-white divide-y divide-gray-200">
-                                            <tr>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">T001</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Clean the house</td>                                                
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023/07/21</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">09:45 A.M.</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                    <Link
-                                                        to={{
-                                                            pathname: `../dashboard/ongoing-tasks/view-ongoing-task/P001/T001`,
-                                                        }}
-                                                    >
-                                                        <button className="w-fit h-fit bg-[#013A63] text-white text-sm py-1.5 px-4 rounded-md hover:bg-[#013A63]/80">
-                                                            Check Progress
-                                                        </button>
-                                                    </Link>
-                                                </td>
-                                            </tr>
+                                            {ongoingTasks.map((task) => (
+                                                <tr>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {task.taskId}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {task.task}
+                                                    </td>                                                
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {task.propertyId}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {task.startedDate?.[0]+"-"+(task.startedDate?.[1] < 10 ? "0"+task.startedDate?.[1] : task.startedDate?.[1])+"-"+(task.startedDate?.[2] < 10 ? "0"+task.startedDate?.[2] : task.startedDate?.[2])}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                        <Link
+                                                            to={{
+                                                                pathname: `../dashboard/ongoing-tasks/view-ongoing-task/${task.propertyId}/${task.taskId}`,
+                                                            }}
+                                                        >
+                                                            <button className="w-fit h-fit bg-[#013A63] text-white text-sm py-1.5 px-4 rounded-md hover:bg-[#013A63]/80">
+                                                                Check Progress
+                                                            </button>
+                                                        </Link>
+                                                    </td>
+                                                </tr>
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>

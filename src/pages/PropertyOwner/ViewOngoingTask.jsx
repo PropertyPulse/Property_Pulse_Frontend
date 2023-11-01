@@ -48,11 +48,11 @@ const ViewOngoingTask = () => {
                             <div className='w-fit h-fit max-w-[300px] p-5 bg-white rounded-md shadow-md'>
                                 <div className='my-3'>
                                     <h2 className='text-xl font-medium'>Started Date</h2>
-                                    <div>{task.startedDate?.[0]+"/"+task.startedDate?.[1]+"/"+task.startedDate?.[2]}</div>
+                                    <div>{task.startedDate?.[0]+"-"+(task.startedDate?.[1] < 10 ? "0"+task.startedDate?.[1] : task.startedDate?.[1])+"-"+(task.startedDate?.[2] < 10 ? "0"+task.startedDate?.[2] : task.startedDate?.[2])}</div>
                                 </div>
                                 <div className='my-3'>
                                     <h2 className='text-xl font-medium'>Estimated Ending Date</h2>
-                                    <div>{task.endingDate?.[0]+"/"+task.endingDate?.[1]+"/"+task.endingDate?.[2]}</div>
+                                    <div>{task.endingDate?.[0]+"-"+(task.endingDate?.[1] < 10 ? "0"+task.endingDate?.[1] : task.endingDate?.[1])+"-"+(task.endingDate?.[2] < 10 ? "0"+task.endingDate?.[2] : task.endingDate?.[2])}</div>
                                 </div>
                             </div>
                             <div className='w-full h-[300px] max-w-[700px] p-5 bg-white rounded-md shadow-md mx-auto'>
@@ -93,12 +93,12 @@ const ViewOngoingTask = () => {
                                 Make a complain
                             </button>
                         </div>
-                        <div className='text-center mt-6'>
+                        {/* <div className='text-center mt-6'>
                             <button className='w-full mt-2 bg-sky-600 py-3 px-5 text-white rounded-md hover:bg-sky-400 hover:-translate-y-1 transition duration-300 flex justify-center items-center gap-5'>
                                 <AiFillWechat className='w-8 h-8 hover:bg-sky-300' />
                                 Open Chat
                             </button>
-                        </div>                        
+                        </div>                         */}
                     </div>
                 </div>
                 

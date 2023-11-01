@@ -133,8 +133,7 @@ const PropertyOwnerDashboard = ({ properties, ongoingTasks }) => {
                     <div>
                         <Link
                             to={{
-                                // pathname: 'ongoing-tasks',
-                                pathname: '../house-registration/schedule-tasks',
+                                pathname: 'ongoing-tasks',
                             }}
                         >
                             <button className="w-fit h-fit px-2.5 py-2 bg-primary-blue-800 text-xs text-white rounded-lg hover:bg-primary-blue-800/80 hover:-translate-y-0.5 transition duration-200">
@@ -187,7 +186,7 @@ const PropertyOwnerDashboard = ({ properties, ongoingTasks }) => {
                                         {task.task}
                                     </td>
                                     <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-600">
-                                        {task.startedDate?.[0]+"-"+task.startedDate?.[1]+"-"+task.startedDate?.[2]}
+                                        {task.startedDate?.[0]+"-"+(task.startedDate?.[1] < 10 ? "0"+task.startedDate?.[1] : task.startedDate?.[1])+"-"+(task.startedDate?.[2] < 10 ? "0"+task.startedDate?.[2] : task.startedDate?.[2])}
                                     </td>
                                 </tr>
                             ))}
