@@ -640,7 +640,7 @@ const HouseRegistration = () => {
                     </div>
                 </div>
                 </div>
-                <div className="flex m-10">
+                {/* <div className="flex m-10">
                 <div className="flex items-center h-5">
                     <input
                     id="helper-checkbox"
@@ -666,7 +666,7 @@ const HouseRegistration = () => {
                     We highly recommend to take a insurance coverage for your property.
                     </p>
                 </div>
-                </div>
+                </div> */}
                 <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-10'>
                     {/* <Link
                         to={`schedule-tasks/${propertyId}`}

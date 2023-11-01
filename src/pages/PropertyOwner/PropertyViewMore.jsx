@@ -74,24 +74,6 @@ const PropertyViewMore = () => {
                             </div>
                         </div>
                         
-                        {property.registered_status && property.registered_status.toUpperCase() === "REGISTERED" ? (
-                            <div className=''>
-                                <h3 className='font-semibold text-[#012A4A] text-lg underline text-center'>Assigned Task Supervisor: </h3>
-                                <div className='mt-2 px-10 text-center'>
-                                    <div className='flex gap-2'>
-                                        {/* <label className='font-semibold text-[#012A4A]'>Name: </label> */}
-                                        <div className='text-[#014F86]'>Mr. G.M.J. Galigamuwa</div>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <label className='font-semibold text-[#012A4A]'>Employee ID: </label>
-                                        <div className='text-[#014F86]'>TS001</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <></>
-                        )}
-                        
                         <div>
                             <Link 
                                 to={{
@@ -130,7 +112,44 @@ const PropertyViewMore = () => {
                     </div>
                 </div>
                 <div className='w-1/3 h-full p-5'>
-                    <div className='w-full h-56 bg-white rounded-md mb-10'>
+                    <div className='w-full flex justify-center items-center'>
+                        <div className='w-full h-64 bg-white rounded-md'>
+                            <h2 className='text-xl font-md text-center p-2'>Due Payments</h2>
+                            <div className='w-full h-[55%] flex justify-center items-center px-2 overflow-auto'>
+                                <div className='italic text-[#2A6F97]'>No Due Payments</div>
+                            </div>
+                            <div className='w-full flex justify-center'>
+                                <Link
+                                    to={{
+                                        pathname: 'payments'
+                                    }}
+                                >
+                                    <button className='bg-primary-blue-800 text-white text-sm py-3 px-5 rounded-md mt-3 shadow-md 
+                                    shadow-[#D7E3FC] hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>
+                                        View Payments
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                        {property.registered_status && property.registered_status.toUpperCase() === "REGISTERED" ? (
+                            <div className=''>
+                                <h3 className='font-semibold text-[#012A4A] text-lg underline text-center'>Assigned Task Supervisor: </h3>
+                                <div className='mt-2 px-10 text-center'>
+                                    <div className='flex gap-2'>
+                                        {/* <label className='font-semibold text-[#012A4A]'>Name: </label> */}
+                                        <div className='text-[#014F86]'>Jayantha Galigamuwa</div>
+                                    </div>
+                                    <div className='flex gap-2'>
+                                        <label className='font-semibold text-[#012A4A]'>Employee ID: </label>
+                                        <div className='text-[#014F86]'>3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
+                    {/* <div className='w-full h-56 bg-white rounded-md mb-10'>
                         <h2 className='text-xl font-md text-center p-2'>Gallery</h2>
                         <div className='w-full h-[70%] flex-auto px-2 overflow-auto'>
                             <button className='w-[110px] h-[110px] bg-slate-100 m-1 rounded-md'>
@@ -149,31 +168,15 @@ const PropertyViewMore = () => {
                                 <img src={PropertyImg1} alt='' className='w-full h-full object-cover rounded-md' />
                             </button>
                         </div>
-                    </div>
-                    <div className='w-full h-64 bg-white rounded-md'>
-                        <h2 className='text-xl font-md text-center p-2'>Due Payments</h2>
-                        <div className='w-full h-[55%] flex justify-center items-center px-2 overflow-auto'>
-                            <div className='italic text-[#2A6F97]'>No Due Payments</div>
-                        </div>
-                        <div className='w-full flex justify-center'>
-                            <Link
-                                to={{
-                                    pathname: 'payments'
-                                }}
-                            >
-                                <button className='bg-primary-blue-800 text-white text-sm py-3 px-5 rounded-md mt-3 shadow-md 
-                                shadow-[#D7E3FC] hover:bg-primary-blue-800/80 hover:-translate-y-1 transition duration-300'>
-                                    View Payments
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className='mt-10'>
+                    </div> */}
+                    
+                    
+                    {/* <div className='mt-10'>
                         <button className='w-full bg-[#2588d4] p-4 rounded-md text-white flex justify-center gap-3 peer hover:opacity-80 hover:-translate-y-1 transition duration-200 shadow-lg'>
                             <IoLogoWechat className='w-6 h-6 fill-white peer-hover:opacity-80'/>
                             Open Chat
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
