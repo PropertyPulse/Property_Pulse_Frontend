@@ -14,6 +14,9 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentStep, setCurrentStep] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRow, setSelectedRow] = useState();
+
+
   const onPageChange = (page) => setCurrentPage(page);
 
   const [tableData, setTableData] = useState([]); // Initialize tableData as an empty array
@@ -37,7 +40,8 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
     )
   );
 
-  const handleModalOpen = () => {
+  const handleModalOpen = (row) => {
+     setSelectedRow(row);
     setOpenModal(true);
   };
 
@@ -96,9 +100,7 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                   <Table.Cell>{item.contact}</Table.Cell>
                   <Table.Cell>
                     <Button
-                      onClick={() => {
-                        setOpenModal("Upload"); // Set the propertyId in the state
-                      }}
+                      onClick={() => handleModalOpen(item)}
                     >
                       Create report
                     </Button>
@@ -129,7 +131,8 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                               <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95 1.414-1.414 4.95 4.95z" />
                             </svg>
                           </button>
-                        </div>
+                          </div>
+                        {/* </div>
                         {currentStep === 0 && (
                           <StepperComponent
                             step={currentStep}
@@ -145,7 +148,8 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
                             onPrevStep={() => setCurrentStep(currentStep - 1)}
                             onFinish={handleModalClose}
                           />
-                        )}
+                        )} */}
+
                       </div>
                     </Modal>
                   </Table.Cell>
@@ -164,6 +168,13 @@ const PendingReportSubmissionTable = ({ searchTerm }) => {
           />
         </div>
       </div>
+      {openModal && (
+        <StepperComponent
+          selectedRow={selectedRow}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </div>
   );
 };

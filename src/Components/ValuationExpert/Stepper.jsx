@@ -32,9 +32,23 @@ const mockValues = {
   isAgreed: false,
 };
 
-const StepperComponent = () => {
+const StepperComponent = ({ selectedRow, openModal, setOpenModal }) => {
   const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState(mockValues);
+  const [formData, setFormData] = useState({
+    propertyOwnerName: selectedRow.name || "",
+    propertyAddress: selectedRow.location || "",
+    propertyType: selectedRow.type || "",
+    buildUpArea: 0,
+    superBuildUpArea: 0,
+    marketValue: 0,
+    realizableValue: 0,
+    insurableValue: 100,
+    landAreaValue: 0,
+    superBuildupAreaValue: 0,
+    totalValue: 0,
+    isAgreed: false,
+
+  });
   const [showReport, setShowReport] = useState(false);
   const [isDeclarationChecked, setIsDeclarationChecked] = useState(false);
 
@@ -58,6 +72,7 @@ const StepperComponent = () => {
   };
   const handleBackToStepper = () => {
     setShowReport(false);
+    setOpenModal(undefined);
     // Add any other logic needed to go back to the stepper
   };
 
@@ -80,7 +95,7 @@ const StepperComponent = () => {
             <Form>
               <Stepper steps={steps} activeStep={step} />
   
-              {step === 0 && <PropertyDetailsStep />}
+              {step === 0 && <PropertyDetailsStep selectedRow={selectedRow} />}
               {step === 1 && <AreaOfPropertyStep />}
               {step === 2 && <ValueOfPropertyStep />}
               {step === 3 && <ValuationMethodStep />}

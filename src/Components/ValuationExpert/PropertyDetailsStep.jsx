@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const PropertyDetailsStep = ({ initialValues }) => {
+const PropertyDetailsStep = ( { selectedRow } ) => {
   return (
     <div className="bg-white p-6 shadow-md rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Property Details</h2>
@@ -11,7 +11,9 @@ const PropertyDetailsStep = ({ initialValues }) => {
         <Field
           type="text"
           id="propertyOwnerName"
-          name="propertyOwnerName"
+          name="propertyOwnerName
+          "
+          value={selectedRow.firstname + " " + selectedRow.lastname}
           className="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-200"
         />
         <ErrorMessage name="propertyOwnerName" component="div" className="text-red-500 mt-1" />
@@ -23,6 +25,8 @@ const PropertyDetailsStep = ({ initialValues }) => {
           id="propertyAddress"
           name="propertyAddress"
           className="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-200"
+          value = {selectedRow.address} 
+
         />
         <ErrorMessage name="propertyAddress" component="div" className="text-red-500 mt-1" />
       </div>
@@ -34,6 +38,7 @@ const PropertyDetailsStep = ({ initialValues }) => {
           id="propertyType"
           name="propertyType"
           className="w-full mt-1 p-2 border rounded-md focus:ring focus:ring-blue-200"
+          value = {selectedRow.type.toLowerCase().contains("land") ? "Land" : "House"}
         >
           <option value="Land">Land</option>
           <option value="House">House</option>
