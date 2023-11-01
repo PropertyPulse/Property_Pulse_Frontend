@@ -164,6 +164,7 @@ const LandRegistration = () => {
             const form = new FormData(); // Create a new FormData object
 
 
+            // console.log(formFields);
             // Append each form field value to the FormData object
             form.append('address', values.address);
             form.append('type', values.type);

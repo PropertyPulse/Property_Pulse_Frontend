@@ -403,6 +403,7 @@ const HouseRegistration = () => {
                 setPropertyId(newPropertyId);
                 console.log(`Newly created property ID: ${newPropertyId}`);
                 navigate("schedule-tasks");
+
             }
         } catch (e) {
             console.log(e);

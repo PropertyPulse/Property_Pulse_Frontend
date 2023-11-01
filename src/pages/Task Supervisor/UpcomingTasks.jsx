@@ -42,7 +42,7 @@ const UpcomingTasks= () => {
     console.log(currentDate);
 
 
-    const headings = ['Property ID', 'Location', 'Task ID', 'Task', 'Manpower Company Request', '', ''];
+    const headings = ['Property ID', 'Address', 'Task ID', 'Task', 'Manpower Company Request', '', ''];
 
     const [showModalMakeRequest, setShowModalMakeRequest] = React.useState(false);
     const [showModalManpowerRequest, setShowModalManpowerRequest] = React.useState(false);
@@ -176,7 +176,7 @@ const UpcomingTasks= () => {
                             {upcomingTasks[date].map((task, index) => (
                                 <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                     <td scope="col" className="px-6 py-3">{task.propertyId}</td>
-                                    <td scope="col" className="px-6 py-3">{task.location}</td>
+                                    <td scope="col" className="px-6 py-3">{task.address}</td>
                                     <td scope="col" className="px-6 py-3">{task.taskId}</td>
                                     <td scope="col" className="px-6 py-3">{task.task}</td>
                                     <td className="px-6 py-3">
@@ -201,7 +201,6 @@ const UpcomingTasks= () => {
 
                                         ) : (<label></label>)}
                                     </td>
-
 
                                     {showModalMakeRequest ? (
                                         <>
