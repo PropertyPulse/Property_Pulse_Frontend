@@ -6,9 +6,28 @@ import PropertyImg1 from '../../Assets/property-image.jpg';
 import { Link } from 'react-router-dom';
 import OpenChat from '../../Components/PropertyOwner/OpenChat';
 import { IoLogoWechat } from 'react-icons/io5';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { useEffect } from 'react';
 
 const PropertyViewMore = () => {
     const { id } = useParams();
+    const axiosPrivate = useAxiosPrivate();
+    const [property, setProperty] = useState([]);
+
+    console.log(id);
+    const fetchPropertyDetails = async () => {
+        try {
+            const response = await axiosPrivate.get(`/api/v1/property/get-property-by-id?id=${id}`);
+            setProperty(response.data);
+        } catch (error) {
+            console.error('Error fetching data...', error);
+        }        
+    };
+
+    useEffect(() => {
+        fetchPropertyDetails();
+    }, [id]);
+    console.log(property);
 
     const tasks = [
         {
@@ -30,42 +49,49 @@ const PropertyViewMore = () => {
     return (
         <div className='w-full'>
             <div className='w-full h-[calc(100vh-4.5rem)] flex justify-between items-center'>
-                <div className='w-2/3 h-full p-10'>
+                <div className='w-2/3 h-full px-10 pt-7 pb-10'>
                     <h1 className='text-2xl font-semibold'>Property Details: {id}</h1>
 
                     <div className='w-full h-fit bg-[#D7E3FC] border border-[#E2EAFC] shadow-lg shadow-[#E2EAFC] px-8 py-5 mt-5 rounded-lg flex justify-between items-center'>
-                        <div className='max-w-[300px]'>
+                        <div className='w-fit'>
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Type: </label>
-                                <div className='text-[#014F86]'>House</div>
+                                <div className='text-[#014F86]'>{property.type}</div>
                             </div>
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Managing Duration: </label>
-                                <div className='text-[#014F86]'>1 year</div>
+                                <div className='text-[#014F86]'>{property.duration}</div>
                             </div>
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Registered Date: </label>
-                                <div className='text-[#014F86]'>2023/02/17</div>
+                                <div className='text-[#014F86]'>
+                                    {property.registered_date?.[0]+"/"+property.registered_date?.[1]+"/"+property.registered_date?.[2]}
+                                </div>
                             </div>
                             <div className='flex gap-2'>
                                 <label className='font-semibold text-[#012A4A]'>Address: </label>
-                                <div className='text-[#014F86]'>No. 50, Kegalle Road, Imbulgasdeniya</div>
+                                <div className='text-[#014F86]'>{property.address}</div>
                             </div>
                         </div>
                         
-                        <div className=''>
-                            <h3 className='font-semibold text-[#012A4A] text-lg underline text-center'>Assigned Task Supervisor: </h3>
-                            <div className='mt-2 px-10 text-center'>
-                                <div className='flex gap-2'>
-                                    {/* <label className='font-semibold text-[#012A4A]'>Name: </label> */}
-                                    <div className='text-[#014F86]'>Mr. G.M.J. Galigamuwa</div>
-                                </div>
-                                <div className='flex gap-2'>
-                                    <label className='font-semibold text-[#012A4A]'>Employee ID: </label>
-                                    <div className='text-[#014F86]'>TS001</div>
+                        {property.registered_status.toUpperCase() === "REGISTERED" ? (
+                            <div className=''>
+                                <h3 className='font-semibold text-[#012A4A] text-lg underline text-center'>Assigned Task Supervisor: </h3>
+                                <div className='mt-2 px-10 text-center'>
+                                    <div className='flex gap-2'>
+                                        {/* <label className='font-semibold text-[#012A4A]'>Name: </label> */}
+                                        <div className='text-[#014F86]'>Mr. G.M.J. Galigamuwa</div>
+                                    </div>
+                                    <div className='flex gap-2'>
+                                        <label className='font-semibold text-[#012A4A]'>Employee ID: </label>
+                                        <div className='text-[#014F86]'>TS001</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ) : (
+                            <></>
+                        )}
+                        
                         <div>
                             <Link 
                                 to={{

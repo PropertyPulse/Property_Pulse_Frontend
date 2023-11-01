@@ -4,9 +4,15 @@ import InputText from '../../Components/Common/InputText';
 import { AiOutlineClose } from 'react-icons/ai';
 import Dropdown from '../../Components/PropertyOwner/Dropdown';
 import { axiosPrivate } from '../../api/axios';
+import { redirect, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { useNavigate } from 'react-router-dom';
-
 const RequestTask = ({ visible, onClose }) => {
+    const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
+    const {auth} = useAuth;
+    const RequestTask = ({ visible, onClose }) => {
     const navigate = useNavigate();
 
     const handleOnClose = (e) => {
@@ -18,7 +24,7 @@ const RequestTask = ({ visible, onClose }) => {
     const [frequency, setFrequency] = useState();
 
     const handleDropdownSelect = (selectedValue) => {
-        setFrequency(selectedValue);
+        setValues({ ...values, frequency: selectedValue });
     }
 
     const [values, setValues] = useState({
@@ -31,7 +37,7 @@ const RequestTask = ({ visible, onClose }) => {
     const frequencies = [
         {
             id: 1,
-            name: 'only -once',
+            name: 'only-once',
             label: 'Only once',
             checked: false,
         },
@@ -77,7 +83,11 @@ const RequestTask = ({ visible, onClose }) => {
         // Properties for property ID
         {
             id: 1,
-            name: 'property_id',
+// <<<<<<< feature/PP-68/backend-for-house-registration
+            name: 'propertyId',
+// =======
+//             name: 'property_id',
+// >>>>>>> dev
             type: 'text',
             pattern: "[0-9]*",
             errorMessage: "Property ID should be an integer value",
@@ -123,12 +133,40 @@ const RequestTask = ({ visible, onClose }) => {
 
     if(!visible) return null;
 
+    const handleAddNewTask = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formFields = {
+                propertyId: parseInt(values.propertyId),
+                taskDescription: values.task,
+                frequency: values.frequency,
+                proposedStartDate: values.proposedDate,
+                acceptedStatus: "PENDING",
+            }
+
+            const response = await axiosPrivate.post(
+                "/api/v1/newTaskRequest/addNewRequestedTask",
+                JSON.stringify(formFields),
+                {
+
+                }
+            );
+            console.log(response.data);
+            if(response) {
+                navigate(0);
+            }
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     return (
         
         <div id='container' onClick={handleOnClose} className='fixed w-full h-screen z-50 inset-0 bg-[#ADB5BD]
         bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className="max-w-[500px] w-full h-fit bg-white p-10 pt-5 rounded border-3 border-[#E2EAFC]">
-                <form className='w-full'>
+                <form className='w-full' onSubmit={handleAddNewTask}>
                     <button onClick={onClose} className='float-right mb-5'>
                         <AiOutlineClose />
                     </button>

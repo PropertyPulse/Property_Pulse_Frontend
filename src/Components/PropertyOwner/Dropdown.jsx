@@ -12,9 +12,9 @@ const Dropdown = ({label, options, searchEnable, onSelect}) => {
 
     const handleOptionClick = (option) => {
         setSelected(option.label);
-        setOpen(false);
-        setInputValue("");
         onSelect(option.label);
+        setOpen(false);
+        setInputValue("");      
     }
 
     useEffect(() => {

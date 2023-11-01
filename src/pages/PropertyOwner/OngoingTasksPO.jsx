@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useAuth from '../../hooks/useAuth';
 
 const OngoingTasksPO = () => {
-    const tasks = [
-        {
-          id: 1,
-          propertyID: "P001",
-          propertyType: "House",
-          taskID: '1234',
-          taskDescription: "Repairing the roof",
-          startedDateTime: "2023/08/12 09:30"
-        },
-        {
-          id: 2,
-          propertyID: "P002",
-          propertyType: "Land",
-          taskID: '5677',
-          taskDescription: "Weeding the land",
-          startedDateTime: "2023/08/12 09:30"
-        },
-    ];
+    const axiosPrivate = useAxiosPrivate();
+    const [ongoingTasks, setOngoingTasks] = useState([]);
+    const [properties, setProperties] = useState([]);
+    const { auth } = useAuth();
+
+    const fetchOngoingTasks = async () => {
+        try {
+            const response = await axiosPrivate.get(`/api/v1/tasks/ongoing-tasks-po?email=${auth.user}`);
+            setOngoingTasks(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    const fetchAllProperties = async () => {
+        try {
+            const response = await axiosPrivate.get(`/api/v1/property/get-all-properties-by-owner?email=${auth.user}`);
+            setProperties(response.data);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchOngoingTasks();
+        fetchAllProperties();
+    }, [auth.user]);
+
+    function getPropertyType(propertyId) {
+        const property = properties.find((prop) => prop.propertyId === propertyId);
+        return property ? property.propertyType : "N/A";
+    }
 
 
     return (
@@ -61,7 +77,7 @@ const OngoingTasksPO = () => {
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Started Date and Time
+                                            Started Date
                                         </th>
                                         <th scope="col" className="relative px-6 py-3">
                                             <span className="sr-only">View</span>
@@ -70,27 +86,27 @@ const OngoingTasksPO = () => {
                                 </thead>
 
                                 <tbody className="w-full max-h-100 bg-white h-full divide-y divide-gray-200">
-                                    {tasks.map((task) => (
-                                        <tr key={task.id}>
+                                    {ongoingTasks.map((task) => (
+                                        <tr key={task.taskId}>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {task.propertyID}
+                                                {task.propertyId}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {task.propertyType}
+                                                {getPropertyType(task.propertyId)}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {task.taskID}
+                                                {task.taskId}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {task.taskDescription}
+                                                {task.task}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {task.startedDateTime}
+                                                {task.startedDate[0]+"-"+task.startedDate[1]+"-"+task.startedDate[2]}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                                                 <Link
                                                     to={{
-                                                        pathname: `view-ongoing-task/${task.propertyID}/${task.taskID}`,
+                                                        pathname: `view-ongoing-task/${task.propertyId}/${task.taskId}`,
                                                     }}
                                                 >
                                                     <button className="bg-[#013A63] py-1.5 px-3 text-white text-xs rounded-lg hover:bg-[#013A63]/80 hover:shadow">
