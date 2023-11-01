@@ -5,11 +5,15 @@ import { Tabs } from "flowbite-react";
 
 const ReceivedValuation = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTab, setSelectedTab] = useState("");
+
   const handleSearch = (event) => {
+    console.log(event.target.value);
     setSearchTerm(event.target.value);
   };
 
 // const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-col md:flex-row">
@@ -60,10 +64,10 @@ const ReceivedValuation = () => {
             </form>
           </div>
           <div>
-            <ValuationReportTable searchTerm='Received'/>
+            <ValuationReportTable  search ={searchTerm} mode='Received'/>
           </div>
               </Tabs.Item>
-              <Tabs.Item title="Pending">
+              <Tabs.Item title="Pending" >
               <div className="flex-grow md:w-4/5 p-4">
             {/* search form ... */}
             <form>
@@ -95,7 +99,7 @@ const ReceivedValuation = () => {
                   type="search"
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search EmployeeId, Name, Nic..."
+                  placeholder="Search PropertyId Or Location"
                   value={searchTerm}
                   onChange={handleSearch}
                 />
@@ -103,7 +107,7 @@ const ReceivedValuation = () => {
             </form>
           </div>
           <div>
-            <ValuationReportTable searchTerm='Pending'/>
+            <ValuationReportTable   search ={searchTerm} mode='Pending'/>
           </div>
               </Tabs.Item>
             </Tabs.Group>

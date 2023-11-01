@@ -6,6 +6,7 @@ import {RiWechatFill} from "react-icons/ri";
 import {FcAddImage} from "react-icons/fc";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const OngoingTasks = () => {
 
@@ -15,7 +16,7 @@ const OngoingTasks = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axiosPrivate.get('/api/v1/ts/ongoing-tasks',{
+            const response = await axiosPrivate.get('/api/v1/tasks/ongoing-tasks',{
                 params: { email: auth.user }
             });
             setOngoingTasks(response.data);
@@ -31,15 +32,34 @@ const OngoingTasks = () => {
 
     const headings = ['Property ID', 'Location', 'Task ID', 'Manpower Company', '', 'Upload Images', '', ''];
 
-    // const tasks = [
-    //     {propertyID: 'P76',
-    //         location: 'Colombo 06',
-    //         taskID: 'T9892',
-    //         // task: 'Paint the house',
-    //         manpowerCompany: 'ABC Company',},
-    // ];
-
     const [showModalViewOnMap, setShowModalViewOnMap] = React.useState(false);
+
+    const endTask = (taskId) => {
+        Swal.fire({
+            title: 'Do you want to end the task?',
+            text: "Task will be marked as ended!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axiosPrivate.put('/api/v1/tasks/ongoing-tasks/end-task', {
+                    taskId: taskId,
+                }).then((response) => {
+                    Swal.fire(
+                        'Done!',
+                        'Task marked as Ended!',
+                        'success'
+                    );
+                })
+                    .catch((error) => {
+                        Swal.fire('Error', 'Unable to Mark the Task as ended', 'error');
+                    });
+            }
+        });
+    }
 
     return (
         <div className='w-full px-24 py-10'>
@@ -204,7 +224,8 @@ const OngoingTasks = () => {
                                     <RiWechatFill className='text-secondary-gray text-2xl cursor-pointer' />
                                 </td>
                                 <td className="px-6 py-3">
-                                    <button className="text-white bg-red-500 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform">
+                                    <button className="text-white bg-red-500 font-medium rounded-lg text-xs px-3 py-1 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
+                                    onClick={() => endTask(task.taskId)}>
                                         End Task
                                     </button>
                                 </td>

@@ -2,82 +2,50 @@ import { Table, Button, Modal } from "flowbite-react";
 import React, { useState } from "react";
 import { Pagination } from "flowbite-react";
 import { Label, Select } from "flowbite-react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
+import { useEffect } from "react";
 
 const ManageTsTable = ({ searchTerm }) => {
   const [openModal, setOpenModal] = useState();
+  const {auth} = useAuth();
+  const axiosPrivate = useAxiosPrivate();
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
+  const [tableData, setTableData] = useState([]); // Initialize tableData as an empty array
 
-  const tableData = [
-    {
-      propertyId: "10101011",
-      location: "Gampaha",
-      name:'Deepamal',
-      ongoingTask: "1",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10111010",
-      location: "Kaduwela",
-      ongoingTask: "0",
-      name:'Deepamal',
-      task: "Repair water pipe",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-    },
-    {
-      propertyId: "11101110",
-      location: "Waliweriya",
-      name:'shashika',
-      ongoingTask: "5",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10101000",
-      location: "Colombo",
-      name:'kavisha',
-      ongoingTask: "1",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    {
-      propertyId: "10001010",
-      location: "Gampaha",
-      name:'Deepamal',
-      ongoingTask: "0",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234647",
-    },
-    {
-      propertyId: "10101000",
-      location: "Colombo",
-      name:'surani',
-      ongoingTask: "3",
-      price: "10000",
-      scheduleDate: "2023/09/10",
-      details: "0711234567",
-    },
-    // Add more data objects for other rows...
-  ];
-  //pagination and filtering
+  useEffect(() => {
+    // Make an HTTP GET request to fetch table data
+   axiosPrivate.get("api/v1/tm/accepted") // Replace with the correct URL for your Spring Boot endpoint
+      .then((response) => {
+        // Set the response data as the table data
+        setTableData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [axiosPrivate]);
+  
 
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
-  const filteredData = tableData.filter((rowData) =>
-    Object.values(rowData).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+  const filteredData = tableData.filter((rowData) => {
+    const propertyId = rowData.propertyId || "";
+  
+    const location  = rowData.location || "";
+  
+    return (
+      propertyId.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+   
+      location.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+  
 
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;

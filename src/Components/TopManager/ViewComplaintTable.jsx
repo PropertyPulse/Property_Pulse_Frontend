@@ -1,58 +1,78 @@
 import { Table, Button, Modal } from "flowbite-react";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAuth from "../../hooks/useAuth";
 import { Label, Textarea } from "flowbite-react";
 
-const ViewComplaintTable = ({ searchTerm }) => {
+const ViewComplaintTable = ({ searchTerm ,complaints}) => {
   const [openModal, setOpenModal] = useState();
   const [modalPlacement, setModalPlacement] = useState("center");
   const props = { modalPlacement, openModal, setModalPlacement, setOpenModal };
   const [currentPage, setCurrentPage] = useState(1);
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+  const [feedbackContent,setFeedbackContent] = useState('')
+  const [tableData, setTableData] = useState([]); // Initialize tableData as an empty array
   const onPageChange = (page) => setCurrentPage(page);
 
-  const tableData = [
-    {
-      complainId: "10101010",
-      title:'Cannot sign in',
-      reason: "I cannot sign in.",
-      details: "when i trying to signin popup a error msg",
-      phoneNo:'0712452366',
-    },
-    {
-      
-      complainId: "10101000",
-      title:'Cannot upload images',
-      reason: "I cannot upload images",
-      details: "I tried many times to upload but it shows an error",
-      phoneNo:'0712452366',
-    },
-    {
-      
-      complainId: "10111010",
-      title:'Cannot sign in',
-      reason: "I cannot sign in.",
-      details: "Error msg came. I tried many times",
-      phoneNo:'0712452366',
-    },
-    {
-     
-      complainId: "10101110",
-      title:'Cannot update details',
-      reason: "I cannot update details",
-      details: "I changed my phone number. I tried to update it here. But it is not updating",
-      phoneNo:'0712452366',
-    },
-  ]
 
   const itemsPerPage = 5; // Number of items per page
 
   // Filter data based on search term
-  const filteredData = tableData.filter((rowData) =>
-    Object.values(rowData).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+  const filteredData = tableData.filter((rowData) => {
+    const propertyId = rowData.complainId || "";
+    const type = rowData.title|| "";
+    const location  = rowData.reason || "";
+  
+    return (
+      propertyId.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+      type.toString().toLowerCase().includes(searchTerm.toLowerCase()) || 
+      location.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+  
+
+   useEffect(() => {
+    axiosPrivate.get("api/v1/tm/all") // Replace with the correct URL for your Spring Boot endpoint
+      .then((response) => {
+        // Set the response data as the table data
+        setTableData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const handleFeedback  = (complaintId) => {
+        
+    axiosPrivate
+    .post('/api/feedback/save', {
+      ComplaintId:complaintId ,
+      FeedbackContent: feedbackContent,
+    
+    })
+    .then((response) => {
+      if (response.status === 201) {
+        console.log('Feedback sent successfully');
+        // Handle success, e.g., show a success message to the user
+      } else {
+        console.error('Failed to send feedback');
+        // Handle error, e.g., show an error message to the user
+      }
+    })
+    .catch((error) => {
+      console.error('Error sending feedback request:', error);
+    })
+    .finally(() => {
+      props.setOpenModal(undefined);
+      setFeedbackContent('');
+    });
+
+  }
 
   // Calculate startIndex and endIndex based on currentPage
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -92,15 +112,15 @@ const ViewComplaintTable = ({ searchTerm }) => {
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
                   <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                    {rowData.complainId}
+                    {rowData.complaint_id}
                   </Table.Cell>
                   <Table.Cell>
                    
                       {rowData.title}
                   </Table.Cell>
                   <Table.Cell>{rowData.reason}</Table.Cell>
-                  <Table.Cell>{rowData.details}</Table.Cell>
-                  <Table.Cell>{rowData.phoneNo}</Table.Cell>
+                  <Table.Cell>{rowData.description}</Table.Cell>
+                  <Table.Cell>{rowData.telephone}</Table.Cell>
                   <Table.Cell>
                     <div className="flex space-x-4">
                       <Button
@@ -167,16 +187,18 @@ const ViewComplaintTable = ({ searchTerm }) => {
                               placeholder="Write your feedback..."
                               required
                               rows={4}
+                              value = {feedbackContent}
+                              onChange={(e) => setFeedbackContent(e.target.value) }
                             />
                           </div>
                         </div>
                       </Modal.Body>
                       <Modal.Footer>
                         <Button
-                          onClick={() => props.setOpenModal(undefined)}
+                          onClick={() => handleFeedback(rowData.complainId)}
                           className="bg-secondary-gray hover:bg-secondary-gray-light"
                         >
-                          Close Complain
+                          Send Feedback
                         </Button>
                         <Button
                           color="gray"

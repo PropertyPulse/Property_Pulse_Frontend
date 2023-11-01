@@ -89,6 +89,7 @@ import ComplaintsPO from './pages/PropertyOwner/ComplaintsPO';
 import AllDocuments from './pages/PropertyOwner/AllDocuments';
 import PoAllPayments from './pages/PropertyOwner/PoAllPayments';
 import PaymentsForProperty from './pages/PropertyOwner/PaymentsForProperty';
+import { PaymentPage } from './pages/PropertyOwner/PaymentPage';
 
 function App() {
     return (
@@ -182,6 +183,7 @@ function App() {
                             <Route path="house-registration/schedule-tasks" element={<TasksListPO />} />
                             <Route path="schedule-tasks" element={<TasksListPO />} />
                             <Route path="complaints" element={<ComplaintsPO />} />
+                            <Route path="payment-form" element={<PaymentPage />} />
                         </Route>
                     
                     <Route element={<RequireAuth allowedRoles='FINANCIALMANAGER' />}>

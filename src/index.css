@@ -36,12 +36,12 @@
         padding: 0.18rem;
     }
 
-    /*.input-field{*/
-    /*    background-color: theme("colors.background-blue");*/
-    /*    border-radius: 8px;*/
-    /*    outline: none;*/
-    /*    padding: 0.5rem 1rem;*/
-    /*}*/
+    .input-field{
+        background-color: theme("colors.background-blue");
+        border-radius: 8px;
+        outline: none;
+        padding: 0.5rem 1rem;
+    }
 
     .btn-lg{
         border-radius: 12px;

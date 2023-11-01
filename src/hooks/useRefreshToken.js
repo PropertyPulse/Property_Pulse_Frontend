@@ -11,7 +11,11 @@ const useRefreshToken = () => {
         const response = await axios.get('/api/v1/auth/refresh-token', {
             withCredentials: true
         });
+        console.log("new access token reply received - ",response?.data)
+
         const accessToken = response?.data?.access_token;
+
+        console.log("new access token"+accessToken);
         const firstname = response?.data?.firstname;
         const lastname = response?.data?.lastname;
         const username = firstname + " " + lastname;

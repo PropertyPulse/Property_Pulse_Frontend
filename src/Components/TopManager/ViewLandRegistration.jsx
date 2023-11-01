@@ -7,15 +7,10 @@ import l3 from "../../Assets/LandImage/l3.jpg";
 import l4 from "../../Assets/LandImage/l4.jpg";
 import l5 from "../../Assets/LandImage/l5.jpg";
 
-const ViewLandRegistration = () => {
-  const [values, setValues] = useState({
-    address: "58/a,Gampaha,Miriswatta",
-    district: "Gampaha",
-    location: "Gampaha",
-    landSize: "50 perch",
-    crops: "Coconut,Banana,Chilli",
-    specialFacts: "No",
-  });
+const ViewLandRegistration = ({data}) => {
+  const [values, setValues] = useState(
+    data
+  );
   const images = [l1, l2, l3, l4, l5];
 
   const inputs = [
@@ -51,7 +46,7 @@ const ViewLandRegistration = () => {
       name: "landSize",
       type: "text",
       errorMessage: "Land size should be a number and should be in ",
-      label: "Land Size()",
+      label: "Land Size",
       value: "100p erch",
       required: true,
     },
