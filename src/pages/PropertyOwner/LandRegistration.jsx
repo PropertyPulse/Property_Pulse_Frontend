@@ -335,7 +335,7 @@ const LandRegistration = () => {
 
                         <div className='h-full w-full'>
 
-                            <div className='h-full flex w-full gap-10 items-center px-10 py-5'>
+                            <div className='h-full w-full px-10 py-5'>
                                 <div className='w-full'>
                                     <label>Images of the Property</label>
                                     <MultipleImageUploader onImagesSelected={handleImagesSelected} />
@@ -349,7 +349,7 @@ const LandRegistration = () => {
                                 </div>
                             </div>
 
-                            <div class="flex justify-center">
+                            {/* <div class="flex justify-center">
                                 <div class="flex items-center h-5">
                                     <input
                                         id="helper-checkbox"
@@ -375,7 +375,7 @@ const LandRegistration = () => {
                                         We highly recommend to take a insurance coverage for your property.
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className='w-fit flex justify-between items-center gap-10 mx-auto mt-5'>
                                 {/* <Link

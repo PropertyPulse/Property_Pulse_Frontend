@@ -101,7 +101,7 @@ const OngoingTasksPO = () => {
                                                 {task.task}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {task.startedDate[0]+"-"+task.startedDate[1]+"-"+task.startedDate[2]}
+                                                {task.registered_date?.[0]+"/"+(task.registered_date?.[1] < 10 ? "0"+task.registered_date?.[1] : task.registered_date?.[1]) +"/"+(task.registered_date?.[2] < 10 ? "0"+task.registered_date?.[2] : task.registered_date?.[2])}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-center">
                                                 <Link
