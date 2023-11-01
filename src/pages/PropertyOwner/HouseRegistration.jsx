@@ -351,6 +351,9 @@ const HouseRegistration = () => {
                 }
             );
             console.log(response);
+            if(response) {
+                
+            }
         } catch (e) {
             console.log(e);
         }

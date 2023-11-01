@@ -28,7 +28,7 @@ const Signup = () => {
         gender: "",
         password: "",
         confirmPassword: "",
-        profilePic: "",
+       
     });
 
 
@@ -160,18 +160,14 @@ const Signup = () => {
                         lastname: values.lastName,
                         email: values.email,
                         password: values.password,
-                        role: "PROPERTYOWNER",
-                        propertyOwner: {
-                            firstname: values.firstName,
-                            lastname: values.lastName,
-                            address: values.address,
-                            nic: values.nic,
-                            telephone: values.phone,
-                            district: values.district,
-                            gender:values.gender
-                            }
+                        address: values.address,
+                        nic: values.nic,
+                        telephone: values.phone,
+                        district: values.district,
+                        gender:values.gender
+                            
                         }
-                        ),
+                    ),
                 {
                     headers: {'Content-Type': 'application/json'},
                     withCredentials: true
@@ -285,7 +281,7 @@ const Signup = () => {
                                         </div>
                                     ) : (input.name === 'profilePic') ? (
                                         // Component for single-image upload
-                                        <div>
+                                        <div className="hidden">
                                             <label htmlFor={input.name} className="text-[#6C757D]">{input.label}</label>
                                             <ProfilePictureUploader key={input.id} {...input} value={values[input.name]} onChange={onChange} />
                                         </div>
