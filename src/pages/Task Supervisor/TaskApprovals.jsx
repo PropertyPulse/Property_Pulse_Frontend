@@ -8,6 +8,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import ViewManpowerRequestDetails from "./ViewManpowerRequestDetails";
 import ManpowerRequest from "./ManpowerRequest";
 import AddContactPerson from "./AddContactPerson";
+import RescheduleTask from "./RescheduleTask";
 
 const TaskApprovals = () => {
 
@@ -328,7 +329,7 @@ const TaskApprovals = () => {
                                                     {/*header*/}
                                                     <div
                                                         className="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600">
-                                                        <span className='font-semibold text-xl text-primary-blue-500 px-0'>Task Details</span>
+                                                        <span className='font-semibold text-xl text-primary-blue-500 px-0'>Reschedule Task</span>
                                                         <button type="button"
                                                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                                                 data-modal-toggle="defaultModal"
@@ -341,7 +342,7 @@ const TaskApprovals = () => {
                                                         </button>
                                                     </div>
                                                     {/*body*/}
-                                                    <ViewManpowerRequestDetails />
+                                                    <RescheduleTask taskId={modalRescheduleTask.taskId}/>
                                                 </div>
                                             </div>
                                         </div>
