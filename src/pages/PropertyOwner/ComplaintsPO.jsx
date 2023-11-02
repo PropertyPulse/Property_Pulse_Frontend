@@ -1,8 +1,50 @@
 import React, { useState } from 'react'
 import InputText from '../../Components/Common/InputText';
 import Dropdown from "../../Components/PropertyOwner/Dropdown";
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const ComplaintsPO = () => {
+    const axiosPrivate = useAxiosPrivate();
+    const { auth } = useAuth();
+    const navigate = useNavigate();
+
+    const addComplaint = async(e) => {
+        e.preventDefault();
+
+        try {
+            const data = {
+                title: values.title,
+                type: values.complaintType,
+                description: values.description,
+                userEmail: auth.user
+            }
+
+            console.log(data.userEmail);
+
+            const response = await axiosPrivate.post(
+                "/api/v1/complaint/makeNewComplaint",
+                JSON.stringify(data),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+            );
+            if(response) {
+                navigate('.');
+                setValues({
+                    title: "",
+                    complaintType: "",
+                    description: "",
+                });
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     const handleDropdownSelect = (selectedValue) => {
         setValues({ ...values, complaintType: selectedValue });
     }
@@ -80,10 +122,8 @@ const ComplaintsPO = () => {
         
         <div className='h-[calc(100vh-4.5rem)] w-full flex justify-between items-center gap-10 p-10'>
             <div className="max-w-[500px] w-full h-fit bg-white p-10 pt-5 rounded-md shadow-md border-3 border-[#E2EAFC]">
-                <form className='w-full'>
-                    {/* <button onClick={handleOnClose} className='float-right mb-5'>
-                        <AiOutlineClose />
-                    </button> */}
+                <form className='w-full' onSubmit={addComplaint}>
+                   
                     <h2 className='text-2xl text-center font-semibold mt-5 mb-10'>Make A Complaint</h2>
                     
                         {inputs.map((input) => (

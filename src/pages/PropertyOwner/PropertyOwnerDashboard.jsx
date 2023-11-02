@@ -210,7 +210,7 @@ const PropertyOwnerDashboard = ({ properties, ongoingTasks }) => {
           </div>
 
           <div className="w-2/4 min-w-[300px] min-h-full h-fit pr-4">
-            <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mt-10 rounded-md shadow-md border border-[#EDF2FB]">
+            {/* <div className="monthly-reports w-full min-h-[280px] bg-white p-5 mt-10 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
                 <h1 className="text-lg font-semibold mx-auto">
                   New Monthly Reports
@@ -241,9 +241,9 @@ const PropertyOwnerDashboard = ({ properties, ongoingTasks }) => {
                   onClick={() => navigate("/po/reports")}
                 >
                   View All Monthly Reports
-                </button> */}
+                </button> 
               </div>
-            </div>
+            </div> */}
 
             <div className="due-payments w-full h-[280px] bg-white p-5 mt-10 rounded-md shadow-md border border-[#EDF2FB]">
               <div className="w-full flex justify-between">
